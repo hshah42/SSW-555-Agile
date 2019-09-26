@@ -1,7 +1,7 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
-# In[209]:
+# In[112]:
 
 
 #Data Structure 
@@ -18,14 +18,14 @@ family_dic=None
 individuals=None
 
 
-# In[210]:
+# In[113]:
 
 
 def isDateParent(A):
     return A[1] in tag_fam["DATE"]
 
 
-# In[211]:
+# In[114]:
 
 
 # Convert month string to month number
@@ -47,7 +47,7 @@ def month_to_num(shortMonth):
     }[shortMonth]
 
 
-# In[212]:
+# In[115]:
 
 
 # Convert input date to standard format
@@ -56,7 +56,7 @@ def convert_date(date_arr):
     return "{}-{}-{}".format(date_arr[2], month_to_num(date_arr[1]), date_arr[0])
 
 
-# In[213]:
+# In[116]:
 
 
 from datetime import datetime
@@ -71,7 +71,7 @@ def determine_age(birth_date, death_date):
         return today.year - int(birth_date.split('-')[0])
 
 
-# In[214]:
+# In[117]:
 
 
 def find_name(arr, _id):
@@ -81,7 +81,17 @@ def find_name(arr, _id):
             return indi["NAME"]
 
 
-# In[215]:
+# In[118]:
+
+
+# Returns the lastname of the name
+# Last name is surrounded by '/' in the name
+# :param name is the full name of the person
+def get_last_name(name):
+    return name.split('/')[1];
+
+
+# In[119]:
 
 
 # create dictionary entry for the passed tag
@@ -94,7 +104,7 @@ def create_dic_entry(current_arr, tag):
     return dic, current_tag
 
 
-# In[216]:
+# In[120]:
 
 
 # Adds missing tags with "NA"
@@ -115,7 +125,7 @@ def add_missing_entries(dic):
         dic["MARR"] = "NA"   
 
 
-# In[217]:
+# In[121]:
 
 
 # Checking if one date is after another
@@ -125,7 +135,7 @@ def is_date_after(date_one, date_two):
     return date_one < date_two
 
 
-# In[218]:
+# In[122]:
 
 
 # Create map of individuals where key is the individual id and
@@ -137,7 +147,7 @@ def create_individuals_map():
         individuals[individual["INDI"]] = individual
 
 
-# In[220]:
+# In[123]:
 
 
 # Creating a family dictionary with the key as the family id and the value as the
@@ -159,7 +169,42 @@ def create_family_dic():
             
 
 
-# In[221]:
+# In[124]:
+
+
+# User story: US16
+# This function goes over the family dictionary and 
+# returns the array of family ids which contain males with different last name
+# It uses the last name of the husband in the family as the initial reference
+# 
+# :returns array of family ids
+def check_last_names():
+    for family_id in family_dic:
+        family = family_dic[family_id]
+        last_name = None
+        if "HUSB_NAME" in family:
+            last_name = get_last_name(family["HUSB_NAME"])
+        for child in family["children_objects"]:
+            if child["SEX"] == "M":
+                if last_name is None:
+                    last_name = get_last_name(child["NAME"])
+                else:
+                    if last_name != get_last_name(child["NAME"]):
+                        print("ANOMOLY: INDIVIDUAL: US16: {}: Individual has different last name {} than family {}"                                   .format(child["INDI"], get_last_name(child["NAME"]), last_name))
+
+
+# In[125]:
+
+
+# User Story: US15
+def check_sibling_count():
+    for family_id in family_dic:
+        family = family_dic[family_id]
+        if (len(family["FAM_CHILD"]) > 15):
+           print("ANOMOLY: FAMILY: US16: {}: Family has {} siblings which is more than 15 siblings".format(family_id, len(family["FAM_CHILD"])))
+
+
+# In[126]:
 
 
 def read_in(file):
@@ -228,19 +273,42 @@ def read_in(file):
                   
 
 
-# In[222]:
+# In[127]:
+
+
+# Uses the prettyTable module and print out the passed-in dictionary data
+# :param fields the table column title
+# :param tag_names the tag names used to access the dictionary elements
+# :param dictionary the dictionary with the data needed to be printed
+def printTable(fields, tag_names, dictionary):
+    table = PrettyTable()
+    table.field_names = fields
+    for element in dictionary.values():    
+        count = 1
+        row_data = "" #string uses to store each tag within the current element
+        for name in tag_names:
+            if (count < int(len(tag_names))): #not the last element
+                row_data += (str(element[name]) + ", ")
+            elif (count == int(len(tag_names))): #last element
+                row_data += str(element[name])
+                break
+            count+= 1;
+        table.add_row(row_data.split(','))
+    print(table)
+
+
+# In[128]:
 
 
 document = read_in("./myTest.ged")
 create_individuals_map()
 create_family_dic()
-family_dic
+check_last_names()
+check_sibling_count()
 
 
-# In[223]:
+# In[129]:
 
-
-get_ipython().system('pip install prettytable')
 
 from prettytable import PrettyTable
 
@@ -261,4 +329,10 @@ for family in document["FAM"]:
     
 print(indi_table)
 print(fam_table)
+
+
+# In[ ]:
+
+
+
 
