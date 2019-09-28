@@ -1,7 +1,16 @@
 
 # coding: utf-8
 
-# In[209]:
+# In[1]:
+
+
+# All the file imports
+get_ipython().system('pip install prettytable')
+from datetime import datetime
+from prettytable import PrettyTable
+
+
+# In[2]:
 
 
 #Data Structure 
@@ -18,14 +27,14 @@ family_dic=None
 individuals=None
 
 
-# In[210]:
+# In[3]:
 
 
 def isDateParent(A):
     return A[1] in tag_fam["DATE"]
 
 
-# In[211]:
+# In[4]:
 
 
 # Convert month string to month number
@@ -47,7 +56,7 @@ def month_to_num(shortMonth):
     }[shortMonth]
 
 
-# In[212]:
+# In[5]:
 
 
 # Convert input date to standard format
@@ -56,22 +65,25 @@ def convert_date(date_arr):
     return "{}-{}-{}".format(date_arr[2], month_to_num(date_arr[1]), date_arr[0])
 
 
-# In[213]:
+# In[6]:
 
-
-from datetime import datetime
 
 # Determine age based on birthdate and death date
 # If death date is not present then function uses the current date as a comparison
 def determine_age(birth_date, death_date):
+    birth_month= birth_date.split('-')[1]
+    birth_day= birth_date.split('-')[0]
+    
     if death_date:
-        return int(death_date.split('-')[0]) - int(birth_date.split('-')[0])
+        death_month=death_date.split('-')[1]
+        death_day=death_date.split('-')[0]
+        return int(death_date.split('-')[0]) - int(birth_date.split('-')[0])-((int(death_month), int(death_day))< (int(birth_month), int(birth_day)))
     else:
         today = datetime.today()
-        return today.year - int(birth_date.split('-')[0])
+        return today.year - int(birth_date.split('-')[0]) - ((today.month, today.day) < (int(birth_month), int(birth_day)))
 
 
-# In[214]:
+# In[7]:
 
 
 def find_name(arr, _id):
@@ -81,7 +93,7 @@ def find_name(arr, _id):
             return indi["NAME"]
 
 
-# In[215]:
+# In[8]:
 
 
 # create dictionary entry for the passed tag
@@ -94,7 +106,7 @@ def create_dic_entry(current_arr, tag):
     return dic, current_tag
 
 
-# In[216]:
+# In[9]:
 
 
 # Adds missing tags with "NA"
@@ -115,7 +127,7 @@ def add_missing_entries(dic):
         dic["MARR"] = "NA"   
 
 
-# In[217]:
+# In[10]:
 
 
 # Checking if one date is after another
@@ -125,7 +137,7 @@ def is_date_after(date_one, date_two):
     return date_one < date_two
 
 
-# In[218]:
+# In[11]:
 
 
 # Create map of individuals where key is the individual id and
@@ -137,7 +149,7 @@ def create_individuals_map():
         individuals[individual["INDI"]] = individual
 
 
-# In[220]:
+# In[12]:
 
 
 # Creating a family dictionary with the key as the family id and the value as the
@@ -159,7 +171,7 @@ def create_family_dic():
             
 
 
-# In[221]:
+# In[13]:
 
 
 def read_in(file):
@@ -228,7 +240,7 @@ def read_in(file):
                   
 
 
-# In[222]:
+# In[14]:
 
 
 document = read_in("./myTest.ged")
@@ -237,12 +249,8 @@ create_family_dic()
 family_dic
 
 
-# In[223]:
+# In[15]:
 
-
-get_ipython().system('pip install prettytable')
-
-from prettytable import PrettyTable
 
 for family in document["FAM"]:
     husband=family["HUSB"] if "HUSB" in family else []
