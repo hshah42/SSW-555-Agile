@@ -1,7 +1,16 @@
 
 # coding: utf-8
 
-# In[2]:
+# In[32]:
+
+
+# All the file imports
+get_ipython().system('pip install prettytable')
+from datetime import datetime
+from prettytable import PrettyTable
+
+
+# In[33]:
 
 
 #Data Structure 
@@ -18,14 +27,14 @@ family_dic=None
 individuals=None
 
 
-# In[3]:
+# In[34]:
 
 
 def isDateParent(A):
     return A[1] in tag_fam["DATE"]
 
 
-# In[4]:
+# In[35]:
 
 
 # Convert month string to month number
@@ -47,7 +56,7 @@ def month_to_num(shortMonth):
     }[shortMonth]
 
 
-# In[5]:
+# In[36]:
 
 
 # Convert input date to standard format
@@ -56,22 +65,25 @@ def convert_date(date_arr):
     return "{}-{}-{}".format(date_arr[2], month_to_num(date_arr[1]), date_arr[0])
 
 
-# In[6]:
+# In[37]:
 
-
-from datetime import datetime
 
 # Determine age based on birthdate and death date
 # If death date is not present then function uses the current date as a comparison
 def determine_age(birth_date, death_date):
+    birth_month= birth_date.split('-')[1]
+    birth_day= birth_date.split('-')[0]
+    
     if death_date:
-        return int(death_date.split('-')[0]) - int(birth_date.split('-')[0])
+        death_month=death_date.split('-')[1]
+        death_day=death_date.split('-')[0]
+        return int(death_date.split('-')[0]) - int(birth_date.split('-')[0])-((int(death_month), int(death_day))< (int(birth_month), int(birth_day)))
     else:
         today = datetime.today()
-        return today.year - int(birth_date.split('-')[0])
+        return today.year - int(birth_date.split('-')[0]) - ((today.month, today.day) < (int(birth_month), int(birth_day)))
 
 
-# In[7]:
+# In[38]:
 
 
 def find_name(arr, _id):
@@ -81,17 +93,7 @@ def find_name(arr, _id):
             return indi["NAME"]
 
 
-# In[8]:
-
-
-# Returns the lastname of the name
-# Last name is surrounded by '/' in the name
-# :param name is the full name of the person
-def get_last_name(name):
-    return name.split('/')[1];
-
-
-# In[9]:
+# In[39]:
 
 
 # create dictionary entry for the passed tag
@@ -104,7 +106,7 @@ def create_dic_entry(current_arr, tag):
     return dic, current_tag
 
 
-# In[10]:
+# In[40]:
 
 
 # Adds missing tags with "NA"
@@ -125,7 +127,7 @@ def add_missing_entries(dic):
         dic["MARR"] = "NA"   
 
 
-# In[11]:
+# In[41]:
 
 
 # Checking if one date is after another
@@ -135,7 +137,7 @@ def is_date_after(date_one, date_two):
     return date_one < date_two
 
 
-# In[12]:
+# In[42]:
 
 
 # Create map of individuals where key is the individual id and
@@ -147,7 +149,7 @@ def create_individuals_map():
         individuals[individual["INDI"]] = individual
 
 
-# In[13]:
+# In[43]:
 
 
 # Creating a family dictionary with the key as the family id and the value as the
@@ -169,77 +171,36 @@ def create_family_dic():
             
 
 
-# In[14]:
+# In[61]:
 
 
-# User story: US16
-# This function goes over the family dictionary and 
-# returns the array of family ids which contain males with different last name
-# It uses the last name of the husband in the family as the initial reference
-# 
-# :returns array of family ids
-def check_last_names():
-    different_last_names = []
-    for family_id in family_dic:
-        family = family_dic[family_id]
-        last_name = None
-        if "HUSB_NAME" in family:
-            last_name = get_last_name(family["HUSB_NAME"])
-        for child in family["children_objects"]:
-            if child["SEX"] == "M":
-                if last_name is None:
-                    last_name = get_last_name(child["NAME"])
-                else:
-                    if last_name != get_last_name(child["NAME"]):
-                        different_last_names.append(family_id)
-    return different_last_names
-
-
-# In[15]:
-
-
-# User Story: US15
-def check_sibling_count():
-    high_sibling_count = []
-    for family_id in family_dic:
-        family = family_dic[family_id]
-        if (len(family["FAM_CHILD"]) > 15):
-            high_sibling_count.append(family_id)
-    return high_sibling_count
-
-
-# In[31]:
-
-
-# USID: 
+#USID: 07
 def is_marriage_legal():
     for family_id in family_dic:
-        #print(family)
-        if "husband_object" in family_dic[family]:
-            if family_dic[family]["husband_object"]["AGE"] < 14:
+        if "MARR" in family_dic[family_id] and family_dic[family_id]["MARR"] !="NA":
+            married_date=family_dic[family_id]["MARR"]
+            print(married_date)
+        if "husband_object" in family_dic[family_id]:
+            husband=family_dic[family_id]["husband_object"]
+            if int(determine_age(husband["BIRT"], married_date)) < 14:
                 print("Father is too young")
-        if "wife_object" in family_dic[family]:
-            if family_dic[family]["wife_object"]["AGE"] < 14:
-                print("Wife is too young") 
+        if "wife_object" in family_dic[family_id]:
+            wife=family_dic[family_id]["wife_object"]
+            if int(determine_age(wife["BIRT"], married_date)) < 14:
+                print("Wife is too young")
 
 
-# In[ ]:
+# In[63]:
 
 
+#USID: 10
 def is_age_legal():
     for indi_id in individuals:
-        #print(family)
         if individuals[indi_id]["AGE"] >150:
             print("Too old")
 
 
-# In[33]:
-
-
-individuals
-
-
-# In[17]:
+# In[46]:
 
 
 def read_in(file):
@@ -308,13 +269,36 @@ def read_in(file):
                   
 
 
-# In[18]:
+# In[47]:
 
 
-# Uses the prettyTable module and print out the passed-in dictionary data
-# :param fields the table column title
-# :param tag_names the tag names used to access the dictionary elements
-# :param dictionary the dictionary with the data needed to be printed
+# Prints out the Individual Table
+def printIndividualTable():
+    allFields = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
+    tagNames = ["INDI", "NAME", "SEX", "BIRT", "AGE", "ALIVE", "DEAT", "INDI_CHILD", "SPOUSE"]
+    
+    printTable(allFields, tagNames, individuals)
+
+
+# In[48]:
+
+
+# Prints out the Family Table
+def printFamilyTable():
+    allFields = ["ID", "Married", "Divorced", "Husband ID", "Husband Name", "Wife ID", "Wife Name", "Children"]
+    tagNames = ["FAM", "MARR", "DIV", "HUSB", "HUSB_NAME", "WIFE", "WIFE_NAME", "FAM_CHILD"]
+    
+    printTable(allFields, tagNames, family_dic)
+
+
+# In[49]:
+
+
+# Prints out a table of dictionary data with the passed-in arguments
+# Parameters:
+# fields: a list of fields for the table
+# tag_names: tag names used to access each data field
+# dictionary: a dictionary filled with data
 def printTable(fields, tag_names, dictionary):
     table = PrettyTable()
     table.field_names = fields
@@ -323,46 +307,28 @@ def printTable(fields, tag_names, dictionary):
         row_data = "" #string uses to store each tag within the current element
         for name in tag_names:
             if (count < int(len(tag_names))): #not the last element
-                row_data += (str(element[name]) + ", ")
-            elif (count == int(len(tag_names))): #last element
-                row_data += str(element[name])
+                if (isinstance(element[name], list)): #current element is an array
+                    row_data += ("".join(element[name]) + "? ")
+                else: #current element is not an array
+                    row_data += (str(element[name]) + "? ")
+            elif (count == int(len(tag_names))):
+                if (isinstance(element[name], list)): #current element is an array
+                    row_data += ("".join(element[name]))
+                else: #current element is not an array
+                    row_data += (str(element[name]))
                 break
             count+= 1;
-        table.add_row(row_data.split(','))
+        table.add_row(row_data.split('?'))
     print(table)
 
 
-# In[19]:
+# In[50]:
 
 
 document = read_in("./myTest.ged")
 create_individuals_map()
 create_family_dic()
 family_dic
-
-
-# In[581]:
-
-
-get_ipython().system('pip install prettytable')
-
-from prettytable import PrettyTable
-
-for family in document["FAM"]:
-    husband=family["HUSB"] if "HUSB" in family else []
-    
-    
-indi_table = PrettyTable() #individual table
-indi_table.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
-fam_table = PrettyTable() #family table
-fam_table.field_names = ["ID", "Married", "Divorced", "Husband ID", "Husband Name", "Wife ID", "Wife Name", "Children"]
-for individual in document["INDI"]:
-    indi_table.add_row([individual["INDI"], individual["NAME"], individual["SEX"], individual["BIRT"], individual["AGE"], 
-                       individual["ALIVE"], individual["DEAT"], ("".join(individual["INDI_CHILD"])), ("".join(individual["SPOUSE"]))])
-    
-for family in document["FAM"]:
-    fam_table.add_row([family["FAM"], family["MARR"], family["DIV"], family["HUSB"], family["HUSB_NAME"], family["WIFE"], family["WIFE_NAME"], ("".join(family["FAM_CHILD"]))])
-    
-print(indi_table)
-print(fam_table)
+printIndividualTable()
+printFamilyTable()
 
