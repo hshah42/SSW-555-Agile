@@ -1,7 +1,7 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[15]:
 
 
 # All the file imports
@@ -10,7 +10,7 @@ from datetime import datetime
 from prettytable import PrettyTable
 
 
-# In[2]:
+# In[16]:
 
 
 #Data Structure 
@@ -27,14 +27,14 @@ family_dic=None
 individuals=None
 
 
-# In[3]:
+# In[17]:
 
 
 def isDateParent(A):
     return A[1] in tag_fam["DATE"]
 
 
-# In[4]:
+# In[18]:
 
 
 # Convert month string to month number
@@ -56,7 +56,7 @@ def month_to_num(shortMonth):
     }[shortMonth]
 
 
-# In[5]:
+# In[19]:
 
 
 # Convert input date to standard format
@@ -65,7 +65,7 @@ def convert_date(date_arr):
     return "{}-{}-{}".format(date_arr[2], month_to_num(date_arr[1]), date_arr[0])
 
 
-# In[6]:
+# In[20]:
 
 
 # Determine age based on birthdate and death date
@@ -83,7 +83,7 @@ def determine_age(birth_date, death_date):
         return today.year - int(birth_date.split('-')[0]) - ((today.month, today.day) < (int(birth_month), int(birth_day)))
 
 
-# In[7]:
+# In[21]:
 
 
 def find_name(arr, _id):
@@ -93,7 +93,7 @@ def find_name(arr, _id):
             return indi["NAME"]
 
 
-# In[8]:
+# In[22]:
 
 
 # create dictionary entry for the passed tag
@@ -106,7 +106,7 @@ def create_dic_entry(current_arr, tag):
     return dic, current_tag
 
 
-# In[9]:
+# In[23]:
 
 
 # Adds missing tags with "NA"
@@ -127,7 +127,7 @@ def add_missing_entries(dic):
         dic["MARR"] = "NA"   
 
 
-# In[10]:
+# In[24]:
 
 
 # Checking if one date is after another
@@ -137,7 +137,7 @@ def is_date_after(date_one, date_two):
     return date_one < date_two
 
 
-# In[11]:
+# In[25]:
 
 
 # Create map of individuals where key is the individual id and
@@ -149,7 +149,7 @@ def create_individuals_map():
         individuals[individual["INDI"]] = individual
 
 
-# In[12]:
+# In[26]:
 
 
 # Creating a family dictionary with the key as the family id and the value as the
@@ -171,7 +171,7 @@ def create_family_dic():
             
 
 
-# In[13]:
+# In[27]:
 
 
 def read_in(file):
@@ -240,33 +240,67 @@ def read_in(file):
                   
 
 
-# In[14]:
+# In[33]:
 
 
-document = read_in("./myTest.ged")
+# Prints out the Individual Table
+def printIndividualTable():
+    allFields = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
+    tagNames = ["INDI", "NAME", "SEX", "BIRT", "AGE", "ALIVE", "DEAT", "INDI_CHILD", "SPOUSE"]
+    
+    printTable(allFields, tagNames, individuals)
+
+
+# In[34]:
+
+
+# Prints out the Family Table
+def printFamilyTable():
+    allFields = ["ID", "Married", "Divorced", "Husband ID", "Husband Name", "Wife ID", "Wife Name", "Children"]
+    tagNames = ["FAM", "MARR", "DIV", "HUSB", "HUSB_NAME", "WIFE", "WIFE_NAME", "FAM_CHILD"]
+    
+    printTable(allFields, tagNames, family_dic)
+
+
+# In[37]:
+
+
+# Prints out a table of dictionary data with the passed-in arguments
+# Parameters:
+# fields: a list of fields for the table
+# tag_names: tag names used to access each data field
+# dictionary: a dictionary filled with data
+def printTable(fields, tag_names, dictionary):
+    table = PrettyTable()
+    table.field_names = fields
+    for element in dictionary.values():    
+        count = 1
+        row_data = "" #string uses to store each tag within the current element
+        for name in tag_names:
+            if (count < int(len(tag_names))): #not the last element
+                if (isinstance(element[name], list)): #current element is an array
+                    row_data += ("".join(element[name]) + "? ")
+                else: #current element is not an array
+                    row_data += (str(element[name]) + "? ")
+            elif (count == int(len(tag_names))):
+                if (isinstance(element[name], list)): #current element is an array
+                    row_data += ("".join(element[name]))
+                else: #current element is not an array
+                    row_data += (str(element[name]))
+                break
+            count+= 1;
+        table.add_row(row_data.split('?'))
+    print(table)
+
+
+# In[38]:
+
+
+document = read_in("./LunWeiChang_FamilyTree.ged")
+#document = read_in("./myTest.ged")
 create_individuals_map()
 create_family_dic()
 family_dic
-
-
-# In[15]:
-
-
-for family in document["FAM"]:
-    husband=family["HUSB"] if "HUSB" in family else []
-    
-    
-indi_table = PrettyTable() #individual table
-indi_table.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
-fam_table = PrettyTable() #family table
-fam_table.field_names = ["ID", "Married", "Divorced", "Husband ID", "Husband Name", "Wife ID", "Wife Name", "Children"]
-for individual in document["INDI"]:
-    indi_table.add_row([individual["INDI"], individual["NAME"], individual["SEX"], individual["BIRT"], individual["AGE"], 
-                       individual["ALIVE"], individual["DEAT"], ("".join(individual["INDI_CHILD"])), ("".join(individual["SPOUSE"]))])
-    
-for family in document["FAM"]:
-    fam_table.add_row([family["FAM"], family["MARR"], family["DIV"], family["HUSB"], family["HUSB_NAME"], family["WIFE"], family["WIFE_NAME"], ("".join(family["FAM_CHILD"]))])
-    
-print(indi_table)
-print(fam_table)
+printIndividualTable()
+printFamilyTable()
 
