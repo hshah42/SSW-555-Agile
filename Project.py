@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[97]:
+# In[1]:
 
 
 # All the file imports
@@ -10,33 +10,14 @@ from datetime import datetime
 from prettytable import PrettyTable
 
 
-# In[98]:
-
-
-#Data Structure 
-tag_sp=["INDI", "FAM"]
-#Level Zero Tags
-tag_zero=["HEAD", "TRLR", "NOTE"]
-#Level One Tags
-tag_one=["NAME", "SEX", "BIRT", "DEAT","FAMC","FAMS","MARR", "DIV","HUSB","WIFE","CHIL"]
-#Level Zero Tags
-tag_fam={"INDI":["NAME", "SEX","BIRT", "DEAT","FAMC","FAMS"],
-             "FAM":["MARR", "DIV","HUSB","WIFE","CHIL"], 
-             "DATE":["BIRT", "DEAT", "DIV", "MARR"]}
-family_dic=None
-individuals=None
-error_array = []
-anomaly_array = []
-
-
-# In[99]:
+# In[2]:
 
 
 def isDateParent(A):
     return A[1] in tag_fam["DATE"]
 
 
-# In[100]:
+# In[3]:
 
 
 # Convert month string to month number
@@ -58,7 +39,7 @@ def month_to_num(shortMonth):
     }[shortMonth]
 
 
-# In[101]:
+# In[4]:
 
 
 # Convert input date to standard format
@@ -67,7 +48,7 @@ def convert_date(date_arr):
     return "{}-{}-{}".format(date_arr[2], month_to_num(date_arr[1]), date_arr[0])
 
 
-# In[102]:
+# In[5]:
 
 
 # Determine age based on birthdate and death date
@@ -85,7 +66,7 @@ def determine_age(birth_date, death_date):
         return today.year - int(birth_date.split('-')[0]) - ((today.month, today.day) < (int(birth_month), int(birth_day)))
 
 
-# In[103]:
+# In[6]:
 
 
 def find_name(arr, _id):
@@ -95,7 +76,7 @@ def find_name(arr, _id):
             return indi["NAME"]
 
 
-# In[104]:
+# In[7]:
 
 
 # create dictionary entry for the passed tag
@@ -108,7 +89,7 @@ def create_dic_entry(current_arr, tag):
     return dic, current_tag
 
 
-# In[105]:
+# In[8]:
 
 
 # Adds missing tags with "NA"
@@ -129,7 +110,7 @@ def add_missing_entries(dic):
         dic["MARR"] = "NA"   
 
 
-# In[106]:
+# In[9]:
 
 
 # Checking if one date is after another
@@ -139,7 +120,7 @@ def is_date_after(date_one, date_two):
     return date_one < date_two
 
 
-# In[107]:
+# In[10]:
 
 
 # Create map of individuals where key is the individual id and
@@ -151,7 +132,7 @@ def create_individuals_map():
         individuals[individual["INDI"]] = individual
 
 
-# In[108]:
+# In[11]:
 
 
 # Creating a family dictionary with the key as the family id and the value as the
@@ -173,7 +154,7 @@ def create_family_dic():
             
 
 
-# In[109]:
+# In[12]:
 
 
 def read_in(file):
@@ -242,7 +223,7 @@ def read_in(file):
                   
 
 
-# In[110]:
+# In[13]:
 
 
 #User_Story_29: List all deceased individuals in a GEDCOM file
@@ -266,7 +247,7 @@ def listDeceased():
     printTable(allFields, tagNames, current_dic)
 
 
-# In[111]:
+# In[14]:
 
 
 #User_Story_30: List all living married people in a GEDCOM file
@@ -285,7 +266,7 @@ def listLivingMarried():
     printTable(allFields, tagNames, current_dic)
 
 
-# In[112]:
+# In[15]:
 
 
 # USID: 07
@@ -303,7 +284,7 @@ def is_marriage_legal():
                 print("ANOMOLY: INDIVIDUAL: US07: {}: Wife {} of family {} is younger than 14.".format(wife["INDI"], wife["NAME"], family_id))
 
 
-# In[121]:
+# In[16]:
 
 
 #USID: 10
@@ -315,7 +296,7 @@ def is_age_legal():
                 print("ANOMOLY: INDIVIDUAL: US10: {}: Individual {} is older than 150.".format(indi_id, individuals[indi_id]["NAME"]))
 
 
-# In[114]:
+# In[17]:
 
 
 # Prints out the Individual Table
@@ -326,7 +307,7 @@ def printIndividualTable():
     printTable(allFields, tagNames, individuals)
 
 
-# In[115]:
+# In[18]:
 
 
 # Prints out the Family Table
@@ -337,7 +318,7 @@ def printFamilyTable():
     printTable(allFields, tagNames, family_dic)
 
 
-# In[116]:
+# In[19]:
 
 
 # Prints out the data in both error and anomaly arrays
@@ -352,7 +333,7 @@ def printError():
             print(anomaly)
 
 
-# In[117]:
+# In[20]:
 
 
 # Prints out a table of dictionary data with the passed-in arguments
@@ -383,7 +364,26 @@ def printTable(fields, tag_names, dictionary):
     print(table)
 
 
-# In[119]:
+# In[21]:
+
+
+#Data Structure 
+tag_sp=["INDI", "FAM"]
+#Level Zero Tags
+tag_zero=["HEAD", "TRLR", "NOTE"]
+#Level One Tags
+tag_one=["NAME", "SEX", "BIRT", "DEAT","FAMC","FAMS","MARR", "DIV","HUSB","WIFE","CHIL"]
+#Level Zero Tags
+tag_fam={"INDI":["NAME", "SEX","BIRT", "DEAT","FAMC","FAMS"],
+             "FAM":["MARR", "DIV","HUSB","WIFE","CHIL"], 
+             "DATE":["BIRT", "DEAT", "DIV", "MARR"]}
+family_dic=None
+individuals=None
+error_array=[]
+anomaly_array=[]
+
+
+# In[22]:
 
 
 document = read_in("./myTest.ged")
@@ -392,7 +392,16 @@ create_family_dic()
 family_dic
 printIndividualTable()
 printFamilyTable()
+
 listDeceased()
 listLivingMarried()
 printError()
+is_marriage_legal()
+is_age_legal()
+
+
+# In[23]:
+
+
+family_dic
 
