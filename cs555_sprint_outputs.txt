@@ -1,0 +1,66 @@
+People Table
++-------+--------------------+--------+-------------+------+--------+-----------+-------+-----------+
+|   ID  |        Name        | Gender |   Birthday  | Age  | Alive  |   Death   | Child |   Spouse  |
++-------+--------------------+--------+-------------+------+--------+-----------+-------+-----------+
+|  @I1@ |    Jimmy /Colon/   |    M   |   1860-6-5  |  159 |  True  |     NA    |  @F2@ |    @F1@   |
+|  @I2@ |    Helen /Colon/   |    F   |  1920-12-10 |  81  |  False |  2002-6-2 |   NA  |    @F1@   |
+|  @I3@ |    Dora /Colon/    |    F   |   1951-4-5  |  68  |  True  |     NA    |  @F1@ |  @F3@@F4@ |
+|  @I4@ |    Rurra /Colon/   |    F   |   1952-9-8  |  66  |  True  |     NA    |  @F1@ |    @F5@   |
+|  @I5@ |    John /Colon/    |    M   |   1957-5-11 |  62  |  True  |     NA    |  @F1@ |    @F6@   |
+|  @I6@ |  Micheal /Huston/  |    M   |   1950-5-10 |  69  |  True  |     NA    |   NA  |    @F3@   |
+|  @I7@ |   Samul /Hilson/   |    M   |   1952-7-5  |  67  |  True  |     NA    |   NA  |    @F4@   |
+|  @I8@ |   Henry /Nilson/   |    M   |   1950-9-25 |  68  |  True  |     NA    |   NA  |    @F5@   |
+|  @I9@ |    Alex /Colon/    |    F   |  1965-12-27 |  53  |  True  |     NA    |   NA  |    @F6@   |
+| @I10@ |   Kevin /Huston/   |    M   |   1990-8-4  |  29  |  True  |     NA    |  @F3@ |     NA    |
+| @I11@ |   Cathie /Colon/   |    F   |   1974-6-2  |  45  |  True  |     NA    |  @F4@ |    @F7@   |
+| @I12@ |   Dylan /Nilson/   |    M   |  1989-11-29 |  29  |  True  |     NA    |  @F5@ |     NA    |
+| @I13@ |   Kitty /Nilson/   |    F   |   1980-7-10 |  39  |  True  |     NA    |  @F5@ |    @F8@   |
+| @I14@ |    Bella /Colon/   |    F   |   1995-3-9  |  24  |  True  |     NA    |  @F6@ |     NA    |
+| @I15@ |   Minnie /Colon/   |    F   |   1998-10-6 |  20  |  True  |     NA    |  @F6@ |     NA    |
+| @I16@ |    Davis /Hill/    |    M   |   1970-6-6  |  49  |  True  |     NA    |   NA  |    @F7@   |
+| @I17@ |   Gaberial /Hill/  |    F   |   2001-5-5  |  18  |  True  |     NA    |  @F7@ |     NA    |
+| @I18@ |  George /Nickson/  |    M   |   1974-3-17 |  45  |  True  |     NA    |   NA  |    @F8@   |
+| @I19@ |  Micheal /Nickson/ |    M   |   2009-9-17 |   9  |  True  |     NA    |  @F8@ |     NA    |
++-------+--------------------+--------+-------------+------+--------+-----------+-------+-----------+
+
+Families Table
++------+-------------+-----------+------------+-------------------+---------+-----------------+---------------+
+|  ID  |   Married   |  Divorced | Husband ID |    Husband Name   | Wife ID |    Wife Name    |    Children   |
++------+-------------+-----------+------------+-------------------+---------+-----------------+---------------+
+| @F1@ |   1941-11-5 |     NA    |    @I1@    |    Jimmy /Colon/  |   @I2@  |   Helen /Colon/ |  @I3@@I4@@I5@ |
+| @F2@ |      NA     |     NA    |     NA     |         NA        |    NA   |        NA       |      @I1@     |
+| @F3@ |   1988-8-4  |     NA    |    @I6@    |  Micheal /Huston/ |   @I3@  |   Dora /Colon/  |      @I10@    |
+| @F4@ |   1972-7-3  |  1980-4-3 |    @I7@    |   Samul /Hilson/  |   @I3@  |   Dora /Colon/  |      @I11@    |
+| @F5@ |  1972-10-15 |     NA    |    @I8@    |   Henry /Nilson/  |   @I4@  |   Rurra /Colon/ |   @I12@@I13@  |
+| @F6@ |   1989-6-8  |     NA    |    @I5@    |    John /Colon/   |   @I9@  |   Alex /Colon/  |   @I14@@I15@  |
+| @F7@ |      NA     |     NA    |    @I16@   |    Davis /Hill/   |   @I11@ |  Cathie /Colon/ |      @I17@    |
+| @F8@ |   1991-3-24 |     NA    |    @I18@   |  George /Nickson/ |   @I13@ |  Kitty /Nilson/ |      @I19@    |
++------+-------------+-----------+------------+-------------------+---------+-----------------+---------------+
+
+US29: Deceased People Table
++------+----------------+--------+-------------+-----+--------+-----------+
+|  ID  |      Name      | Gender |   Birthday  | Age | Alive  |   Death   |
++------+----------------+--------+-------------+-----+--------+-----------+
+| @I2@ |  Helen /Colon/ |    F   |  1920-12-10 |  81 |  False |  2002-6-2 |
++------+----------------+--------+-------------+-----+--------+-----------+
+
+US30: Living & Married People Table
++-------+-------------------+--------+-------------+------+-------+-------+-----------+
+|   ID  |        Name       | Gender |   Birthday  | Age  | Alive | Death |   Spouse  |
++-------+-------------------+--------+-------------+------+-------+-------+-----------+
+|  @I1@ |    Jimmy /Colon/  |    M   |   1860-6-5  |  159 |  True |   NA  |    @F1@   |
+|  @I3@ |    Dora /Colon/   |    F   |   1951-4-5  |  68  |  True |   NA  |  @F3@@F4@ |
+|  @I4@ |    Rurra /Colon/  |    F   |   1952-9-8  |  66  |  True |   NA  |    @F5@   |
+|  @I5@ |    John /Colon/   |    M   |   1957-5-11 |  62  |  True |   NA  |    @F6@   |
+|  @I6@ |  Micheal /Huston/ |    M   |   1950-5-10 |  69  |  True |   NA  |    @F3@   |
+|  @I7@ |   Samul /Hilson/  |    M   |   1952-7-5  |  67  |  True |   NA  |    @F4@   |
+|  @I8@ |   Henry /Nilson/  |    M   |   1950-9-25 |  68  |  True |   NA  |    @F5@   |
+|  @I9@ |    Alex /Colon/   |    F   |  1965-12-27 |  53  |  True |   NA  |    @F6@   |
+| @I11@ |   Cathie /Colon/  |    F   |   1974-6-2  |  45  |  True |   NA  |    @F7@   |
+| @I13@ |   Kitty /Nilson/  |    F   |   1980-7-10 |  39  |  True |   NA  |    @F8@   |
+| @I16@ |    Davis /Hill/   |    M   |   1970-6-6  |  49  |  True |   NA  |    @F7@   |
+| @I18@ |  George /Nickson/ |    M   |   1974-3-17 |  45  |  True |   NA  |    @F8@   |
++-------+-------------------+--------+-------------+------+-------+-------+-----------+
+
+------error messages------
+ERROR: INDIVIDUAL: US30 Deceased Person @I2@ who is Married to @F1@
