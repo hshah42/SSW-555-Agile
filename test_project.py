@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[23]:
+# In[35]:
 
 
 import pytest
@@ -12,7 +12,7 @@ from io import StringIO
 import sys
 
 
-# In[24]:
+# In[36]:
 
 
 def test_not_legal_marriage():
@@ -55,7 +55,7 @@ def test_not_legal_marriage():
     return fake_out.getvalue()=='ANOMOLY: INDIVIDUAL: US07: @I18@: Father George /Nickson/ of family @F8@ is younger than 14.\nANOMOLY: INDIVIDUAL: US07: @I13@: Wife Kitty /Nilson/ of family @F8@ is younger than 14.\n'
 
 
-# In[25]:
+# In[37]:
 
 
 def test_legal_marriage():
@@ -98,7 +98,7 @@ def test_legal_marriage():
     return fake_out.getvalue()==""
 
 
-# In[26]:
+# In[38]:
 
 
 def test_legal_marriage():
@@ -141,7 +141,7 @@ def test_legal_marriage():
     return fake_out.getvalue()==""
 
 
-# In[27]:
+# In[39]:
 
 
 def test_over_age_150():
@@ -175,7 +175,7 @@ def test_over_age_150():
     return fake_out.getvalue()=='ANOMOLY: INDIVIDUAL: US10: @I1@: Individual Jimmy /Colon/ is older than 150.\n'
 
 
-# In[28]:
+# In[40]:
 
 
 def test_less_age_150():
@@ -209,7 +209,7 @@ def test_less_age_150():
     return fake_out.getvalue()==""
 
 
-# In[29]:
+# In[41]:
 
 
 # User_Story_29: List all deceased individuals in a GEDCOM file
@@ -224,7 +224,7 @@ def test_list_deceased_individuals_success(mock_printTable):
     mock_printTable.assert_called_with(allFields, tagNames, current_dic)
 
 
-# In[30]:
+# In[42]:
 
 
 # User_Story_29: List all deceased individuals in a GEDCOM file
@@ -239,7 +239,7 @@ def test_list_deceased_individuals_error(mock_printTable):
     mock_printTable.assert_called_with(allFields, tagNames, {}) #provide empty dictionary so that it won't overwrite
 
 
-# In[31]:
+# In[43]:
 
 
 # User_Story_30: List all living married people in a GEDCOM file
@@ -255,7 +255,7 @@ def test_list_living_married_individuals_success(mock_printTable):
     mock_printTable.assert_called_with(allFields, tagNames, current_dic)
 
 
-# In[32]:
+# In[44]:
 
 
 # User_Story_30: List all living married people in a GEDCOM file
@@ -270,17 +270,17 @@ def test_list_living_married_individuals_error(mock_printTable):
     mock_printTable.assert_called_with(allFields, tagNames, {}) #provide empty dictionary so that it won't overwrite
 
 
-# In[33]:
+# In[45]:
 
 
 # Tests user stories that list out items
 test_list_deceased_individuals_success()
-#test_list_deceased_individuals_error()
-#test_list_living_married_individuals_success()
-#test_list_living_married_individuals_error()
+test_list_deceased_individuals_error()
+test_list_living_married_individuals_success()
+test_list_living_married_individuals_error()
 
 
-# In[34]:
+# In[46]:
 
 
 import unittest
