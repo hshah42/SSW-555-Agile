@@ -1,42 +1,24 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[85]:
+# In[1]:
 
 
 # All the file imports
 get_ipython().system('pip install prettytable')
 from datetime import datetime
 from prettytable import PrettyTable
+import os
 
 
-# In[86]:
-
-
-#Data Structure 
-tag_sp=["INDI", "FAM"]
-#Level Zero Tags
-tag_zero=["HEAD", "TRLR", "NOTE"]
-#Level One Tags
-tag_one=["NAME", "SEX", "BIRT", "DEAT","FAMC","FAMS","MARR", "DIV","HUSB","WIFE","CHIL"]
-#Level Zero Tags
-tag_fam={"INDI":["NAME", "SEX","BIRT", "DEAT","FAMC","FAMS"],
-             "FAM":["MARR", "DIV","HUSB","WIFE","CHIL"], 
-             "DATE":["BIRT", "DEAT", "DIV", "MARR"]}
-family_dic=None
-individuals=None
-error_array = []
-anomaly_array = []
-
-
-# In[87]:
+# In[2]:
 
 
 def isDateParent(A):
     return A[1] in tag_fam["DATE"]
 
 
-# In[88]:
+# In[3]:
 
 
 # Convert month string to month number
@@ -58,7 +40,7 @@ def month_to_num(shortMonth):
     }[shortMonth]
 
 
-# In[89]:
+# In[4]:
 
 
 # Convert input date to standard format
@@ -67,7 +49,7 @@ def convert_date(date_arr):
     return "{}-{}-{}".format(date_arr[2], month_to_num(date_arr[1]), date_arr[0])
 
 
-# In[90]:
+# In[5]:
 
 
 # Determine age based on birthdate and death date
@@ -85,7 +67,7 @@ def determine_age(birth_date, death_date):
         return today.year - int(birth_date.split('-')[0]) - ((today.month, today.day) < (int(birth_month), int(birth_day)))
 
 
-# In[91]:
+# In[6]:
 
 
 def find_name(arr, _id):
@@ -95,7 +77,7 @@ def find_name(arr, _id):
             return indi["NAME"]
 
 
-# In[92]:
+# In[7]:
 
 
 # create dictionary entry for the passed tag
@@ -108,7 +90,7 @@ def create_dic_entry(current_arr, tag):
     return dic, current_tag
 
 
-# In[93]:
+# In[8]:
 
 
 # Adds missing tags with "NA"
@@ -129,7 +111,7 @@ def add_missing_entries(dic):
         dic["MARR"] = "NA"   
 
 
-# In[94]:
+# In[9]:
 
 
 # Checking if one date is after another
@@ -139,7 +121,7 @@ def is_date_after(date_one, date_two):
     return date_one < date_two
 
 
-# In[95]:
+# In[10]:
 
 
 # Create map of individuals where key is the individual id and
@@ -151,7 +133,7 @@ def create_individuals_map():
         individuals[individual["INDI"]] = individual
 
 
-# In[96]:
+# In[11]:
 
 
 # Creating a family dictionary with the key as the family id and the value as the
@@ -173,7 +155,7 @@ def create_family_dic():
             
 
 
-# In[97]:
+# In[12]:
 
 
 def read_in(file):
@@ -242,87 +224,53 @@ def read_in(file):
                   
 
 
-# In[98]:
-
-
-#User_Story_29: List all deceased individuals in a GEDCOM file
-#Prints out a table with all the deceased people's information
-def listDeceased():
-    current_dic = {}
-    print("User_Story_29: List all deceased individuals in a GEDCOM file")
-    for value in individuals.values():
-        if(str(value["DEAT"]) != "NA" and (value["ALIVE"])):
-            error_array.append(("ERROR: INDIVIDUAL: US29 Person {} is alive but has Death Date {}").format(value["NAME"], value["DEAT"]))
-        elif(str(value["DEAT"]) == "NA" and (not value["ALIVE"])):
-            error_array.append(("ERROR: INDIVIDUAL: US29 Person {} is dead but has no Death Date").format(value["DEAT"]));
-            print(("ERROR: INDIVIDUAL: US29 Person {} is dead but has no Death Date").format(value["DEAT"]))
-        elif(not value["ALIVE"]):
-            current_dic[value["INDI"]] = value
-            
-            
-    #Use pretty table module to print out the results
-    allFields = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death"]
-    tagNames = ["INDI", "NAME", "SEX", "BIRT", "AGE", "ALIVE", "DEAT"]
-    printTable(allFields, tagNames, current_dic)
-
-
-# In[99]:
-
-
-#User_Story_30: List all living married people in a GEDCOM file
-#Prints out a table with all the living married people's information
-def listLivingMarried():
-    current_dic = {}
-    print("User_Story_30: List all living married people in a GEDCOM file")
-    for value in individuals.values():
-        if(value["ALIVE"] and value["SPOUSE"] != "NA"):
-            current_dic[value["INDI"]] = value
-        elif(not value["ALIVE"] and value["SPOUSE"] != "NA"):
-            error_array.append("ERROR: INDIVIDUAL: US30 Deceased Person {} who is Married to {}".format(value["INDI"], "".join(value["SPOUSE"])))
-    #Use pretty table module to print out the results
-    allFields = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Spouse"]
-    tagNames = ["INDI", "NAME", "SEX", "BIRT", "AGE", "ALIVE", "DEAT", "SPOUSE"]
-    printTable(allFields, tagNames, current_dic)
-
-
-# In[100]:
+# In[13]:
 
 
 # Prints out the Individual Table
 def printIndividualTable():
+    #print("People Table")
     allFields = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
     tagNames = ["INDI", "NAME", "SEX", "BIRT", "AGE", "ALIVE", "DEAT", "INDI_CHILD", "SPOUSE"]
     
-    printTable(allFields, tagNames, individuals)
+    printTable("People Table", allFields, tagNames, individuals)
 
 
-# In[101]:
+# In[14]:
 
 
 # Prints out the Family Table
 def printFamilyTable():
+    #print("Families Table")
     allFields = ["ID", "Married", "Divorced", "Husband ID", "Husband Name", "Wife ID", "Wife Name", "Children"]
     tagNames = ["FAM", "MARR", "DIV", "HUSB", "HUSB_NAME", "WIFE", "WIFE_NAME", "FAM_CHILD"]
     
-    printTable(allFields, tagNames, family_dic)
+    printTable("Families Table", allFields, tagNames, family_dic)
 
 
-# In[102]:
+# In[15]:
 
 
 # Prints out the data in both error and anomaly arrays
 def printError():
+    file = open("cs555_sprint_outputs.txt", "a")
     if (len(error_array) > 0):
         print("------error messages------")
+        file.write("------error messages------" + "\n")
         for error in error_array:
             print(error)
+            file.write(error + "\n")
     if(len(anomaly_array) > 0):
         print("-----anomaly messages-----")
+        file.write("-----anomaly messages-----" + "\n")
         for anomaly in anomaly_array:
             print(anomaly)
+            file.write(anomaly + "\n")
+    file.close()
+    
 
 
-# In[103]:
+# In[16]:
 
 
 # Prints out a table of dictionary data with the passed-in arguments
@@ -330,7 +278,8 @@ def printError():
 # fields: a list of fields for the table
 # tag_names: tag names used to access each data field
 # dictionary: a dictionary filled with data
-def printTable(fields, tag_names, dictionary):
+def printTable(table_name, fields, tag_names, dictionary):
+    print(table_name)
     table = PrettyTable()
     table.field_names = fields
     for element in dictionary.values():    
@@ -350,19 +299,63 @@ def printTable(fields, tag_names, dictionary):
                 break
             count+= 1;
         table.add_row(row_data.split('?'))
+    # Stores outputs to a text file
+    storeResults(table_name, table.get_string())
     print(table)
 
 
-# In[104]:
+# In[17]:
+
+
+# Stores all Project outputs into a single text file
+# Parameters:
+# result_name: name that will appear 
+def storeResults(result_name, outputs):
+    file = open("cs555_sprint_outputs.txt", "a")
+    file.write(result_name + "\n")
+    file.write(outputs + "\n\n")
+    file.close()
+
+
+# In[18]:
+
+
+# Global variables initialization
+tag_sp = ["INDI", "FAM"]
+#Level Zero Tags
+tag_zero = ["HEAD", "TRLR", "NOTE"]
+#Level One Tags
+tag_one = ["NAME", "SEX", "BIRT", "DEAT","FAMC","FAMS","MARR", "DIV","HUSB","WIFE","CHIL"]
+#Level Zero Tags
+tag_fam = {"INDI":["NAME", "SEX","BIRT", "DEAT","FAMC","FAMS"],
+             "FAM":["MARR", "DIV","HUSB","WIFE","CHIL"], 
+             "DATE":["BIRT", "DEAT", "DIV", "MARR"]}
+family_dic = None
+individuals = None
+error_array = []
+anomaly_array = []
+
+
+# In[19]:
 
 
 document = read_in("./myTest.ged")
+if os.path.exists("cs555_sprint_outputs.txt"):
+    os.remove("cs555_sprint_outputs.txt")
+
 create_individuals_map()
 create_family_dic()
-family_dic
+# Prints out all the people in GEDCOM file
 printIndividualTable()
+# Prints out all the families in GEDCO file
 printFamilyTable()
-listDeceased()
-listLivingMarried()
+
+# Prints out all the errors and anomalies of each function
 printError()
+
+
+# In[ ]:
+
+
+
 
