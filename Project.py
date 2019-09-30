@@ -223,49 +223,6 @@ def read_in(file):
                   
 
 
-# In[111]:
-
-
-#User_Story_29: List all deceased individuals in a GEDCOM file
-#Prints out a table with all the deceased people's information
-def listDeceased():
-    current_dic = {}
-    print("User_Story_29: List all deceased individuals in a GEDCOM file")
-    for value in individuals.values():
-        if(str(value["DEAT"]) != "NA" and (value["ALIVE"])):
-            error_array.append(("ERROR: INDIVIDUAL: US29 Person {} is alive but has Death Date {}").format(value["NAME"], value["DEAT"]))
-        elif(str(value["DEAT"]) == "NA" and (not value["ALIVE"])):
-            error_array.append(("ERROR: INDIVIDUAL: US29 Person {} is dead but has no Death Date").format(value["DEAT"]));
-            print(("ERROR: INDIVIDUAL: US29 Person {} is dead but has no Death Date").format(value["DEAT"]))
-        elif(not value["ALIVE"]):
-            current_dic[value["INDI"]] = value
-            
-            
-    #Use pretty table module to print out the results
-    allFields = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death"]
-    tagNames = ["INDI", "NAME", "SEX", "BIRT", "AGE", "ALIVE", "DEAT"]
-    printTable(allFields, tagNames, current_dic)
-
-
-# In[112]:
-
-
-#User_Story_30: List all living married people in a GEDCOM file
-#Prints out a table with all the living married people's information
-def listLivingMarried():
-    current_dic = {}
-    print("User_Story_30: List all living married people in a GEDCOM file")
-    for value in individuals.values():
-        if(value["ALIVE"] and value["SPOUSE"] != "NA"):
-            current_dic[value["INDI"]] = value
-        elif(not value["ALIVE"] and value["SPOUSE"] != "NA"):
-            error_array.append("ERROR: INDIVIDUAL: US30 Deceased Person {} who is Married to {}".format(value["INDI"], "".join(value["SPOUSE"])))
-    #Use pretty table module to print out the results
-    allFields = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Spouse"]
-    tagNames = ["INDI", "NAME", "SEX", "BIRT", "AGE", "ALIVE", "DEAT", "SPOUSE"]
-    printTable(allFields, tagNames, current_dic)
-
-
 # In[113]:
 
 
