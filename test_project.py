@@ -1,17 +1,18 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
-# In[50]:
+# In[35]:
 
 
 import pytest
 import unittest
-import Project as project
+import mock
+import Project
 from io import StringIO
 import sys
 
 
-# In[51]:
+# In[36]:
 
 
 def test_not_legal_marriage():
@@ -43,18 +44,18 @@ def test_not_legal_marriage():
    'AGE': '39',
    'ALIVE': True}}}
     
-    project.family_dic = family_dic
+    Project.family_dic = family_dic
     
     fake_out = StringIO()
     sys.stdout = fake_out
     
-    project.is_marriage_legal()
+    Project.is_marriage_legal()
 
     sys.stdout = sys.__stdout__
     return fake_out.getvalue()=='ANOMOLY: INDIVIDUAL: US07: @I18@: Father George /Nickson/ of family @F8@ is younger than 14.\nANOMOLY: INDIVIDUAL: US07: @I13@: Wife Kitty /Nilson/ of family @F8@ is younger than 14.\n'
 
 
-# In[52]:
+# In[37]:
 
 
 def test_legal_marriage():
@@ -86,18 +87,18 @@ def test_legal_marriage():
    'AGE': '39',
    'ALIVE': True}}}
     
-    project.family_dic = family_dic
+    Project.family_dic = family_dic
     
     fake_out = StringIO()
     sys.stdout = fake_out
     
-    project.is_marriage_legal()
+    Project.is_marriage_legal()
 
     sys.stdout = sys.__stdout__
     return fake_out.getvalue()==""
 
 
-# In[55]:
+# In[38]:
 
 
 def test_legal_marriage():
@@ -129,18 +130,18 @@ def test_legal_marriage():
    'AGE': '39',
    'ALIVE': True}}}
     
-    project.family_dic = family_dic
+    Project.family_dic = family_dic
     
     fake_out = StringIO()
     sys.stdout = fake_out
     
-    project.is_marriage_legal()
+    Project.is_marriage_legal()
 
     sys.stdout = sys.__stdout__
     return fake_out.getvalue()==""
 
 
-# In[61]:
+# In[39]:
 
 
 def test_over_age_150():
@@ -163,18 +164,18 @@ def test_over_age_150():
   'AGE': '81',
   'ALIVE': False}}
                  
-    project.individuals = individuals
+    Project.individuals = individuals
     
     fake_out = StringIO()
     sys.stdout = fake_out
     
-    project.is_age_legal()
+    Project.is_age_legal()
 
     sys.stdout = sys.__stdout__
     return fake_out.getvalue()=='ANOMOLY: INDIVIDUAL: US10: @I1@: Individual Jimmy /Colon/ is older than 150.\n'
 
 
-# In[63]:
+# In[40]:
 
 
 def test_less_age_150():
@@ -197,18 +198,89 @@ def test_less_age_150():
   'AGE': '66',
   'ALIVE': True}}
                  
-    project.individuals = individuals
+    Project.individuals = individuals
     
     fake_out = StringIO()
     sys.stdout = fake_out
     
-    project.is_age_legal()
+    Project.is_age_legal()
 
     sys.stdout = sys.__stdout__
     return fake_out.getvalue()==""
 
 
-# In[64]:
+# In[41]:
+
+
+# User_Story_29: List all deceased individuals in a GEDCOM file
+# Success test 
+@mock.patch("Project.printTable")
+def test_list_deceased_individuals_success(mock_printTable):
+    allFields = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death"]
+    tagNames = ["INDI", "NAME", "SEX", "BIRT", "AGE", "ALIVE", "DEAT"]
+    current_dic = {'@I6@': {'INDI': '@I6@', 'NAME': 'Stephen /Chang/', 'SEX': 'M', 'BIRT': '1935-12-5', 'DEAT': '2005-4-15', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'AGE': '70', 'ALIVE': False}}
+    Project.individuals = current_dic
+    Project.listDeceased()
+    mock_printTable.assert_called_with(allFields, tagNames, current_dic)
+
+
+# In[42]:
+
+
+# User_Story_29: List all deceased individuals in a GEDCOM file
+# Failed test: Person is dead but has no Death Date
+@mock.patch("Project.printTable")
+def test_list_deceased_individuals_error(mock_printTable):
+    allFields = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death"]
+    tagNames = ["INDI", "NAME", "SEX", "BIRT", "AGE", "ALIVE", "DEAT"]
+    current_dic = {'@I6@': {'INDI': '@I6@', 'NAME': 'David /Chang/', 'SEX': 'M', 'BIRT': '2002-12-5', 'DEAT': 'NA', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F7@'], 'AGE': '79', 'ALIVE': False}}
+    Project.individuals = current_dic
+    Project.listDeceased()
+    mock_printTable.assert_called_with(allFields, tagNames, {}) #provide empty dictionary so that it won't overwrite
+
+
+# In[43]:
+
+
+# User_Story_30: List all living married people in a GEDCOM file
+# Success test
+@mock.patch("Project.printTable")
+def test_list_living_married_individuals_success(mock_printTable):
+
+    allFields = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Spouse"]
+    tagNames = ["INDI", "NAME", "SEX", "BIRT", "AGE", "ALIVE", "DEAT", "SPOUSE"]
+    current_dic = {'@I1@': {'INDI': '@I1@', 'NAME': 'Johnny /Chang/', 'SEX': 'M', 'BIRT': '1958-9-6', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F1@'], 'DEAT': 'NA', 'AGE': '61', 'ALIVE': True}}
+    Project.individuals = current_dic
+    Project.listLivingMarried()
+    mock_printTable.assert_called_with(allFields, tagNames, current_dic)
+
+
+# In[44]:
+
+
+# User_Story_30: List all living married people in a GEDCOM file
+# Failed test
+@mock.patch("Project.printTable")
+def test_list_living_married_individuals_error(mock_printTable):
+    allFields = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Spouse"]
+    tagNames = ["INDI", "NAME", "SEX", "BIRT", "AGE", "ALIVE", "DEAT", "SPOUSE"]
+    current_dic = {'@I4@': {'INDI': '@I1@', 'NAME': 'Michael /Chang/', 'SEX': 'M', 'BIRT': '1958-9-6', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F3@'], 'DEAT': '2002-9-6', 'AGE': '61', 'ALIVE': False}}
+    Project.individuals = current_dic
+    Project.listLivingMarried()
+    mock_printTable.assert_called_with(allFields, tagNames, {}) #provide empty dictionary so that it won't overwrite
+
+
+# In[45]:
+
+
+# Tests user stories that list out items
+test_list_deceased_individuals_success()
+test_list_deceased_individuals_error()
+test_list_living_married_individuals_success()
+test_list_living_married_individuals_error()
+
+
+# In[46]:
 
 
 import unittest
@@ -227,4 +299,10 @@ class TestStringMethods(unittest.TestCase):
 
 suite = unittest.TestLoader().loadTestsFromTestCase(TestStringMethods)
 unittest.TextTestRunner(verbosity=2).run(suite)
+
+
+# In[ ]:
+
+
+
 
