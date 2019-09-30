@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[99]:
+# In[123]:
 
 
 # All the file imports
@@ -10,14 +10,14 @@ from datetime import datetime
 from prettytable import PrettyTable
 
 
-# In[100]:
+# In[124]:
 
 
 def isDateParent(A):
     return A[1] in tag_fam["DATE"]
 
 
-# In[101]:
+# In[125]:
 
 
 # Convert month string to month number
@@ -39,7 +39,7 @@ def month_to_num(shortMonth):
     }[shortMonth]
 
 
-# In[102]:
+# In[126]:
 
 
 # Convert input date to standard format
@@ -48,7 +48,7 @@ def convert_date(date_arr):
     return "{}-{}-{}".format(date_arr[2], month_to_num(date_arr[1]), date_arr[0])
 
 
-# In[103]:
+# In[127]:
 
 
 # Determine age based on birthdate and death date
@@ -66,7 +66,7 @@ def determine_age(birth_date, death_date):
         return today.year - int(birth_date.split('-')[0]) - ((today.month, today.day) < (int(birth_month), int(birth_day)))
 
 
-# In[104]:
+# In[128]:
 
 
 def find_name(arr, _id):
@@ -76,7 +76,7 @@ def find_name(arr, _id):
             return indi["NAME"]
 
 
-# In[105]:
+# In[129]:
 
 
 # create dictionary entry for the passed tag
@@ -89,7 +89,7 @@ def create_dic_entry(current_arr, tag):
     return dic, current_tag
 
 
-# In[106]:
+# In[130]:
 
 
 # Adds missing tags with "NA"
@@ -110,7 +110,7 @@ def add_missing_entries(dic):
         dic["MARR"] = "NA"   
 
 
-# In[107]:
+# In[131]:
 
 
 # Checking if one date is after another
@@ -120,7 +120,7 @@ def is_date_after(date_one, date_two):
     return date_one < date_two
 
 
-# In[108]:
+# In[132]:
 
 
 # Create map of individuals where key is the individual id and
@@ -132,7 +132,7 @@ def create_individuals_map():
         individuals[individual["INDI"]] = individual
 
 
-# In[109]:
+# In[133]:
 
 
 # Creating a family dictionary with the key as the family id and the value as the
@@ -154,7 +154,7 @@ def create_family_dic():
             
 
 
-# In[110]:
+# In[134]:
 
 
 def read_in(file):
@@ -223,50 +223,7 @@ def read_in(file):
                   
 
 
-# In[111]:
-
-
-#User_Story_29: List all deceased individuals in a GEDCOM file
-#Prints out a table with all the deceased people's information
-def listDeceased():
-    current_dic = {}
-    print("User_Story_29: List all deceased individuals in a GEDCOM file")
-    for value in individuals.values():
-        if(str(value["DEAT"]) != "NA" and (value["ALIVE"])):
-            error_array.append(("ERROR: INDIVIDUAL: US29 Person {} is alive but has Death Date {}").format(value["NAME"], value["DEAT"]))
-        elif(str(value["DEAT"]) == "NA" and (not value["ALIVE"])):
-            error_array.append(("ERROR: INDIVIDUAL: US29 Person {} is dead but has no Death Date").format(value["DEAT"]));
-            print(("ERROR: INDIVIDUAL: US29 Person {} is dead but has no Death Date").format(value["DEAT"]))
-        elif(not value["ALIVE"]):
-            current_dic[value["INDI"]] = value
-            
-            
-    #Use pretty table module to print out the results
-    allFields = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death"]
-    tagNames = ["INDI", "NAME", "SEX", "BIRT", "AGE", "ALIVE", "DEAT"]
-    printTable(allFields, tagNames, current_dic)
-
-
-# In[112]:
-
-
-#User_Story_30: List all living married people in a GEDCOM file
-#Prints out a table with all the living married people's information
-def listLivingMarried():
-    current_dic = {}
-    print("User_Story_30: List all living married people in a GEDCOM file")
-    for value in individuals.values():
-        if(value["ALIVE"] and value["SPOUSE"] != "NA"):
-            current_dic[value["INDI"]] = value
-        elif(not value["ALIVE"] and value["SPOUSE"] != "NA"):
-            error_array.append("ERROR: INDIVIDUAL: US30 Deceased Person {} who is Married to {}".format(value["INDI"], "".join(value["SPOUSE"])))
-    #Use pretty table module to print out the results
-    allFields = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Spouse"]
-    tagNames = ["INDI", "NAME", "SEX", "BIRT", "AGE", "ALIVE", "DEAT", "SPOUSE"]
-    printTable(allFields, tagNames, current_dic)
-
-
-# In[113]:
+# In[135]:
 
 
 # USID: 07
@@ -284,7 +241,7 @@ def is_marriage_legal():
                 print("ANOMOLY: INDIVIDUAL: US07: {}: Wife {} of family {} is younger than 14.".format(wife["INDI"], wife["NAME"], family_id))
 
 
-# In[114]:
+# In[136]:
 
 
 #USID: 10
@@ -296,7 +253,7 @@ def is_age_legal():
                 print("ANOMOLY: INDIVIDUAL: US10: {}: Individual {} is older than 150.".format(indi_id, individuals[indi_id]["NAME"]))
 
 
-# In[115]:
+# In[137]:
 
 
 #User_Story_29: List all deceased individuals in a GEDCOM file
@@ -321,7 +278,7 @@ def listDeceased():
     printTable(allFields, tagNames, current_dic)
 
 
-# In[116]:
+# In[138]:
 
 
 #User_Story_30: List all living married people in a GEDCOM file
@@ -341,7 +298,7 @@ def listLivingMarried():
     printTable(allFields, tagNames, current_dic)
 
 
-# In[117]:
+# In[139]:
 
 
 # Prints out the Individual Table
@@ -353,7 +310,7 @@ def printIndividualTable():
     printTable(allFields, tagNames, individuals)
 
 
-# In[118]:
+# In[140]:
 
 
 # Prints out the Family Table
@@ -365,7 +322,7 @@ def printFamilyTable():
     printTable(allFields, tagNames, family_dic)
 
 
-# In[119]:
+# In[141]:
 
 
 # Prints out the data in both error and anomaly arrays
@@ -380,7 +337,7 @@ def printError():
             print(anomaly)
 
 
-# In[120]:
+# In[142]:
 
 
 # Prints out a table of dictionary data with the passed-in arguments
@@ -411,7 +368,7 @@ def printTable(fields, tag_names, dictionary):
     print(table)
 
 
-# In[121]:
+# In[143]:
 
 
 #Data Structure 
@@ -430,7 +387,7 @@ error_array=[]
 anomaly_array=[]
 
 
-# In[122]:
+# In[144]:
 
 
 document = read_in("./myTest.ged")
@@ -447,8 +404,6 @@ listLivingMarried()
 
 is_marriage_legal()
 is_age_legal()
-listDeceased()
-listLivingMarried()
 # Prints out all the errors and anomalies of each function
 printError()
 
