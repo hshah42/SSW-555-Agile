@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[175]:
+# In[48]:
 
 
 import pytest
@@ -12,7 +12,7 @@ from io import StringIO
 import sys
 
 
-# In[176]:
+# In[49]:
 
 
 def test_not_legal_marriage():
@@ -55,7 +55,7 @@ def test_not_legal_marriage():
     return fake_out.getvalue()=='ANOMOLY: INDIVIDUAL: US07: @I18@: Father George /Nickson/ of family @F8@ is younger than 14.\nANOMOLY: INDIVIDUAL: US07: @I13@: Wife Kitty /Nilson/ of family @F8@ is younger than 14.\n'
 
 
-# In[177]:
+# In[50]:
 
 
 def test_legal_marriage():
@@ -98,7 +98,7 @@ def test_legal_marriage():
     return fake_out.getvalue()==""
 
 
-# In[178]:
+# In[51]:
 
 
 def test_legal_marriage():
@@ -141,7 +141,7 @@ def test_legal_marriage():
     return fake_out.getvalue()==""
 
 
-# In[179]:
+# In[52]:
 
 
 def test_over_age_150():
@@ -175,7 +175,7 @@ def test_over_age_150():
     return fake_out.getvalue()=='ANOMOLY: INDIVIDUAL: US10: @I1@: Individual Jimmy /Colon/ is older than 150.\n'
 
 
-# In[180]:
+# In[53]:
 
 
 def test_less_age_150():
@@ -209,7 +209,7 @@ def test_less_age_150():
     return fake_out.getvalue()==""
 
 
-# In[181]:
+# In[54]:
 
 
 # User_Story_29: List all deceased individuals in a GEDCOM file
@@ -225,7 +225,7 @@ def test_list_deceased_individuals_success(mock_printTable):
     return True
 
 
-# In[182]:
+# In[55]:
 
 
 # User_Story_29: List all deceased individuals in a GEDCOM file
@@ -241,7 +241,7 @@ def test_list_deceased_individuals_error(mock_printTable):
     return True
 
 
-# In[183]:
+# In[56]:
 
 
 # User_Story_30: List all living married people in a GEDCOM file
@@ -258,7 +258,7 @@ def test_list_living_married_individuals_success(mock_printTable):
     return True
 
 
-# In[184]:
+# In[57]:
 
 
 # User_Story_30: List all living married people in a GEDCOM file
@@ -274,7 +274,7 @@ def test_list_living_married_individuals_error(mock_printTable):
     return True
 
 
-# In[185]:
+# In[58]:
 
 
 def test_more_than_15_siblings():
@@ -288,7 +288,7 @@ def test_more_than_15_siblings():
     return True
 
 
-# In[186]:
+# In[59]:
 
 
 def test_less_than_15_siblings():
@@ -303,7 +303,7 @@ def test_less_than_15_siblings():
     
 
 
-# In[187]:
+# In[60]:
 
 
 def test_different_male_last_name():
@@ -316,7 +316,7 @@ def test_different_male_last_name():
     return True
 
 
-# In[188]:
+# In[61]:
 
 
 def test_same_male_last_name():
@@ -330,7 +330,35 @@ def test_same_male_last_name():
     return True
 
 
-# In[189]:
+# In[62]:
+
+
+def test_birth_after_marraige_appended_to_error():
+    family_dic = {'@F1@':{'MARR':'1968-6-4','husband_object':{'INDI':'@I1@','BIRT':'1970-11-8'},'wife_object':{'INDI':'@I2@','BIRT':'1960-11-8'}}}
+    Project.family_dic = family_dic
+    Project.error_array = []
+    
+    Project.is_birth_before_marraige()
+    
+    assert Project.error_array[0] == "ERROR: INDIVIDUAL: US02 Person @I1@ has marriage date 1968-6-4 before birth date 1970-11-8"
+    return True
+
+
+# In[63]:
+
+
+def test_birth_before_marraige_do_nothing():
+    family_dic = {'@F1@':{'MARR':'1968-6-4','husband_object':{'INDI':'@I1@','BIRT':'1950-11-8'},'wife_object':{'INDI':'@I2@','BIRT':'1960-11-8'}}}
+    Project.family_dic = family_dic
+    Project.error_array = []
+    
+    Project.is_birth_before_marraige()
+    
+    assert len(Project.error_array) == 0
+    return True
+
+
+# In[64]:
 
 
 import unittest
@@ -354,13 +382,17 @@ class TestStringMethods(unittest.TestCase):
     def test_List_Living_Married_fail(self):
         self.assertTrue(test_list_living_married_individuals_error())
     def test_More_Than_15_Siblings(self):
-        self.assertTrue(test_more_than_15_siblings())
+        self.assertTrue(test_more_than_15_siblings());
     def test_Less_Than_15_Siblings(self):
-        self.assertTrue(test_less_than_15_siblings())
+        self.assertTrue(test_less_than_15_siblings());
     def test_Different_Male_Last_Name(self):
-        self.assertTrue(test_different_male_last_name())
+        self.assertTrue(test_different_male_last_name());
     def test_Same_Male_Last_Name(self):
-        self.assertTrue(test_same_male_last_name())
+        self.assertTrue(test_same_male_last_name());
+    def test_Birth_After_Marraige_Appended_To_Error(self):
+        self.assertTrue(test_birth_after_marraige_appended_to_error());
+    def test_Birth_Before_Marraige_Do_Nothing(self):
+        self.assertTrue(test_birth_before_marraige_do_nothing());
 
 suite = unittest.TestLoader().loadTestsFromTestCase(TestStringMethods)
 unittest.TextTestRunner(verbosity=2).run(suite)
