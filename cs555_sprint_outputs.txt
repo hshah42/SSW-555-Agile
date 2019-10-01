@@ -104,6 +104,6 @@ ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblin
 ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
 ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
 ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
-ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: The same name Chet /Malagon/ and birth date 1943-8-18
-ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: The same name Sock /Malagon/ and birth date 1955-10-17
-ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: The same name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share same First name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
