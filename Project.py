@@ -1,7 +1,7 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[29]:
 
 
 # All the file imports
@@ -11,14 +11,14 @@ from prettytable import PrettyTable
 import os
 
 
-# In[2]:
+# In[30]:
 
 
 def isDateParent(A):
     return A[1] in tag_fam["DATE"]
 
 
-# In[3]:
+# In[31]:
 
 
 # Convert month string to month number
@@ -40,7 +40,7 @@ def month_to_num(shortMonth):
     }[shortMonth]
 
 
-# In[4]:
+# In[32]:
 
 
 # Convert input date to standard format
@@ -49,7 +49,7 @@ def convert_date(date_arr):
     return "{}-{}-{}".format(date_arr[2], month_to_num(date_arr[1]), date_arr[0])
 
 
-# In[5]:
+# In[33]:
 
 
 # Determine age based on birthdate and death date
@@ -67,7 +67,7 @@ def determine_age(birth_date, death_date):
         return today.year - int(birth_date.split('-')[0]) - ((today.month, today.day) < (int(birth_month), int(birth_day)))
 
 
-# In[6]:
+# In[34]:
 
 
 def find_name(arr, _id):
@@ -77,7 +77,7 @@ def find_name(arr, _id):
             return indi["NAME"]
 
 
-# In[7]:
+# In[35]:
 
 
 # create dictionary entry for the passed tag
@@ -90,7 +90,7 @@ def create_dic_entry(current_arr, tag):
     return dic, current_tag
 
 
-# In[8]:
+# In[36]:
 
 
 # Adds missing tags with "NA"
@@ -111,7 +111,7 @@ def add_missing_entries(dic):
         dic["MARR"] = "NA"   
 
 
-# In[9]:
+# In[37]:
 
 
 # Checking if one date is after another
@@ -121,7 +121,7 @@ def is_date_after(date_one, date_two):
     return date_one < date_two
 
 
-# In[10]:
+# In[38]:
 
 
 # Create map of individuals where key is the individual id and
@@ -133,7 +133,7 @@ def create_individuals_map():
         individuals[individual["INDI"]] = individual
 
 
-# In[11]:
+# In[39]:
 
 
 # Creating a family dictionary with the key as the family id and the value as the
@@ -155,7 +155,7 @@ def create_family_dic():
             
 
 
-# In[12]:
+# In[40]:
 
 
 def read_in(file):
@@ -224,7 +224,7 @@ def read_in(file):
                   
 
 
-# In[13]:
+# In[41]:
 
 
 #USID: 07
@@ -236,7 +236,7 @@ def is_age_legal():
                 anomaly_array.append("ANOMOLY: INDIVIDUAL: US10: {}: Individual {} is older than 150.".format(indi_id, individuals[indi_id]["NAME"]))
 
 
-# In[14]:
+# In[42]:
 
 
 # USID: 10
@@ -254,7 +254,7 @@ def is_marriage_legal():
                 anomaly_array.append("ANOMOLY: INDIVIDUAL: US07: {}: Wife {} of family {} is younger than 14.".format(wife["INDI"], wife["NAME"], family_id))
 
 
-# In[15]:
+# In[43]:
 
 
 # User Story: US15
@@ -265,7 +265,7 @@ def check_sibling_count():
             anomaly_array.append("ANOMOLY: FAMILY: US16: {}: Family has {} siblings which is more than 15 siblings"                 .format(family_id, len(family["FAM_CHILD"])))
 
 
-# In[16]:
+# In[44]:
 
 
 # Returns the lastname of the name
@@ -275,7 +275,7 @@ def get_last_name(name):
     return name.split('/')[1];
 
 
-# In[17]:
+# In[45]:
 
 
 # User story: US16
@@ -304,7 +304,7 @@ def check_last_names():
                             anomaly_array.append("ANOMOLY: INDIVIDUAL: US16: {}: Individual has different last name {} than family {}"                                   .format(child["INDI"], get_last_name(child["NAME"]), last_name))
 
 
-# In[18]:
+# In[46]:
 
 
 #USID: 23
@@ -318,7 +318,7 @@ def unique_name_and_birth():
             li[temp]=value["INDI"]
 
 
-# In[19]:
+# In[47]:
 
 
 #USID: 25
@@ -334,7 +334,7 @@ def unique_family_name_and_birth():
                     li[temp]=child["INDI"]
 
 
-# In[20]:
+# In[48]:
 
 
 #User_Story_29: List all deceased individuals in a GEDCOM file
@@ -358,7 +358,7 @@ def listDeceased():
     
 
 
-# In[21]:
+# In[49]:
 
 
 #User_Story_30: List all living married people in a GEDCOM file
@@ -378,7 +378,7 @@ def listLivingMarried():
     printTable("US30: Living & Married People Table", allFields, tagNames, current_dic)
 
 
-# In[22]:
+# In[50]:
 
 
 # Prints out the Individual Table
@@ -390,7 +390,7 @@ def printIndividualTable():
     printTable("People Table", allFields, tagNames, individuals)
 
 
-# In[23]:
+# In[51]:
 
 
 # Prints out the Family Table
@@ -402,7 +402,7 @@ def printFamilyTable():
     printTable("Families Table", allFields, tagNames, family_dic)
 
 
-# In[24]:
+# In[52]:
 
 
 # Prints out the data in both error and anomaly arrays
@@ -424,7 +424,7 @@ def printError():
     
 
 
-# In[25]:
+# In[53]:
 
 
 # Prints out a table of dictionary data with the passed-in arguments
@@ -442,12 +442,12 @@ def printTable(table_name, fields, tag_names, dictionary):
         for name in tag_names:
             if (count < int(len(tag_names))): #not the last element
                 if (isinstance(element[name], list)): #current element is an array
-                    row_data += ("".join(element[name]) + "? ")
+                    row_data += (",".join(element[name]) + "? ")
                 else: #current element is not an array
                     row_data += (str(element[name]) + "? ")
             elif (count == int(len(tag_names))):
                 if (isinstance(element[name], list)): #current element is an array
-                    row_data += ("".join(element[name]))
+                    row_data += (",".join(element[name]))
                 else: #current element is not an array
                     row_data += (str(element[name]))
                 break
@@ -458,7 +458,7 @@ def printTable(table_name, fields, tag_names, dictionary):
     print(table)
 
 
-# In[26]:
+# In[54]:
 
 
 # Stores all Project outputs into a single text file
@@ -471,7 +471,7 @@ def storeResults(result_name, outputs):
     file.close()
 
 
-# In[27]:
+# In[55]:
 
 
 # Global variables initialization
@@ -490,7 +490,7 @@ error_array = []
 anomaly_array = []
 
 
-# In[28]:
+# In[56]:
 
 
 document = read_in("./acceptance_test_file.ged")
@@ -522,4 +522,10 @@ listLivingMarried()
 
 #Prints out all the errors and anomalies of each function
 printError()
+
+
+# In[ ]:
+
+
+
 
