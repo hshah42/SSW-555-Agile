@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[156]:
+# In[31]:
 
 
 import pytest
@@ -12,7 +12,7 @@ from io import StringIO
 import sys
 
 
-# In[157]:
+# In[32]:
 
 
 def test_not_legal_marriage():
@@ -55,7 +55,7 @@ def test_not_legal_marriage():
     return fake_out.getvalue()=='ANOMOLY: INDIVIDUAL: US07: @I18@: Father George /Nickson/ of family @F8@ is younger than 14.\nANOMOLY: INDIVIDUAL: US07: @I13@: Wife Kitty /Nilson/ of family @F8@ is younger than 14.\n'
 
 
-# In[158]:
+# In[33]:
 
 
 def test_legal_marriage():
@@ -98,7 +98,7 @@ def test_legal_marriage():
     return fake_out.getvalue()==""
 
 
-# In[159]:
+# In[34]:
 
 
 def test_legal_marriage():
@@ -141,7 +141,7 @@ def test_legal_marriage():
     return fake_out.getvalue()==""
 
 
-# In[160]:
+# In[35]:
 
 
 def test_over_age_150():
@@ -175,7 +175,7 @@ def test_over_age_150():
     return fake_out.getvalue()=='ANOMOLY: INDIVIDUAL: US10: @I1@: Individual Jimmy /Colon/ is older than 150.\n'
 
 
-# In[161]:
+# In[36]:
 
 
 def test_less_age_150():
@@ -209,7 +209,7 @@ def test_less_age_150():
     return fake_out.getvalue()==""
 
 
-# In[162]:
+# In[37]:
 
 
 # User_Story_29: List all deceased individuals in a GEDCOM file
@@ -225,7 +225,7 @@ def test_list_deceased_individuals_success(mock_printTable):
     return True
 
 
-# In[163]:
+# In[38]:
 
 
 # User_Story_29: List all deceased individuals in a GEDCOM file
@@ -241,7 +241,7 @@ def test_list_deceased_individuals_error(mock_printTable):
     return True
 
 
-# In[164]:
+# In[39]:
 
 
 # User_Story_30: List all living married people in a GEDCOM file
@@ -258,7 +258,7 @@ def test_list_living_married_individuals_success(mock_printTable):
     return True
 
 
-# In[165]:
+# In[40]:
 
 
 # User_Story_30: List all living married people in a GEDCOM file
@@ -274,7 +274,64 @@ def test_list_living_married_individuals_error(mock_printTable):
     return True
 
 
-# In[166]:
+# In[41]:
+
+
+def test_more_than_15_siblings():
+    family_dic = {'@F1@':{'FAM_CHILD':['@I1@','@I10@','@I11@','@I12@','@I13@','@I14@','@I15@','@I16@','@I17@','@I18@','@I19@','@I20@','@I21@','@I22@','@I23@','@I24@','@I24@']}}
+    project.family_dic = family_dic
+    project.anomaly_array = []
+    
+    Project.check_sibling_count()
+
+    assert project.anomaly_array.pop() == 'ANOMOLY: FAMILY: US16: @F1@: Family has 17 siblings which is more than 15 siblings\n'
+    return True
+
+
+# In[42]:
+
+
+def test_less_than_15_siblings():
+    family_dic = {'@F1@':{'FAM_CHILD':['@I1@']}}
+    project.family_dic = family_dic
+    project.anomaly_array = []
+    
+    project.check_sibling_count()
+
+    assert len(project.anomaly_array) == 0
+    return True
+    
+
+
+# In[43]:
+
+
+def test_different_male_last_name():
+    family_dic = {'@F1@':{'HUSB_NAME':'Harry /Potter/','FAM_CHILD':['@I1@','@I10@'],'children_objects':[{'INDI':'@I1@', 'SEX':'M','NAME':'Chandler /Bing/'},{'INDI':'@I10@', 'SEX':'M','NAME':'Chandler /Potter/'}]}}
+    project.family_dic = family_dic
+    project.anomaly_array = []
+    
+    project.check_last_names()
+
+    assert project.anomaly_array.pop() == 'ANOMOLY: INDIVIDUAL: US16: @I1@: Individual has different last name Bing than family Potter\n'
+    return True
+
+
+# In[44]:
+
+
+def test_same_male_last_name():
+    family_dic = {'@F1@':{'HUSB_NAME':'Harry /Potter/','FAM_CHILD':['@I1@','@I10@'],'children_objects':[{'INDI':'@I1@', 'SEX':'M','NAME':'Joey /Potter/'},{'INDI':'@I10@', 'SEX':'M','NAME':'Chandler /Potter/'}]}}
+    project.family_dic = family_dic
+    project.anomaly_array = []
+    
+    project.check_last_names()
+
+    assert len(project.anomaly_array) == ''
+    return True
+
+
+# In[45]:
 
 
 import unittest
@@ -297,14 +354,15 @@ class TestStringMethods(unittest.TestCase):
         self.assertTrue(test_list_living_married_individuals_success())
     def test_List_Living_Married_fail(self):
         self.assertTrue(test_list_living_married_individuals_error())
-    
+    def test_More_Than_15_Siblings(self):
+        self.assertTrue(test_more_than_15_siblings());
+    def test_Less_Than_15_Siblings(self):
+        self.assertTrue(test_less_than_15_siblings());
+    def test_Different_Male_Last_Name():
+        self.assertTrue(test_different_male_last_name());
+    def test_Same_Male_Last_Name():
+        self.assertTrue(test_same_male_last_name());
 
 suite = unittest.TestLoader().loadTestsFromTestCase(TestStringMethods)
 unittest.TextTestRunner(verbosity=2).run(suite)
-
-
-# In[ ]:
-
-
-
 

@@ -1,24 +1,24 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[113]:
 
 
 # All the file imports
-get_ipython().system('pip install prettytable')
+get_ipython().system(u'pip install prettytable')
 from datetime import datetime
 from prettytable import PrettyTable
 import os
 
 
-# In[2]:
+# In[114]:
 
 
 def isDateParent(A):
     return A[1] in tag_fam["DATE"]
 
 
-# In[3]:
+# In[115]:
 
 
 # Convert month string to month number
@@ -40,7 +40,7 @@ def month_to_num(shortMonth):
     }[shortMonth]
 
 
-# In[4]:
+# In[116]:
 
 
 # Convert input date to standard format
@@ -49,7 +49,7 @@ def convert_date(date_arr):
     return "{}-{}-{}".format(date_arr[2], month_to_num(date_arr[1]), date_arr[0])
 
 
-# In[5]:
+# In[117]:
 
 
 # Determine age based on birthdate and death date
@@ -67,7 +67,7 @@ def determine_age(birth_date, death_date):
         return today.year - int(birth_date.split('-')[0]) - ((today.month, today.day) < (int(birth_month), int(birth_day)))
 
 
-# In[6]:
+# In[118]:
 
 
 def find_name(arr, _id):
@@ -77,7 +77,7 @@ def find_name(arr, _id):
             return indi["NAME"]
 
 
-# In[7]:
+# In[119]:
 
 
 # create dictionary entry for the passed tag
@@ -90,7 +90,7 @@ def create_dic_entry(current_arr, tag):
     return dic, current_tag
 
 
-# In[8]:
+# In[120]:
 
 
 # Adds missing tags with "NA"
@@ -111,7 +111,7 @@ def add_missing_entries(dic):
         dic["MARR"] = "NA"   
 
 
-# In[9]:
+# In[121]:
 
 
 # Checking if one date is after another
@@ -121,7 +121,7 @@ def is_date_after(date_one, date_two):
     return date_one < date_two
 
 
-# In[10]:
+# In[122]:
 
 
 # Create map of individuals where key is the individual id and
@@ -133,7 +133,7 @@ def create_individuals_map():
         individuals[individual["INDI"]] = individual
 
 
-# In[11]:
+# In[123]:
 
 
 # Creating a family dictionary with the key as the family id and the value as the
@@ -155,7 +155,7 @@ def create_family_dic():
             
 
 
-# In[12]:
+# In[124]:
 
 
 def read_in(file):
@@ -224,7 +224,7 @@ def read_in(file):
                   
 
 
-# In[13]:
+# In[125]:
 
 
 # USID: 07
@@ -242,7 +242,7 @@ def is_marriage_legal():
                 print("ANOMOLY: INDIVIDUAL: US07: {}: Wife {} of family {} is younger than 14.".format(wife["INDI"], wife["NAME"], family_id))
 
 
-# In[14]:
+# In[126]:
 
 
 #USID: 10
@@ -254,7 +254,7 @@ def is_age_legal():
                 print("ANOMOLY: INDIVIDUAL: US10: {}: Individual {} is older than 150.".format(indi_id, individuals[indi_id]["NAME"]))
 
 
-# In[15]:
+# In[127]:
 
 
 #USID: 23
@@ -269,7 +269,55 @@ def unique_name_and_birth():
             li[temp]=value["INDI"]
 
 
-# In[16]:
+# In[128]:
+
+
+# Returns the lastname of the name
+# Last name is surrounded by '/' in the name
+# :param name is the full name of the person
+def get_last_name(name):
+    return name.split('/')[1];
+
+
+# In[129]:
+
+
+# User story: US16
+# This function goes over the family dictionary and 
+# returns the array of family ids which contain males with different last name
+# It uses the last name of the husband in the family as the initial reference
+# 
+# :returns array of family ids
+def check_last_names():
+    for family_id in family_dic:
+        family = family_dic[family_id]
+        last_name = None
+        if "HUSB_NAME" in family:
+            if family["HUSB_NAME"] != "NA":
+                last_name = get_last_name(family["HUSB_NAME"])
+            else:
+                continue;
+        for child in family["children_objects"]:
+            if child["SEX"] == "M":
+                if last_name is None:
+                    last_name = get_last_name(child["NAME"])
+                else:
+                    if last_name != get_last_name(child["NAME"]):
+                        anomaly_array.append("ANOMOLY: INDIVIDUAL: US16: {}: Individual has different last name {} than family {}"                                   .format(child["INDI"], get_last_name(child["NAME"]), last_name))
+
+
+# In[130]:
+
+
+# User Story: US15
+def check_sibling_count():
+    for family_id in family_dic:
+        family = family_dic[family_id]
+        if (len(family["FAM_CHILD"]) > 15):
+            anomaly_array.append("ANOMOLY: FAMILY: US16: {}: Family has {} siblings which is more than 15 siblings"                 .format(family_id, len(family["FAM_CHILD"])))
+
+
+# In[131]:
 
 
 #USID: 25
@@ -286,7 +334,7 @@ def uniquefamily_name_and_birth():
                     li[temp]=child["INDI"]
 
 
-# In[17]:
+# In[132]:
 
 
 #User_Story_29: List all deceased individuals in a GEDCOM file
@@ -307,9 +355,10 @@ def listDeceased():
     allFields = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death"]
     tagNames = ["INDI", "NAME", "SEX", "BIRT", "AGE", "ALIVE", "DEAT"]
     printTable("US29: Deceased People Table", allFields, tagNames, current_dic)
+    
 
 
-# In[18]:
+# In[133]:
 
 
 #User_Story_30: List all living married people in a GEDCOM file
@@ -329,7 +378,7 @@ def listLivingMarried():
     printTable("US30: Living & Married People Table", allFields, tagNames, current_dic)
 
 
-# In[19]:
+# In[134]:
 
 
 # Prints out the Individual Table
@@ -341,7 +390,7 @@ def printIndividualTable():
     printTable("People Table", allFields, tagNames, individuals)
 
 
-# In[20]:
+# In[135]:
 
 
 # Prints out the Family Table
@@ -353,7 +402,7 @@ def printFamilyTable():
     printTable("Families Table", allFields, tagNames, family_dic)
 
 
-# In[21]:
+# In[136]:
 
 
 # Prints out the data in both error and anomaly arrays
@@ -375,7 +424,7 @@ def printError():
     
 
 
-# In[22]:
+# In[137]:
 
 
 # Prints out a table of dictionary data with the passed-in arguments
@@ -409,7 +458,7 @@ def printTable(table_name, fields, tag_names, dictionary):
     print(table)
 
 
-# In[23]:
+# In[138]:
 
 
 # Stores all Project outputs into a single text file
@@ -422,7 +471,7 @@ def storeResults(result_name, outputs):
     file.close()
 
 
-# In[24]:
+# In[139]:
 
 
 # Global variables initialization
@@ -441,7 +490,7 @@ error_array = []
 anomaly_array = []
 
 
-# In[25]:
+# In[140]:
 
 
 document = read_in("./myTest.ged")
@@ -458,6 +507,8 @@ printFamilyTable()
 listDeceased()
 #User_Story_30
 listLivingMarried()
+check_sibling_count()
+check_last_names()
 
 is_marriage_legal()
 is_age_legal()
