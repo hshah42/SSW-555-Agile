@@ -250,6 +250,37 @@ def validate_dates():
 
 
 # In[16]:
+# In[13]:
+
+
+#USID: 02
+#
+# This function checks if the birth of the person is before their 
+# marriage date
+# If birth of the person is after the marriage date then the error
+# is appended to the error array
+def is_birth_before_marraige():
+    for family_id in family_dic:
+        family = family_dic[family_id]
+        if "MARR" in family:
+            marriage_date = family["MARR"];
+            husband_birth_date = None;
+            wife_birth_date = None;
+            if "husband_object" in family and "BIRT" in family["husband_object"]:
+                husband_birth_date = family["husband_object"]["BIRT"]
+            else:
+                continue;
+            if "wife_object" in family and "BIRT" in family["wife_object"]:
+                wife_birth_date = family["wife_object"]["BIRT"]
+            else:
+                continue;
+            if is_date_after(marriage_date, husband_birth_date):
+                error_array.append(("ERROR: INDIVIDUAL: US02 Person {} has marriage date {} before birth date {}")                                    .format(family["husband_object"]["INDI"], marriage_date, husband_birth_date))
+            if is_date_after(marriage_date, wife_birth_date):
+                 error_array.append(("ERROR: INDIVIDUAL: US02 Person {} has marriage date {} before birth date {}")                                    .format(family["wife_object"]["INDI"], marriage_date, wife_birth_date))
+
+
+# In[14]:
 
 
 #USID: 07
@@ -261,7 +292,7 @@ def is_age_legal():
                 anomaly_array.append("ANOMOLY: INDIVIDUAL: US10: {}: Individual {} is older than 150.".format(indi_id, individuals[indi_id]["NAME"]))
 
 
-# In[17]:
+# In[15]:
 
 
 # USID: 10
@@ -546,6 +577,8 @@ unique_family_name_and_birth()
 listDeceased()
 #User_Story_30
 listLivingMarried()
+#User_Story_02
+is_birth_before_marraige()
 
 #Prints out all the errors and anomalies of each function
 printError()
