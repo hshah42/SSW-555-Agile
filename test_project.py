@@ -354,13 +354,13 @@ class TestStringMethods(unittest.TestCase):
     def test_List_Living_Married_fail(self):
         self.assertTrue(test_list_living_married_individuals_error())
     def test_More_Than_15_Siblings(self):
-        self.assertTrue(test_more_than_15_siblings());
+        self.assertTrue(test_more_than_15_siblings())
     def test_Less_Than_15_Siblings(self):
-        self.assertTrue(test_less_than_15_siblings());
+        self.assertTrue(test_less_than_15_siblings())
     def test_Different_Male_Last_Name(self):
-        self.assertTrue(test_different_male_last_name());
+        self.assertTrue(test_different_male_last_name())
     def test_Same_Male_Last_Name(self):
-        self.assertTrue(test_same_male_last_name());
+        self.assertTrue(test_same_male_last_name())
 
 suite = unittest.TestLoader().loadTestsFromTestCase(TestStringMethods)
 unittest.TextTestRunner(verbosity=2).run(suite)
