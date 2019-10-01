@@ -1,18 +1,161 @@
-#!/usr/bin/env python
+
 # coding: utf-8
 
-# In[175]:
+# In[1]:
 
 
 import pytest
 import unittest
 import mock
 import Project
-from io import StringIO
-import sys
+import numpy as np
 
 
-# In[176]:
+# In[2]:
+
+
+def test_dates_pass():
+    
+    family_dic={'@F8@': {'FAM': '@F8@',
+  'HUSB_NAME': 'George /Nickson/',
+  'HUSB': '@I18@',
+  'WIFE_NAME': 'Kitty /Nilson/',
+  'WIFE': '@I13@',
+  'FAM_CHILD': ['@I19@'],
+  'CHIL': '@I19@',
+  'MARR': '2020-3-24',
+  'DIV': '2021-3-24',
+  'husband_object': {'INDI': '@I18@',
+   'NAME': 'George /Nickson/',
+   'SEX': 'M',
+   'BIRT': '1980-3-17',
+   'INDI_CHILD': 'NA',
+   'SPOUSE': ['@F8@'],
+   'DEAT': 'NA',
+   'AGE': '45',
+   'ALIVE': True},
+  'wife_object': {'INDI': '@I13@',
+   'NAME': 'Kitty /Nilson/',
+   'SEX': 'F',
+   'BIRT': '1980-7-10',
+   'INDI_CHILD': ['@F5@'],
+   'SPOUSE': ['@F8@'],
+   'DEAT': 'NA',
+   'AGE': '39',
+   'ALIVE': True}}}
+    
+    
+    individuals={'@I1@': {'INDI': '@I1@',
+  'NAME': 'Jimmy /Colon/',
+  'SEX': 'M',
+  'BIRT': '2030-12-10',
+  'INDI_CHILD': ['@F2@'],
+  'SPOUSE': ['@F1@'],
+  'DEAT': 'NA',
+  'AGE': '9',
+  'ALIVE': True},
+ '@I2@': {'INDI': '@I2@',
+  'NAME': 'Helen /Colon/',
+  'SEX': 'F',
+  'BIRT': '2000-12-10',
+  'DEAT': '2020-6-2',
+  'INDI_CHILD': 'NA',
+  'SPOUSE': ['@F1@'],
+  'AGE': '81',
+  'ALIVE': False}}
+    
+    Project.family_dic = family_dic
+    Project.individuals=individuals
+    Project.error_array = []
+    Project.validate_dates()
+
+    return Project.error_array==['ERROR: FAMILY: US01: @F8@: Family has Marrige Date 2020-3-24 later than Today.',
+                                 'ERROR: FAMILY: US01: @F8@: Family has Divorce Date 2021-3-24 later than Today.',
+                                 'ERROR: INDIVIDUAL: US01: @I1@: Individual has Birthday Date 2030-12-10 later than Today.',
+                                 'ERROR: INDIVIDUAL: US01: @I2@: Individual has Death Date 2020-6-2 later than Today.']
+
+
+# In[3]:
+
+
+def test_dates_error():
+    
+    family_dic={'@F8@': {'FAM': '@F8@',
+  'HUSB_NAME': 'George /Nickson/',
+  'HUSB': '@I18@',
+  'WIFE_NAME': 'Kitty /Nilson/',
+  'WIFE': '@I13@',
+  'FAM_CHILD': ['@I19@'],
+  'CHIL': '@I19@',
+  'MARR': '2020-3-24',
+  'DIV': '2021-3-24'}}
+    
+    
+    individuals={'@I1@': {'INDI': '@I1@',
+  'NAME': 'Jimmy /Colon/',
+  'SEX': 'M',
+  'BIRT': '2030-12-10',
+  'INDI_CHILD': ['@F2@'],
+  'SPOUSE': ['@F1@'],
+  'DEAT': 'NA',
+  'AGE': '9',
+  'ALIVE': True},
+ '@I2@': {'INDI': '@I2@',
+  'NAME': 'Helen /Colon/',
+  'SEX': 'F',
+  'BIRT': '2000-12-10',
+  'DEAT': '2020-6-2',
+  'INDI_CHILD': 'NA',
+  'SPOUSE': ['@F1@'],
+  'AGE': '81',
+  'ALIVE': False}}
+    
+    Project.family_dic = family_dic
+    Project.individuals=individuals
+    Project.error_array = []
+    Project.validate_dates()
+
+    return Project.error_array==['ERROR: FAMILY: US01: @F8@: Family has Marrige Date 2020-3-24 later than Today.',
+                                 'ERROR: FAMILY: US01: @F8@: Family has Divorce Date 2021-3-24 later than Today.',
+                                 'ERROR: INDIVIDUAL: US01: @I1@: Individual has Birthday Date 2030-12-10 later than Today.',
+                                 'ERROR: INDIVIDUAL: US01: @I2@: Individual has Death Date 2020-6-2 later than Today.']
+
+
+# In[4]:
+
+
+def test_dates_pass():
+    
+    family_dic={'@F1@': {'FAM': '@F1@',
+  'HUSB_NAME': 'Samuel /Venzon/',
+  'HUSB': '@I6@',
+  'WIFE_NAME': 'Willodean /Malagon/',
+  'WIFE': '@I1@',
+  'FAM_CHILD': ['@I7@', '@I13@'],
+  'CHIL': '@I13@',
+  'MARR': '1970-7-7',
+  'DIV': 'NA'}}
+    
+    
+    individuals={'@I9@': {'INDI': '@I9@',
+  'NAME': 'Jerrell /Finklea/',
+  'SEX': 'M',
+  'BIRT': '1965-9-8',
+  'INDI_CHILD': 'NA',
+  'SPOUSE': ['@F6@'],
+  'DEAT': 'NA',
+  'AGE': '54',
+  'ALIVE': True}}
+    
+    Project.family_dic = family_dic
+    Project.individuals=individuals
+    Project.error_array = []
+    Project.validate_dates()
+
+    return len(Project.error_array)==0
+
+
+# In[5]:
 
 
 def test_not_legal_marriage():
@@ -45,17 +188,13 @@ def test_not_legal_marriage():
    'ALIVE': True}}}
     
     Project.family_dic = family_dic
-    
-    fake_out = StringIO()
-    sys.stdout = fake_out
-    
+    Project.anomaly_array = []
     Project.is_marriage_legal()
 
-    sys.stdout = sys.__stdout__
-    return fake_out.getvalue()=='ANOMOLY: INDIVIDUAL: US07: @I18@: Father George /Nickson/ of family @F8@ is younger than 14.\nANOMOLY: INDIVIDUAL: US07: @I13@: Wife Kitty /Nilson/ of family @F8@ is younger than 14.\n'
+    return Project.anomaly_array[0]=="ANOMOLY: INDIVIDUAL: US07: @I18@: Father George /Nickson/ of family @F8@ is younger than 14." and Project.anomaly_array[1]=="ANOMOLY: INDIVIDUAL: US07: @I13@: Wife Kitty /Nilson/ of family @F8@ is younger than 14."
 
 
-# In[177]:
+# In[6]:
 
 
 def test_legal_marriage():
@@ -88,60 +227,13 @@ def test_legal_marriage():
    'ALIVE': True}}}
     
     Project.family_dic = family_dic
-    
-    fake_out = StringIO()
-    sys.stdout = fake_out
-    
+    Project.anomaly_array = []
     Project.is_marriage_legal()
 
-    sys.stdout = sys.__stdout__
-    return fake_out.getvalue()==""
+    return len(Project.anomaly_array) == 0
 
 
-# In[178]:
-
-
-def test_legal_marriage():
-    family_dic =  {'@F8@': {'FAM': '@F8@',
-  'HUSB_NAME': 'George /Nickson/',
-  'HUSB': '@I18@',
-  'WIFE_NAME': 'Kitty /Nilson/',
-  'WIFE': '@I13@',
-  'FAM_CHILD': ['@I19@'],
-  'CHIL': '@I19@',
-  'MARR': '2000-3-24',
-  'DIV': 'NA',
-  'husband_object': {'INDI': '@I18@',
-   'NAME': 'George /Nickson/',
-   'SEX': 'M',
-   'BIRT': '1973-3-17',
-   'INDI_CHILD': 'NA',
-   'SPOUSE': ['@F8@'],
-   'DEAT': 'NA',
-   'AGE': '45',
-   'ALIVE': True},
-  'wife_object': {'INDI': '@I13@',
-   'NAME': 'Kitty /Nilson/',
-   'SEX': 'F',
-   'BIRT': '1980-7-10',
-   'INDI_CHILD': ['@F5@'],
-   'SPOUSE': ['@F8@'],
-   'DEAT': 'NA',
-   'AGE': '39',
-   'ALIVE': True}}}
-    
-    Project.family_dic = family_dic
-    
-    fake_out = StringIO()
-    sys.stdout = fake_out
-    
-    Project.is_marriage_legal()
-
-    sys.stdout = sys.__stdout__
-    return fake_out.getvalue()==""
-
-
-# In[179]:
+# In[7]:
 
 
 def test_over_age_150():
@@ -165,17 +257,12 @@ def test_over_age_150():
   'ALIVE': False}}
                  
     Project.individuals = individuals
-    
-    fake_out = StringIO()
-    sys.stdout = fake_out
-    
+    Project.anomaly_array = []
     Project.is_age_legal()
-
-    sys.stdout = sys.__stdout__
-    return fake_out.getvalue()=='ANOMOLY: INDIVIDUAL: US10: @I1@: Individual Jimmy /Colon/ is older than 150.\n'
+    return Project.anomaly_array[0]=='ANOMOLY: INDIVIDUAL: US10: @I1@: Individual Jimmy /Colon/ is older than 150.'
 
 
-# In[180]:
+# In[8]:
 
 
 def test_less_age_150():
@@ -199,17 +286,13 @@ def test_less_age_150():
   'ALIVE': True}}
                  
     Project.individuals = individuals
-    
-    fake_out = StringIO()
-    sys.stdout = fake_out
-    
+    Project.anomaly_array = []
     Project.is_age_legal()
+    
+    return len(Project.anomaly_array) == 0
 
-    sys.stdout = sys.__stdout__
-    return fake_out.getvalue()==""
 
-
-# In[181]:
+# In[9]:
 
 
 # User_Story_29: List all deceased individuals in a GEDCOM file
@@ -225,7 +308,7 @@ def test_list_deceased_individuals_success(mock_printTable):
     return True
 
 
-# In[182]:
+# In[10]:
 
 
 # User_Story_29: List all deceased individuals in a GEDCOM file
@@ -241,7 +324,7 @@ def test_list_deceased_individuals_error(mock_printTable):
     return True
 
 
-# In[183]:
+# In[11]:
 
 
 # User_Story_30: List all living married people in a GEDCOM file
@@ -258,7 +341,7 @@ def test_list_living_married_individuals_success(mock_printTable):
     return True
 
 
-# In[184]:
+# In[12]:
 
 
 # User_Story_30: List all living married people in a GEDCOM file
@@ -274,7 +357,7 @@ def test_list_living_married_individuals_error(mock_printTable):
     return True
 
 
-# In[185]:
+# In[13]:
 
 
 def test_more_than_15_siblings():
@@ -288,7 +371,7 @@ def test_more_than_15_siblings():
     return True
 
 
-# In[186]:
+# In[14]:
 
 
 def test_less_than_15_siblings():
@@ -303,7 +386,7 @@ def test_less_than_15_siblings():
     
 
 
-# In[187]:
+# In[15]:
 
 
 def test_different_male_last_name():
@@ -316,7 +399,7 @@ def test_different_male_last_name():
     return True
 
 
-# In[188]:
+# In[16]:
 
 
 def test_same_male_last_name():
@@ -330,13 +413,17 @@ def test_same_male_last_name():
     return True
 
 
-# In[189]:
+# In[17]:
 
 
 import unittest
 
 class TestStringMethods(unittest.TestCase):
-
+    
+    def test_dates_after_today_error(self):
+        self.assertTrue(test_dates_error())
+    def test_dates_after_today_pass(self):
+        self.assertTrue(test_dates_pass())
     def test_not_legal_marriage(self):
         self.assertTrue(test_not_legal_marriage())
     def test_legal_marriage(self):
