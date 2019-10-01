@@ -290,9 +290,9 @@ def is_age_legal():
             age =indi["AGE"]
             if int(age) > 150:
                 if indi["ALIVE"]:
-                    anomaly_array.append("ANOMOLY: INDIVIDUAL: US07: {}: More than 150 years old - Birth Date {}".format(indi_id, indi["BIRT"]))
+                    anomaly_array.append("ANOMALY: INDIVIDUAL: US07: {}: More than 150 years old - Birth Date {}".format(indi_id, indi["BIRT"]))
                 else:
-                    anomaly_array.append("ANOMOLY: INDIVIDUAL: US07: {}: More than 150 years old at death - Birth Date {}: Death Date {}".format(indi_id, indi["BIRT"], indi["DEAT"]))
+                    anomaly_array.append("ANOMALY: INDIVIDUAL: US07: {}: More than 150 years old at death - Birth Date {}: Death Date {}".format(indi_id, indi["BIRT"], indi["DEAT"]))
 
 
 # In[16]:
@@ -306,11 +306,11 @@ def is_marriage_legal():
         if "husband_object" in family_dic[family_id]:
             husband=family_dic[family_id]["husband_object"]
             if int(determine_age(husband["BIRT"], married_date)) < 14:
-                anomaly_array.append("ANOMOLY: INDIVIDUAL: US10: {}: Father of family {} is younger than 14 years old - Birth Date {}".format(husband["INDI"], family_id,husband["BIRT"]))
+                anomaly_array.append("ANOMALY: INDIVIDUAL: US10: {}: Father of family {} is younger than 14 years old - Birth Date {}".format(husband["INDI"], family_id,husband["BIRT"]))
         if "wife_object" in family_dic[family_id]:
             wife=family_dic[family_id]["wife_object"]
             if int(determine_age(wife["BIRT"], married_date)) < 14:
-                anomaly_array.append("ANOMOLY: INDIVIDUAL: US10: {}: Wife of family {} is younger than 14 years old - Birth Date {}".format(wife["INDI"], family_id, wife["BIRT"]))
+                anomaly_array.append("ANOMALY: INDIVIDUAL: US10: {}: Wife of family {} is younger than 14 years old - Birth Date {}".format(wife["INDI"], family_id, wife["BIRT"]))
 
 
 # In[17]:
@@ -321,7 +321,7 @@ def check_sibling_count():
     for family_id in family_dic:
         family = family_dic[family_id]
         if (len(family["FAM_CHILD"]) > 15):
-            anomaly_array.append("ANOMOLY: FAMILY: US16: {}: Family has {} siblings which is more than 15 siblings"                 .format(family_id, len(family["FAM_CHILD"])))
+            anomaly_array.append("ANOMALY: FAMILY: US16: {}: Family has {} siblings which is more than 15 siblings"                 .format(family_id, len(family["FAM_CHILD"])))
 
 
 # In[18]:
@@ -359,8 +359,7 @@ def check_last_names():
                         last_name = get_last_name(child["NAME"])
                     else:
                         if last_name != get_last_name(child["NAME"]):
-                            print("here")
-                            anomaly_array.append("ANOMOLY: INDIVIDUAL: US16: {}: Individual has different last name {} than family {}"                                   .format(child["INDI"], get_last_name(child["NAME"]), last_name))
+                            anomaly_array.append("ANOMALY: INDIVIDUAL: US16: {}: Individual has different last name {} than family {}"                                   .format(child["INDI"], get_last_name(child["NAME"]), last_name))
 
 
 # In[20]:
@@ -372,7 +371,7 @@ def unique_name_and_birth():
     for value in individuals.values():
         temp = value["NAME"] + value["BIRT"]
         if temp in li:
-            anomaly_array.append("ANOMOLY: INDIVIDUAL: US23: {}: {}: The same name {} and birth date {}".format(value["INDI"], li[temp], value["NAME"], value["BIRT"]))
+            anomaly_array.append("ANOMALY: INDIVIDUAL: US23: {}: {}: The same name {} and birth date {}".format(value["INDI"], li[temp], value["NAME"], value["BIRT"]))
         else:
             li[temp]=value["INDI"]
 
@@ -388,7 +387,7 @@ def unique_family_name_and_birth():
             for child in value["children_objects"]:
                 temp = child["NAME"] + child["BIRT"]
                 if temp in li:
-                    anomaly_array.append("ANOMOLY: INDIVIDUAL: US25: {}: {}: The same name {} and birth date {} from family {}".format(child["INDI"], li[temp], child["NAME"], child["BIRT"], value["FAM"]))
+                    anomaly_array.append("ANOMALY: INDIVIDUAL: US25: {}: {}: The same name {} and birth date {} from family {}".format(child["INDI"], li[temp], child["NAME"], child["BIRT"], value["FAM"]))
                 else:          
                     li[temp]=child["INDI"]
 
