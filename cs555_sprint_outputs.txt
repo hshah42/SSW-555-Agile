@@ -104,4 +104,4 @@ ANOMOLY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than f
 ANOMOLY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
 ANOMOLY: INDIVIDUAL: US23: @I32@: Person @I30@ has the same Name Chet /Malagon/ and Birth Date 1943-8-18
 ANOMOLY: INDIVIDUAL: US23: @I35@: Person @I31@ has the same Name Sock /Malagon/ and Birth Date 1955-10-17
-ANOMOLY: INDIVIDUAL: US25: @I32@: Person @I30@ has the same names Chet /Malagon/ and Birth Date 1943-8-18
+ANOMOLY: INDIVIDUAL: US25: @I32@: Person @I30@ has the same First Family name Chet /Malagon/ and Birth Date 1943-8-18
