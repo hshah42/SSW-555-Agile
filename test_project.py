@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[48]:
+# In[1]:
 
 
 import pytest
@@ -11,7 +11,7 @@ import Project
 import numpy as np
 
 
-# In[49]:
+# In[2]:
 
 
 def test_dates_pass():
@@ -23,32 +23,14 @@ def test_dates_pass():
   'WIFE': '@I13@',
   'FAM_CHILD': ['@I19@'],
   'CHIL': '@I19@',
-  'MARR': '2020-3-24',
-  'DIV': '2021-3-24',
-  'husband_object': {'INDI': '@I18@',
-   'NAME': 'George /Nickson/',
-   'SEX': 'M',
-   'BIRT': '1980-3-17',
-   'INDI_CHILD': 'NA',
-   'SPOUSE': ['@F8@'],
-   'DEAT': 'NA',
-   'AGE': '45',
-   'ALIVE': True},
-  'wife_object': {'INDI': '@I13@',
-   'NAME': 'Kitty /Nilson/',
-   'SEX': 'F',
-   'BIRT': '1980-7-10',
-   'INDI_CHILD': ['@F5@'],
-   'SPOUSE': ['@F8@'],
-   'DEAT': 'NA',
-   'AGE': '39',
-   'ALIVE': True}}}
+  'MARR': '2018-3-24',
+  'DIV': '2010-3-24'}}
     
     
     individuals={'@I1@': {'INDI': '@I1@',
   'NAME': 'Jimmy /Colon/',
   'SEX': 'M',
-  'BIRT': '2030-12-10',
+  'BIRT': '2008-12-10',
   'INDI_CHILD': ['@F2@'],
   'SPOUSE': ['@F1@'],
   'DEAT': 'NA',
@@ -57,11 +39,11 @@ def test_dates_pass():
  '@I2@': {'INDI': '@I2@',
   'NAME': 'Helen /Colon/',
   'SEX': 'F',
-  'BIRT': '2000-12-10',
-  'DEAT': '2020-6-2',
+  'BIRT': '1089-12-10',
+  'DEAT': '2002-6-2',
   'INDI_CHILD': 'NA',
   'SPOUSE': ['@F1@'],
-  'AGE': '81',
+  'AGE': '13',
   'ALIVE': False}}
     
     Project.family_dic = family_dic
@@ -69,10 +51,7 @@ def test_dates_pass():
     Project.error_array = []
     Project.validate_dates()
 
-    return Project.error_array==['ERROR: FAMILY: US01: @F8@: Family has Marrige Date 2020-3-24 later than Today.',
-                                 'ERROR: FAMILY: US01: @F8@: Family has Divorce Date 2021-3-24 later than Today.',
-                                 'ERROR: INDIVIDUAL: US01: @I1@: Individual has Birthday Date 2030-12-10 later than Today.',
-                                 'ERROR: INDIVIDUAL: US01: @I2@: Individual has Death Date 2020-6-2 later than Today.']
+    return len(Project.error_array)==0
 
 
 # In[3]:
@@ -115,13 +94,13 @@ def test_dates_error():
     Project.error_array = []
     Project.validate_dates()
 
-    return Project.error_array==['ERROR: FAMILY: US01: @F8@: Family has Marrige Date 2020-3-24 later than Today.',
-                                 'ERROR: FAMILY: US01: @F8@: Family has Divorce Date 2021-3-24 later than Today.',
-                                 'ERROR: INDIVIDUAL: US01: @I1@: Individual has Birthday Date 2030-12-10 later than Today.',
-                                 'ERROR: INDIVIDUAL: US01: @I2@: Individual has Death Date 2020-6-2 later than Today.']
+    return Project.error_array==['ERROR: FAMILY: US01: @F8@: Family has marrige date 2020-3-24 later than today',
+                                 'ERROR: FAMILY: US01: @F8@: Family has divorce date 2021-3-24 later than today',
+                                 'ERROR: INDIVIDUAL: US01: @I1@: Individual has birth date 2030-12-10 later than today',
+                                 'ERROR: INDIVIDUAL: US01: @I2@: Individual has death date 2020-6-2 later than today']
 
 
-# In[50]:
+# In[4]:
 
 
 def test_dates_pass():
@@ -191,10 +170,11 @@ def test_not_legal_marriage():
     Project.anomaly_array = []
     Project.is_marriage_legal()
 
-    return Project.anomaly_array[0]=="ANOMOLY: INDIVIDUAL: US07: @I18@: Father George /Nickson/ of family @F8@ is younger than 14." and Project.anomaly_array[1]=="ANOMOLY: INDIVIDUAL: US07: @I13@: Wife Kitty /Nilson/ of family @F8@ is younger than 14."
+    return Project.anomaly_array==["ANOMOLY: INDIVIDUAL: US10: @I18@: Father of family @F8@ is younger than 14 years old - Birth Date 1980-3-17",
+"ANOMOLY: INDIVIDUAL: US10: @I13@: Wife of family @F8@ is younger than 14 years old - Birth Date 1980-7-10"]
 
 
-# In[51]:
+# In[6]:
 
 
 def test_legal_marriage():
@@ -233,7 +213,7 @@ def test_legal_marriage():
     return len(Project.anomaly_array) == 0
 
 
-# In[52]:
+# In[7]:
 
 
 def test_over_age_150():
@@ -259,11 +239,10 @@ def test_over_age_150():
     Project.individuals = individuals
     Project.anomaly_array = []
     Project.is_age_legal()
-    return Project.anomaly_array[0]=='ANOMOLY: INDIVIDUAL: US10: @I1@: Individual Jimmy /Colon/ is older than 150.'
+    return Project.anomaly_array[0]=='ANOMOLY: INDIVIDUAL: US07: @I1@: More than 150 years old - Birth Date 1860-6-5'
 
 
-
-# In[53]:
+# In[8]:
 
 
 def test_less_age_150():
@@ -293,7 +272,7 @@ def test_less_age_150():
     return len(Project.anomaly_array) == 0
 
 
-# In[54]:
+# In[9]:
 
 
 # User_Story_29: List all deceased individuals in a GEDCOM file
@@ -309,7 +288,7 @@ def test_list_deceased_individuals_success(mock_printTable):
     return True
 
 
-# In[55]:
+# In[10]:
 
 
 # User_Story_29: List all deceased individuals in a GEDCOM file
@@ -325,7 +304,7 @@ def test_list_deceased_individuals_error(mock_printTable):
     return True
 
 
-# In[56]:
+# In[11]:
 
 
 # User_Story_30: List all living married people in a GEDCOM file
@@ -342,7 +321,7 @@ def test_list_living_married_individuals_success(mock_printTable):
     return True
 
 
-# In[57]:
+# In[12]:
 
 
 # User_Story_30: List all living married people in a GEDCOM file
@@ -358,7 +337,7 @@ def test_list_living_married_individuals_error(mock_printTable):
     return True
 
 
-# In[58]:
+# In[13]:
 
 
 def test_more_than_15_siblings():
@@ -372,7 +351,7 @@ def test_more_than_15_siblings():
     return True
 
 
-# In[59]:
+# In[14]:
 
 
 def test_less_than_15_siblings():
@@ -387,7 +366,7 @@ def test_less_than_15_siblings():
     
 
 
-# In[60]:
+# In[15]:
 
 
 def test_different_male_last_name():
@@ -400,7 +379,7 @@ def test_different_male_last_name():
     return True
 
 
-# In[61]:
+# In[16]:
 
 
 def test_same_male_last_name():
@@ -414,7 +393,7 @@ def test_same_male_last_name():
     return True
 
 
-# In[62]:
+# In[17]:
 
 
 def test_birth_after_marraige_appended_to_error():
@@ -424,11 +403,11 @@ def test_birth_after_marraige_appended_to_error():
     
     Project.is_birth_before_marraige()
     
-    assert Project.error_array[0] == "ERROR: INDIVIDUAL: US02 Person @I1@ has marriage date 1968-6-4 before birth date 1970-11-8"
+    assert Project.error_array[0] == "ERROR: INDIVIDUAL: US02: @I1@: Person has marriage date 1968-6-4 before birth date 1970-11-8"
     return True
 
 
-# In[63]:
+# In[18]:
 
 
 def test_birth_before_marraige_do_nothing():
@@ -442,24 +421,24 @@ def test_birth_before_marraige_do_nothing():
     return True
 
 
-# In[64]:
+# In[19]:
 
 
 import unittest
 
 class TestStringMethods(unittest.TestCase):
     
-    def test_dates_after_today_error(self):
+    def test_Dates_After_Today_error(self):
         self.assertTrue(test_dates_error())
-    def test_dates_after_today_pass(self):
+    def test_Dates_After_Today_pass(self):
         self.assertTrue(test_dates_pass())
-    def test_not_legal_marriage(self):
+    def test_Marriqge_Ater_14_error(self):
         self.assertTrue(test_not_legal_marriage())
-    def test_legal_marriage(self):
+    def test_Marriqge_Ater_14_pass(self):
         self.assertTrue(test_legal_marriage())
-    def test_over_age_150(self):
+    def test_Less_Then_150_Years_Old_error(self):
         self.assertTrue(test_over_age_150())
-    def test_less_age_150(self):
+    def test_Less_Then_150_Years_Old_pass(self):
         self.assertTrue(test_less_age_150())
     def test_List_Deceased_success(self):
         self.assertTrue(test_list_deceased_individuals_success())
@@ -470,11 +449,11 @@ class TestStringMethods(unittest.TestCase):
     def test_List_Living_Married_fail(self):
         self.assertTrue(test_list_living_married_individuals_error())
     def test_More_Than_15_Siblings(self):
-        self.assertTrue(test_more_than_15_siblings());
+        self.assertTrue(test_more_than_15_siblings())
     def test_Less_Than_15_Siblings(self):
-        self.assertTrue(test_less_than_15_siblings());
+        self.assertTrue(test_less_than_15_siblings())
     def test_Different_Male_Last_Name(self):
-        self.assertTrue(test_different_male_last_name());
+        self.assertTrue(test_different_male_last_name())
     def test_Same_Male_Last_Name(self):
         self.assertTrue(test_same_male_last_name());
     def test_Birth_After_Marraige_Appended_To_Error(self):

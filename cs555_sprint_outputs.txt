@@ -84,24 +84,24 @@ US30: Living & Married People Table
 +-------+----------------------+--------+------------+------+-------+-------+-----------------+
 
 ------error messages------
-ERROR: INDIVIDUAL: US01: @I12@: Individual has Birthday Date 2021-8-9 later than Today.
-ERROR: INDIVIDUAL: US02 Person @I14@ has marriage date 1968-6-4 before birth date 1970-11-8
-ERROR: INDIVIDUAL: US02 Person @I15@ has marriage date 1968-6-4 before birth date 1969-9-8
-ERROR: INDIVIDUAL: US30 Deceased Person @I5@ who is Married to @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
 -----anomaly messages-----
-ANOMOLY: INDIVIDUAL: US10: @I18@: Individual Tesha /Malagon/ is older than 150.
-ANOMOLY: INDIVIDUAL: US07: @I6@: Father Samuel /Venzon/ of family @F1@ is younger than 14.
-ANOMOLY: INDIVIDUAL: US07: @I1@: Wife Willodean /Malagon/ of family @F1@ is younger than 14.
-ANOMOLY: INDIVIDUAL: US07: @I5@: Father Josh /Malagon/ of family @F4@ is younger than 14.
-ANOMOLY: INDIVIDUAL: US07: @I8@: Wife Cinda /Burgard/ of family @F4@ is younger than 14.
-ANOMOLY: INDIVIDUAL: US07: @I7@: Father Byron /Vezon/ of family @F5@ is younger than 14.
-ANOMOLY: INDIVIDUAL: US07: @I12@: Wife Shyla /Bertone/ of family @F5@ is younger than 14.
-ANOMOLY: INDIVIDUAL: US07: @I14@: Father Jacob /Malagon/ of family @F8@ is younger than 14.
-ANOMOLY: INDIVIDUAL: US07: @I15@: Wife Jaqueline /Kindel/ of family @F8@ is younger than 14.
+ANOMOLY: INDIVIDUAL: US07: @I18@: More than 150 years old - Birth Date 1819-7-8
+ANOMOLY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMOLY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMOLY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMOLY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMOLY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMOLY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMOLY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMOLY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
 ANOMOLY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
 ANOMOLY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
 ANOMOLY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
 ANOMOLY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
-ANOMOLY: INDIVIDUAL: US23: @I32@: Person @I30@ has the same Name Chet /Malagon/ and Birth Date 1943-8-18
-ANOMOLY: INDIVIDUAL: US23: @I35@: Person @I31@ has the same Name Sock /Malagon/ and Birth Date 1955-10-17
-ANOMOLY: INDIVIDUAL: US25: @I32@: Person @I30@ has the same names Chet /Malagon/ and Birth Date 1943-8-18
+ANOMOLY: INDIVIDUAL: US23: @I32@: @I30@: The same name Chet /Malagon/ and birth date 1943-8-18
+ANOMOLY: INDIVIDUAL: US23: @I35@: @I31@: The same name Sock /Malagon/ and birth date 1955-10-17
+ANOMOLY: INDIVIDUAL: US25: @I32@: @I30@: The same name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
