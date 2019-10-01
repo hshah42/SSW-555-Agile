@@ -1,0 +1,430 @@
+0 HEAD
+1 SOUR Family Echo
+2 WWW http://www.familyecho.com/
+1 FILE Maximina_Malagon_Family
+1 DATE 1 OCT 2019
+1 DEST ANSTFILE
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 SUBM @I1@
+2 NAME David Chang
+1 SUBN
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME Willodean /Malagon/
+2 GIVN Willodean
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX F
+1 BIRT
+2 DATE 7 JUL 1958
+1 FAMS @F1@
+1 FAMC @F2@
+0 @I2@ INDI
+1 NAME Stephan /Malagon/
+2 GIVN Stephan
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX M
+1 BIRT
+2 DATE 21 AUG 1930
+1 FAMS @F2@
+1 FAMC @F3@
+0 @I3@ INDI
+1 NAME Laverna /Leonhardt/
+2 GIVN Laverna
+2 SURN Leonhardt
+2 _MARNM Leonhardt
+1 SEX F
+1 BIRT
+2 DATE 9 JUN 1932
+1 FAMS @F2@
+0 @I4@ INDI
+1 NAME Ken /Malagon/
+2 GIVN Ken
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX M
+1 BIRT
+2 DATE 6 FEB 1962
+1 FAMC @F2@
+0 @I5@ INDI
+1 NAME Josh /Malagon/
+2 GIVN Josh
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX M
+1 BIRT
+2 DATE 31 OCT 1964
+1 DEAT Y
+2 DATE 7 MAY 1984
+1 FAMS @F4@
+1 FAMC @F2@
+0 @I6@ INDI
+1 NAME Samuel /Venzon/
+2 GIVN Samuel
+2 SURN Venzon
+2 _MARNM Venzon
+1 SEX M
+1 BIRT
+2 DATE 6 DEC 1958
+1 FAMS @F1@
+0 @I7@ INDI
+1 NAME Byron /Vezon/
+2 GIVN Byron
+2 SURN Vezon
+2 _MARNM Vezon
+1 SEX M
+1 BIRT
+2 DATE 6 JUL 1973
+1 FAMS @F5@
+1 FAMC @F1@
+0 @I8@ INDI
+1 NAME Cinda /Burgard/
+2 GIVN Cinda
+2 SURN Burgard
+2 _MARNM Burgard
+1 SEX F
+1 BIRT
+2 DATE 8 AUG 1966
+1 FAMS @F4@
+1 FAMS @F6@
+1 FAMS @F7@
+0 @I9@ INDI
+1 NAME Jerrell /Finklea/
+2 GIVN Jerrell
+2 SURN Finklea
+2 _MARNM Finklea
+1 SEX M
+1 BIRT
+2 DATE 8 SEP 1965
+1 FAMS @F6@
+0 @I10@ INDI
+1 NAME Ruthe /Malagon/
+2 GIVN Ruthe
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX F
+1 BIRT
+2 DATE 8 SEP 1977
+1 FAMC @F4@
+0 @I11@ INDI
+1 NAME Darwin /Tung/
+2 GIVN Darwin
+2 SURN Tung
+2 _MARNM Tung
+1 SEX M
+1 BIRT
+2 DATE 6 SEP 1987
+1 FAMC @F6@
+0 @I12@ INDI
+1 NAME Shyla /Bertone/
+2 GIVN Shyla
+2 SURN Bertone
+2 _MARNM Bertone
+1 SEX F
+1 BIRT
+2 DATE 9 AUG 2021
+1 FAMS @F5@
+0 @I13@ INDI
+1 NAME Beth /Venzon/
+2 GIVN Beth
+2 SURN Venzon
+2 _MARNM Venzon
+1 SEX F
+1 BIRT
+2 DATE 8 JUL 1975
+1 FAMC @F1@
+0 @I14@ INDI
+1 NAME Jacob /Malagon/
+2 GIVN Jacob
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX M
+1 BIRT
+2 DATE 8 NOV 1970
+1 FAMS @F8@
+1 FAMC @F2@
+0 @I15@ INDI
+1 NAME Jaqueline /Kindel/
+2 GIVN Jaqueline
+2 SURN Kindel
+2 _MARNM Kindel
+1 SEX F
+1 BIRT
+2 DATE 8 SEP 1969
+1 FAMS @F8@
+0 @I16@ INDI
+1 NAME Johnny /Malagon/
+2 GIVN Johnny
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX M
+1 BIRT
+2 DATE 14 JUL 1901
+1 FAMS @F3@
+0 @I17@ INDI
+1 NAME Lura /Lomas/
+2 GIVN Lura
+2 SURN Lomas
+2 _MARNM Lomas
+1 SEX F
+1 BIRT
+2 DATE 30 AUG 1900
+1 FAMS @F3@
+0 @I18@ INDI
+1 NAME Tesha /Malagon/
+2 GIVN Tesha
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX F
+1 BIRT
+2 DATE 8 JUL 1819
+1 FAMC @F3@
+0 @I19@ INDI
+1 NAME Wilber /Iglesias/
+2 GIVN Wilber
+2 SURN Iglesias
+2 _MARNM Iglesias
+1 SEX M
+1 BIRT
+2 DATE 17 AUG 1988
+1 FAMC @F6@
+0 @I20@ INDI
+1 NAME Lucile /Malagon/
+2 GIVN Lucile
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX F
+1 BIRT
+2 DATE 9 SEP 1931
+1 FAMC @F3@
+0 @I21@ INDI
+1 NAME Regena /Malagon/
+2 GIVN Regena
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX F
+1 BIRT
+2 DATE 8 OCT 1929
+1 FAMC @F3@
+0 @I22@ INDI
+1 NAME Tom /Malagon/
+2 GIVN Tom
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX M
+1 BIRT
+2 DATE 8 MAY 1923
+1 FAMS @F9@
+1 FAMC @F3@
+0 @I23@ INDI
+1 NAME Vonnie /Malagon/
+2 GIVN Vonnie
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX M
+1 BIRT
+2 DATE 10 MAR 1936
+1 DEAT Y
+2 DATE 6 JUL 1937
+1 FAMC @F3@
+0 @I24@ INDI
+1 NAME Shena /Malagon/
+2 GIVN Shena
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX F
+1 BIRT
+2 DATE 6 NOV 1937
+1 FAMC @F3@
+0 @I25@ INDI
+1 NAME Hailey /Malagon/
+2 GIVN Hailey
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX F
+1 BIRT
+2 DATE 8 OCT 1938
+1 DEAT Y
+2 DATE 18 SEP 1939
+1 FAMC @F3@
+0 @I26@ INDI
+1 NAME Milford /Malagon/
+2 GIVN Milford
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX M
+1 BIRT
+2 DATE 8 NOV 1939
+1 FAMC @F3@
+0 @I27@ INDI
+1 NAME Rashida /Malagon/
+2 GIVN Rashida
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX F
+1 BIRT
+2 DATE 7 DEC 1940
+1 FAMC @F3@
+0 @I28@ INDI
+1 NAME Deeann /Malagon/
+2 GIVN Deeann
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX F
+1 BIRT
+2 DATE 23 OCT 1941
+1 FAMC @F3@
+0 @I29@ INDI
+1 NAME Dario /Malagon/
+2 GIVN Dario
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX M
+1 BIRT
+2 DATE 14 DEC 1942
+1 FAMC @F3@
+0 @I30@ INDI
+1 NAME Chet /Malagon/
+2 GIVN Chet
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX M
+1 BIRT
+2 DATE 18 AUG 1943
+1 FAMC @F3@
+0 @I31@ INDI
+1 NAME Sock /Malagon/
+2 GIVN Sock
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX F
+1 BIRT
+2 DATE 17 OCT 1955
+1 FAMC @F3@
+0 @I32@ INDI
+1 NAME Chet /Malagon/
+2 GIVN Chet
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX M
+1 BIRT
+2 DATE 18 AUG 1943
+1 FAMC @F3@
+0 @I33@ INDI
+1 NAME Loyd /Malagon/
+2 GIVN Loyd
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX M
+1 BIRT
+2 DATE 9 AUG 1965
+1 FAMC @F3@
+0 @I34@ INDI
+1 NAME Kitty /Malagon/
+2 GIVN Kitty
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX F
+1 BIRT
+2 DATE 5 JUN 1925
+1 FAMS @F9@
+0 @I35@ INDI
+1 NAME Sock /Malagon/
+2 GIVN Sock
+2 SURN Malagon
+2 _MARNM Malagon
+1 SEX F
+1 BIRT
+2 DATE 17 OCT 1955
+1 FAMC @F9@
+0 @F1@ FAM
+1 HUSB @I6@
+1 WIFE @I1@
+1 CHIL @I7@
+1 CHIL @I13@
+1 MARR
+2 DATE 7 JUL 1970
+2 PLAC Boston, MA
+1 _CURRENT Y
+0 @F2@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@
+1 CHIL @I4@
+1 CHIL @I5@
+1 CHIL @I14@
+1 MARR
+2 DATE 17 SEP 1947
+2 PLAC Seoul, SK
+1 _CURRENT Y
+0 @F3@ FAM
+1 HUSB @I16@
+1 WIFE @I17@
+1 CHIL @I2@
+1 CHIL @I18@
+1 CHIL @I20@
+1 CHIL @I21@
+1 CHIL @I22@
+1 CHIL @I23@
+1 CHIL @I24@
+1 CHIL @I25@
+1 CHIL @I26@
+1 CHIL @I27@
+1 CHIL @I28@
+1 CHIL @I29@
+1 CHIL @I30@
+1 CHIL @I31@
+1 CHIL @I32@
+1 CHIL @I33@
+1 MARR
+2 DATE 28 APR 1925
+2 PLAC San Francisco, CA
+1 _CURRENT Y
+0 @F4@ FAM
+1 HUSB @I5@
+1 WIFE @I8@
+1 CHIL @I10@
+1 MARR
+2 DATE 2 SEP 1978
+2 PLAC Seattle, WA
+1 EVEN
+2 TYPE Ending
+2 DATE 7 MAY 1984
+1 _CURRENT N
+0 @F6@ FAM
+1 HUSB @I9@
+1 WIFE @I8@
+1 CHIL @I11@
+1 CHIL @I19@
+1 MARR
+2 DATE 5 APR 1985
+2 PLAC Oregon, OR
+1 _CURRENT Y
+0 @F7@ FAM
+1 WIFE @I8@
+1 _CURRENT N
+0 @F5@ FAM
+1 HUSB @I7@
+1 WIFE @I12@
+1 EVEN
+2 TYPE Relationship
+2 DATE 4 MAR 1988
+1 _CURRENT Y
+0 @F8@ FAM
+1 HUSB @I14@
+1 WIFE @I15@
+1 MARR
+2 DATE 4 JUN 1968
+2 PLAC LA, CA
+1 _CURRENT Y
+0 @F9@ FAM
+1 HUSB @I22@
+1 WIFE @I34@
+1 CHIL @I35@
+1 MARR
+2 DATE 5 AUG 1945
+1 _CURRENT Y
+0 TRLR
