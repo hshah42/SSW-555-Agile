@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
 # In[1]:
@@ -371,7 +371,7 @@ def unique_name_and_birth():
     for value in individuals.values():
         temp = value["NAME"] + value["BIRT"]
         if temp in li:
-            anomaly_array.append("ANOMALY: INDIVIDUAL: US23: {}: {}: The same name {} and birth date {}".format(value["INDI"], li[temp], value["NAME"], value["BIRT"]))
+            anomaly_array.append("ANOMALY: INDIVIDUAL: US23: {}: {}: Individuals have same name {} and birth date {}".format(value["INDI"], li[temp], value["NAME"], value["BIRT"]))
         else:
             li[temp]=value["INDI"]
 
@@ -387,7 +387,7 @@ def unique_family_name_and_birth():
             for child in value["children_objects"]:
                 temp = child["NAME"] + child["BIRT"]
                 if temp in li:
-                    anomaly_array.append("ANOMALY: INDIVIDUAL: US25: {}: {}: The same name {} and birth date {} from family {}".format(child["INDI"], li[temp], child["NAME"], child["BIRT"], value["FAM"]))
+                    anomaly_array.append("ANOMALY: INDIVIDUAL: US25: {}: {}: Individuals share same First name {} and birth date {} from family {}".format(child["INDI"], li[temp], child["NAME"], child["BIRT"], value["FAM"]))
                 else:          
                     li[temp]=child["INDI"]
 
