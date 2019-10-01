@@ -19,10 +19,10 @@ People Table
 | @I15@ |  Jaqueline /Kindel/  |    F   |   1969-9-8  |  50  |  True  |     NA     |   NA  |       @F8@      |
 | @I16@ |   Johnny /Malagon/   |    M   |   1901-7-14 |  118 |  True  |     NA     |   NA  |       @F3@      |
 | @I17@ |     Lura /Lomas/     |    F   |   1900-8-30 |  119 |  True  |     NA     |   NA  |       @F3@      |
-| @I18@ |    Tesha /Malagon/   |    F   |   1819-7-8  |  200 |  True  |     NA     |  @F3@ |        NA       |
+| @I18@ |    Tesha /Malagon/   |    F   |   1819-7-8  |  200 |  False |  2019-8-2  |  @F3@ |        NA       |
 | @I19@ |   Wilber /Iglesias/  |    M   |   1988-8-17 |  31  |  True  |     NA     |  @F6@ |        NA       |
 | @I20@ |   Lucile /Malagon/   |    F   |   1931-9-9  |  88  |  True  |     NA     |  @F3@ |        NA       |
-| @I21@ |   Regena /Malagon/   |    F   |   1929-10-8 |  89  |  True  |     NA     |  @F3@ |        NA       |
+| @I21@ |   Regena /Malagon/   |    F   |   1820-10-8 |  198 |  True  |     NA     |  @F3@ |        NA       |
 | @I22@ |     Tom /Malagon/    |    M   |   1923-5-8  |  96  |  True  |     NA     |  @F3@ |       @F9@      |
 | @I23@ |   Vonnie /Malagon/   |    M   |   1936-3-10 |   1  |  False |  1937-7-6  |  @F3@ |        NA       |
 | @I24@ |    Shena /Malagon/   |    F   |   1937-11-6 |  81  |  True  |     NA     |  @F3@ |        NA       |
@@ -55,13 +55,14 @@ Families Table
 +------+------------+----------+------------+--------------------+---------+----------------------+-------------------------------------------------------------------------------------------------+
 
 US29: Deceased People Table
-+-------+-------------------+--------+-------------+-----+--------+------------+
-|   ID  |        Name       | Gender |   Birthday  | Age | Alive  |   Death    |
-+-------+-------------------+--------+-------------+-----+--------+------------+
-|  @I5@ |   Josh /Malagon/  |    M   |  1964-10-31 |  19 |  False |  1984-5-7  |
-| @I23@ |  Vonnie /Malagon/ |    M   |   1936-3-10 |   1 |  False |  1937-7-6  |
-| @I25@ |  Hailey /Malagon/ |    F   |   1938-10-8 |   0 |  False |  1939-9-18 |
-+-------+-------------------+--------+-------------+-----+--------+------------+
++-------+-------------------+--------+-------------+------+--------+------------+
+|   ID  |        Name       | Gender |   Birthday  | Age  | Alive  |   Death    |
++-------+-------------------+--------+-------------+------+--------+------------+
+|  @I5@ |   Josh /Malagon/  |    M   |  1964-10-31 |  19  |  False |  1984-5-7  |
+| @I18@ |   Tesha /Malagon/ |    F   |   1819-7-8  |  200 |  False |  2019-8-2  |
+| @I23@ |  Vonnie /Malagon/ |    M   |   1936-3-10 |   1  |  False |  1937-7-6  |
+| @I25@ |  Hailey /Malagon/ |    F   |   1938-10-8 |   0  |  False |  1939-9-18 |
++-------+-------------------+--------+-------------+------+--------+------------+
 
 US30: Living & Married People Table
 +-------+----------------------+--------+------------+------+-------+-------+-----------------+
@@ -89,7 +90,8 @@ ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth d
 ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
 ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
 -----anomaly messages-----
-ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old - Birth Date 1819-7-8
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
 ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
 ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
 ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
