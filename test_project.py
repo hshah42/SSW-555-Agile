@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[35]:
+# In[156]:
 
 
 import pytest
@@ -12,7 +12,7 @@ from io import StringIO
 import sys
 
 
-# In[36]:
+# In[157]:
 
 
 def test_not_legal_marriage():
@@ -55,7 +55,7 @@ def test_not_legal_marriage():
     return fake_out.getvalue()=='ANOMOLY: INDIVIDUAL: US07: @I18@: Father George /Nickson/ of family @F8@ is younger than 14.\nANOMOLY: INDIVIDUAL: US07: @I13@: Wife Kitty /Nilson/ of family @F8@ is younger than 14.\n'
 
 
-# In[37]:
+# In[158]:
 
 
 def test_legal_marriage():
@@ -98,7 +98,7 @@ def test_legal_marriage():
     return fake_out.getvalue()==""
 
 
-# In[38]:
+# In[159]:
 
 
 def test_legal_marriage():
@@ -141,7 +141,7 @@ def test_legal_marriage():
     return fake_out.getvalue()==""
 
 
-# In[39]:
+# In[160]:
 
 
 def test_over_age_150():
@@ -175,7 +175,7 @@ def test_over_age_150():
     return fake_out.getvalue()=='ANOMOLY: INDIVIDUAL: US10: @I1@: Individual Jimmy /Colon/ is older than 150.\n'
 
 
-# In[40]:
+# In[161]:
 
 
 def test_less_age_150():
@@ -209,7 +209,7 @@ def test_less_age_150():
     return fake_out.getvalue()==""
 
 
-# In[41]:
+# In[162]:
 
 
 # User_Story_29: List all deceased individuals in a GEDCOM file
@@ -221,10 +221,11 @@ def test_list_deceased_individuals_success(mock_printTable):
     current_dic = {'@I6@': {'INDI': '@I6@', 'NAME': 'Stephen /Chang/', 'SEX': 'M', 'BIRT': '1935-12-5', 'DEAT': '2005-4-15', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'AGE': '70', 'ALIVE': False}}
     Project.individuals = current_dic
     Project.listDeceased()
-    mock_printTable.assert_called_with(allFields, tagNames, current_dic)
+    mock_printTable.assert_called_with("US29: Deceased People Table", allFields, tagNames, current_dic)
+    return True
 
 
-# In[42]:
+# In[163]:
 
 
 # User_Story_29: List all deceased individuals in a GEDCOM file
@@ -236,10 +237,11 @@ def test_list_deceased_individuals_error(mock_printTable):
     current_dic = {'@I6@': {'INDI': '@I6@', 'NAME': 'David /Chang/', 'SEX': 'M', 'BIRT': '2002-12-5', 'DEAT': 'NA', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F7@'], 'AGE': '79', 'ALIVE': False}}
     Project.individuals = current_dic
     Project.listDeceased()
-    mock_printTable.assert_called_with(allFields, tagNames, {}) #provide empty dictionary so that it won't overwrite
+    mock_printTable.assert_called_with("US29: Deceased People Table", allFields, tagNames, {}) #provide empty dictionary so that it won't overwrite
+    return True
 
 
-# In[43]:
+# In[164]:
 
 
 # User_Story_30: List all living married people in a GEDCOM file
@@ -252,10 +254,11 @@ def test_list_living_married_individuals_success(mock_printTable):
     current_dic = {'@I1@': {'INDI': '@I1@', 'NAME': 'Johnny /Chang/', 'SEX': 'M', 'BIRT': '1958-9-6', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F1@'], 'DEAT': 'NA', 'AGE': '61', 'ALIVE': True}}
     Project.individuals = current_dic
     Project.listLivingMarried()
-    mock_printTable.assert_called_with(allFields, tagNames, current_dic)
+    mock_printTable.assert_called_with("US30: Living & Married People Table", allFields, tagNames, current_dic)
+    return True
 
 
-# In[44]:
+# In[165]:
 
 
 # User_Story_30: List all living married people in a GEDCOM file
@@ -267,20 +270,11 @@ def test_list_living_married_individuals_error(mock_printTable):
     current_dic = {'@I4@': {'INDI': '@I1@', 'NAME': 'Michael /Chang/', 'SEX': 'M', 'BIRT': '1958-9-6', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F3@'], 'DEAT': '2002-9-6', 'AGE': '61', 'ALIVE': False}}
     Project.individuals = current_dic
     Project.listLivingMarried()
-    mock_printTable.assert_called_with(allFields, tagNames, {}) #provide empty dictionary so that it won't overwrite
+    mock_printTable.assert_called_with("US30: Living & Married People Table", allFields, tagNames, {}) #provide empty dictionary so that it won't overwrite
+    return True
 
 
-# In[45]:
-
-
-# Tests user stories that list out items
-test_list_deceased_individuals_success()
-test_list_deceased_individuals_error()
-test_list_living_married_individuals_success()
-test_list_living_married_individuals_error()
-
-
-# In[46]:
+# In[166]:
 
 
 import unittest
@@ -295,6 +289,14 @@ class TestStringMethods(unittest.TestCase):
         self.assertTrue(test_over_age_150())
     def test_less_age_150(self):
         self.assertTrue(test_less_age_150())
+    def test_List_Deceased_success(self):
+        self.assertTrue(test_list_deceased_individuals_success())
+    def test_List_Deceased_fail(self):
+        self.assertTrue(test_list_deceased_individuals_error())
+    def test_List_Living_Married_success(self):
+        self.assertTrue(test_list_living_married_individuals_success())
+    def test_List_Living_Married_fail(self):
+        self.assertTrue(test_list_living_married_individuals_error())
     
 
 suite = unittest.TestLoader().loadTestsFromTestCase(TestStringMethods)

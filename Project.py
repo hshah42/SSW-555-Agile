@@ -302,9 +302,7 @@ def listDeceased():
             error_array.append(("ERROR: INDIVIDUAL: US29 Person {} is dead but has no Death Date").format(value["DEAT"]));
             print(("ERROR: INDIVIDUAL: US29 Person {} is dead but has no Death Date").format(value["INDI"]))
         elif(not value["ALIVE"]):
-            current_dic[value["INDI"]] = value
-            
-            
+            current_dic[value["INDI"]] = value    
     #Use pretty table module to print out the results
     allFields = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death"]
     tagNames = ["INDI", "NAME", "SEX", "BIRT", "AGE", "ALIVE", "DEAT"]
