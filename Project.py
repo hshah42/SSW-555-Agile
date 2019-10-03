@@ -227,36 +227,44 @@ def read_in(file):
 # In[13]:
 
 
-#USID: 23
-def unique_name_and_birth():
-    li = {}
-    print("US23 - Unique names and birthdates")
-    for value in individuals.values():
-        temp = value["NAME"]+value["BIRT"]
-        if temp in li:
-            anomaly_array.append("ANOMOLY: INDIVIDUAL: US23: {}: Person {} has Same Name and Birth Date {}".format(value["INDI"] , value["NAME"], value["BIRT"]))
-        else:
-            li[temp]=value["INDI"]
+# Returns the lastname of the name
+# Last name is surrounded by '/' in the name
+# :param name is the full name of the person
+def get_last_name(name):
+    return name.split('/')[1];
 
 
 # In[14]:
 
 
-#USID: 25
-def uniquefamily_name_and_birth():
+#USID: 23
+def unique_name_and_birth():
     li = {}
-    print("US25 - Unique first names in families")
+    for value in individuals.values():
+        temp = value["NAME"] + value["BIRT"]
+        if temp in li:
+            anomaly_array.append("ANOMALY: INDIVIDUAL: US23: {}: {}: Individuals have the same name {} and birth date {}".format(value["INDI"], li[temp], value["NAME"], value["BIRT"]))
+        else:
+            li[temp]=value["INDI"]
+
+
+# In[15]:
+
+
+#USID: 25
+def unique_family_name_and_birth():
     for value in family_dic.values():
-        if len(value["children_objects"]) > 0:
+        li = {}
+        if "children_objects" in value:
             for child in value["children_objects"]:
-                temp = child["NAME"]+child["BIRT"]
+                temp = child["NAME"] + child["BIRT"]
                 if temp in li:
-                    anomaly_array.append("ANOMOLY: INDIVIDUAL: US25: {}: Person {} has Same First Names and Birth Date {}".format(child["INDI"] , child["NAME"], child["BIRT"]))
+                    anomaly_array.append("ANOMALY: INDIVIDUAL: US25: {}: {}: Individuals share the same first name {} and birth date {} from family {}".format(child["INDI"], li[temp], child["NAME"], child["BIRT"], value["FAM"]))
                 else:          
                     li[temp]=child["INDI"]
 
 
-# In[15]:
+# In[16]:
 
 
 # Prints out the Individual Table
@@ -268,7 +276,7 @@ def printIndividualTable():
     printTable("People Table", allFields, tagNames, individuals)
 
 
-# In[16]:
+# In[17]:
 
 
 # Prints out the Family Table
@@ -280,7 +288,7 @@ def printFamilyTable():
     printTable("Families Table", allFields, tagNames, family_dic)
 
 
-# In[17]:
+# In[18]:
 
 
 # Prints out the data in both error and anomaly arrays
@@ -302,7 +310,7 @@ def printError():
     
 
 
-# In[18]:
+# In[19]:
 
 
 # Prints out a table of dictionary data with the passed-in arguments
@@ -320,12 +328,12 @@ def printTable(table_name, fields, tag_names, dictionary):
         for name in tag_names:
             if (count < int(len(tag_names))): #not the last element
                 if (isinstance(element[name], list)): #current element is an array
-                    row_data += ("".join(element[name]) + "? ")
+                    row_data += (",".join(element[name]) + "? ")
                 else: #current element is not an array
                     row_data += (str(element[name]) + "? ")
             elif (count == int(len(tag_names))):
                 if (isinstance(element[name], list)): #current element is an array
-                    row_data += ("".join(element[name]))
+                    row_data += (",".join(element[name]))
                 else: #current element is not an array
                     row_data += (str(element[name]))
                 break
@@ -336,7 +344,7 @@ def printTable(table_name, fields, tag_names, dictionary):
     print(table)
 
 
-# In[19]:
+# In[20]:
 
 
 # Stores all Project outputs into a single text file
@@ -349,7 +357,7 @@ def storeResults(result_name, outputs):
     file.close()
 
 
-# In[20]:
+# In[21]:
 
 
 # Global variables initialization
@@ -368,10 +376,10 @@ error_array = []
 anomaly_array = []
 
 
-# In[21]:
+# In[22]:
 
 
-document = read_in("./myTest.ged")
+document = read_in("./acceptance_test_file.ged")
 if os.path.exists("cs555_sprint_outputs.txt"):
     os.remove("cs555_sprint_outputs.txt")
 
@@ -382,15 +390,11 @@ printIndividualTable()
 # Prints out all the families in GEDCO file
 printFamilyTable()
 
+#User 23
 unique_name_and_birth()
-uniquefamily_name_and_birth()
+#User 25
+unique_family_name_and_birth()
 
-# Prints out all the errors and anomalies of each function
+#Prints out all the errors and anomalies of each function
 printError()
-
-
-# In[ ]:
-
-
-
 
