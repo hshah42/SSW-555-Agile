@@ -5,7 +5,6 @@
 
 
 # All the file imports
-get_ipython().system(u'pip install prettytable')
 from datetime import datetime
 from prettytable import PrettyTable
 import os
@@ -334,11 +333,13 @@ def check_for_bigamy():
                     elif "husband_object" in family and family["husband_object"] != 'NA':
                         if "DEAT" in family["husband_object"] and family["husband_object"]["DEAT"] != 'NA':
                             date["DIV"] = family["husband_object"]["DEAT"]
+                    elif "wife_object" in family and family["wife_object"] != 'NA':
+                        if "DEAT" in family["wife_object"] and family["wife_object"]["DEAT"] != 'NA':
+                            date["DIV"] = family["wife_object"]["DEAT"]
                     dates.append(date)
                 if compare_marraige_dates(dates):
-                    anomaly_array.append("ANOMALY: INDIVIDUAL: US11: {}: Performing bigamy".format(individual["INDI"]))
-
-check_for_bigamy()               
+                    anomaly_array.append("ANOMALY: INDIVIDUAL: US11: {}: Performing bigamy".format(individual_id))
+               
 
 
 # In[491]:
@@ -352,7 +353,6 @@ def compare_marraige_dates(dates):
             if "MARR" in dateOne and "DIV" in dateOne:
                 if "MARR" in dateTwo:
                     if dateOne["MARR"] <= dateTwo["MARR"] < dateOne["DIV"]:
-                        print("Condition 1 {} {} {}".format(dateOne["MARR"], dateTwo["MARR"], dateOne["DIV"]))
                         return True
                 if "DIV" in dateTwo:
                     if dateOne["MARR"] < dateTwo["DIV"] < dateOne["DIV"]:

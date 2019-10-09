@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[3]:
 
 
 import pytest
@@ -10,7 +10,7 @@ import mock
 import Project
 
 
-# In[2]:
+# In[ ]:
 
 
 def test_dates_pass():
@@ -53,7 +53,7 @@ def test_dates_pass():
     return len(Project.error_array)==0
 
 
-# In[3]:
+# In[ ]:
 
 
 def test_dates_error():
@@ -99,7 +99,7 @@ def test_dates_error():
                                  'ERROR: INDIVIDUAL: US01: @I2@: Individual has death date 2020-6-2 later than today']
 
 
-# In[4]:
+# In[ ]:
 
 
 def test_dates_pass():
@@ -133,7 +133,7 @@ def test_dates_pass():
     return len(Project.error_array)==0
 
 
-# In[5]:
+# In[ ]:
 
 
 def test_birth_before_marraige_do_nothing():
@@ -147,7 +147,7 @@ def test_birth_before_marraige_do_nothing():
     return True
 
 
-# In[6]:
+# In[ ]:
 
 
 def test_birth_after_marraige_appended_to_error():
@@ -161,7 +161,7 @@ def test_birth_after_marraige_appended_to_error():
     return True
 
 
-# In[7]:
+# In[ ]:
 
 
 def test_not_legal_marriage():
@@ -201,7 +201,7 @@ def test_not_legal_marriage():
 "ANOMALY: INDIVIDUAL: US10: @I13@: Wife of family @F8@ is younger than 14 years old - Birth Date 1980-7-10"]
 
 
-# In[8]:
+# In[4]:
 
 
 def test_legal_marriage():
@@ -240,7 +240,7 @@ def test_legal_marriage():
     return len(Project.anomaly_array) == 0
 
 
-# In[9]:
+# In[5]:
 
 
 def test_over_age_150():
@@ -270,7 +270,7 @@ def test_over_age_150():
  'ANOMALY: INDIVIDUAL: US07: @I2@: More than 150 years old at death - Birth Date 1850-12-10: Death Date 2009-6-2']
 
 
-# In[10]:
+# In[6]:
 
 
 def test_less_age_150():
@@ -300,7 +300,7 @@ def test_less_age_150():
     return len(Project.anomaly_array) == 0
 
 
-# In[11]:
+# In[7]:
 
 
 # User_Story_29: List all deceased individuals in a GEDCOM file
@@ -316,7 +316,7 @@ def test_list_deceased_individuals_success(mock_printTable):
     return True
 
 
-# In[12]:
+# In[ ]:
 
 
 # User_Story_29: List all deceased individuals in a GEDCOM file
@@ -332,7 +332,7 @@ def test_list_deceased_individuals_error(mock_printTable):
     return True
 
 
-# In[13]:
+# In[ ]:
 
 
 # User_Story_30: List all living married people in a GEDCOM file
@@ -349,7 +349,7 @@ def test_list_living_married_individuals_success(mock_printTable):
     return True
 
 
-# In[14]:
+# In[ ]:
 
 
 # User_Story_30: List all living married people in a GEDCOM file
@@ -365,7 +365,7 @@ def test_list_living_married_individuals_error(mock_printTable):
     return True
 
 
-# In[15]:
+# In[ ]:
 
 
 def test_more_than_15_siblings():
@@ -379,7 +379,7 @@ def test_more_than_15_siblings():
     return True
 
 
-# In[16]:
+# In[ ]:
 
 
 def test_less_than_15_siblings():
@@ -394,7 +394,7 @@ def test_less_than_15_siblings():
     
 
 
-# In[17]:
+# In[ ]:
 
 
 def test_different_male_last_name():
@@ -407,7 +407,7 @@ def test_different_male_last_name():
     return True
 
 
-# In[18]:
+# In[ ]:
 
 
 def test_same_male_last_name():
@@ -421,10 +421,10 @@ def test_same_male_last_name():
     return True
 
 
-# In[19]:
+# In[ ]:
 
 
-def test_unique_name_and_birth_pass():
+def test_unique_name_and_birth_error():
     individuals={'@I31@': {'INDI': '@I31@',
       'NAME': 'Sock /Malagon/',
       'SEX': 'F',
@@ -450,13 +450,13 @@ def test_unique_name_and_birth_pass():
     
     Project.unique_name_and_birth()
 
-    return Project.anomaly_array==['ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: The same name Sock /Malagon/ and birth date 1955-10-17']
+    return Project.anomaly_array==['ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17']
 
 
-# In[20]:
+# In[ ]:
 
 
-def test_unique_name_and_birth_error():
+def test_unique_name_and_birth_pass():
     individuals={'@I3@': {'INDI': '@I3@',
       'NAME': 'Dora /Colon/',
       'SEX': 'F',
@@ -483,10 +483,10 @@ def test_unique_name_and_birth_error():
     return len(Project.anomaly_array)==0
 
 
-# In[21]:
+# In[ ]:
 
 
-def test_unique_family_name_and_birth_pass():
+def test_unique_family_name_and_birth_error():
     family_dic = {'@F1@': {'FAM': '@F1@',
   'HUSB_NAME': 'Samuel /Venzon/',
   'HUSB': '@I6@',
@@ -519,13 +519,13 @@ def test_unique_family_name_and_birth_pass():
     Project.anomaly_array = []
     Project.unique_family_name_and_birth()
 
-    return Project.anomaly_array==['ANOMALY: INDIVIDUAL: US25: @I13@: @I7@: The same name Beth /Venzon/ and birth date 1973-7-8 from family @F1@']
+    return Project.anomaly_array==['ANOMALY: INDIVIDUAL: US25: @I13@: @I7@: Individuals share the same first name Beth /Venzon/ and birth date 1973-7-8 from family @F1@']
 
 
-# In[22]:
+# In[ ]:
 
 
-def test_unique_family_name_and_birth_error():
+def test_unique_family_name_and_birth_pass():
     family_dic =  {'children_objects': [{'INDI': '@I30@',
         'NAME': 'Chet /Malagon/',
         'SEX': 'M',
@@ -552,7 +552,76 @@ def test_unique_family_name_and_birth_error():
     return len(Project.anomaly_array) == 0
 
 
-# In[23]:
+# In[ ]:
+
+
+def test_check_positive_for_bigamy():
+    family_dic = {'@F1@': {'MARR': '2010-10-18','DIV': '2015-12-10'}, '@F2@': {'MARR': '2012-10-18','DIV': '2018-12-10'}}
+    individuals = {'@I1': {'SPOUSE': ['@F1@', '@F2@']}, '@I2': {'SPOUSE': ['@F1@']}, '@I3': {'SPOUSE': ['@F2@']}}
+    
+    Project.family_dic = family_dic
+    Project.anomaly_array = []
+    Project.individuals = individuals
+    Project.check_for_bigamy()
+    
+    assert Project.anomaly_array[0] == 'ANOMALY: INDIVIDUAL: US11: @I1: Performing bigamy'
+    
+    return True
+
+
+# In[ ]:
+
+
+def test_check_negative_for_bigamy():
+    family_dic = {'@F1@': {'MARR': '2010-10-18','DIV': '2015-12-10'}, '@F2@': {'MARR': '2016-10-18','DIV': '2018-12-10'}}
+    individuals = {'@I1': {'SPOUSE': ['@F1@', '@F2@']}, '@I2': {'SPOUSE': ['@F1@']}, '@I3': {'SPOUSE': ['@F2@']}}
+    
+    Project.family_dic = family_dic
+    Project.anomaly_array = []
+    Project.individuals = individuals
+    Project.check_for_bigamy()
+    
+    assert len(Project.anomaly_array) == 0
+    
+    return True
+
+
+# In[ ]:
+
+
+def test_check_positive_parent_child_marriage():
+    family_dic = {'@F1@': {'HUSB': '@I1@', 'WIFE': '@I2@','FAM_CHILD': ['@I3@']},'@F2@': {'HUSB': '@I3@','WIFE': '@I2@'}}
+    individuals = {'@I1@': {'SPOUSE': ['@F1@']}, '@I2@': {'SPOUSE': ['@F1@', '@F2@']},'@I3@': {'SPOUSE': ['@F2@']}}
+    
+    Project.family_dic = family_dic
+    Project.anomaly_array = []
+    Project.individuals = individuals
+    Project.check_parent_child_marriage()
+    
+    assert Project.anomaly_array[0] == "ANOMALY: INDIVIDUAL: US17: @I2@: Individual married to child @I3@"
+    
+    return True
+    
+
+
+# In[ ]:
+
+
+def test_check_negative_parent_child_marriage():
+    family_dic = {'@F1@': {'HUSB': '@I1@', 'WIFE': '@I2@','FAM_CHILD': ['@I3@']},'@F2@': {'HUSB': '@I4@','WIFE': '@I2@'}}
+    individuals = {'@I1@': {'SPOUSE': ['@F1@']}, '@I2@': {'SPOUSE': ['@F1@', '@F2@']},'@I3@': {'SPOUSE': 'NA'}, '@I4@': {'SPOUSE': ['@F2@']}}
+    
+    Project.family_dic = family_dic
+    Project.anomaly_array = []
+    Project.individuals = individuals
+    Project.check_parent_child_marriage()
+    
+    assert len(Project.anomaly_array) == 0
+    
+    return True
+
+
+# In[ ]:
 
 
 import unittest
@@ -599,6 +668,14 @@ class TestStringMethods(unittest.TestCase):
         self.assertTrue(test_unique_family_name_and_birth_pass());
     def test_unique_family_name_and_birth_error(self):
         self.assertTrue(test_unique_family_name_and_birth_error());
+    def test_Check_Positive_For_Bigamy(self):
+        self.assertTrue(test_check_positive_for_bigamy());
+    def test_Check_Negative_For_Bigamy(self):
+        self.assertTrue(test_check_negative_for_bigamy());
+    def test_Check_Positive_Parent_Child_Marriage(self):
+        self.assertTrue(test_check_positive_parent_child_marriage());
+    def test_Check_Negative_Parent_Child_Marriage(self):
+        self.assertTrue(test_check_negative_parent_child_marriage());
 
         
 suite = unittest.TestLoader().loadTestsFromTestCase(TestStringMethods)
