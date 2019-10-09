@@ -19,10 +19,10 @@ People Table
 | @I15@ |  Jaqueline /Kindel/  |    F   |   1969-9-8  |  50  |  True  |     NA     |   NA  |       @F8@      |
 | @I16@ |   Johnny /Malagon/   |    M   |   1901-7-14 |  118 |  True  |     NA     |   NA  |       @F3@      |
 | @I17@ |     Lura /Lomas/     |    F   |   1900-8-30 |  119 |  True  |     NA     |   NA  |       @F3@      |
-| @I18@ |    Tesha /Malagon/   |    F   |   1819-7-8  |  200 |  True  |     NA     |  @F3@ |        NA       |
+| @I18@ |    Tesha /Malagon/   |    F   |   1819-7-8  |  200 |  False |  2019-8-2  |  @F3@ |        NA       |
 | @I19@ |   Wilber /Iglesias/  |    M   |   1988-8-17 |  31  |  True  |     NA     |  @F6@ |        NA       |
 | @I20@ |   Lucile /Malagon/   |    F   |   1931-9-9  |  88  |  True  |     NA     |  @F3@ |        NA       |
-| @I21@ |   Regena /Malagon/   |    F   |   1929-10-8 |  89  |  True  |     NA     |  @F3@ |        NA       |
+| @I21@ |   Regena /Malagon/   |    F   |   1820-10-8 |  198 |  True  |     NA     |  @F3@ |        NA       |
 | @I22@ |     Tom /Malagon/    |    M   |   1923-5-8  |  96  |  True  |     NA     |  @F3@ |       @F9@      |
 | @I23@ |   Vonnie /Malagon/   |    M   |   1936-3-10 |   1  |  False |  1937-7-6  |  @F3@ |        NA       |
 | @I24@ |    Shena /Malagon/   |    F   |   1937-11-6 |  81  |  True  |     NA     |  @F3@ |        NA       |
@@ -55,13 +55,14 @@ Families Table
 +------+------------+----------+------------+--------------------+---------+----------------------+-------------------------------------------------------------------------------------------------+
 
 US29: Deceased People Table
-+-------+-------------------+--------+-------------+-----+--------+------------+
-|   ID  |        Name       | Gender |   Birthday  | Age | Alive  |   Death    |
-+-------+-------------------+--------+-------------+-----+--------+------------+
-|  @I5@ |   Josh /Malagon/  |    M   |  1964-10-31 |  19 |  False |  1984-5-7  |
-| @I23@ |  Vonnie /Malagon/ |    M   |   1936-3-10 |   1 |  False |  1937-7-6  |
-| @I25@ |  Hailey /Malagon/ |    F   |   1938-10-8 |   0 |  False |  1939-9-18 |
-+-------+-------------------+--------+-------------+-----+--------+------------+
++-------+-------------------+--------+-------------+------+--------+------------+
+|   ID  |        Name       | Gender |   Birthday  | Age  | Alive  |   Death    |
++-------+-------------------+--------+-------------+------+--------+------------+
+|  @I5@ |   Josh /Malagon/  |    M   |  1964-10-31 |  19  |  False |  1984-5-7  |
+| @I18@ |   Tesha /Malagon/ |    F   |   1819-7-8  |  200 |  False |  2019-8-2  |
+| @I23@ |  Vonnie /Malagon/ |    M   |   1936-3-10 |   1  |  False |  1937-7-6  |
+| @I25@ |  Hailey /Malagon/ |    F   |   1938-10-8 |   0  |  False |  1939-9-18 |
++-------+-------------------+--------+-------------+------+--------+------------+
 
 US30: Living & Married People Table
 +-------+----------------------+--------+------------+------+-------+-------+-----------------+
@@ -84,21 +85,424 @@ US30: Living & Married People Table
 +-------+----------------------+--------+------------+------+-------+-------+-----------------+
 
 ------error messages------
-ERROR: INDIVIDUAL: US30 Deceased Person @I5@ who is Married to @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
 -----anomaly messages-----
-ANOMOLY: INDIVIDUAL: US10: @I18@: Individual Tesha /Malagon/ is older than 150.
-ANOMOLY: INDIVIDUAL: US07: @I6@: Father Samuel /Venzon/ of family @F1@ is younger than 14.
-ANOMOLY: INDIVIDUAL: US07: @I1@: Wife Willodean /Malagon/ of family @F1@ is younger than 14.
-ANOMOLY: INDIVIDUAL: US07: @I5@: Father Josh /Malagon/ of family @F4@ is younger than 14.
-ANOMOLY: INDIVIDUAL: US07: @I8@: Wife Cinda /Burgard/ of family @F4@ is younger than 14.
-ANOMOLY: INDIVIDUAL: US07: @I7@: Father Byron /Vezon/ of family @F5@ is younger than 14.
-ANOMOLY: INDIVIDUAL: US07: @I12@: Wife Shyla /Bertone/ of family @F5@ is younger than 14.
-ANOMOLY: INDIVIDUAL: US07: @I14@: Father Jacob /Malagon/ of family @F8@ is younger than 14.
-ANOMOLY: INDIVIDUAL: US07: @I15@: Wife Jaqueline /Kindel/ of family @F8@ is younger than 14.
-ANOMOLY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
-ANOMOLY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
-ANOMOLY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
-ANOMOLY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
-ANOMOLY: INDIVIDUAL: US23: @I32@: Person @I30@ has the same Name Chet /Malagon/ and Birth Date 1943-8-18
-ANOMOLY: INDIVIDUAL: US23: @I35@: Person @I31@ has the same Name Sock /Malagon/ and Birth Date 1955-10-17
-ANOMOLY: INDIVIDUAL: US25: @I32@: Person @I30@ has the same names Chet /Malagon/ and Birth Date 1943-8-18
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
+ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31
+ANOMALY: INDIVIDUAL: US10: @I8@: Wife of family @F4@ is younger than 14 years old - Birth Date 1966-8-8
+ANOMALY: INDIVIDUAL: US10: @I7@: Father of family @F5@ is younger than 14 years old - Birth Date 1973-7-6
+ANOMALY: INDIVIDUAL: US10: @I12@: Wife of family @F5@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: @I14@: Father of family @F8@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: @I15@: Wife of family @F8@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
