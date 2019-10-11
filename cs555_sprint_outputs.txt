@@ -88,7 +88,7 @@ US30: Living & Married People Table
 ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
 ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
 ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
-ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US30: 52: @I5@: Deceased Person is married to Person @F4@
 -----anomaly messages-----
 ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
 ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
