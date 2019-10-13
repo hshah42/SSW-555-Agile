@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+
 # coding: utf-8
 
-# In[530]:
+# In[1]:
 
 
 import pytest
@@ -10,7 +10,246 @@ import mock
 import Project
 
 
-# In[531]:
+# In[2]:
+
+
+def test_death_before_marriage_fail():
+    
+    family_dic={'@F1@': {'FAM': '@F1@',
+  'HUSB_NAME': 'Samuel /Venzon/',
+  'HUSB': '@I6@',
+  'WIFE_NAME': 'Willodean /Malagon/',
+  'WIFE': '@I1@',
+  'FAM_CHILD': ['@I7@', '@I13@'],
+  'CHIL': '@I13@',
+  'MARR': '1973-7-7',
+  'DIV': '1980-12-1',
+  'husband_object': {'INDI': '@I6@',
+   'NAME': 'Samuel /Venzon/',
+   'SEX': 'M',
+   'BIRT': '1958-12-6',
+   'INDI_CHILD': 'NA',
+   'SPOUSE': ['@F1@'],
+   'DEAT': 'NA',
+   'AGE': '60',
+   'ALIVE': True},
+  'wife_object': {'INDI': '@I1@',
+   'NAME': 'Willodean /Malagon/',
+   'SEX': 'F',
+   'BIRT': '1958-7-7',
+   'INDI_CHILD': ['@F2@'],
+   'SPOUSE': ['@F1@'],
+   'DEAT': 'NA',
+   'AGE': '61',
+   'ALIVE': True},
+  'children_objects': [{'INDI': '@I7@',
+    'NAME': 'Byron /Vezon/',
+    'SEX': 'M',
+    'BIRT': '1973-7-6',
+    'INDI_CHILD': ['@F1@'],
+    'SPOUSE': ['@F5@'],
+    'DEAT': 'NA',
+    'AGE': '46',
+    'ALIVE': True},
+   {'INDI': '@I13@',
+    'NAME': 'Beth /Venzon/',
+    'SEX': 'F',
+    'BIRT': '1981-9-8',
+    'INDI_CHILD': ['@F1@'],
+    'SPOUSE': 'NA',
+    'DEAT': 'NA',
+    'AGE': '44',
+    'ALIVE': True}]}}
+    
+    
+    Project.family_dic = family_dic
+    Project.anomaly_array = []
+    Project.birth_before_marriage()
+
+    return Project.anomaly_array==['ANOMALY: INDIVIDUAL: US08: @I7@: Child was born at 1973-7-6 before marriage of parents 1973-7-7',
+ 'ANOMALY: INDIVIDUAL: US08: @I13@: Child was born at 1981-9-8 after 9 month divorce of parents 1980-12-1']
+
+
+# In[3]:
+
+
+def test_death_before_marriage_pass():
+    
+    family_dic={'@F1@': {'FAM': '@F1@',
+  'HUSB_NAME': 'Samuel /Venzon/',
+  'HUSB': '@I6@',
+  'WIFE_NAME': 'Willodean /Malagon/',
+  'WIFE': '@I1@',
+  'FAM_CHILD': ['@I7@', '@I13@'],
+  'CHIL': '@I13@',
+  'MARR': '1973-7-7',
+  'DIV': 'NA',
+  'husband_object': {'INDI': '@I6@',
+   'NAME': 'Samuel /Venzon/',
+   'SEX': 'M',
+   'BIRT': '1958-12-6',
+   'INDI_CHILD': 'NA',
+   'SPOUSE': ['@F1@'],
+   'DEAT': 'NA',
+   'AGE': '60',
+   'ALIVE': True},
+  'wife_object': {'INDI': '@I1@',
+   'NAME': 'Willodean /Malagon/',
+   'SEX': 'F',
+   'BIRT': '1958-7-7',
+   'INDI_CHILD': ['@F2@'],
+   'SPOUSE': ['@F1@'],
+   'DEAT': 'NA',
+   'AGE': '61',
+   'ALIVE': True},
+  'children_objects': [{'INDI': '@I7@',
+    'NAME': 'Byron /Vezon/',
+    'SEX': 'M',
+    'BIRT': '1978-7-6',
+    'INDI_CHILD': ['@F1@'],
+    'SPOUSE': ['@F5@'],
+    'DEAT': 'NA',
+    'AGE': '46',
+    'ALIVE': True},
+   {'INDI': '@I13@',
+    'NAME': 'Beth /Venzon/',
+    'SEX': 'F',
+    'BIRT': '1978-7-8',
+    'INDI_CHILD': ['@F1@'],
+    'SPOUSE': 'NA',
+    'DEAT': 'NA',
+    'AGE': '44',
+    'ALIVE': True}]}}
+    
+    
+    Project.family_dic = family_dic
+    Project.anomaly_array = []
+    Project.birth_before_marriage()
+
+    return len(Project.anomaly_array)==0
+
+
+# In[4]:
+
+
+def test_birth_before_death_fail():
+    
+    family_dic={'@F1@': {'FAM': '@F1@',
+  'HUSB_NAME': 'Samuel /Venzon/',
+  'HUSB': '@I6@',
+  'WIFE_NAME': 'Willodean /Malagon/',
+  'WIFE': '@I1@',
+  'FAM_CHILD': ['@I7@', '@I13@'],
+  'CHIL': '@I13@',
+  'MARR': '1973-7-7',
+  'DIV': 'NA',
+  'husband_object': {'INDI': '@I6@',
+   'NAME': 'Samuel /Venzon/',
+   'SEX': 'M',
+   'BIRT': '1958-12-6',
+   'INDI_CHILD': 'NA',
+   'SPOUSE': ['@F1@'],
+   'DEAT': '1988-10-6',
+   'AGE': '60',
+   'ALIVE': True},
+  'wife_object': {'INDI': '@I1@',
+   'NAME': 'Willodean /Malagon/',
+   'SEX': 'F',
+   'BIRT': '1958-7-7',
+   'INDI_CHILD': ['@F2@'],
+   'SPOUSE': ['@F1@'],
+   'DEAT': '1987-12-6',
+   'AGE': '61',
+   'ALIVE': True},
+  'children_objects': [{'INDI': '@I7@',
+    'NAME': 'Byron /Vezon/',
+    'SEX': 'M',
+    'BIRT': '1988-1-9',
+    'INDI_CHILD': ['@F1@'],
+    'SPOUSE': ['@F5@'],
+    'DEAT': 'NA',
+    'AGE': '46',
+    'ALIVE': True},
+   {'INDI': '@I13@',
+    'NAME': 'Beth /Venzon/',
+    'SEX': 'F',
+    'BIRT': '1989-7-8',
+    'INDI_CHILD': ['@F1@'],
+    'SPOUSE': 'NA',
+    'DEAT': 'NA',
+    'AGE': '44',
+    'ALIVE': True}]}}
+    
+    
+    Project.family_dic = family_dic
+    Project.error_array = []
+    Project.birth_before_death()
+
+    return Project.error_array==['ERROR: INDIVIDUAL: US09: @I7@: Child was born at 1988-1-9 after death of mother 1987-12-6',
+ 'ERROR: INDIVIDUAL: US09: @I13@: Child was born at 1989-7-8 after death of mother 1987-12-6',
+ 'ERROR: INDIVIDUAL: US09: @I13@: Child was born at 1989-7-8 after 9 month death of father 1988-10-6']
+
+
+# In[5]:
+
+
+def test_birth_before_death_pass():
+    
+    family_dic={'@F1@': {'FAM': '@F1@',
+  'HUSB_NAME': 'Samuel /Venzon/',
+  'HUSB': '@I6@',
+  'WIFE_NAME': 'Willodean /Malagon/',
+  'WIFE': '@I1@',
+  'FAM_CHILD': ['@I7@', '@I13@'],
+  'CHIL': '@I13@',
+  'MARR': '1973-7-7',
+  'DIV': 'NA',
+  'husband_object': {'INDI': '@I6@',
+   'NAME': 'Samuel /Venzon/',
+   'SEX': 'M',
+   'BIRT': '1958-12-6',
+   'INDI_CHILD': 'NA',
+   'SPOUSE': ['@F1@'],
+   'DEAT': '1988-10-6',
+   'AGE': '60',
+   'ALIVE': True},
+  'wife_object': {'INDI': '@I1@',
+   'NAME': 'Willodean /Malagon/',
+   'SEX': 'F',
+   'BIRT': '1958-7-7',
+   'INDI_CHILD': ['@F2@'],
+   'SPOUSE': ['@F1@'],
+   'DEAT': '1987-12-6',
+   'AGE': '61',
+   'ALIVE': True},
+  'children_objects': [{'INDI': '@I7@',
+    'NAME': 'Byron /Vezon/',
+    'SEX': 'M',
+    'BIRT': '1980-1-9',
+    'INDI_CHILD': ['@F1@'],
+    'SPOUSE': ['@F5@'],
+    'DEAT': 'NA',
+    'AGE': '46',
+    'ALIVE': True},
+   {'INDI': '@I13@',
+    'NAME': 'Beth /Venzon/',
+    'SEX': 'F',
+    'BIRT': '1980-7-8',
+    'INDI_CHILD': ['@F1@'],
+    'SPOUSE': 'NA',
+    'DEAT': 'NA',
+    'AGE': '44',
+    'ALIVE': True}]}}
+    
+    
+    Project.family_dic = family_dic
+    Project.error_array = []
+    Project.birth_before_death()
+
+    return len(Project.error_array)==0
+
+
+# In[6]:
 
 
 def test_dates_pass():
@@ -53,7 +292,7 @@ def test_dates_pass():
     return len(Project.error_array)==0
 
 
-# In[532]:
+# In[7]:
 
 
 def test_dates_error():
@@ -99,7 +338,7 @@ def test_dates_error():
                                  'ERROR: INDIVIDUAL: US01: @I2@: Individual has death date 2020-6-2 later than today']
 
 
-# In[533]:
+# In[8]:
 
 
 def test_dates_pass():
@@ -133,7 +372,7 @@ def test_dates_pass():
     return len(Project.error_array)==0
 
 
-# In[534]:
+# In[9]:
 
 
 def test_birth_before_marraige_do_nothing():
@@ -147,7 +386,7 @@ def test_birth_before_marraige_do_nothing():
     return True
 
 
-# In[535]:
+# In[10]:
 
 
 def test_birth_after_marraige_appended_to_error():
@@ -161,7 +400,7 @@ def test_birth_after_marraige_appended_to_error():
     return True
 
 
-# In[536]:
+# In[11]:
 
 
 def test_not_legal_marriage():
@@ -201,7 +440,7 @@ def test_not_legal_marriage():
 "ANOMALY: INDIVIDUAL: US10: @I13@: Wife of family @F8@ is younger than 14 years old - Birth Date 1980-7-10"]
 
 
-# In[537]:
+# In[12]:
 
 
 def test_legal_marriage():
@@ -240,7 +479,7 @@ def test_legal_marriage():
     return len(Project.anomaly_array) == 0
 
 
-# In[538]:
+# In[13]:
 
 
 def test_over_age_150():
@@ -270,7 +509,7 @@ def test_over_age_150():
  'ANOMALY: INDIVIDUAL: US07: @I2@: More than 150 years old at death - Birth Date 1850-12-10: Death Date 2009-6-2']
 
 
-# In[539]:
+# In[14]:
 
 
 def test_less_age_150():
@@ -300,7 +539,7 @@ def test_less_age_150():
     return len(Project.anomaly_array) == 0
 
 
-# In[540]:
+# In[15]:
 
 
 # User_Story_29: List all deceased individuals in a GEDCOM file
@@ -316,7 +555,7 @@ def test_list_deceased_individuals_success(mock_printTable):
     return True
 
 
-# In[541]:
+# In[16]:
 
 
 # User_Story_29: List all deceased individuals in a GEDCOM file
@@ -332,7 +571,7 @@ def test_list_deceased_individuals_error(mock_printTable):
     return True
 
 
-# In[542]:
+# In[17]:
 
 
 # User_Story_30: List all living married people in a GEDCOM file
@@ -349,7 +588,7 @@ def test_list_living_married_individuals_success(mock_printTable):
     return True
 
 
-# In[543]:
+# In[18]:
 
 
 # User_Story_30: List all living married people in a GEDCOM file
@@ -366,7 +605,7 @@ def test_list_living_married_individuals_error(mock_printTable):
     return True
 
 
-# In[544]:
+# In[19]:
 
 
 def test_more_than_15_siblings():
@@ -380,7 +619,7 @@ def test_more_than_15_siblings():
     return True
 
 
-# In[545]:
+# In[20]:
 
 
 def test_less_than_15_siblings():
@@ -395,7 +634,7 @@ def test_less_than_15_siblings():
     
 
 
-# In[546]:
+# In[21]:
 
 
 def test_different_male_last_name():
@@ -408,7 +647,7 @@ def test_different_male_last_name():
     return True
 
 
-# In[547]:
+# In[22]:
 
 
 def test_same_male_last_name():
@@ -422,7 +661,7 @@ def test_same_male_last_name():
     return True
 
 
-# In[548]:
+# In[23]:
 
 
 def test_unique_name_and_birth_error():
@@ -454,7 +693,7 @@ def test_unique_name_and_birth_error():
     return Project.anomaly_array==['ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17']
 
 
-# In[549]:
+# In[24]:
 
 
 def test_unique_name_and_birth_pass():
@@ -484,7 +723,7 @@ def test_unique_name_and_birth_pass():
     return len(Project.anomaly_array)==0
 
 
-# In[550]:
+# In[25]:
 
 
 def test_unique_family_name_and_birth_error():
@@ -523,7 +762,7 @@ def test_unique_family_name_and_birth_error():
     return Project.anomaly_array==['ANOMALY: INDIVIDUAL: US25: @I13@: @I7@: Individuals share the same first name Beth /Venzon/ and birth date 1973-7-8 from family @F1@']
 
 
-# In[551]:
+# In[26]:
 
 
 def test_unique_family_name_and_birth_pass():
@@ -553,7 +792,7 @@ def test_unique_family_name_and_birth_pass():
     return len(Project.anomaly_array) == 0
 
 
-# In[552]:
+# In[27]:
 
 
 # US20 Aunts and uncles - success
@@ -568,7 +807,7 @@ def aunts_and_uncles_success():
     return True
 
 
-# In[553]:
+# In[28]:
 
 
 # US20 Aunts and uncles - error
@@ -583,7 +822,7 @@ def aunts_and_uncles_error():
     return True
 
 
-# In[554]:
+# In[29]:
 
 
 # US40 Include input line numbers
@@ -617,7 +856,7 @@ def input_line_numbers():
     return True
 
 
-# In[ ]:
+# In[30]:
 
 
 def test_check_positive_for_bigamy():
@@ -634,7 +873,7 @@ def test_check_positive_for_bigamy():
     return True
 
 
-# In[ ]:
+# In[31]:
 
 
 def test_check_negative_for_bigamy():
@@ -651,7 +890,7 @@ def test_check_negative_for_bigamy():
     return True
 
 
-# In[ ]:
+# In[32]:
 
 
 def test_check_positive_parent_child_marriage():
@@ -668,7 +907,7 @@ def test_check_positive_parent_child_marriage():
     return True
 
 
-# In[ ]:
+# In[33]:
 
 
 def test_check_negative_parent_child_marriage():
@@ -685,7 +924,7 @@ def test_check_negative_parent_child_marriage():
     return True
 
 
-# In[555]:
+# In[34]:
 
 
 import unittest
@@ -732,6 +971,15 @@ class TestStringMethods(unittest.TestCase):
         self.assertTrue(test_unique_family_name_and_birth_pass());
     def test_unique_family_name_and_birth_error(self):
         self.assertTrue(test_unique_family_name_and_birth_error());
+        #Sprint 2
+    def test_death_before_marriage_fail(self):
+        self.assertTrue(test_death_before_marriage_fail());
+    def test_death_before_marriage_pass(self):
+        self.assertTrue(test_death_before_marriage_pass());
+    def test_birth_before_death_fail(self):
+        self.assertTrue(test_birth_before_death_fail());
+    def test_birth_before_death_pass(self):
+        self.assertTrue(test_birth_before_death_pass());
     def test_aunts_and_uncles_pass(self):
         self.assertTrue(aunts_and_uncles_success());
     def test_aunts_and_uncles_fail(self):
@@ -749,10 +997,4 @@ class TestStringMethods(unittest.TestCase):
         
 suite = unittest.TestLoader().loadTestsFromTestCase(TestStringMethods)
 unittest.TextTestRunner(verbosity=2).run(suite)
-
-
-# In[ ]:
-
-
-
 
