@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
 # In[1]:
@@ -556,7 +556,7 @@ def unique_family_name_and_birth():
                     li[temp]=child["INDI"]
 
 
-# In[29]:
+# In[ ]:
 
 
 #User_Story_29: List all deceased individuals in a GEDCOM file
@@ -583,7 +583,7 @@ def listDeceased():
     
 
 
-# In[30]:
+# In[ ]:
 
 
 #User_Story_30: List all living married people in a GEDCOM file
@@ -606,7 +606,43 @@ def listLivingMarried():
         printTable("US30: Living & Married People Table", allFields, tagNames, current_dic)
 
 
-# In[31]:
+# In[ ]:
+
+
+#US 32: List multiple births
+def multiple_birth():
+    for value in family_dic.values():
+        li={}
+        if "children_objects" in value:
+            for child in value["children_objects"]:
+                temp = str(child["INDI_CHILD"]) + child["BIRT"]
+                if temp in li:
+                    anomaly_array.append("ANOMALY: FAMILY: US32: {}: The two or more individuals were born at the same time in a family {}".format(value["FAM_LINE"], value["FAM"]))
+                else:          
+                    li[temp]=child["INDI"]
+
+
+# In[ ]:
+
+
+#US 34: 
+def large_age_diff():
+    for value in family_dic.values():
+#         for family_id in family_dic:
+        family= value["FAM"]
+        if "husband_object" in family_dic[family]:
+            husband=family_dic[family]["husband_object"]
+            hage = int(husband["AGE"])
+        if "wife_object" in family_dic[family]:
+            wife=family_dic[family]["wife_object"]
+            wage = int(wife["AGE"])
+            agediff = hage/wage
+            if agediff>=2 or agediff<=0.5:
+                anomaly_array.append("ANOMALY: FAMILY: US34: {}: Family with unique id: {} has a large spouse age difference".format(value["FAM_LINE"], value["FAM"]))
+                
+
+
+# In[ ]:
 
 
 # Prints out the Individual Table
@@ -618,7 +654,7 @@ def printIndividualTable():
     printTable("People Table", allFields, tagNames, individuals)
 
 
-# In[32]:
+# In[ ]:
 
 
 # Prints out the Family Table
@@ -630,7 +666,7 @@ def printFamilyTable():
     printTable("Families Table", allFields, tagNames, family_dic)
 
 
-# In[33]:
+# In[ ]:
 
 
 # Prints out the data in both error and anomaly arrays
@@ -652,7 +688,7 @@ def printError():
     
 
 
-# In[34]:
+# In[ ]:
 
 
 # Prints out a table of dictionary data with the passed-in arguments
@@ -686,7 +722,7 @@ def printTable(table_name, fields, tag_names, dictionary):
     print(table)
 
 
-# In[35]:
+# In[ ]:
 
 
 # Stores all Project outputs into a single text file
@@ -699,7 +735,7 @@ def storeResults(result_name, outputs):
     file.close()
 
 
-# In[36]:
+# In[ ]:
 
 
 # Global variables initialization
@@ -718,7 +754,7 @@ error_array = []
 anomaly_array = []
 
 
-# In[37]:
+# In[ ]:
 
 
 #User_Story_20 Aunts and uncles
@@ -740,19 +776,19 @@ def is_uncle_aunt_marriage_legal():
                                 if (family_dic[sp]["WIFE"] in spouse_family["FAM_CHILD"]):
                                     current_sp_family = family_dic[sp].values()
 #                                     print("Anomaly: FAMILY: US20: {}: Person {} should not marry person {}".format(family_dic[sp]["HUSB_LINE"], family_dic[sp]["HUSB"], family_dic[sp]["WIFE"]))
-                                    anomaly_array.append("Anomaly: FAMILY: US20: {}: Person {} should not marry person {}".format(family_dic[sp]["HUSB_LINE"], family_dic[sp]["HUSB"], family_dic[sp]["WIFE"]))
+                                    anomaly_array.append("ANOMALY: FAMILY: US20: {}: Person {} should not marry person {}".format(family_dic[sp]["HUSB_LINE"], family_dic[sp]["HUSB"], family_dic[sp]["WIFE"]))
                                     return False
                                 elif(family_dic[sp]["HUSB"] in spouse_family["FAM_CHILD"]):
 #                                     print("Anomaly: FAMILY: US20: {}: Person {} should not marry person {}".format(family_dic[sp]["WIFE_LINE"], family_dic[sp]["WIFE"], family_dic[sp]["HUSB"]))
-                                    anomaly_array.append("Anomaly: FAMILY: US20: {}: Person {} should not marry person {}".format(family_dic[sp]["WIFE_LINE"], family_dic[sp]["WIFE"], family_dic[sp]["HUSB"]))
+                                    anomaly_array.append("ANOMALY: FAMILY: US20: {}: Person {} should not marry person {}".format(family_dic[sp]["WIFE_LINE"], family_dic[sp]["WIFE"], family_dic[sp]["HUSB"]))
                                     return False
     return True
 
 
-# In[38]:
+# In[ ]:
 
 
-document = read_in("./acceptance_test_file.ged")
+document = read_in("./acceptance_test_file_sprint2.ged")
 if os.path.exists("cs555_sprint_outputs.txt"):
     os.remove("cs555_sprint_outputs.txt")
 
@@ -774,10 +810,14 @@ birth_before_marriage()
 birth_before_death()
 #User 10
 is_marriage_legal()
+#User 11
+check_for_bigamy()
 #User 15
 check_sibling_count()
 #User 16
 check_last_names()
+#User 17
+check_parent_child_marriage()
 #User_Story_20
 is_uncle_aunt_marriage_legal()
 #User 23
@@ -788,7 +828,17 @@ unique_family_name_and_birth()
 listDeceased()
 #User_Story_30
 listLivingMarried()
+#User_Story_32
+multiple_birth()
+#User_Story_34
+large_age_diff()
 
 #Prints out all the errors and anomalies of each function
 printError()
+
+
+# In[ ]:
+
+
+
 
