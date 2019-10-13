@@ -22,7 +22,7 @@ People Table
 | @I18@ |    Tesha /Malagon/   |    F   |   1819-7-8  |  200 |  False |  2019-8-2  |  @F3@ |        NA       |
 | @I19@ |   Wilber /Iglesias/  |    M   |   1988-8-17 |  31  |  True  |     NA     |  @F6@ |        NA       |
 | @I20@ |   Lucile /Malagon/   |    F   |   1931-9-9  |  88  |  True  |     NA     |  @F3@ |        NA       |
-| @I21@ |   Regena /Malagon/   |    F   |   1820-10-8 |  198 |  True  |     NA     |  @F3@ |        NA       |
+| @I21@ |   Regena /Malagon/   |    F   |   1820-10-8 |  199 |  True  |     NA     |  @F3@ |        NA       |
 | @I22@ |     Tom /Malagon/    |    M   |   1923-5-8  |  96  |  True  |     NA     |  @F3@ |       @F9@      |
 | @I23@ |   Vonnie /Malagon/   |    M   |   1936-3-10 |   1  |  False |  1937-7-6  |  @F3@ |        NA       |
 | @I24@ |    Shena /Malagon/   |    F   |   1937-11-6 |  81  |  True  |     NA     |  @F3@ |        NA       |
@@ -88,10 +88,14 @@ US30: Living & Married People Table
 ERROR: INDIVIDUAL: US01: @I12@: Individual has birth date 2021-8-9 later than today
 ERROR: INDIVIDUAL: US02: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
 ERROR: INDIVIDUAL: US02: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
-ERROR: INDIVIDUAL: US30: @I5@: Deceased Person is married to Person @F4@
+ERROR: INDIVIDUAL: US30: 52: @I5@: Deceased Person is married to Person @F4@
 -----anomaly messages-----
 ANOMALY: INDIVIDUAL: US07: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
 ANOMALY: INDIVIDUAL: US07: @I21@: More than 150 years old - Birth Date 1820-10-8
+ANOMALY: INDIVIDUAL: US08: @I18@: Child was born at 1819-7-8 before marriage of parents 1925-4-28
+ANOMALY: INDIVIDUAL: US08: @I21@: Child was born at 1820-10-8 before marriage of parents 1925-4-28
+ANOMALY: INDIVIDUAL: US08: @I22@: Child was born at 1923-5-8 before marriage of parents 1925-4-28
+ANOMALY: INDIVIDUAL: US08: @I10@: Child was born at 1977-9-8 before marriage of parents 1978-9-2
 ANOMALY: INDIVIDUAL: US10: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
 ANOMALY: INDIVIDUAL: US10: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
 ANOMALY: INDIVIDUAL: US10: @I5@: Father of family @F4@ is younger than 14 years old - Birth Date 1964-10-31

@@ -548,7 +548,7 @@ def test_less_age_150():
 def test_list_deceased_individuals_success(mock_printTable):
     allFields = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death"]
     tagNames = ["INDI", "NAME", "SEX", "BIRT", "AGE", "ALIVE", "DEAT"]
-    current_dic = {'@I6@': {'INDI': '@I6@', 'NAME': 'Stephen /Chang/', 'SEX': 'M', 'BIRT': '1935-12-5', 'DEAT': '2005-4-15', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'AGE': '70', 'ALIVE': False}}
+    current_dic = {'@I6@': {'INDI': '@I6@', "INDI_LINE": '10', 'NAME': 'Stephen /Chang/', 'NAME_LINE': '15', 'SEX': 'M', 'SEX_LINE': '20', 'BIRT': '1935-12-5', 'BIRT_LINE': '22', 'DEAT': '2005-4-15', 'DEAT_LINE': '25', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'SPOUSE_LINE': '27', 'AGE': '70', 'ALIVE': False}}
     Project.individuals = current_dic
     Project.listDeceased()
     mock_printTable.assert_called_with("US29: Deceased People Table", allFields, tagNames, current_dic)
@@ -564,10 +564,10 @@ def test_list_deceased_individuals_success(mock_printTable):
 def test_list_deceased_individuals_error(mock_printTable):
     allFields = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death"]
     tagNames = ["INDI", "NAME", "SEX", "BIRT", "AGE", "ALIVE", "DEAT"]
-    current_dic = {'@I6@': {'INDI': '@I6@', 'NAME': 'David /Chang/', 'SEX': 'M', 'BIRT': '2002-12-5', 'DEAT': 'NA', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F7@'], 'AGE': '79', 'ALIVE': False}}
+    current_dic = {'@I6@': {'INDI': '@I6@', "INDI_LINE": '10', 'NAME': 'David /Chang/', 'NAME_LINE': '15', 'SEX': 'M', 'SEX_LINE': '20', 'BIRT': '2002-12-5', 'BIRT_LINE': '22', 'DEAT': 'NA', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F7@'], 'SPOUSE_LINE': '27', 'AGE': '79', 'ALIVE': False}}
     Project.individuals = current_dic
     Project.listDeceased()
-    mock_printTable.assert_called_with("US29: Deceased People Table", allFields, tagNames, {}) #provide empty dictionary so that it won't overwrite
+    assert mock_printTable.called == False
     return True
 
 
@@ -597,10 +597,11 @@ def test_list_living_married_individuals_success(mock_printTable):
 def test_list_living_married_individuals_error(mock_printTable):
     allFields = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Spouse"]
     tagNames = ["INDI", "NAME", "SEX", "BIRT", "AGE", "ALIVE", "DEAT", "SPOUSE"]
-    current_dic = {'@I4@': {'INDI': '@I1@', 'NAME': 'Michael /Chang/', 'SEX': 'M', 'BIRT': '1958-9-6', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F3@'], 'DEAT': '2002-9-6', 'AGE': '61', 'ALIVE': False}}
+    current_dic = {'@I4@': {'INDI': '@I1@', 'INDI_LINE': '10', 'NAME': 'Michael /Chang/', 'NAME_LINE': '12', 'SEX': 'M', 'SEX_LINE': '15', 'BIRT': '1958-9-6', 'BIRT_LINE': '17', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F3@'], 'SPOUSE_LINE': '18', 'DEAT': '2002-9-6', 'DEAT_LINE': '22', 'AGE': '61', 'ALIVE': False}}
     Project.individuals = current_dic
     Project.listLivingMarried()
-    mock_printTable.assert_called_with("US30: Living & Married People Table", allFields, tagNames, {}) #provide empty dictionary so that it won't overwrite
+    
+    assert mock_printTable.called == False
     return True
 
 
@@ -794,10 +795,142 @@ def test_unique_family_name_and_birth_pass():
 # In[27]:
 
 
+# US20 Aunts and uncles - success
+def aunts_and_uncles_success():
+    individuals = {'@I1@': {'INDI': '@I1@', 'INDI_LINE': 14, 'NAME': 'David /Chang/', 'NAME_LINE': 15, 'SEX': 'M', 'SEX_LINE': 19, 'BIRT': '1988-7-9', 'INDI_CHILD': ['@F1@'], 'SPOUSE': 'NA', 'FAMC_LINE': 22, 'DEAT': 'NA', 'BIRT_LINE': 22, 'AGE': '31', 'ALIVE': True}, '@I2@': {'INDI': '@I2@', 'INDI_LINE': 23, 'NAME': 'Johny /Chang/', 'NAME_LINE': 24, 'SEX': 'M', 'SEX_LINE': 28, 'BIRT': '1958-8-9', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F1@'], 'FAMS_LINE': 31, 'DEAT': 'NA', 'BIRT_LINE': 31, 'AGE': '61', 'ALIVE': True}, '@I3@': {'INDI': '@I3@', 'INDI_LINE': 32, 'NAME': 'Nancy /Tsai/', 'NAME_LINE': 33, 'SEX': 'F', 'SEX_LINE': 37, 'BIRT': '1960-9-6', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F1@'], 'FAMS_LINE': 40, 'DEAT': 'NA', 'BIRT_LINE': 40, 'AGE': '59', 'ALIVE': True}}
+    family_dic = {'@F1@': {'FAM': '@F1@', 'FAM_LINE': 47, 'HUSB_NAME': 'Johny /Chang/', 'HUSB_LINE': 42, 'HUSB': '@I2@', 'WIFE_NAME': 'Nancy /Tsai/', 'WIFE_LINE': 43, 'WIFE': '@I3@', 'FAM_CHILD': ['@I1@'], 'CHIL_LINE': 44, 'CHIL': '@I1@', 'MARR': '1980-3-2', 'DIV': 'NA', 'husband_object': {'INDI': '@I2@', 'INDI_LINE': 23, 'NAME': 'Johny /Chang/', 'NAME_LINE': 24, 'SEX': 'M', 'SEX_LINE': 28, 'BIRT': '1958-8-9', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F1@'], 'FAMS_LINE': 31, 'DEAT': 'NA', 'BIRT_LINE': 31, 'AGE': '61', 'ALIVE': True}, 'wife_object': {'INDI': '@I3@', 'INDI_LINE': 32, 'NAME': 'Nancy /Tsai/', 'NAME_LINE': 33, 'SEX': 'F', 'SEX_LINE': 37, 'BIRT': '1960-9-6', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F1@'], 'FAMS_LINE': 40, 'DEAT': 'NA', 'BIRT_LINE': 40, 'AGE': '59', 'ALIVE': True}, 'children_objects': [{'INDI': '@I1@', 'INDI_LINE': 14, 'NAME': 'David /Chang/', 'NAME_LINE': 15, 'SEX': 'M', 'SEX_LINE': 19, 'BIRT': '1988-7-9', 'INDI_CHILD': ['@F1@'], 'SPOUSE': 'NA', 'FAMC_LINE': 22, 'DEAT': 'NA', 'BIRT_LINE': 22, 'AGE': '31', 'ALIVE': True}]}}
+    
+    Project.individuals = individuals
+    Project.family_dic = family_dic
+    
+    assert Project.is_uncle_aunt_marriage_legal() == True
+    return True
+
+
+# In[28]:
+
+
+# US20 Aunts and uncles - error
+def aunts_and_uncles_error():
+    individuals = {'@I1@': {'INDI': '@I1@', 'INDI_LINE': 14, 'NAME': 'David /Chang/', 'NAME_LINE': 15, 'SEX': 'M', 'SEX_LINE': 19, 'BIRT': '1988-7-9', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F1@'], 'FAMS_LINE': 22, 'FAMC_LINE': 23, 'DEAT': 'NA', 'BIRT_LINE': 23, 'AGE': '31', 'ALIVE': True}, '@I2@': {'INDI': '@I2@', 'INDI_LINE': 24, 'NAME': 'Johny /Chang/', 'NAME_LINE': 25, 'SEX': 'M', 'SEX_LINE': 29, 'BIRT': '1958-8-9', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'FAMS_LINE': 32, 'DEAT': 'NA', 'BIRT_LINE': 32, 'AGE': '61', 'ALIVE': True}, '@I3@': {'INDI': '@I3@', 'INDI_LINE': 33, 'NAME': 'Nancy /Tsai/', 'NAME_LINE': 34, 'SEX': 'F', 'SEX_LINE': 38, 'BIRT': '1960-9-6', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'FAMS_LINE': 41, 'DEAT': 'NA', 'BIRT_LINE': 41, 'AGE': '59', 'ALIVE': True}, '@I4@': {'INDI': '@I4@', 'INDI_LINE': 42, 'NAME': 'Dylan /Chang/', 'NAME_LINE': 43, 'SEX': 'M', 'SEX_LINE': 47, 'BIRT': '1990-6-20', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F3@'], 'FAMS_LINE': 50, 'FAMC_LINE': 51, 'DEAT': 'NA', 'BIRT_LINE': 51, 'AGE': '29', 'ALIVE': True}, '@I5@': {'INDI': '@I5@', 'INDI_LINE': 52, 'NAME': 'Diana /Liu/', 'NAME_LINE': 53, 'SEX': 'F', 'SEX_LINE': 57, 'BIRT': '1990-8-26', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F3@'], 'FAMS_LINE': 60, 'DEAT': 'NA', 'BIRT_LINE': 60, 'AGE': '29', 'ALIVE': True}, '@I6@': {'INDI': '@I6@', 'INDI_LINE': 61, 'NAME': 'Felicia /Chang/', 'NAME_LINE': 62, 'SEX': 'F', 'SEX_LINE': 66, 'BIRT': '2010-9-8', 'INDI_CHILD': ['@F3@'], 'SPOUSE': ['@F1@'], 'FAMS_LINE': 69, 'FAMC_LINE': 70, 'DEAT': 'NA', 'BIRT_LINE': 70, 'AGE': '9', 'ALIVE': True}}
+    family_dic = {'@F1@': {'FAM': '@F1@', 'FAM_LINE': 77, 'HUSB_NAME': 'David /Chang/', 'HUSB_LINE': 72, 'HUSB': '@I1@', 'WIFE_NAME': 'Felicia /Chang/', 'WIFE_LINE': 73, 'WIFE': '@I6@', 'MARR': '2012-6-12', 'DIV': 'NA', 'FAM_CHILD': 'NA', 'husband_object': {'INDI': '@I1@', 'INDI_LINE': 14, 'NAME': 'David /Chang/', 'NAME_LINE': 15, 'SEX': 'M', 'SEX_LINE': 19, 'BIRT': '1988-7-9', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F1@'], 'FAMS_LINE': 22, 'FAMC_LINE': 23, 'DEAT': 'NA', 'BIRT_LINE': 23, 'AGE': '31', 'ALIVE': True}, 'wife_object': {'INDI': '@I6@', 'INDI_LINE': 61, 'NAME': 'Felicia /Chang/', 'NAME_LINE': 62, 'SEX': 'F', 'SEX_LINE': 66, 'BIRT': '2010-9-8', 'INDI_CHILD': ['@F3@'], 'SPOUSE': ['@F1@'], 'FAMS_LINE': 69, 'FAMC_LINE': 70, 'DEAT': 'NA', 'BIRT_LINE': 70, 'AGE': '9', 'ALIVE': True}}, '@F2@': {'FAM': '@F2@', 'FAM_LINE': 85, 'HUSB_NAME': 'Johny /Chang/', 'HUSB_LINE': 79, 'HUSB': '@I2@', 'WIFE_NAME': 'Nancy /Tsai/', 'WIFE_LINE': 80, 'WIFE': '@I3@', 'FAM_CHILD': ['@I1@', '@I4@'], 'CHIL_LINE': 82, 'CHIL': '@I4@', 'MARR': '1980-3-2', 'DIV': 'NA', 'husband_object': {'INDI': '@I2@', 'INDI_LINE': 24, 'NAME': 'Johny /Chang/', 'NAME_LINE': 25, 'SEX': 'M', 'SEX_LINE': 29, 'BIRT': '1958-8-9', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'FAMS_LINE': 32, 'DEAT': 'NA', 'BIRT_LINE': 32, 'AGE': '61', 'ALIVE': True}, 'wife_object': {'INDI': '@I3@', 'INDI_LINE': 33, 'NAME': 'Nancy /Tsai/', 'NAME_LINE': 34, 'SEX': 'F', 'SEX_LINE': 38, 'BIRT': '1960-9-6', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'FAMS_LINE': 41, 'DEAT': 'NA', 'BIRT_LINE': 41, 'AGE': '59', 'ALIVE': True}, 'children_objects': [{'INDI': '@I1@', 'INDI_LINE': 14, 'NAME': 'David /Chang/', 'NAME_LINE': 15, 'SEX': 'M', 'SEX_LINE': 19, 'BIRT': '1988-7-9', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F1@'], 'FAMS_LINE': 22, 'FAMC_LINE': 23, 'DEAT': 'NA', 'BIRT_LINE': 23, 'AGE': '31', 'ALIVE': True}, {'INDI': '@I4@', 'INDI_LINE': 42, 'NAME': 'Dylan /Chang/', 'NAME_LINE': 43, 'SEX': 'M', 'SEX_LINE': 47, 'BIRT': '1990-6-20', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F3@'], 'FAMS_LINE': 50, 'FAMC_LINE': 51, 'DEAT': 'NA', 'BIRT_LINE': 51, 'AGE': '29', 'ALIVE': True}]}, '@F3@': {'FAM': '@F3@', 'FAM_LINE': 90, 'HUSB_NAME': 'Dylan /Chang/', 'HUSB_LINE': 87, 'HUSB': '@I4@', 'WIFE_NAME': 'Diana /Liu/', 'WIFE_LINE': 88, 'WIFE': '@I5@', 'FAM_CHILD': ['@I6@'], 'CHIL_LINE': 89, 'CHIL': '@I6@', 'DIV': 'NA', 'MARR': 'NA', 'husband_object': {'INDI': '@I4@', 'INDI_LINE': 42, 'NAME': 'Dylan /Chang/', 'NAME_LINE': 43, 'SEX': 'M', 'SEX_LINE': 47, 'BIRT': '1990-6-20', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F3@'], 'FAMS_LINE': 50, 'FAMC_LINE': 51, 'DEAT': 'NA', 'BIRT_LINE': 51, 'AGE': '29', 'ALIVE': True}, 'wife_object': {'INDI': '@I5@', 'INDI_LINE': 52, 'NAME': 'Diana /Liu/', 'NAME_LINE': 53, 'SEX': 'F', 'SEX_LINE': 57, 'BIRT': '1990-8-26', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F3@'], 'FAMS_LINE': 60, 'DEAT': 'NA', 'BIRT_LINE': 60, 'AGE': '29', 'ALIVE': True}, 'children_objects': [{'INDI': '@I6@', 'INDI_LINE': 61, 'NAME': 'Felicia /Chang/', 'NAME_LINE': 62, 'SEX': 'F', 'SEX_LINE': 66, 'BIRT': '2010-9-8', 'INDI_CHILD': ['@F3@'], 'SPOUSE': ['@F1@'], 'FAMS_LINE': 69, 'FAMC_LINE': 70, 'DEAT': 'NA', 'BIRT_LINE': 70, 'AGE': '9', 'ALIVE': True}]}}
+    Project.individuals = individuals
+    Project.family_dic = family_dic
+    
+    assert Project.is_uncle_aunt_marriage_legal() == False
+    
+    return True
+
+
+# In[29]:
+
+
+# US40 Include input line numbers
+# Create a small mock input with only one individual (detailed data)
+def input_line_numbers():
+    Project.input_file = "./Romeo_Juliet_Family.ged"
+    document = Project.read_in("./Romeo_Juliet_Family.ged")
+    person01 = document["INDI"][0]
+    person02 = document["INDI"][1]
+    fam = document["FAM"][0]
+    
+    #Test Romeo
+    assert person01["INDI_LINE"] == 14
+    assert person01["NAME_LINE"] == 15
+    assert person01["SEX_LINE"] == 19
+    assert person01["BIRT_LINE"] == 20
+    assert person01["DEAT_LINE"] == 22
+    assert person01["FAMS_LINE"] == 24
+    #Test Juliet
+    assert person02["INDI_LINE"] == 25
+    assert person02["NAME_LINE"] == 26
+    assert person02["SEX_LINE"] == 30
+    assert person02["BIRT_LINE"] == 31
+    assert person02["FAMS_LINE"] == 33
+    #Test Romeo & Juliet's family
+    assert fam["FAM_LINE"] == 34
+    assert fam["HUSB_LINE"] == 35
+    assert fam["WIFE_LINE"] == 36
+    assert fam["MARR_LINE"] == 37
+                           
+    return True
+
+
+# In[30]:
+
+
+def test_check_positive_for_bigamy():
+    family_dic = {'@F1@': {'MARR': '2010-10-18','DIV': '2015-12-10'}, '@F2@': {'MARR': '2012-10-18','DIV': '2018-12-10'}}
+    individuals = {'@I1@': {'SPOUSE': ['@F1@', '@F2@'], 'INDI_LINE': '10', 'INDI': '@I1@'}, '@I2': {'SPOUSE': ['@F1@']}, '@I3': {'SPOUSE': ['@F2@']}}
+    
+    Project.family_dic = family_dic
+    Project.anomaly_array = []
+    Project.individuals = individuals
+    Project.check_for_bigamy()
+    
+    assert Project.anomaly_array[0] == 'ANOMALY: INDIVIDUAL: US11: 10: @I1@: Performing bigamy'
+    
+    return True
+
+
+# In[31]:
+
+
+def test_check_negative_for_bigamy():
+    family_dic = {'@F1@': {'MARR': '2010-10-18','DIV': '2015-12-10'}, '@F2@': {'MARR': '2016-10-18','DIV': '2018-12-10'}}
+    individuals = {'@I1': {'SPOUSE': ['@F1@', '@F2@']}, '@I2': {'SPOUSE': ['@F1@']}, '@I3': {'SPOUSE': ['@F2@']}}
+    
+    Project.family_dic = family_dic
+    Project.anomaly_array = []
+    Project.individuals = individuals
+    Project.check_for_bigamy()
+    
+    assert len(Project.anomaly_array) == 0
+    
+    return True
+
+
+# In[32]:
+
+
+def test_check_positive_parent_child_marriage():
+    family_dic = {'@F1@': {'HUSB': '@I1@', 'WIFE': '@I2@','FAM_CHILD': ['@I3@']},'@F2@': {'HUSB': '@I3@','WIFE': '@I2@', 'WIFE_LINE': '11'}}
+    individuals = {'@I1@': {'SPOUSE': ['@F1@']}, '@I2@': {'SPOUSE': ['@F1@', '@F2@']},'@I3@': {'SPOUSE': ['@F2@']}}
+    
+    Project.family_dic = family_dic
+    Project.anomaly_array = []
+    Project.individuals = individuals
+    Project.check_parent_child_marriage()
+    
+    assert Project.anomaly_array[0] == "ANOMALY: INDIVIDUAL: US17: 11: @I2@: Individual married to child @I3@"
+    
+    return True
+
+
+# In[33]:
+
+
+def test_check_negative_parent_child_marriage():
+    family_dic = {'@F1@': {'HUSB': '@I1@', 'WIFE': '@I2@','FAM_CHILD': ['@I3@']},'@F2@': {'HUSB': '@I4@','WIFE': '@I2@'}}
+    individuals = {'@I1@': {'SPOUSE': ['@F1@']}, '@I2@': {'SPOUSE': ['@F1@', '@F2@']},'@I3@': {'SPOUSE': 'NA'}, '@I4@': {'SPOUSE': ['@F2@']}}
+    
+    Project.family_dic = family_dic
+    Project.anomaly_array = []
+    Project.individuals = individuals
+    Project.check_parent_child_marriage()
+    
+    assert len(Project.anomaly_array) == 0
+    
+    return True
+
+
+# In[34]:
+
+
 import unittest
 
 class TestStringMethods(unittest.TestCase):
-    #Sprint 1
+    
     def test_Dates_After_Today_error(self):
         self.assertTrue(test_dates_error())
     def test_Dates_After_Today_pass(self):
@@ -838,7 +971,7 @@ class TestStringMethods(unittest.TestCase):
         self.assertTrue(test_unique_family_name_and_birth_pass());
     def test_unique_family_name_and_birth_error(self):
         self.assertTrue(test_unique_family_name_and_birth_error());
-    #Sprint 2
+        #Sprint 2
     def test_death_before_marriage_fail(self):
         self.assertTrue(test_death_before_marriage_fail());
     def test_death_before_marriage_pass(self):
@@ -847,8 +980,21 @@ class TestStringMethods(unittest.TestCase):
         self.assertTrue(test_birth_before_death_fail());
     def test_birth_before_death_pass(self):
         self.assertTrue(test_birth_before_death_pass());
-    
-
+    def test_aunts_and_uncles_pass(self):
+        self.assertTrue(aunts_and_uncles_success());
+    def test_aunts_and_uncles_fail(self):
+        self.assertTrue(aunts_and_uncles_error());
+    def test_input_line_numbers_pass(self):
+        self.assertTrue(input_line_numbers());
+    def test_Check_Positive_For_Bigamy(self):
+        self.assertTrue(test_check_positive_for_bigamy());
+    def test_Check_Negative_For_Bigamy(self):
+        self.assertTrue(test_check_negative_for_bigamy());
+    def test_check_positive_parent_child_marriage(self):
+        self.assertTrue(test_check_positive_parent_child_marriage());
+    def test_check_negative_parent_child_marriage(self):
+        self.assertTrue(test_check_negative_parent_child_marriage());
+        
 suite = unittest.TestLoader().loadTestsFromTestCase(TestStringMethods)
 unittest.TextTestRunner(verbosity=2).run(suite)
 
