@@ -172,31 +172,6 @@ def create_family_dic():
             
 
 
-# In[13]:
-
-
-# USID: 01
-# The Dates we need to check includes: birth, marriage, divorce, death
-# Birth always exists, the rests we need to check for NA
-# Iteration through individuals and family
-def validate_dates():
-    for family in family_dic.values():
-        if family["MARR"] !="NA":
-            if(determine_age(family["MARR"], None) < 0):
-                 error_array.append("ERROR: FAMILY: US01: {}: Family has marrige date {} later than today".format(family["FAM"], family["MARR"]))
-        if family["DIV"] != "NA":
-            if(determine_age(family["DIV"], None) < 0):
-                 error_array.append("ERROR: FAMILY: US01: {}: Family has divorce date {} later than today".format(family["FAM"], family["DIV"]))     
-    
-    for indi in individuals.values():
-        # for birthday simply check age
-        if(determine_age(indi["BIRT"], None) < 0):
-                error_array.append("ERROR: INDIVIDUAL: US01: {}: Individual has birth date {} later than today".format(indi["INDI"], indi["BIRT"]))     
-        if indi["DEAT"] != "NA":
-            if(determine_age(indi["DEAT"], None) < 0):
-                error_array.append("ERROR: INDIVIDUAL: US01: {}: Individual has death date {} later than today".format(indi["INDI"], indi["DEAT"]))     
-
-
 # In[14]:
 
 
