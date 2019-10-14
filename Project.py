@@ -1,7 +1,7 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[835]:
 
 
 # All the file imports
@@ -11,14 +11,14 @@ from prettytable import PrettyTable
 import os
 
 
-# In[2]:
+# In[836]:
 
 
 def isDateParent(A):
     return A[1] in tag_fam["DATE"]
 
 
-# In[3]:
+# In[837]:
 
 
 # Convert month string to month number
@@ -40,7 +40,7 @@ def month_to_num(shortMonth):
     }[shortMonth]
 
 
-# In[4]:
+# In[838]:
 
 
 # Convert input date to standard format
@@ -49,7 +49,7 @@ def convert_date(date_arr):
     return "{}-{}-{}".format(date_arr[2], month_to_num(date_arr[1]), date_arr[0])
 
 
-# In[5]:
+# In[839]:
 
 
 # Determine age based on birthdate and death date
@@ -67,7 +67,7 @@ def determine_age(birth_date, death_date):
         return today.year - int(birth_date.split('-')[0]) - ((today.month, today.day) < (int(birth_month), int(birth_day)))
 
 
-# In[6]:
+# In[840]:
 
 
 # Determine days difference
@@ -84,7 +84,7 @@ def determine_days(date1, date2):
     return (year2 - year1) * 365 + (month2 - month1)* 30 + day2- day1
 
 
-# In[7]:
+# In[841]:
 
 
 def find_name(arr, _id):
@@ -94,7 +94,7 @@ def find_name(arr, _id):
             return indi["NAME"]
 
 
-# In[8]:
+# In[842]:
 
 
 # create dictionary entry for the passed tag
@@ -107,7 +107,7 @@ def create_dic_entry(current_arr, tag):
     return dic, current_tag
 
 
-# In[9]:
+# In[843]:
 
 
 # Adds missing tags with "NA"
@@ -128,7 +128,7 @@ def add_missing_entries(dic):
         dic["MARR"] = "NA"   
 
 
-# In[10]:
+# In[844]:
 
 
 # Checking if one date is after another
@@ -138,7 +138,7 @@ def is_date_after(date_one, date_two):
     return date_one < date_two
 
 
-# In[11]:
+# In[845]:
 
 
 # Create map of individuals where key is the individual id and
@@ -150,7 +150,7 @@ def create_individuals_map():
         individuals[individual["INDI"]] = individual
 
 
-# In[12]:
+# In[846]:
 
 
 # Creating a family dictionary with the key as the family id and the value as the
@@ -172,7 +172,7 @@ def create_family_dic():
             
 
 
-# In[14]:
+# In[847]:
 
 
 # Reads the input GEDCOM file line by line and store the data into the dictionary
@@ -264,7 +264,7 @@ def read_in(file):
                   
 
 
-# In[15]:
+# In[848]:
 
 
 # USID: 01
@@ -289,7 +289,7 @@ def validate_dates():
                 error_array.append("ERROR: INDIVIDUAL: US01: {}: {}: Individual has death date {} later than today".format(indi["DEAT_LINE"], indi["INDI"], indi["DEAT"]))     
 
 
-# In[16]:
+# In[849]:
 
 
 #USID: 02
@@ -319,7 +319,47 @@ def is_birth_before_marraige():
                  error_array.append(("ERROR: INDIVIDUAL: US02: {}: {}: Person has marriage date {} before birth date {}")                                    .format(family['MARR_LINE'], family["wife_object"]["INDI"], marriage_date, wife_birth_date))
 
 
-# In[17]:
+# In[850]:
+
+
+# US04 - Marriage Before Divorce
+
+def is_marriage_after_divorce():
+    # Iterating through all individuals
+    for currentIndividual in individuals.values():
+        # Ignoring all individuals who weren't ever married
+        if(currentIndividual['SPOUSE'] != 'NA'):
+            # Iterating through all the families they were related to
+            for currentFamily in currentIndividual['SPOUSE']:
+                for checkingFamily in family_dic.values():
+                    if(checkingFamily['FAM'] == currentFamily):
+                        # Ignoring all the marriages without a divorce
+                        if(checkingFamily['DIV'] != 'NA'):
+                            # Checking if a divorce date is before a marriage date
+                            if(checkingFamily['MARR'] > checkingFamily['DIV']):
+                                anomaly_array.append("ANOMALY: INDIVIDUAL: US04: {}: Marriage Before Divorce - Marriage Date {} - Divorce Date {}".format(currentIndividual['INDI'], checkingFamily['MARR'], checkingFamily['DIV']))
+
+
+# In[851]:
+
+
+# US05 - Marriage Before Death
+
+def is_marriage_after_death():
+    # Iterating through all individuals
+    for currentIndividual in individuals.values():
+        # Ignoring all individuals who weren't ever married
+        if(currentIndividual['SPOUSE'] != 'NA'):
+            # Iterating through all the families they were related to
+            for currentFamily in currentIndividual['SPOUSE']:
+                for checkingFamily in family_dic.values():
+                    if(checkingFamily['FAM'] == currentFamily):
+                        if(checkingFamily['MARR'] != 'NA'):
+                            if(checkingFamily['MARR'] > currentIndividual['DEAT']):
+                                anomaly_array.append("ANOMALY: INDIVIDUAL: US05: {}: Marriage Before Death - Marriage Date {} - Death Date {}".format(currentIndividual['INDI'], checkingFamily['MARR'], currentIndividual['DEAT']))
+
+
+# In[852]:
 
 
 #USID: 07
@@ -335,7 +375,7 @@ def is_age_legal():
                     anomaly_array.append("ANOMALY: INDIVIDUAL: US07: {}: {}: More than 150 years old at death - Birth Date {}: Death Date {}".format(indi["BIRT_LINE"], indi_id, indi["BIRT"], indi["DEAT"]))
 
 
-# In[18]:
+# In[853]:
 
 
 #Birth before marriage of parents USID: 08
@@ -353,7 +393,7 @@ def birth_before_marriage():
                          anomaly_array.append("ANOMALY: INDIVIDUAL: US08: {}: {}: Child was born at {} after 9 month divorce of parents {}".format(child["BIRT_LINE"], child["INDI"], child["BIRT"], divorce_date))
 
 
-# In[19]:
+# In[854]:
 
 
 #Birth before death of parents USID: 09
@@ -373,7 +413,7 @@ def birth_before_death():
                         error_array.append("ERROR: INDIVIDUAL: US09: {}: {}: Child was born at {} after 9 month death of father {}".format(child["BIRT_LINE"], child["INDI"], child["BIRT"], husband_death))
 
 
-# In[20]:
+# In[855]:
 
 
 # USID: 10
@@ -391,7 +431,7 @@ def is_marriage_legal():
                 anomaly_array.append("ANOMALY: INDIVIDUAL: US10: {}: {}: Wife of family {} is younger than 14 years old - Birth Date {}".format(wife["BIRT_LINE"], wife["INDI"], family_id, wife["BIRT"]))
 
 
-# In[21]:
+# In[856]:
 
 
 # USID: 11
@@ -417,7 +457,7 @@ def check_for_bigamy():
                     anomaly_array.append("ANOMALY: INDIVIDUAL: US11: {}: {}: Performing bigamy".format(individual["INDI_LINE"], individual["INDI"]))
 
 
-# In[22]:
+# In[857]:
 
 
 def compare_marraige_dates(dates):
@@ -449,7 +489,7 @@ def compare_marraige_dates(dates):
     return False
 
 
-# In[23]:
+# In[858]:
 
 
 # User Story: US15
@@ -460,7 +500,7 @@ def check_sibling_count():
             anomaly_array.append("ANOMALY: FAMILY: US16: {}: Family has {} siblings which is more than 15 siblings"                 .format(family_id, len(family["FAM_CHILD"])))
 
 
-# In[24]:
+# In[859]:
 
 
 # Returns the lastname of the name
@@ -470,7 +510,7 @@ def get_last_name(name):
     return name.split('/')[1];
 
 
-# In[25]:
+# In[860]:
 
 
 # User story: US16
@@ -498,7 +538,7 @@ def check_last_names():
                             anomaly_array.append("ANOMALY: INDIVIDUAL: US16: {}: Individual has different last name {} than family {}"                                   .format(child["INDI"], get_last_name(child["NAME"]), last_name))
 
 
-# In[26]:
+# In[861]:
 
 
 # User Story 17
@@ -512,7 +552,7 @@ def check_parent_child_marriage():
                 anomaly_array.append("ANOMALY: INDIVIDUAL: US17: {}: {}: Individual married to child {}"                                     .format(family["WIFE_LINE"], family["WIFE"], family["HUSB"]))
 
 
-# In[27]:
+# In[862]:
 
 
 def is_spouse_a_child(individual_id, spouse_id):
@@ -526,7 +566,7 @@ def is_spouse_a_child(individual_id, spouse_id):
         return False
 
 
-# In[28]:
+# In[863]:
 
 
 #User_Story_20 Aunts and uncles
@@ -555,7 +595,7 @@ def is_uncle_aunt_marriage_legal():
     return True
 
 
-# In[29]:
+# In[864]:
 
 
 #USID: 23
@@ -569,7 +609,7 @@ def unique_name_and_birth():
             li[temp]=value["INDI"]
 
 
-# In[30]:
+# In[865]:
 
 
 #USID: 25
@@ -585,7 +625,7 @@ def unique_family_name_and_birth():
                     li[temp]=child["INDI"]
 
 
-# In[31]:
+# In[866]:
 
 
 #User_Story_29: List all deceased individuals in a GEDCOM file
@@ -612,7 +652,7 @@ def listDeceased():
     
 
 
-# In[32]:
+# In[867]:
 
 
 #User_Story_30: List all living married people in a GEDCOM file
@@ -635,7 +675,7 @@ def listLivingMarried():
         printTable("US30: Living & Married People Table", allFields, tagNames, current_dic)
 
 
-# In[33]:
+# In[868]:
 
 
 #US 32: List multiple births
@@ -651,7 +691,7 @@ def multiple_birth():
                     li[temp]=child["INDI"]
 
 
-# In[34]:
+# In[869]:
 
 
 #US 34: 
@@ -671,7 +711,7 @@ def large_age_diff():
                 
 
 
-# In[35]:
+# In[870]:
 
 
 # Prints out the Individual Table
@@ -683,7 +723,7 @@ def printIndividualTable():
     printTable("People Table", allFields, tagNames, individuals)
 
 
-# In[36]:
+# In[871]:
 
 
 # Prints out the Family Table
@@ -695,7 +735,7 @@ def printFamilyTable():
     printTable("Families Table", allFields, tagNames, family_dic)
 
 
-# In[37]:
+# In[872]:
 
 
 # Prints out the data in both error and anomaly arrays
@@ -717,7 +757,7 @@ def printError():
     
 
 
-# In[38]:
+# In[873]:
 
 
 # Prints out a table of dictionary data with the passed-in arguments
@@ -751,7 +791,7 @@ def printTable(table_name, fields, tag_names, dictionary):
     print(table)
 
 
-# In[39]:
+# In[874]:
 
 
 # Stores all Project outputs into a single text file
@@ -764,7 +804,7 @@ def storeResults(result_name, outputs):
     file.close()
 
 
-# In[40]:
+# In[875]:
 
 
 # Global variables initialization
@@ -783,7 +823,7 @@ error_array = []
 anomaly_array = []
 
 
-# In[41]:
+# In[876]:
 
 
 document = read_in("./acceptance_test_file_sprint2.ged")
@@ -800,6 +840,10 @@ printFamilyTable()
 validate_dates()
 #User 02
 is_birth_before_marraige()
+#US04
+is_marriage_after_divorce()
+#US05
+is_marriage_after_death()
 #User 07
 is_age_legal()
 #User 08

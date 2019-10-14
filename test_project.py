@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[674]:
 
 
 import pytest
@@ -10,7 +10,7 @@ import mock
 import Project
 
 
-# In[2]:
+# In[675]:
 
 
 def test_death_before_marriage_fail():
@@ -70,7 +70,7 @@ def test_death_before_marriage_fail():
  'ANOMALY: INDIVIDUAL: US08: @I13@: Child was born at 1981-9-8 after 9 month divorce of parents 1980-12-1']
 
 
-# In[3]:
+# In[676]:
 
 
 def test_death_before_marriage_pass():
@@ -129,7 +129,7 @@ def test_death_before_marriage_pass():
     return len(Project.anomaly_array)==0
 
 
-# In[4]:
+# In[677]:
 
 
 def test_birth_before_death_fail():
@@ -190,7 +190,7 @@ def test_birth_before_death_fail():
  'ERROR: INDIVIDUAL: US09: @I13@: Child was born at 1989-7-8 after 9 month death of father 1988-10-6']
 
 
-# In[5]:
+# In[678]:
 
 
 def test_birth_before_death_pass():
@@ -249,7 +249,7 @@ def test_birth_before_death_pass():
     return len(Project.error_array)==0
 
 
-# In[6]:
+# In[679]:
 
 
 def test_dates_pass():
@@ -292,7 +292,7 @@ def test_dates_pass():
     return len(Project.error_array)==0
 
 
-# In[7]:
+# In[680]:
 
 
 def test_dates_error():
@@ -338,7 +338,7 @@ def test_dates_error():
                                  'ERROR: INDIVIDUAL: US01: @I2@: Individual has death date 2020-6-2 later than today']
 
 
-# In[8]:
+# In[681]:
 
 
 def test_dates_pass():
@@ -372,7 +372,7 @@ def test_dates_pass():
     return len(Project.error_array)==0
 
 
-# In[9]:
+# In[682]:
 
 
 def test_birth_before_marraige_do_nothing():
@@ -386,7 +386,7 @@ def test_birth_before_marraige_do_nothing():
     return True
 
 
-# In[10]:
+# In[683]:
 
 
 def test_birth_after_marraige_appended_to_error():
@@ -400,7 +400,460 @@ def test_birth_after_marraige_appended_to_error():
     return True
 
 
-# In[11]:
+# In[684]:
+
+
+# US04 - Happy Path Test Case
+
+def test_is_marriage_after_divorce():
+    individuals = {
+                  '@I1@': {'INDI': '@I1@',
+                  'INDI_LINE': 14,
+                  'NAME': 'Willodean /Malagon/',
+                  'NAME_LINE': 15,
+                  'SEX': 'F',
+                  'SEX_LINE': 19,
+                  'BIRT_LINE': 20,
+                  'BIRT': '1958-7-7',
+                  'DEAT_LINE': 22,
+                  'DEAT': '1974-6-20',
+                  'INDI_CHILD': ['@F2@'],
+                  'SPOUSE': ['@F1@'],
+                  'FAMS_LINE': 24,
+                  'FAMC_LINE': 25,
+                  'AGE': '15',
+                  'ALIVE': False}
+                 }
+    
+    family_dic = {
+                  '@F1@': {'FAM': '@F1@',
+                  'FAM_LINE': 433,
+                  'HUSB_NAME': 'Samuel /Venzon/',
+                  'HUSB_LINE': 434,
+                  'HUSB': '@I6@',
+                  'WIFE_NAME': 'Willodean /Malagon/',
+                  'WIFE_LINE': 435,
+                  'WIFE': '@I1@',
+                  'FAM_CHILD': ['@I7@', '@I13@'],
+                  'CHIL_LINE_@I7@': 436,
+                  'CHIL': '@I13@',
+                  'CHIL_LINE': 437,
+                  'CHIL_LINE_@I13@': 437,
+                  'MARR_LINE': 438,
+                  'MARR': '1970-7-7',
+                  'DIV': '1971-7-7',
+                  'husband_object': {'INDI': '@I6@',
+                   'INDI_LINE': 67,
+                   'NAME': 'Samuel /Venzon/',
+                   'NAME_LINE': 68,
+                   'SEX': 'M',
+                   'SEX_LINE': 72,
+                   'BIRT_LINE': 73,
+                   'BIRT': '1958-12-6',
+                   'INDI_CHILD': 'NA',
+                   'SPOUSE': ['@F1@'],
+                   'FAMS_LINE': 75,
+                   'DEAT': 'NA',
+                   'AGE': '60',
+                   'ALIVE': True},
+                  'wife_object': {'INDI': '@I1@',
+                   'INDI_LINE': 14,
+                   'NAME': 'Willodean /Malagon/',
+                   'NAME_LINE': 15,
+                   'SEX': 'F',
+                   'SEX_LINE': 19,
+                   'BIRT_LINE': 20,
+                   'BIRT': '1958-7-7',
+                   'DEAT_LINE': 22,
+                   'DEAT': '1974-6-20',
+                   'INDI_CHILD': ['@F2@'],
+                   'SPOUSE': ['@F1@'],
+                   'FAMS_LINE': 24,
+                   'FAMC_LINE': 25,
+                   'AGE': '15',
+                   'ALIVE': False},
+                  'children_objects': [{'INDI': '@I7@',
+                    'INDI_LINE': 76,
+                    'NAME': 'Byron /Vezon/',
+                    'NAME_LINE': 77,
+                    'SEX': 'M',
+                    'SEX_LINE': 81,
+                    'BIRT_LINE': 82,
+                    'BIRT': '1973-7-6',
+                    'INDI_CHILD': ['@F1@'],
+                    'SPOUSE': ['@F6@'],
+                    'FAMS_LINE': 84,
+                    'FAMC_LINE': 85,
+                    'DEAT': 'NA',
+                    'AGE': '46',
+                    'ALIVE': True},
+                   {'INDI': '@I13@',
+                    'INDI_LINE': 133,
+                    'NAME': 'Beth /Venzon/',
+                    'NAME_LINE': 134,
+                    'SEX': 'F',
+                    'SEX_LINE': 138,
+                    'BIRT_LINE': 139,
+                    'BIRT': '1975-7-8',
+                    'INDI_CHILD': ['@F1@'],
+                    'SPOUSE': 'NA',
+                    'FAMC_LINE': 141,
+                    'DEAT': 'NA',
+                    'AGE': '44',
+                    'ALIVE': True}]}
+                 }
+    
+    
+    Project.individuals = individuals
+    Project.family_dic = family_dic
+    Project.anomaly_array = []
+    
+    Project.is_marriage_after_divorce()
+
+    assert len(Project.anomaly_array) == 0
+    return True
+
+
+# In[685]:
+
+
+# US04 - Sad Path Test Case 
+def test_is_marriage_after_divorce_error():
+    individuals = {
+                  '@I1@': {'INDI': '@I1@',
+                  'INDI_LINE': 14,
+                  'NAME': 'Willodean /Malagon/',
+                  'NAME_LINE': 15,
+                  'SEX': 'F',
+                  'SEX_LINE': 19,
+                  'BIRT_LINE': 20,
+                  'BIRT': '1958-7-7',
+                  'DEAT_LINE': 22,
+                  'DEAT': '1974-6-20',
+                  'INDI_CHILD': ['@F2@'],
+                  'SPOUSE': ['@F1@'],
+                  'FAMS_LINE': 24,
+                  'FAMC_LINE': 25,
+                  'AGE': '15',
+                  'ALIVE': False}
+                 }
+    
+    family_dic = {
+                  '@F1@': {'FAM': '@F1@',
+                  'FAM_LINE': 433,
+                  'HUSB_NAME': 'Samuel /Venzon/',
+                  'HUSB_LINE': 434,
+                  'HUSB': '@I6@',
+                  'WIFE_NAME': 'Willodean /Malagon/',
+                  'WIFE_LINE': 435,
+                  'WIFE': '@I1@',
+                  'FAM_CHILD': ['@I7@', '@I13@'],
+                  'CHIL_LINE_@I7@': 436,
+                  'CHIL': '@I13@',
+                  'CHIL_LINE': 437,
+                  'CHIL_LINE_@I13@': 437,
+                  'MARR_LINE': 438,
+                  'MARR': '1970-7-7',
+                  'DIV': '1969-7-7',
+                  'husband_object': {'INDI': '@I6@',
+                   'INDI_LINE': 67,
+                   'NAME': 'Samuel /Venzon/',
+                   'NAME_LINE': 68,
+                   'SEX': 'M',
+                   'SEX_LINE': 72,
+                   'BIRT_LINE': 73,
+                   'BIRT': '1958-12-6',
+                   'INDI_CHILD': 'NA',
+                   'SPOUSE': ['@F1@'],
+                   'FAMS_LINE': 75,
+                   'DEAT': 'NA',
+                   'AGE': '60',
+                   'ALIVE': True},
+                  'wife_object': {'INDI': '@I1@',
+                   'INDI_LINE': 14,
+                   'NAME': 'Willodean /Malagon/',
+                   'NAME_LINE': 15,
+                   'SEX': 'F',
+                   'SEX_LINE': 19,
+                   'BIRT_LINE': 20,
+                   'BIRT': '1958-7-7',
+                   'DEAT_LINE': 22,
+                   'DEAT': '1974-6-20',
+                   'INDI_CHILD': ['@F2@'],
+                   'SPOUSE': ['@F1@'],
+                   'FAMS_LINE': 24,
+                   'FAMC_LINE': 25,
+                   'AGE': '15',
+                   'ALIVE': False},
+                  'children_objects': [{'INDI': '@I7@',
+                    'INDI_LINE': 76,
+                    'NAME': 'Byron /Vezon/',
+                    'NAME_LINE': 77,
+                    'SEX': 'M',
+                    'SEX_LINE': 81,
+                    'BIRT_LINE': 82,
+                    'BIRT': '1973-7-6',
+                    'INDI_CHILD': ['@F1@'],
+                    'SPOUSE': ['@F6@'],
+                    'FAMS_LINE': 84,
+                    'FAMC_LINE': 85,
+                    'DEAT': 'NA',
+                    'AGE': '46',
+                    'ALIVE': True},
+                   {'INDI': '@I13@',
+                    'INDI_LINE': 133,
+                    'NAME': 'Beth /Venzon/',
+                    'NAME_LINE': 134,
+                    'SEX': 'F',
+                    'SEX_LINE': 138,
+                    'BIRT_LINE': 139,
+                    'BIRT': '1975-7-8',
+                    'INDI_CHILD': ['@F1@'],
+                    'SPOUSE': 'NA',
+                    'FAMC_LINE': 141,
+                    'DEAT': 'NA',
+                    'AGE': '44',
+                    'ALIVE': True}]}
+                 }
+    
+    
+    Project.individuals = individuals
+    Project.family_dic = family_dic
+    Project.anomaly_array = []
+    
+    Project.is_marriage_after_divorce()
+    
+    assert Project.anomaly_array[0] == "ANOMALY: INDIVIDUAL: US04: @I1@: Marriage Before Divorce - Marriage Date 1970-7-7 - Divorce Date 1969-7-7"
+    return True
+
+
+# In[686]:
+
+
+# US05 - Happy Path Test Case
+def test_is_marriage_after_death():
+    individuals = {
+                  '@I1@': {'INDI': '@I1@',
+                  'INDI_LINE': 14,
+                  'NAME': 'Willodean /Malagon/',
+                  'NAME_LINE': 15,
+                  'SEX': 'F',
+                  'SEX_LINE': 19,
+                  'BIRT_LINE': 20,
+                  'BIRT': '1958-7-7',
+                  'DEAT_LINE': 22,
+                  'DEAT': '1974-6-20',
+                  'INDI_CHILD': ['@F2@'],
+                  'SPOUSE': ['@F1@'],
+                  'FAMS_LINE': 24,
+                  'FAMC_LINE': 25,
+                  'AGE': '15',
+                  'ALIVE': False}
+                 }
+    
+    family_dic = {
+                  '@F1@': {'FAM': '@F1@',
+                  'FAM_LINE': 433,
+                  'HUSB_NAME': 'Samuel /Venzon/',
+                  'HUSB_LINE': 434,
+                  'HUSB': '@I6@',
+                  'WIFE_NAME': 'Willodean /Malagon/',
+                  'WIFE_LINE': 435,
+                  'WIFE': '@I1@',
+                  'FAM_CHILD': ['@I7@', '@I13@'],
+                  'CHIL_LINE_@I7@': 436,
+                  'CHIL': '@I13@',
+                  'CHIL_LINE': 437,
+                  'CHIL_LINE_@I13@': 437,
+                  'MARR_LINE': 438,
+                  'MARR': '1970-7-7',
+                  'DIV': '1971-7-7',
+                  'husband_object': {'INDI': '@I6@',
+                   'INDI_LINE': 67,
+                   'NAME': 'Samuel /Venzon/',
+                   'NAME_LINE': 68,
+                   'SEX': 'M',
+                   'SEX_LINE': 72,
+                   'BIRT_LINE': 73,
+                   'BIRT': '1958-12-6',
+                   'INDI_CHILD': 'NA',
+                   'SPOUSE': ['@F1@'],
+                   'FAMS_LINE': 75,
+                   'DEAT': 'NA',
+                   'AGE': '60',
+                   'ALIVE': True},
+                  'wife_object': {'INDI': '@I1@',
+                   'INDI_LINE': 14,
+                   'NAME': 'Willodean /Malagon/',
+                   'NAME_LINE': 15,
+                   'SEX': 'F',
+                   'SEX_LINE': 19,
+                   'BIRT_LINE': 20,
+                   'BIRT': '1958-7-7',
+                   'DEAT_LINE': 22,
+                   'DEAT': '1974-6-20',
+                   'INDI_CHILD': ['@F2@'],
+                   'SPOUSE': ['@F1@'],
+                   'FAMS_LINE': 24,
+                   'FAMC_LINE': 25,
+                   'AGE': '15',
+                   'ALIVE': False},
+                  'children_objects': [{'INDI': '@I7@',
+                    'INDI_LINE': 76,
+                    'NAME': 'Byron /Vezon/',
+                    'NAME_LINE': 77,
+                    'SEX': 'M',
+                    'SEX_LINE': 81,
+                    'BIRT_LINE': 82,
+                    'BIRT': '1973-7-6',
+                    'INDI_CHILD': ['@F1@'],
+                    'SPOUSE': ['@F6@'],
+                    'FAMS_LINE': 84,
+                    'FAMC_LINE': 85,
+                    'DEAT': 'NA',
+                    'AGE': '46',
+                    'ALIVE': True},
+                   {'INDI': '@I13@',
+                    'INDI_LINE': 133,
+                    'NAME': 'Beth /Venzon/',
+                    'NAME_LINE': 134,
+                    'SEX': 'F',
+                    'SEX_LINE': 138,
+                    'BIRT_LINE': 139,
+                    'BIRT': '1975-7-8',
+                    'INDI_CHILD': ['@F1@'],
+                    'SPOUSE': 'NA',
+                    'FAMC_LINE': 141,
+                    'DEAT': 'NA',
+                    'AGE': '44',
+                    'ALIVE': True}]}
+                 }
+    
+    
+    Project.individuals = individuals
+    Project.family_dic = family_dic
+    Project.anomaly_array = []
+    
+    Project.is_marriage_after_death()
+
+    assert len(Project.anomaly_array) == 0
+    return True
+
+
+# In[687]:
+
+
+# US05 - Sad Path Test Case
+def test_is_marriage_after_death_error():
+    individuals = {
+                  '@I1@': {'INDI': '@I1@',
+                  'INDI_LINE': 14,
+                  'NAME': 'Willodean /Malagon/',
+                  'NAME_LINE': 15,
+                  'SEX': 'F',
+                  'SEX_LINE': 19,
+                  'BIRT_LINE': 20,
+                  'BIRT': '1958-7-7',
+                  'DEAT_LINE': 22,
+                  'DEAT': '1969-6-20',
+                  'INDI_CHILD': ['@F2@'],
+                  'SPOUSE': ['@F1@'],
+                  'FAMS_LINE': 24,
+                  'FAMC_LINE': 25,
+                  'AGE': '15',
+                  'ALIVE': False}
+                 }
+    
+    family_dic = {
+                  '@F1@': {'FAM': '@F1@',
+                  'FAM_LINE': 433,
+                  'HUSB_NAME': 'Samuel /Venzon/',
+                  'HUSB_LINE': 434,
+                  'HUSB': '@I6@',
+                  'WIFE_NAME': 'Willodean /Malagon/',
+                  'WIFE_LINE': 435,
+                  'WIFE': '@I1@',
+                  'FAM_CHILD': ['@I7@', '@I13@'],
+                  'CHIL_LINE_@I7@': 436,
+                  'CHIL': '@I13@',
+                  'CHIL_LINE': 437,
+                  'CHIL_LINE_@I13@': 437,
+                  'MARR_LINE': 438,
+                  'MARR': '1970-7-7',
+                  'DIV': '1971-7-7',
+                  'husband_object': {'INDI': '@I6@',
+                   'INDI_LINE': 67,
+                   'NAME': 'Samuel /Venzon/',
+                   'NAME_LINE': 68,
+                   'SEX': 'M',
+                   'SEX_LINE': 72,
+                   'BIRT_LINE': 73,
+                   'BIRT': '1958-12-6',
+                   'INDI_CHILD': 'NA',
+                   'SPOUSE': ['@F1@'],
+                   'FAMS_LINE': 75,
+                   'DEAT': 'NA',
+                   'AGE': '60',
+                   'ALIVE': True},
+                  'wife_object': {'INDI': '@I1@',
+                   'INDI_LINE': 14,
+                   'NAME': 'Willodean /Malagon/',
+                   'NAME_LINE': 15,
+                   'SEX': 'F',
+                   'SEX_LINE': 19,
+                   'BIRT_LINE': 20,
+                   'BIRT': '1958-7-7',
+                   'DEAT_LINE': 22,
+                   'DEAT': '1974-6-20',
+                   'INDI_CHILD': ['@F2@'],
+                   'SPOUSE': ['@F1@'],
+                   'FAMS_LINE': 24,
+                   'FAMC_LINE': 25,
+                   'AGE': '15',
+                   'ALIVE': False},
+                  'children_objects': [{'INDI': '@I7@',
+                    'INDI_LINE': 76,
+                    'NAME': 'Byron /Vezon/',
+                    'NAME_LINE': 77,
+                    'SEX': 'M',
+                    'SEX_LINE': 81,
+                    'BIRT_LINE': 82,
+                    'BIRT': '1973-7-6',
+                    'INDI_CHILD': ['@F1@'],
+                    'SPOUSE': ['@F6@'],
+                    'FAMS_LINE': 84,
+                    'FAMC_LINE': 85,
+                    'DEAT': 'NA',
+                    'AGE': '46',
+                    'ALIVE': True},
+                   {'INDI': '@I13@',
+                    'INDI_LINE': 133,
+                    'NAME': 'Beth /Venzon/',
+                    'NAME_LINE': 134,
+                    'SEX': 'F',
+                    'SEX_LINE': 138,
+                    'BIRT_LINE': 139,
+                    'BIRT': '1975-7-8',
+                    'INDI_CHILD': ['@F1@'],
+                    'SPOUSE': 'NA',
+                    'FAMC_LINE': 141,
+                    'DEAT': 'NA',
+                    'AGE': '44',
+                    'ALIVE': True}]}
+                 }
+    
+    
+    Project.individuals = individuals
+    Project.family_dic = family_dic
+    Project.anomaly_array = []
+    
+    Project.is_marriage_after_death()
+    assert Project.anomaly_array[0] == "ANOMALY: INDIVIDUAL: US05: @I1@: Marriage Before Death - Marriage Date 1970-7-7 - Death Date 1969-6-20"
+   
+    return True
+
+
+# In[688]:
 
 
 def test_not_legal_marriage():
@@ -440,7 +893,7 @@ def test_not_legal_marriage():
 "ANOMALY: INDIVIDUAL: US10: @I13@: Wife of family @F8@ is younger than 14 years old - Birth Date 1980-7-10"]
 
 
-# In[12]:
+# In[689]:
 
 
 def test_legal_marriage():
@@ -479,7 +932,7 @@ def test_legal_marriage():
     return len(Project.anomaly_array) == 0
 
 
-# In[13]:
+# In[690]:
 
 
 def test_over_age_150():
@@ -509,7 +962,7 @@ def test_over_age_150():
  'ANOMALY: INDIVIDUAL: US07: @I2@: More than 150 years old at death - Birth Date 1850-12-10: Death Date 2009-6-2']
 
 
-# In[14]:
+# In[691]:
 
 
 def test_less_age_150():
@@ -539,7 +992,7 @@ def test_less_age_150():
     return len(Project.anomaly_array) == 0
 
 
-# In[15]:
+# In[692]:
 
 
 # User_Story_29: List all deceased individuals in a GEDCOM file
@@ -555,7 +1008,7 @@ def test_list_deceased_individuals_success(mock_printTable):
     return True
 
 
-# In[16]:
+# In[693]:
 
 
 # User_Story_29: List all deceased individuals in a GEDCOM file
@@ -571,7 +1024,7 @@ def test_list_deceased_individuals_error(mock_printTable):
     return True
 
 
-# In[17]:
+# In[694]:
 
 
 # User_Story_30: List all living married people in a GEDCOM file
@@ -588,7 +1041,7 @@ def test_list_living_married_individuals_success(mock_printTable):
     return True
 
 
-# In[18]:
+# In[695]:
 
 
 # User_Story_30: List all living married people in a GEDCOM file
@@ -605,7 +1058,7 @@ def test_list_living_married_individuals_error(mock_printTable):
     return True
 
 
-# In[19]:
+# In[696]:
 
 
 def test_more_than_15_siblings():
@@ -619,7 +1072,7 @@ def test_more_than_15_siblings():
     return True
 
 
-# In[20]:
+# In[697]:
 
 
 def test_less_than_15_siblings():
@@ -634,7 +1087,7 @@ def test_less_than_15_siblings():
     
 
 
-# In[21]:
+# In[698]:
 
 
 def test_different_male_last_name():
@@ -647,7 +1100,7 @@ def test_different_male_last_name():
     return True
 
 
-# In[22]:
+# In[699]:
 
 
 def test_same_male_last_name():
@@ -661,7 +1114,7 @@ def test_same_male_last_name():
     return True
 
 
-# In[23]:
+# In[700]:
 
 
 def test_unique_name_and_birth_error():
@@ -693,7 +1146,7 @@ def test_unique_name_and_birth_error():
     return Project.anomaly_array==['ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17']
 
 
-# In[24]:
+# In[701]:
 
 
 def test_unique_name_and_birth_pass():
@@ -723,7 +1176,7 @@ def test_unique_name_and_birth_pass():
     return len(Project.anomaly_array)==0
 
 
-# In[25]:
+# In[702]:
 
 
 def test_unique_family_name_and_birth_error():
@@ -762,7 +1215,7 @@ def test_unique_family_name_and_birth_error():
     return Project.anomaly_array==['ANOMALY: INDIVIDUAL: US25: @I13@: @I7@: Individuals share the same first name Beth /Venzon/ and birth date 1973-7-8 from family @F1@']
 
 
-# In[26]:
+# In[703]:
 
 
 def test_unique_family_name_and_birth_pass():
@@ -792,7 +1245,7 @@ def test_unique_family_name_and_birth_pass():
     return len(Project.anomaly_array) == 0
 
 
-# In[27]:
+# In[704]:
 
 
 # US20 Aunts and uncles - success
@@ -807,7 +1260,7 @@ def aunts_and_uncles_success():
     return True
 
 
-# In[28]:
+# In[705]:
 
 
 # US20 Aunts and uncles - error
@@ -822,7 +1275,7 @@ def aunts_and_uncles_error():
     return True
 
 
-# In[29]:
+# In[706]:
 
 
 # US40 Include input line numbers
@@ -856,7 +1309,7 @@ def input_line_numbers():
     return True
 
 
-# In[30]:
+# In[707]:
 
 
 def test_check_positive_for_bigamy():
@@ -873,7 +1326,7 @@ def test_check_positive_for_bigamy():
     return True
 
 
-# In[31]:
+# In[708]:
 
 
 def test_check_negative_for_bigamy():
@@ -890,7 +1343,7 @@ def test_check_negative_for_bigamy():
     return True
 
 
-# In[32]:
+# In[709]:
 
 
 def test_check_positive_parent_child_marriage():
@@ -907,7 +1360,7 @@ def test_check_positive_parent_child_marriage():
     return True
 
 
-# In[33]:
+# In[710]:
 
 
 def test_check_negative_parent_child_marriage():
@@ -924,7 +1377,7 @@ def test_check_negative_parent_child_marriage():
     return True
 
 
-# In[34]:
+# In[711]:
 
 
 def test_multiple_birth_pass():
@@ -1240,7 +1693,7 @@ def test_multiple_birth_pass():
     
 
 
-# In[35]:
+# In[712]:
 
 
 def test_multiple_birth_fail():
@@ -1310,7 +1763,7 @@ def test_multiple_birth_fail():
     return True
 
 
-# In[36]:
+# In[713]:
 
 
 def test_large_age_diff_pass():
@@ -1383,7 +1836,7 @@ def test_large_age_diff_pass():
     return True
 
 
-# In[37]:
+# In[714]:
 
 
 def test_large_age_diff_fail():
@@ -1441,7 +1894,7 @@ def test_large_age_diff_fail():
     return True
 
 
-# In[38]:
+# In[715]:
 
 
 import unittest
@@ -1519,6 +1972,18 @@ class TestStringMethods(unittest.TestCase):
         self.assertTrue(test_large_age_diff_pass());
     def test_large_age_diff_fail(self):
         self.assertTrue(test_large_age_diff_fail());
+    #US04 - Happy Path Test
+    def test_is_marriage_after_divorce(self):
+        self.assertTrue(test_is_marriage_after_divorce());
+    #US04 - Sad Path Test
+    def test_is_marriage_after_divorce_error(self):
+        self.assertTrue(test_is_marriage_after_divorce_error());
+    #US05 - Happy Path Test
+    def test_is_marriage_after_death(self):
+        self.assertTrue(test_is_marriage_after_death());
+    #US05 - Sad Path Test
+    def test_is_marriage_after_death_error(self):
+        self.assertTrue(test_is_marriage_after_death_error());
         
         
 suite = unittest.TestLoader().loadTestsFromTestCase(TestStringMethods)
