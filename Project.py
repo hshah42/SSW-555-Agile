@@ -303,15 +303,15 @@ def validate_dates():
                  error_array.append("ERROR: FAMILY: US01: {}: {}: Family has marrige date {} later than today".format(family["MARR_LINE"], family["FAM"], family["MARR"]))
         if family["DIV"] != "NA":
             if(determine_age(family["DIV"], None) < 0):
-                 error_array.append("ERROR: FAMILY: US01: {}: {}: Family has divorce date {} later than today".format(family["MARR_LINE"], family["FAM"], family["DIV"]))     
+                 error_array.append("ERROR: FAMILY: US01: {}: {}: Family has divorce date {} later than today".format(family["DIV_LINE"], family["FAM"], family["DIV"]))     
     
     for indi in individuals.values():
         # for birthday simply check age
         if(determine_age(indi["BIRT"], None) < 0):
-                error_array.append("ERROR: INDIVIDUAL: US01: {}: {}: Individual has birth date {} later than today".format(family["MARR_LINE"], indi["INDI"], indi["BIRT"]))     
+                error_array.append("ERROR: INDIVIDUAL: US01: {}: {}: Individual has birth date {} later than today".format(indi["BIRT_LINE"], indi["INDI"], indi["BIRT"]))     
         if indi["DEAT"] != "NA":
             if(determine_age(indi["DEAT"], None) < 0):
-                error_array.append("ERROR: INDIVIDUAL: US01: {}: {}: Individual has death date {} later than today".format(family["MARR_LINE"], indi["INDI"], indi["DEAT"]))     
+                error_array.append("ERROR: INDIVIDUAL: US01: {}: {}: Individual has death date {} later than today".format(indi["DEAT_LINE"], indi["INDI"], indi["DEAT"]))     
 
 
 # In[16]:
@@ -811,38 +811,7 @@ anomaly_array = []
 # In[41]:
 
 
-#User_Story_20 Aunts and uncles
-#Aunts and uncles should not marry their nieces or nephews
-def is_uncle_aunt_marriage_legal():
-    for indi in individuals.values(): #scans through each individual first
-        current_sp = indi["SPOUSE"] #Array of spouse's family IDs
-        current_fm = indi["INDI_CHILD"] #gets the family ID that the person belongs to
-        if (current_sp != "NA" and current_fm != "NA"): #if the person has a spouse
-            for fam_id in current_fm: #scans through uncle's families
-                current_family = family_dic[fam_id]
-                current_siblings = current_family["children_objects"] #get the uncle's siblings
-                for child in current_siblings: #scans through all siblings
-                    child_spouses = child["SPOUSE"]
-                    if (child_spouses != "NA"):
-                        for spouse in child_spouses:
-                            spouse_family = family_dic[spouse]
-                            for sp in current_sp:
-                                if (family_dic[sp]["WIFE"] in spouse_family["FAM_CHILD"]):
-                                    current_sp_family = family_dic[sp].values()
-#                                     print("Anomaly: FAMILY: US20: {}: Person {} should not marry person {}".format(family_dic[sp]["HUSB_LINE"], family_dic[sp]["HUSB"], family_dic[sp]["WIFE"]))
-                                    anomaly_array.append("ANOMALY: FAMILY: US20: {}: Person {} should not marry person {}".format(family_dic[sp]["HUSB_LINE"], family_dic[sp]["HUSB"], family_dic[sp]["WIFE"]))
-                                    return False
-                                elif(family_dic[sp]["HUSB"] in spouse_family["FAM_CHILD"]):
-#                                     print("Anomaly: FAMILY: US20: {}: Person {} should not marry person {}".format(family_dic[sp]["WIFE_LINE"], family_dic[sp]["WIFE"], family_dic[sp]["HUSB"]))
-                                    anomaly_array.append("ANOMALY: FAMILY: US20: {}: Person {} should not marry person {}".format(family_dic[sp]["WIFE_LINE"], family_dic[sp]["WIFE"], family_dic[sp]["HUSB"]))
-                                    return False
-    return True
-
-
-# In[42]:
-
-
-document = read_in("./acceptance_test_file.ged")
+document = read_in("./acceptance_test_file_sprint2.ged")
 if os.path.exists("cs555_sprint_outputs.txt"):
     os.remove("cs555_sprint_outputs.txt")
 
@@ -854,7 +823,7 @@ printIndividualTable()
 printFamilyTable()
 #User 01
 validate_dates()
-#User_Story_02
+#User 02
 is_birth_before_marraige()
 #User 07
 is_age_legal()
@@ -864,20 +833,29 @@ birth_before_marriage()
 birth_before_death()
 #User 10
 is_marriage_legal()
+#User 11
+check_for_bigamy()
 #User 15
 check_sibling_count()
 #User 16
 check_last_names()
-#User_Story_20
+#User 17
+check_parent_child_marriage()
+#User 20
 is_uncle_aunt_marriage_legal()
 #User 23
 unique_name_and_birth()
 #User 25
 unique_family_name_and_birth()
-#User_Story_29
+#User 29
 listDeceased()
-#User_Story_30
+#User 30
 listLivingMarried()
+#User 32
+multiple_birth()
+#User 34
+large_age_diff()
+
 
 #Prints out all the errors and anomalies of each function
 printError()
