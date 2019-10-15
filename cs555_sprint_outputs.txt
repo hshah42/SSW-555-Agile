@@ -45,6 +45,7 @@ People Table
 | @I41@ |    Renate /Giotto/   |    M   |   1943-10-9 |  76  |  True  |     NA     |   NA   |        @F14@       |
 | @I42@ |   Enrica /Coleman/   |    F   |   1980-8-18 |  39  |  True  |     NA     |  @F20@ |         NA         |
 | @I43@ |   Mahfuz /Claudia/   |    F   |   1944-9-8  |  75  |  True  |     NA     |   NA   |        @F19@       |
+| @I44@ |  Prabhakar /Jamyang/ |    F   |   1946-9-6  |  73  |  True  |     NA     |   NA   |        @F18@       |
 +-------+----------------------+--------+-------------+------+--------+------------+--------+--------------------+
 
 Families Table
@@ -62,13 +63,13 @@ Families Table
 |  @F9@ |  1968-6-4  |     NA     |    @I14@   |   Jacob /Malagon/  |   @I15@ |  Jaqueline /Kindel/  |                                                NA                                               |
 | @F10@ |     NA     |     NA     |    @I22@   |    Tom /Malagon/   |   @I31@ |    Sock /Malagon/    |                                                NA                                               |
 | @F11@ |  1945-8-5  |  1956-7-7  |    @I22@   |    Tom /Malagon/   |   @I34@ |    Kitty /Malagon/   |                                               @I35@                                             |
-| @F12@ |  1957-5-5  |  1958-10-9 |    @I36@   |      Kay /Ali/     |   @I24@ |    Shena /Malagon/   |                                               @I37@                                             |
+| @F12@ |  1958-5-5  |  1955-10-9 |    @I36@   |      Kay /Ali/     |   @I24@ |    Shena /Malagon/   |                                               @I37@                                             |
 | @F13@ |  1959-5-4  |     NA     |    @I38@   |    Vasu /Zdenek/   |   @I25@ |   Hailey /Malagon/   |                                                NA                                               |
 | @F14@ |  1963-11-3 |     NA     |    @I41@   |   Renate /Giotto/  |   @I27@ |   Rashida /Malagon/  |                                                NA                                               |
 | @F15@ |  1960-5-4  |     NA     |    @I39@   |     Yam /Tarah/    |   @I27@ |   Rashida /Malagon/  |                                                NA                                               |
 | @F16@ |  1962-5-5  |     NA     |    @I40@   |   Petros /Ganesh/  |   @I27@ |   Rashida /Malagon/  |                                                NA                                               |
 | @F17@ |  1980-5-6  |     NA     |    @I29@   |   Dario /Malagon/  |   @I35@ |    Sock /Malagon/    |                                                NA                                               |
-| @F18@ |     NA     |     NA     |    @I30@   |   Chet /Malagon/   |   @I42@ |   Enrica /Coleman/   |                                                NA                                               |
+| @F18@ |     NA     |     NA     |    @I30@   |   Chet /Malagon/   |   @I44@ |  Prabhakar /Jamyang/ |                                                NA                                               |
 | @F19@ |  1964-4-5  |  1966-11-8 |    @I30@   |   Chet /Malagon/   |   @I43@ |   Mahfuz /Claudia/   |                                                NA                                               |
 | @F20@ |     NA     |     NA     |    @I30@   |   Chet /Malagon/   |    NA   |          NA          |                                               @I42@                                             |
 +-------+------------+------------+------------+--------------------+---------+----------------------+-------------------------------------------------------------------------------------------------+
@@ -115,25 +116,28 @@ US30: Living & Married People Table
 | @I40@ |    Petros /Ganesh/   |    M   |  1942-10-10 |  77  |  True |   NA  |        @F16@       |
 | @I41@ |    Renate /Giotto/   |    M   |   1943-10-9 |  76  |  True |   NA  |        @F14@       |
 | @I43@ |   Mahfuz /Claudia/   |    F   |   1944-9-8  |  75  |  True |   NA  |        @F19@       |
+| @I44@ |  Prabhakar /Jamyang/ |    F   |   1946-9-6  |  73  |  True |   NA  |        @F18@       |
 +-------+----------------------+--------+-------------+------+-------+-------+--------------------+
 
 ------error messages------
 ERROR: INDIVIDUAL: US01: 130: @I12@: Individual has birth date 2021-8-9 later than today
-ERROR: INDIVIDUAL: US02: 513: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
-ERROR: INDIVIDUAL: US02: 513: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US02: 522: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: 522: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
 ERROR: INDIVIDUAL: US09: 139: @I13@: Child was born at 1975-7-8 after death of mother 1974-6-20
 ERROR: INDIVIDUAL: US30: 14: @I1@: Deceased Person is married to Person @F1@
 ERROR: INDIVIDUAL: US30: 55: @I5@: Deceased Person is married to Person @F5@
 ERROR: INDIVIDUAL: US30: 250: @I25@: Deceased Person is married to Person @F13@
 -----anomaly messages-----
-ANOMALY: INDIVIDUAL: US05: 544: @I25@: Marriage Before Death - Marriage Date 1959-5-4 - Death Date 1958-9-18
+ANOMALY: INDIVIDUAL: US04: 544: @I24@: Marriage Before Divorce - Marriage Date 1958-5-5 - Divorce Date 1955-10-9
+ANOMALY: INDIVIDUAL: US04: 544: @I36@: Marriage Before Divorce - Marriage Date 1958-5-5 - Divorce Date 1955-10-9
+ANOMALY: INDIVIDUAL: US05: 553: @I25@: Marriage Before Death - Marriage Date 1959-5-4 - Death Date 1958-9-18
 ANOMALY: INDIVIDUAL: US07: 185: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
 ANOMALY: INDIVIDUAL: US07: 215: @I21@: More than 150 years old - Birth Date 1820-10-8
 ANOMALY: INDIVIDUAL: US08: 185: @I18@: Child was born at 1819-7-8 before marriage of parents 1925-4-28
 ANOMALY: INDIVIDUAL: US08: 215: @I21@: Child was born at 1820-10-8 before marriage of parents 1925-4-28
 ANOMALY: INDIVIDUAL: US08: 224: @I22@: Child was born at 1923-5-8 before marriage of parents 1925-4-28
 ANOMALY: INDIVIDUAL: US08: 112: @I10@: Child was born at 1977-9-8 before marriage of parents 1978-9-2
-ANOMALY: INDIVIDUAL: US08: 376: @I37@: Child was born at 1980-9-9 after 9 month divorce of parents 1958-10-9
+ANOMALY: INDIVIDUAL: US08: 376: @I37@: Child was born at 1980-9-9 after 9 month divorce of parents 1955-10-9
 ANOMALY: INDIVIDUAL: US10: 73: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
 ANOMALY: INDIVIDUAL: US10: 20: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
 ANOMALY: INDIVIDUAL: US10: 51: @I4@: Father of family @F4@ is younger than 14 years old - Birth Date 1962-2-6
@@ -146,21 +150,19 @@ ANOMALY: INDIVIDUAL: US10: 148: @I14@: Father of family @F9@ is younger than 14 
 ANOMALY: INDIVIDUAL: US10: 158: @I15@: Wife of family @F9@ is younger than 14 years old - Birth Date 1969-9-8
 ANOMALY: INDIVIDUAL: US10: 320: @I31@: Wife of family @F10@ is younger than 14 years old - Birth Date 1955-10-17
 ANOMALY: INDIVIDUAL: US10: 367: @I36@: Father of family @F12@ is younger than 14 years old - Birth Date 1950-9-9
-ANOMALY: INDIVIDUAL: US10: 421: @I42@: Wife of family @F18@ is younger than 14 years old - Birth Date 1980-8-18
 ANOMALY: INDIVIDUAL: US11: 271: @I27@: Performing bigamy
-ANOMALY: FAMILY: US15: 453: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: FAMILY: US15: 462: @F3@: Family has 16 siblings which is more than 15 siblings
 ANOMALY: INDIVIDUAL: US16: 77: @I7@: Individual has different last name Vezon than family Venzon
 ANOMALY: INDIVIDUAL: US16: 116: @I11@: Individual has different last name Tung than family Finklea
 ANOMALY: INDIVIDUAL: US16: 191: @I19@: Individual has different last name Iglesias than family Finklea
-ANOMALY: INDIVIDUAL: US17: 577: @I30@: Individual married to child @I42@
-ANOMALY: FAMILY: US20: 478: @F4@: Person @I20@ should not marry person @I4@
+ANOMALY: FAMILY: US20: 487: @F4@: Person @I20@ should not marry person @I4@
 ANOMALY: INDIVIDUAL: US23: 324: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
 ANOMALY: INDIVIDUAL: US23: 351: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
-ANOMALY: INDIVIDUAL: US25: 453: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
-ANOMALY: INDIVIDUAL: US25: 521: @I35@: @I31@: Individuals share the same first name Sock /Malagon/ and birth date 1955-10-17 from family @F11@
-ANOMALY: FAMILY: US32: 453: @F3@: The two or more individuals were born at the same time
-ANOMALY: FAMILY: US32: 491: @F7@: The two or more individuals were born at the same time
-ANOMALY: FAMILY: US34: 433: @F1@: Family has a large spouse age difference
-ANOMALY: FAMILY: US34: 480: @F5@: Family has a large spouse age difference
-ANOMALY: FAMILY: US34: 503: @F6@: Family has a large spouse age difference
-ANOMALY: FAMILY: US34: 541: @F13@: Family has a large spouse age difference
+ANOMALY: INDIVIDUAL: US25: 462: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US25: 530: @I35@: @I31@: Individuals share the same first name Sock /Malagon/ and birth date 1955-10-17 from family @F11@
+ANOMALY: FAMILY: US32: 462: @F3@: The two or more individuals were born at the same time
+ANOMALY: FAMILY: US32: 500: @F7@: The two or more individuals were born at the same time
+ANOMALY: FAMILY: US34: 442: @F1@: Family has a large spouse age difference
+ANOMALY: FAMILY: US34: 489: @F5@: Family has a large spouse age difference
+ANOMALY: FAMILY: US34: 512: @F6@: Family has a large spouse age difference
+ANOMALY: FAMILY: US34: 550: @F13@: Family has a large spouse age difference
