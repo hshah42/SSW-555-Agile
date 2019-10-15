@@ -126,6 +126,7 @@ ERROR: INDIVIDUAL: US30: 14: @I1@: Deceased Person is married to Person @F1@
 ERROR: INDIVIDUAL: US30: 55: @I5@: Deceased Person is married to Person @F5@
 ERROR: INDIVIDUAL: US30: 250: @I25@: Deceased Person is married to Person @F13@
 -----anomaly messages-----
+ANOMALY: INDIVIDUAL: US05: 544: @I25@: Marriage Before Death - Marriage Date 1959-5-4 - Death Date 1958-9-18
 ANOMALY: INDIVIDUAL: US07: 185: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
 ANOMALY: INDIVIDUAL: US07: 215: @I21@: More than 150 years old - Birth Date 1820-10-8
 ANOMALY: INDIVIDUAL: US08: 185: @I18@: Child was born at 1819-7-8 before marriage of parents 1925-4-28
