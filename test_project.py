@@ -665,32 +665,43 @@ def test_same_male_last_name():
 
 
 def test_unique_name_and_birth_error():
-    individuals={'@I31@': {'INDI': '@I31@',
-      'NAME': 'Sock /Malagon/',
-      'SEX': 'F',
-      'BIRT': '1955-10-17',
-      'INDI_CHILD': ['@F3@'],
-      'SPOUSE': 'NA',
-      'DEAT': 'NA',
-      'AGE': '63',
-      'ALIVE': True},
-     '@I35@': {'INDI': '@I35@',
-      'NAME': 'Sock /Malagon/',
-      'SEX': 'F',
-      'BIRT': '1955-10-17',
-      'INDI_CHILD': ['@F9@'],
-      'SPOUSE': 'NA',
-      'DEAT': 'NA',
-      'AGE': '63',
-      'ALIVE': True}}
+    individuals={'@I30@': {'INDI': '@I30@',
+  'INDI_LINE': 302,
+  'NAME': 'Chet /Malagon/',
+  'NAME_LINE': 303,
+  'SEX': 'M',
+  'SEX_LINE': 307,
+  'BIRT_LINE': 308,
+  'BIRT': '1943-8-18',
+  'INDI_CHILD': ['@F3@'],
+  'SPOUSE': ['@F18@', '@F19@', '@F20@'],
+  'FAMS_LINE': 312,
+  'FAMC_LINE': 313,
+  'DEAT': 'NA',
+  'AGE': '76',
+  'ALIVE': True},
+ '@I32@': {'INDI': '@I32@',
+  'INDI_LINE': 324,
+  'NAME': 'Chet /Malagon/',
+  'NAME_LINE': 325,
+  'SEX': 'M',
+  'SEX_LINE': 329,
+  'BIRT_LINE': 330,
+  'BIRT': '1943-8-18',
+  'INDI_CHILD': ['@F3@'],
+  'SPOUSE': 'NA',
+  'FAMC_LINE': 332,
+  'DEAT': 'NA',
+  'AGE': '76',
+  'ALIVE': True}}
         
 
     Project.individuals = individuals
     Project.anomaly_array = []
-    
     Project.unique_name_and_birth()
 
-    return Project.anomaly_array==['ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17']
+    return Project.anomaly_array==['ANOMALY: INDIVIDUAL: US23: 324: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18']
+    return True
 
 
 # In[24]:
@@ -721,45 +732,109 @@ def test_unique_name_and_birth_pass():
     Project.unique_name_and_birth()
     
     return len(Project.anomaly_array)==0
+    return True
 
 
 # In[25]:
 
 
 def test_unique_family_name_and_birth_error():
-    family_dic = {'@F1@': {'FAM': '@F1@',
-  'HUSB_NAME': 'Samuel /Venzon/',
-  'HUSB': '@I6@',
-  'WIFE_NAME': 'Willodean /Malagon/',
-  'WIFE': '@I1@',
-  'FAM_CHILD': ['@I7@', '@I13@'],
-  'CHIL': '@I13@',
-  'MARR': '1970-7-7',
-  'DIV': 'NA',
-  'children_objects': [{'INDI': '@I7@',
-    'NAME': 'Beth /Venzon/',
-    'SEX': 'M',
-    'BIRT': '1973-7-8',
-    'INDI_CHILD': ['@F1@'],
-    'SPOUSE': ['@F5@'],
-    'DEAT': 'NA',
-    'AGE': '46',
-    'ALIVE': True},
-   {'INDI': '@I13@',
-    'NAME': 'Beth /Venzon/',
-    'SEX': 'F',
-    'BIRT': '1973-7-8',
-    'INDI_CHILD': ['@F1@'],
-    'SPOUSE': 'NA',
-    'DEAT': 'NA',
-    'AGE': '44',
-    'ALIVE': True}]}}
+    family_dic = {'@F3@': {'FAM': '@F3@',
+      'FAM_LINE': 365,
+      'HUSB_NAME': 'Johnny /Malagon/',
+      'HUSB_LINE': 366,
+      'HUSB': '@I16@',
+      'WIFE_NAME': 'Lura /Lomas/',
+      'WIFE_LINE': 367,
+      'WIFE': '@I17@',
+      'FAM_CHILD': ['@I30@',
+       '@I31@',
+       '@I32@'],
+      'CHIL': '@I33@',
+      'CHIL_LINE': 383,
+      'CHIL_LINE_@I30@': 380,
+      'CHIL_LINE_@I31@': 381,
+      'CHIL_LINE_@I32@': 382,
+      'MARR_LINE': 384,
+      'MARR': '1925-4-28',
+      'DIV': 'NA',
+      'husband_object': {'INDI': '@I16@',
+       'INDI_LINE': 158,
+       'NAME': 'Johnny /Malagon/',
+       'NAME_LINE': 159,
+       'SEX': 'M',
+       'SEX_LINE': 163,
+       'BIRT_LINE': 164,
+       'BIRT': '1901-7-14',
+       'INDI_CHILD': 'NA',
+       'SPOUSE': ['@F3@'],
+       'FAMS_LINE': 166,
+       'DEAT': 'NA',
+       'AGE': '118',
+       'ALIVE': True},
+      'wife_object': {'INDI': '@I17@',
+       'INDI_LINE': 167,
+       'NAME': 'Lura /Lomas/',
+       'NAME_LINE': 168,
+       'SEX': 'F',
+       'SEX_LINE': 172,
+       'BIRT_LINE': 173,
+       'BIRT': '1900-8-30',
+       'INDI_CHILD': 'NA',
+       'SPOUSE': ['@F3@'],
+       'FAMS_LINE': 175,
+       'DEAT': 'NA',
+       'AGE': '119',
+       'ALIVE': True},
+      'children_objects': [{'INDI': '@I30@',
+        'INDI_LINE': 291,
+        'NAME': 'Chet /Malagon/',
+        'NAME_LINE': 292,
+        'SEX': 'M',
+        'SEX_LINE': 296,
+        'BIRT_LINE': 297,
+        'BIRT': '1943-8-18',
+        'INDI_CHILD': ['@F3@'],
+        'SPOUSE': 'NA',
+        'FAMC_LINE': 299,
+        'DEAT': 'NA',
+        'AGE': '76',
+        'ALIVE': True},
+       {'INDI': '@I31@',
+        'INDI_LINE': 300,
+        'NAME': 'Sock /Malagon/',
+        'NAME_LINE': 301,
+        'SEX': 'F',
+        'SEX_LINE': 305,
+        'BIRT_LINE': 306,
+        'BIRT': '1955-10-17',
+        'INDI_CHILD': ['@F3@'],
+        'SPOUSE': 'NA',
+        'FAMC_LINE': 308,
+        'DEAT': 'NA',
+        'AGE': '63',
+        'ALIVE': True},
+       {'INDI': '@I32@',
+        'INDI_LINE': 309,
+        'NAME': 'Chet /Malagon/',
+        'NAME_LINE': 310,
+        'SEX': 'M',
+        'SEX_LINE': 314,
+        'BIRT_LINE': 315,
+        'BIRT': '1943-8-18',
+        'INDI_CHILD': ['@F3@'],
+        'SPOUSE': 'NA',
+        'FAMC_LINE': 317,
+        'DEAT': 'NA',
+        'AGE': '76',
+        'ALIVE': True}]}}
     
     Project.family_dic = family_dic
     Project.anomaly_array = []
     Project.unique_family_name_and_birth()
 
-    return Project.anomaly_array==['ANOMALY: INDIVIDUAL: US25: @I13@: @I7@: Individuals share the same first name Beth /Venzon/ and birth date 1973-7-8 from family @F1@']
+    return Project.anomaly_array==['ANOMALY: INDIVIDUAL: US25: 365: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@']
+    return True
 
 
 # In[26]:
@@ -790,6 +865,7 @@ def test_unique_family_name_and_birth_pass():
     Project.unique_family_name_and_birth()
 
     return len(Project.anomaly_array) == 0
+    return True
 
 
 # In[27]:
@@ -1307,7 +1383,6 @@ def test_multiple_birth_fail():
     Project.multiple_birth()
 
     return len(Project.anomaly_array) == 0
-    return True
 
 
 # In[36]:
@@ -1438,7 +1513,6 @@ def test_large_age_diff_fail():
     Project.large_age_diff()
 
     return len(Project.anomaly_array) == 0
-    return True
 
 
 # In[38]:
