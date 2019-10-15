@@ -147,18 +147,19 @@ ANOMALY: INDIVIDUAL: US10: 320: @I31@: Wife of family @F10@ is younger than 14 y
 ANOMALY: INDIVIDUAL: US10: 367: @I36@: Father of family @F12@ is younger than 14 years old - Birth Date 1950-9-9
 ANOMALY: INDIVIDUAL: US10: 421: @I42@: Wife of family @F18@ is younger than 14 years old - Birth Date 1980-8-18
 ANOMALY: INDIVIDUAL: US11: 271: @I27@: Performing bigamy
-ANOMALY: FAMILY: US16: @F3@: Family has 16 siblings which is more than 15 siblings
-ANOMALY: INDIVIDUAL: US16: @I7@: Individual has different last name Vezon than family Venzon
-ANOMALY: INDIVIDUAL: US16: @I11@: Individual has different last name Tung than family Finklea
-ANOMALY: INDIVIDUAL: US16: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: FAMILY: US15: 453: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: 77: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: 116: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: 191: @I19@: Individual has different last name Iglesias than family Finklea
 ANOMALY: INDIVIDUAL: US17: 577: @I30@: Individual married to child @I42@
-ANOMALY: FAMILY: US20: 478: Person @I20@ should not marry person @I4@
-ANOMALY: INDIVIDUAL: US23: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
-ANOMALY: INDIVIDUAL: US23: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
-ANOMALY: INDIVIDUAL: US25: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
-ANOMALY: FAMILY: US32: 453: The two or more individuals were born at the same time in a family @F3@
-ANOMALY: FAMILY: US32: 491: The two or more individuals were born at the same time in a family @F7@
-ANOMALY: FAMILY: US34: 433: Family with unique id: @F1@ has a large spouse age difference
-ANOMALY: FAMILY: US34: 480: Family with unique id: @F5@ has a large spouse age difference
-ANOMALY: FAMILY: US34: 503: Family with unique id: @F6@ has a large spouse age difference
-ANOMALY: FAMILY: US34: 541: Family with unique id: @F13@ has a large spouse age difference
+ANOMALY: FAMILY: US20: 478: @F4@: Person @I20@ should not marry person @I4@
+ANOMALY: INDIVIDUAL: US23: 324: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
+ANOMALY: INDIVIDUAL: US23: 351: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: 453: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
+ANOMALY: INDIVIDUAL: US25: 521: @I35@: @I31@: Individuals share the same first name Sock /Malagon/ and birth date 1955-10-17 from family @F11@
+ANOMALY: FAMILY: US32: 453: @F3@: The two or more individuals were born at the same time
+ANOMALY: FAMILY: US32: 491: @F7@: The two or more individuals were born at the same time
+ANOMALY: FAMILY: US34: 433: @F1@: Family has a large spouse age difference
+ANOMALY: FAMILY: US34: 480: @F5@: Family has a large spouse age difference
+ANOMALY: FAMILY: US34: 503: @F6@: Family has a large spouse age difference
+ANOMALY: FAMILY: US34: 541: @F13@: Family has a large spouse age difference

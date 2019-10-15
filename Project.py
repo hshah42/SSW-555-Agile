@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+
 # coding: utf-8
 
 # In[1]:
@@ -457,7 +457,7 @@ def check_sibling_count():
     for family_id in family_dic:
         family = family_dic[family_id]
         if (len(family["FAM_CHILD"]) > 15):
-            anomaly_array.append("ANOMALY: FAMILY: US16: {}: Family has {} siblings which is more than 15 siblings"                 .format(family_id, len(family["FAM_CHILD"])))
+            anomaly_array.append("ANOMALY: FAMILY: US15: {}: {}: Family has {} siblings which is more than 15 siblings"                 .format(family["FAM_LINE"], family_id, len(family["FAM_CHILD"])))
 
 
 # In[23]:
@@ -495,7 +495,7 @@ def check_last_names():
                         last_name = get_last_name(child["NAME"])
                     else:
                         if last_name != get_last_name(child["NAME"]):
-                            anomaly_array.append("ANOMALY: INDIVIDUAL: US16: {}: Individual has different last name {} than family {}"                                   .format(child["INDI"], get_last_name(child["NAME"]), last_name))
+                            anomaly_array.append("ANOMALY: INDIVIDUAL: US16: {}: {}: Individual has different last name {} than family {}"                                   .format(child["NAME_LINE"], child["INDI"], get_last_name(child["NAME"]), last_name))
 
 
 # In[25]:
@@ -547,10 +547,10 @@ def is_uncle_aunt_marriage_legal():
                             for sp in current_sp:
                                 if (family_dic[sp]["WIFE"] in spouse_family["FAM_CHILD"]):
                                     current_sp_family = family_dic[sp].values()
-                                    anomaly_array.append("ANOMALY: FAMILY: US20: {}: Person {} should not marry person {}".format(family_dic[sp]["HUSB_LINE"], family_dic[sp]["HUSB"], family_dic[sp]["WIFE"]))
+                                    anomaly_array.append("ANOMALY: FAMILY: US20: {}: {}: Person {} should not marry person {}".format(family_dic[sp]["HUSB_LINE"], family_dic[sp]["FAM"], family_dic[sp]["HUSB"], family_dic[sp]["WIFE"]))
                                     return False
                                 elif(family_dic[sp]["HUSB"] in spouse_family["FAM_CHILD"]):
-                                    anomaly_array.append("ANOMALY: FAMILY: US20: {}: Person {} should not marry person {}".format(family_dic[sp]["WIFE_LINE"], family_dic[sp]["WIFE"], family_dic[sp]["HUSB"]))
+                                    anomaly_array.append("ANOMALY: FAMILY: US20: {}: {}: Person {} should not marry person {}".format(family_dic[sp]["WIFE_LINE"], family_dic[sp]["FAM"], family_dic[sp]["WIFE"], family_dic[sp]["HUSB"]))
                                     return False
     return True
 
@@ -646,7 +646,7 @@ def multiple_birth():
             for child in value["children_objects"]:
                 temp = str(child["INDI_CHILD"]) + child["BIRT"]
                 if temp in li:
-                    anomaly_array.append("ANOMALY: FAMILY: US32: {}: The two or more individuals were born at the same time in a family {}".format(value["FAM_LINE"], value["FAM"]))
+                    anomaly_array.append("ANOMALY: FAMILY: US32: {}: {}: The two or more individuals were born at the same time".format(value["FAM_LINE"], value["FAM"]))
                 else:          
                     li[temp]=child["INDI"]
 
@@ -667,7 +667,7 @@ def large_age_diff():
             wage = int(wife["AGE"])
             agediff = hage/wage
             if agediff>=2 or agediff<=0.5:
-                anomaly_array.append("ANOMALY: FAMILY: US34: {}: Family with unique id: {} has a large spouse age difference".format(value["FAM_LINE"], value["FAM"]))
+                anomaly_array.append("ANOMALY: FAMILY: US34: {}: {}: Family has a large spouse age difference".format(value["FAM_LINE"], value["FAM"]))
                 
 
 
@@ -834,10 +834,4 @@ large_age_diff()
 
 #Prints out all the errors and anomalies of each function
 printError()
-
-
-# In[ ]:
-
-
-
 
