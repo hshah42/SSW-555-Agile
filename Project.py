@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
 # In[1]:
@@ -172,7 +172,7 @@ def create_family_dic():
             
 
 
-# In[14]:
+# In[13]:
 
 
 # Reads the input GEDCOM file line by line and store the data into the dictionary
@@ -264,7 +264,7 @@ def read_in(file):
                   
 
 
-# In[15]:
+# In[14]:
 
 
 # USID: 01
@@ -289,7 +289,7 @@ def validate_dates():
                 error_array.append("ERROR: INDIVIDUAL: US01: {}: {}: Individual has death date {} later than today".format(indi["DEAT_LINE"], indi["INDI"], indi["DEAT"]))     
 
 
-# In[16]:
+# In[15]:
 
 
 #USID: 02
@@ -319,7 +319,7 @@ def is_birth_before_marraige():
                  error_array.append(("ERROR: INDIVIDUAL: US02: {}: {}: Person has marriage date {} before birth date {}")                                    .format(family['MARR_LINE'], family["wife_object"]["INDI"], marriage_date, wife_birth_date))
 
 
-# In[17]:
+# In[16]:
 
 
 #USID: 07
@@ -335,7 +335,7 @@ def is_age_legal():
                     anomaly_array.append("ANOMALY: INDIVIDUAL: US07: {}: {}: More than 150 years old at death - Birth Date {}: Death Date {}".format(indi["BIRT_LINE"], indi_id, indi["BIRT"], indi["DEAT"]))
 
 
-# In[18]:
+# In[17]:
 
 
 #Birth before marriage of parents USID: 08
@@ -353,7 +353,7 @@ def birth_before_marriage():
                          anomaly_array.append("ANOMALY: INDIVIDUAL: US08: {}: {}: Child was born at {} after 9 month divorce of parents {}".format(child["BIRT_LINE"], child["INDI"], child["BIRT"], divorce_date))
 
 
-# In[19]:
+# In[18]:
 
 
 #Birth before death of parents USID: 09
@@ -373,7 +373,7 @@ def birth_before_death():
                         error_array.append("ERROR: INDIVIDUAL: US09: {}: {}: Child was born at {} after 9 month death of father {}".format(child["BIRT_LINE"], child["INDI"], child["BIRT"], husband_death))
 
 
-# In[20]:
+# In[19]:
 
 
 # USID: 10
@@ -391,7 +391,7 @@ def is_marriage_legal():
                 anomaly_array.append("ANOMALY: INDIVIDUAL: US10: {}: {}: Wife of family {} is younger than 14 years old - Birth Date {}".format(wife["BIRT_LINE"], wife["INDI"], family_id, wife["BIRT"]))
 
 
-# In[21]:
+# In[20]:
 
 
 # USID: 11
@@ -417,7 +417,7 @@ def check_for_bigamy():
                     anomaly_array.append("ANOMALY: INDIVIDUAL: US11: {}: {}: Performing bigamy".format(individual["INDI_LINE"], individual["INDI"]))
 
 
-# In[22]:
+# In[21]:
 
 
 def compare_marraige_dates(dates):
@@ -449,7 +449,7 @@ def compare_marraige_dates(dates):
     return False
 
 
-# In[23]:
+# In[22]:
 
 
 # User Story: US15
@@ -460,7 +460,7 @@ def check_sibling_count():
             anomaly_array.append("ANOMALY: FAMILY: US16: {}: Family has {} siblings which is more than 15 siblings"                 .format(family_id, len(family["FAM_CHILD"])))
 
 
-# In[24]:
+# In[23]:
 
 
 # Returns the lastname of the name
@@ -470,7 +470,7 @@ def get_last_name(name):
     return name.split('/')[1];
 
 
-# In[25]:
+# In[24]:
 
 
 # User story: US16
@@ -498,7 +498,7 @@ def check_last_names():
                             anomaly_array.append("ANOMALY: INDIVIDUAL: US16: {}: Individual has different last name {} than family {}"                                   .format(child["INDI"], get_last_name(child["NAME"]), last_name))
 
 
-# In[26]:
+# In[25]:
 
 
 # User Story 17
@@ -512,7 +512,7 @@ def check_parent_child_marriage():
                 anomaly_array.append("ANOMALY: INDIVIDUAL: US17: {}: {}: Individual married to child {}"                                     .format(family["WIFE_LINE"], family["WIFE"], family["HUSB"]))
 
 
-# In[27]:
+# In[26]:
 
 
 def is_spouse_a_child(individual_id, spouse_id):
@@ -526,7 +526,7 @@ def is_spouse_a_child(individual_id, spouse_id):
         return False
 
 
-# In[28]:
+# In[27]:
 
 
 #User_Story_20 Aunts and uncles
@@ -555,7 +555,7 @@ def is_uncle_aunt_marriage_legal():
     return True
 
 
-# In[29]:
+# In[28]:
 
 
 #USID: 23
@@ -564,28 +564,28 @@ def unique_name_and_birth():
     for value in individuals.values():
         temp = value["NAME"] + value["BIRT"]
         if temp in li:
-            anomaly_array.append("ANOMALY: INDIVIDUAL: US23: {}: {}: Individuals have the same name {} and birth date {}".format(value["INDI"], li[temp], value["NAME"], value["BIRT"]))
+            anomaly_array.append("ANOMALY: INDIVIDUAL: US23: {}: {}: {}: Individuals have the same name {} and birth date {}".format(value["INDI_LINE"], value["INDI"], li[temp], value["NAME"], value["BIRT"]))
         else:
             li[temp]=value["INDI"]
 
 
-# In[30]:
+# In[29]:
 
 
 #USID: 25
 def unique_family_name_and_birth():
+    li = {}
     for value in family_dic.values():
-        li = {}
         if "children_objects" in value:
             for child in value["children_objects"]:
                 temp = child["NAME"] + child["BIRT"]
                 if temp in li:
-                    anomaly_array.append("ANOMALY: INDIVIDUAL: US25: {}: {}: Individuals share the same first name {} and birth date {} from family {}".format(child["INDI"], li[temp], child["NAME"], child["BIRT"], value["FAM"]))
+                    anomaly_array.append("ANOMALY: INDIVIDUAL: US25: {}: {}: {}: Individuals share the same first name {} and birth date {} from family {}".format(value["FAM_LINE"], child["INDI"], li[temp], child["NAME"], child["BIRT"], value["FAM"]))
                 else:          
                     li[temp]=child["INDI"]
 
 
-# In[31]:
+# In[30]:
 
 
 #User_Story_29: List all deceased individuals in a GEDCOM file
@@ -612,7 +612,7 @@ def listDeceased():
     
 
 
-# In[32]:
+# In[31]:
 
 
 #User_Story_30: List all living married people in a GEDCOM file
@@ -635,7 +635,7 @@ def listLivingMarried():
         printTable("US30: Living & Married People Table", allFields, tagNames, current_dic)
 
 
-# In[33]:
+# In[32]:
 
 
 #US 32: List multiple births
@@ -651,7 +651,7 @@ def multiple_birth():
                     li[temp]=child["INDI"]
 
 
-# In[34]:
+# In[33]:
 
 
 #US 34: 
@@ -671,7 +671,7 @@ def large_age_diff():
                 
 
 
-# In[35]:
+# In[34]:
 
 
 # Prints out the Individual Table
@@ -683,7 +683,7 @@ def printIndividualTable():
     printTable("People Table", allFields, tagNames, individuals)
 
 
-# In[36]:
+# In[35]:
 
 
 # Prints out the Family Table
@@ -695,7 +695,7 @@ def printFamilyTable():
     printTable("Families Table", allFields, tagNames, family_dic)
 
 
-# In[37]:
+# In[36]:
 
 
 # Prints out the data in both error and anomaly arrays
@@ -717,7 +717,7 @@ def printError():
     
 
 
-# In[38]:
+# In[37]:
 
 
 # Prints out a table of dictionary data with the passed-in arguments
@@ -751,7 +751,7 @@ def printTable(table_name, fields, tag_names, dictionary):
     print(table)
 
 
-# In[39]:
+# In[38]:
 
 
 # Stores all Project outputs into a single text file
@@ -764,7 +764,7 @@ def storeResults(result_name, outputs):
     file.close()
 
 
-# In[40]:
+# In[39]:
 
 
 # Global variables initialization
@@ -783,7 +783,7 @@ error_array = []
 anomaly_array = []
 
 
-# In[41]:
+# In[40]:
 
 
 document = read_in("./acceptance_test_file_sprint2.ged")
@@ -834,4 +834,10 @@ large_age_diff()
 
 #Prints out all the errors and anomalies of each function
 printError()
+
+
+# In[ ]:
+
+
+
 
