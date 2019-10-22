@@ -2018,7 +2018,79 @@ def test_list_upcoming_anni_fail():
     
     Project.family_dic = family_dic
     return Project.list_upcoming_anni() == False
+
+
+# In[ ]:
+
+
+def test_check_sibling_spacing_1_month_apart():
+    family_dic = { '@F1@': {'FAM_CHILD': ['@I1@', '@I2@']} }
+    individuals = {'@I1@': {'INDI_LINE': 1, 'BIRT': '2001-10-1', 'INDI_CHILD': ['@F1@']}, '@I2@': {'INDI_LINE': 2, 'BIRT': '2001-11-1', 'INDI_CHILD': ['@F1@']}}
+    result_array = ['ERROR: INDIVIDUAL: US13: 1: Child @I1@ is born within 8 months and more than 2 days of sibling', 'ERROR: INDIVIDUAL: US13: 2: Child @I2@ is born within 8 months and more than 2 days of sibling']
+    Project.family_dic = family_dic
+    Project.individuals = individuals
+    Project.error_array = []
     
+    Project.check_sibling_spacing()
+    
+    assert Project.error_array == result_array
+    return True
+
+
+# In[ ]:
+
+
+def test_check_sibling_spacing_siblings_1_day_apart():
+    family_dic = { '@F1@': {'FAM_CHILD': ['@I1@', '@I2@']}}
+    individuals = {'@I1@': {'INDI_LINE': 1, 'BIRT': '2001-10-1'}, '@I2@': {'INDI_LINE': 2, 'BIRT': '2001-10-2'}}
+    result_array = ['ERROR: INDIVIDUAL: US13: 1: Child @I1@ is born within 8 months and more than 2 days of sibling', 'ERROR: INDIVIDUAL: US13: 2: Child @I2@ is born within 8 months and more than 2 days of sibling']
+    Project.family_dic = family_dic
+    Project.individuals = individuals
+    Project.error_array = []
+    
+    Project.check_sibling_spacing()
+    
+    assert len(Project.error_array) == 0
+    
+    return True
+
+
+# In[ ]:
+
+
+def test_check_sibling_marriage_married():
+    family_dic = { '@F1@': {'FAM_CHILD': ['@I1@', '@I2@']}, '@F2@': {'WIFE':'@I1@', 'HUSB': '@I2@'}}
+    individuals = {'@I1@': {'SPOUSE': ['@F2@'], 'INDI_LINE': 1, 'BIRT': '2001-10-1', 'INDI_CHILD': ['@F1@']}, '@I2@': {'SPOUSE': ['@F2@'], 'INDI_LINE': 2, 'BIRT': '2001-10-2', 'INDI_CHILD': ['@F1@']}}
+    result_array = ['ANOMALY: INDIVIDUAL: US18: 1: @I1@: Individual married to sibling @I2@', 'ANOMALY: INDIVIDUAL: US18: 2: @I2@: Individual married to sibling @I1@']
+    
+    Project.anomaly_array = []
+    Project.family_dic = family_dic
+    Project.individuals = individuals
+    
+    Project.check_sibling_marriage()
+    
+    assert Project.anomaly_array == result_array
+    
+    return True
+
+
+# In[ ]:
+
+
+def test_check_sibling_marriage_not_married():
+    family_dic = { '@F1@': {'FAM_CHILD': ['@I1@']}, '@F2@': {'WIFE':'@I1@', 'HUSB': '@I2@'}}
+    individuals = {'@I1@': {'SPOUSE': ['@F2@'], 'INDI_LINE': 1, 'BIRT': '2001-10-1', 'INDI_CHILD': ['@F1@']}, '@I2@': {'SPOUSE': ['@F2@'], 'INDI_LINE': 2, 'BIRT': '2001-10-2'}}
+    result_array = ['ANOMALY: INDIVIDUAL: US18: 1: @I1@: Individual married to sibling @I2@', 'ANOMALY: INDIVIDUAL: US18: 2: @I2@: Individual married to sibling @I1@']
+    
+    Project.anomaly_array = []
+    Project.family_dic = family_dic
+    Project.individuals = individuals
+    
+    Project.check_sibling_marriage()
+    
+    assert len(Project.anomaly_array) == 0
+    
+    return True
 
 
 # In[87]:
@@ -2119,7 +2191,14 @@ class TestStringMethods(unittest.TestCase):
         self.assertTrue(test_list_upcoming_anni_pass());
     def test_list_upcoming_anni_fail(self):
         self.assertTrue(test_list_upcoming_anni_fail());
-        
+    def test_check_sibling_spacing_1_month_apart(self):
+        self.assertTrue(test_check_sibling_spacing_1_month_apart());
+    def test_check_sibling_spacing_siblings_1_day_apart(self):
+        self.assertTrue(test_check_sibling_spacing_siblings_1_day_apart());
+    def test_check_sibling_marriage_married(self):
+        self.assertTrue(test_check_sibling_marriage_married());
+    def test_check_sibling_marriage_not_married(self):
+        self.assertTrue(test_check_sibling_marriage_not_married());
         
         
 suite = unittest.TestLoader().loadTestsFromTestCase(TestStringMethods)

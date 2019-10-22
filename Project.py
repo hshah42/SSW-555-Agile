@@ -5,7 +5,6 @@
 
 
 # All the file imports
-get_ipython().system('pip install prettytable')
 from datetime import datetime
 from prettytable import PrettyTable
 import os
@@ -286,7 +285,7 @@ def validate_dates():
                 error_array.append("ERROR: INDIVIDUAL: US01: {}: {}: Individual has birth date {} later than today".format(indi["BIRT_LINE"], indi["INDI"], indi["BIRT"]))     
         if indi["DEAT"] != "NA":
             if(determine_age(indi["DEAT"], None) < 0):
-                error_array.append("ERROR: INDIVIDUAL: US01: {}: {}: Individual has death date {} later than today".format(indi["DEAT_LINE"], indi["INDI"], indi["DEAT"]))     
+                error_array.append("ERROR: INDIVIDUAL: US01: {}: {}: Individual has death date {} later than today".format(indi["DEAT_LINE"], indi["INDI"], indi["DEAT"]))
 
 
 # In[1462]:
@@ -489,6 +488,60 @@ def compare_marraige_dates(dates):
     return False
 
 
+# In[ ]:
+
+
+# US13
+def check_sibling_spacing():
+    for family_id in family_dic:
+        family = family_dic[family_id]
+        if (len(family["FAM_CHILD"]) > 0) and family["FAM_CHILD"] != "NA":
+            for child in family["FAM_CHILD"]:
+                siblings = get_individual_siblings(child, False, True)
+                child_object = individuals[child]
+                for sibling in siblings:
+                    if sibling != child:
+                        sibling_object = individuals[sibling]
+                        days = determine_days(child_object["BIRT"], sibling_object["BIRT"])
+                        days = abs(days)
+                        if 2 < days < (8 * 30):
+                            error_array.append("ERROR: INDIVIDUAL: US13: {}: Child {} is born within 8 months and more than 2 days of sibling"                                               .format(child_object["INDI_LINE"], child))
+
+
+# In[ ]:
+
+
+def get_individual_siblings(id, include_husb, include_wife):
+    individual = individuals[id]
+    siblings = []
+    if "INDI_CHILD" in individual and individual["INDI_CHILD"] != "NA":
+        for family_id in individual["INDI_CHILD"]:
+            family = family_dic[family_id]
+            if "FAM_CHILD" in family and family["FAM_CHILD"] != "NA":
+                siblings.extend(family["FAM_CHILD"])
+            if include_husb:
+                if "husband_object" in family and family["husband_object"] != "NA":
+                    siblings.extend(get_all_children(family["husband_object"]))
+            if include_wife:
+                if "wife_object" in family and family["wife_object"] != "NA":
+                    siblings.extend(get_all_children(family["wife_object"]))
+    siblings = list(set(siblings))
+    return siblings
+
+
+# In[ ]:
+
+
+def get_all_children(individual_object):
+    spouses = individual_object["SPOUSE"]
+    children = []
+    for spouse_family_id in spouses:
+        individual_family = family_dic[spouse_family_id]
+        if (len(individual_family["FAM_CHILD"]) > 0) and individual_family["FAM_CHILD"] != "NA":
+            children.extend(individual_family["FAM_CHILD"])
+    return children
+
+
 # In[1471]:
 
 
@@ -564,6 +617,28 @@ def is_spouse_a_child(individual_id, spouse_id):
                 if "FAM_CHILD" in family and spouse_id in family["FAM_CHILD"]:
                     return True
         return False
+
+
+# In[ ]:
+
+
+# User story 18
+def check_sibling_marriage():
+    for individual_id in individuals:
+        individual = individuals[individual_id]
+        if "SPOUSE" in individual and individual["SPOUSE"] != "NA":
+            siblings = get_individual_siblings(individual_id, True, True)
+            for spouse_family_id in individual["SPOUSE"]:
+                spouse_family = family_dic[spouse_family_id]
+                spouse_id = None
+                if "WIFE" in spouse_family and spouse_family["WIFE"] != "NA":
+                    if spouse_family["WIFE"] != individual_id:
+                        spouse_id = spouse_family["WIFE"]
+                if "HUSB" in spouse_family and spouse_family["HUSB"] != "NA":
+                    if spouse_family["HUSB"] != individual_id:
+                        spouse_id = spouse_family["HUSB"]
+                if spouse_id is not None and spouse_id in siblings:
+                    anomaly_array.append("ANOMALY: INDIVIDUAL: US18: {}: {}: Individual married to sibling {}"                                         .format(individual["INDI_LINE"], individual_id, spouse_id))
 
 
 # In[1476]:
@@ -917,12 +992,16 @@ birth_before_death()
 is_marriage_legal()
 #User 11
 check_for_bigamy()
+#User 13
+check_sibling_spacing()
 #User 15
 check_sibling_count()
 #User 16
 check_last_names()
 #User 17
 check_parent_child_marriage()
+#User 18
+check_sibling_marriage()
 #User 20
 is_uncle_aunt_marriage_legal()
 #User 23
