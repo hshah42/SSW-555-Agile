@@ -29,14 +29,14 @@ People Table
 | @I25@ |   Hailey /Malagon/   |    F   |   1938-10-8 |  19  |  False |  1958-9-18 |  @F3@  |        @F13@       |
 | @I26@ |   Milford /Malagon/  |    M   |   1939-11-8 |  79  |  True  |     NA     |  @F3@  |         NA         |
 | @I27@ |   Rashida /Malagon/  |    F   |   1940-12-7 |  78  |  True  |     NA     |  @F3@  |  @F14@,@F15@,@F16@ |
-| @I28@ |   Deeann /Malagon/   |    F   |  1941-10-23 |  77  |  True  |     NA     |  @F3@  |         NA         |
+| @I28@ |   Deeann /Malagon/   |    F   |  1941-10-23 |  78  |  True  |     NA     |  @F3@  |         NA         |
 | @I29@ |    Dario /Malagon/   |    M   |  1942-12-14 |  76  |  True  |     NA     |  @F3@  |        @F17@       |
 | @I30@ |    Chet /Malagon/    |    M   |   1943-8-18 |  76  |  True  |     NA     |  @F3@  |  @F18@,@F19@,@F20@ |
-| @I31@ |    Sock /Malagon/    |    F   |  1955-10-17 |  63  |  True  |     NA     |  @F3@  |        @F10@       |
+| @I31@ |    Sock /Malagon/    |    F   |  1955-10-17 |  64  |  True  |     NA     |  @F3@  |        @F10@       |
 | @I32@ |    Chet /Malagon/    |    M   |   1943-8-18 |  76  |  True  |     NA     |  @F3@  |         NA         |
 | @I33@ |    Loyd /Malagon/    |    M   |   1965-8-9  |  54  |  True  |     NA     |  @F3@  |         NA         |
 | @I34@ |    Kitty /Malagon/   |    F   |   1925-6-5  |  94  |  True  |     NA     |   NA   |        @F11@       |
-| @I35@ |    Sock /Malagon/    |    F   |  1955-10-17 |  63  |  True  |     NA     |  @F11@ |        @F17@       |
+| @I35@ |    Sock /Malagon/    |    F   |  1955-10-17 |  64  |  True  |     NA     |  @F11@ |        @F17@       |
 | @I36@ |       Kay /Ali/      |    M   |   1950-9-9  |  69  |  True  |     NA     |   NA   |        @F12@       |
 | @I37@ |  Calfuray /Malagon/  |    F   |   1980-9-9  |  39  |  True  |     NA     |  @F12@ |         NA         |
 | @I38@ |     Vasu /Zdenek/    |    M   |   1940-8-9  |  79  |  True  |     NA     |   NA   |        @F13@       |
@@ -107,9 +107,9 @@ US30: Living & Married People Table
 | @I27@ |   Rashida /Malagon/  |    F   |   1940-12-7 |  78  |  True |   NA  |  @F14@,@F15@,@F16@ |
 | @I29@ |    Dario /Malagon/   |    M   |  1942-12-14 |  76  |  True |   NA  |        @F17@       |
 | @I30@ |    Chet /Malagon/    |    M   |   1943-8-18 |  76  |  True |   NA  |  @F18@,@F19@,@F20@ |
-| @I31@ |    Sock /Malagon/    |    F   |  1955-10-17 |  63  |  True |   NA  |        @F10@       |
+| @I31@ |    Sock /Malagon/    |    F   |  1955-10-17 |  64  |  True |   NA  |        @F10@       |
 | @I34@ |    Kitty /Malagon/   |    F   |   1925-6-5  |  94  |  True |   NA  |        @F11@       |
-| @I35@ |    Sock /Malagon/    |    F   |  1955-10-17 |  63  |  True |   NA  |        @F17@       |
+| @I35@ |    Sock /Malagon/    |    F   |  1955-10-17 |  64  |  True |   NA  |        @F17@       |
 | @I36@ |       Kay /Ali/      |    M   |   1950-9-9  |  69  |  True |   NA  |        @F12@       |
 | @I38@ |     Vasu /Zdenek/    |    M   |   1940-8-9  |  79  |  True |   NA  |        @F13@       |
 | @I39@ |      Yam /Tarah/     |    M   |   1941-9-9  |  78  |  True |   NA  |        @F15@       |
@@ -119,14 +119,32 @@ US30: Living & Married People Table
 | @I44@ |  Prabhakar /Jamyang/ |    F   |   1946-9-6  |  73  |  True |   NA  |        @F18@       |
 +-------+----------------------+--------+-------------+------+-------+-------+--------------------+
 
+US38 List Upcoming Birthdays Table
++-------+--------------------+--------+-------------+-----+--------+-----------+--------+
+|   ID  |        Name        | Gender |   Birthday  | Age | Alive  |   Death   | Spouse |
++-------+--------------------+--------+-------------+-----+--------+-----------+--------+
+|  @I5@ |   Josh /Malagon/   |    M   |  1964-10-31 |  19 |  False |  1984-5-7 |  @F5@  |
+| @I14@ |   Jacob /Malagon/  |    M   |   1970-11-8 |  48 |  True  |     NA    |  @F9@  |
+| @I24@ |   Shena /Malagon/  |    F   |   1937-11-6 |  81 |  True  |     NA    |  @F12@ |
+| @I26@ |  Milford /Malagon/ |    M   |   1939-11-8 |  79 |  True  |     NA    |   NA   |
++-------+--------------------+--------+-------------+-----+--------+-----------+--------+
+
 ------error messages------
 ERROR: INDIVIDUAL: US01: 130: @I12@: Individual has birth date 2021-8-9 later than today
 ERROR: INDIVIDUAL: US02: 522: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
 ERROR: INDIVIDUAL: US02: 522: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
 ERROR: INDIVIDUAL: US09: 139: @I13@: Child was born at 1975-7-8 after death of mother 1974-6-20
+ERROR: FAMILY: US12: 36: @F2@: Wife is 72 older than the child @I1@.
+ERROR: FAMILY: US12: 36: @F2@: Wife is 68 older than the child @I5@.
+ERROR: INDIVIDUAL: US12: 161: @F3@: Father is 117 older than the child @I23@.
+ERROR: FAMILY: US12: 170: @F3@: Wife is 118 older than the child @I23@.
+ERROR: INDIVIDUAL: US12: 161: @F3@: Father is 99 older than the child @I25@.
+ERROR: FAMILY: US12: 170: @F3@: Wife is 100 older than the child @I25@.
+ERROR: FAMILY: US12: 170: @F3@: Wife is 65 older than the child @I33@.
 ERROR: INDIVIDUAL: US30: 14: @I1@: Deceased Person is married to Person @F1@
 ERROR: INDIVIDUAL: US30: 55: @I5@: Deceased Person is married to Person @F5@
 ERROR: INDIVIDUAL: US30: 250: @I25@: Deceased Person is married to Person @F13@
+ERROR: FAMILY: US39: 485: Family @F4@ does not have married date!
 -----anomaly messages-----
 ANOMALY: INDIVIDUAL: US04: 544: @I24@: Marriage Before Divorce - Marriage Date 1958-5-5 - Divorce Date 1955-10-9
 ANOMALY: INDIVIDUAL: US04: 544: @I36@: Marriage Before Divorce - Marriage Date 1958-5-5 - Divorce Date 1955-10-9
@@ -155,6 +173,8 @@ ANOMALY: FAMILY: US15: 462: @F3@: Family has 16 siblings which is more than 15 s
 ANOMALY: INDIVIDUAL: US16: 77: @I7@: Individual has different last name Vezon than family Venzon
 ANOMALY: INDIVIDUAL: US16: 116: @I11@: Individual has different last name Tung than family Finklea
 ANOMALY: INDIVIDUAL: US16: 191: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US18: 218: @I22@: Individual married to sibling @I31@
+ANOMALY: INDIVIDUAL: US18: 314: @I31@: Individual married to sibling @I22@
 ANOMALY: FAMILY: US20: 487: @F4@: Person @I20@ should not marry person @I4@
 ANOMALY: INDIVIDUAL: US23: 324: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
 ANOMALY: INDIVIDUAL: US23: 351: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
