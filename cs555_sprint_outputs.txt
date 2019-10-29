@@ -80,14 +80,14 @@ US29: Deceased People Table
 +-------+----------------------+--------+-------------+------+--------+------------+
 |   ID  |         Name         | Gender |   Birthday  | Age  | Alive  |   Death    |
 +-------+----------------------+--------+-------------+------+--------+------------+
-|  @I1@ |  Willodean /Malagon/ |    F   |   1958-7-7  |  15  |  False |  1974-6-20 |
+|  @I1@ |  Willodean /Malagon/ |    F   |   1958-7-7  |  16  |  False |  1974-6-20 |
 |  @I5@ |    Josh /Malagon/    |    M   |  1964-10-31 |  19  |  False |  1984-5-7  |
 | @I14@ |    Jacob /Malagon/   |    M   |   1970-11-8 |  17  |  False |  1988-9-29 |
-| @I15@ |  Jaqueline /Kindel/  |    F   |   1969-9-8  |  17  |  False |  1987-7-6  |
+| @I15@ |  Jaqueline /Kindel/  |    F   |   1969-9-8  |  18  |  False |  1987-7-6  |
 | @I18@ |    Tesha /Malagon/   |    F   |   1819-7-8  |  200 |  False |  2019-8-2  |
-| @I21@ |     Regena /Ali/     |    F   |   1820-10-8 |  -2  |  False |  1819-3-3  |
+| @I21@ |     Regena /Ali/     |    F   |   1820-10-8 |  -1  |  False |  1819-3-3  |
 | @I23@ |   Vonnie /Malagon/   |    M   |   1936-3-10 |   1  |  False |  1937-7-6  |
-| @I25@ |   Hailey /Malagon/   |    F   |   1938-10-8 |  19  |  False |  1958-9-18 |
+| @I25@ |   Hailey /Malagon/   |    F   |   1938-10-8 |  20  |  False |  1958-9-18 |
 +-------+----------------------+--------+-------------+------+--------+------------+
 
 US30: Living & Married People Table
@@ -140,6 +140,7 @@ US38 List Upcoming Birthdays Table
 ERROR: INDIVIDUAL: US01: 131: @I12@: Individual has birth date 2021-8-9 later than today
 ERROR: INDIVIDUAL: US02: 538: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
 ERROR: INDIVIDUAL: US02: 538: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: INDIVIDUAL: US03: @I21@: Individual has Birth date 1820-10-8 after Death Date 1819-3-3
 ERROR: FAMILY: US06: 541: @F10@: Divorce 1990-7-12 happened after the death of both spouses - Husband: 1988-9-29 Wife: 1987-7-6.
 ERROR: INDIVIDUAL: US09: 140: @I13@: Child was born at 1975-7-8 after death of mother 1974-6-20
 ERROR: FAMILY: US12: 36: @F2@: Wife is 72 older than the child @I1@.
@@ -205,17 +206,3 @@ ANOMALY: FAMILY: US34: 568: @F14@: Family has a large spouse age difference
 ANOMALY: FAMILY: US34: 574: @F15@: Family has a large spouse age difference
 ANOMALY: INDIVIDUAL: US19: 226: @I22@: Individual married to cousins @I31@
 ANOMALY: INDIVIDUAL: US19: 323: @I31@: Individual married to cousins @I22@
-US39: List Upcoming Anniversaries Table
-+------+-------------+------------+----------------+---------+---------------+
-|  ID  |   Married   | Husband ID |  Husband Name  | Wife ID |   Wife Name   |
-+------+-------------+------------+----------------+---------+---------------+
-| @F1@ |  2019-11-08 |    @I2@    |  Johny /Chang/ |   @I3@  |  Nancy /Tsai/ |
-+------+-------------+------------+----------------+---------+---------------+
-
-US38 List Upcoming Birthdays Table
-+------+----------------+--------+-------------+-----+-------+-------+--------+
-|  ID  |      Name      | Gender |   Birthday  | Age | Alive | Death | Spouse |
-+------+----------------+--------+-------------+-----+-------+-------+--------+
-| @I1@ |  David /Chang/ |    M   |  2019-11-08 |  31 |  True |   NA  |   NA   |
-+------+----------------+--------+-------------+-----+-------+-------+--------+
-
