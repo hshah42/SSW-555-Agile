@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
 # In[177]:
@@ -2525,8 +2525,9 @@ def test_check_sibling_marriage_not_married():
 
 
 def test_check_cousin_marriage_pass():
-    family_dic = { '@F1@': {'FAM_CHILD': ['@I1@', '@I2@']}, '@F2@': {'WIFE':'@I1@', 'HUSB': '@I2@'}}
-    individuals = {'@I1@': {'SPOUSE': ['@F2@'], 'INDI_LINE': 1, 'BIRT': '2001-10-1', 'INDI_CHILD': ['@F1@']}, '@I2@': {'SPOUSE': ['@F2@'], 'INDI_LINE': 2, 'BIRT': '2001-10-2', 'INDI_CHILD': ['@F1@']}}
+    family_dic = { '@F1@': {'HUSB':'@I3@', 'FAM_CHILD': ['@I1@']}, '@F2@': {'WIFE':'@I1@', 'HUSB': '@I2@'}, '@F3@': {'FAM_CHILD': ['@I3@', '@I4@']}, '@F4@': {'HUSB':'@I4@', 'FAM_CHILD': ['@I2@']}}
+    individuals = {'@I1@': {'SPOUSE': ['@F2@'], 'INDI_LINE': 1, 'BIRT': '2001-10-1', 'INDI_CHILD': ['@F1@']}, '@I2@': {'SPOUSE': ['@F2@'], 'INDI_LINE': 2, 'BIRT': '2001-10-2', 'INDI_CHILD': ['@F4@']}, '@I3@':{'SPOUSE': ['@F1@'], 'INDI_CHILD': ['@F3@']}, '@I4@':{'SPOUSE': ['@F4@'], 'INDI_CHILD': ['@F3@']}}
+    result = ["ANOMALY: INDIVIDUAL: US19: 1: @I1@: Individual married to cousins ['@F2@']", "ANOMALY: INDIVIDUAL: US19: 2: @I2@: Individual married to cousins ['@F2@']"]
     
     Project.anomaly_array = []
     Project.family_dic = family_dic
@@ -2534,7 +2535,7 @@ def test_check_cousin_marriage_pass():
     
     Project.check_cousins_marriage()
     
-    return Project.anomaly_array == ['ANOMALY: INDIVIDUAL: US19: 1: @I1@: Individual married to cousins @I2@', 'ANOMALY: INDIVIDUAL: US19: 2: @I2@: Individual married to cousins @I1@']
+    Project.anomaly_array == result
     
     return True
 
@@ -2543,9 +2544,8 @@ def test_check_cousin_marriage_pass():
 
 
 def test_check_cousin_marriage_fail():
-    family_dic = { '@F1@': {'FAM_CHILD': ['@I1@']}, '@F2@': {'WIFE':'@I1@', 'HUSB': '@I2@'}}
-    individuals = {'@I1@': {'SPOUSE': ['@F2@'], 'INDI_LINE': 1, 'BIRT': '2001-10-1', 'INDI_CHILD': ['@F1@']}, '@I2@': {'SPOUSE': ['@F2@'], 'INDI_LINE': 2, 'BIRT': '2001-10-2'}}
-
+    family_dic = { '@F1@': {'HUSB':'@I3@', 'FAM_CHILD': ['@I1@']}, '@F2@': {'WIFE':'@I1@', 'HUSB': '@I2@'}, '@F3@': {'FAM_CHILD': ['@I3@']}, '@F4@': {'HUSB':'@I4@', 'FAM_CHILD': ['@I2@']}, '@F5@': {'FAM_CHILD': ['@I4@']}}
+    individuals = {'@I1@': {'SPOUSE': ['@F2@'], 'INDI_LINE': 1, 'BIRT': '2001-10-1', 'INDI_CHILD': ['@F1@']}, '@I2@': {'SPOUSE': ['@F2@'], 'INDI_LINE': 2, 'BIRT': '2001-10-2', 'INDI_CHILD': ['@F4@']}, '@I3@':{'SPOUSE': ['@F1@'], 'INDI_CHILD': ['@F3@']}, '@I4@':{'SPOUSE': ['@F4@'], 'INDI_CHILD': ['@F5@']}}
     
     Project.anomaly_array = []
     Project.family_dic = family_dic
@@ -2698,4 +2698,10 @@ class TestStringMethods(unittest.TestCase):
         
 suite = unittest.TestLoader().loadTestsFromTestCase(TestStringMethods)
 unittest.TextTestRunner(verbosity=2).run(suite)
+
+
+# In[ ]:
+
+
+
 
