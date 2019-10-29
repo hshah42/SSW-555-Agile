@@ -195,6 +195,8 @@ ANOMALY: INDIVIDUAL: US16: 117: @I11@: Individual has different last name Tung t
 ANOMALY: INDIVIDUAL: US16: 197: @I19@: Individual has different last name Iglesias than family Finklea
 ANOMALY: INDIVIDUAL: US18: 226: @I22@: Individual married to sibling @I31@
 ANOMALY: INDIVIDUAL: US18: 323: @I31@: Individual married to sibling @I22@
+ANOMALY: INDIVIDUAL: US19: 106: @I10@: Individual married to cousin @I13@
+ANOMALY: INDIVIDUAL: US19: 134: @I13@: Individual married to cousin @I10@
 ANOMALY: FAMILY: US20: 497: @F4@: Person @I20@ should not marry person @I4@
 ANOMALY: INDIVIDUAL: US23: 360: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
 ANOMALY: INDIVIDUAL: US25: 548: @I35@: @I31@: Individuals share the same first name Sock /Malagon/ and birth date 1955-10-17 from family @F12@
@@ -204,5 +206,3 @@ ANOMALY: FAMILY: US34: 499: @F5@: Family has a large spouse age difference
 ANOMALY: FAMILY: US34: 522: @F6@: Family has a large spouse age difference
 ANOMALY: FAMILY: US34: 568: @F14@: Family has a large spouse age difference
 ANOMALY: FAMILY: US34: 574: @F15@: Family has a large spouse age difference
-ANOMALY: INDIVIDUAL: US19: 226: @I22@: Individual married to cousins @I31@
-ANOMALY: INDIVIDUAL: US19: 323: @I31@: Individual married to cousins @I22@
