@@ -2,11 +2,10 @@ People Table
 +-------+----------------------+--------+-------------+------+--------+------------+--------+--------------------+
 |   ID  |         Name         | Gender |   Birthday  | Age  | Alive  |   Death    | Child  |       Spouse       |
 +-------+----------------------+--------+-------------+------+--------+------------+--------+--------------------+
-|  @I1@ |  Willodean /Malagon/ |    F   |   1958-7-7  |  15  |  False |  1974-6-20 |  @F2@  |        @F1@        |
-|  @I2@ |   Stephan /Malagon/  |    M   |   1930-8-21 |  89  |  True  |     NA     |  @F3@  |        @F2@        |
-|  @I3@ |  Laverna /Leonhardt/ |    F   |   1932-6-9  |  87  |  True  |     NA     |   NA   |        @F2@        |
-|  @I4@ |     Ken /Malagon/    |    M   |   1962-2-6  |  57  |  True  |     NA     |  @F2@  |        @F4@        |
-|  @I5@ |    Josh /Malagon/    |    M   |  1964-10-31 |  19  |  False |  1984-5-7  |  @F2@  |        @F5@        |
+|  @I1@ |  Willodean /Malagon/ |    F   |   1958-7-7  |  15  |  False |  1974-6-20 |  @F1@  |        @F1@        |
+|  @I2@ |  Laverna /Leonhardt/ |    F   |   1932-6-9  |  87  |  True  |     NA     |   NA   |        @F1@        |
+|  @I4@ |     Ken /Malagon/    |    M   |   1962-2-6  |  57  |  True  |     NA     |  @F1@  |        @F4@        |
+|  @I5@ |    Josh /Malagon/    |    M   |  1964-10-31 |  19  |  False |  1984-5-7  |  @F1@  |        @F5@        |
 |  @I6@ |    Samuel /Venzon/   |    M   |   1958-12-6 |  60  |  True  |     NA     |   NA   |        @F1@        |
 |  @I7@ |     Byron /Vezon/    |    M   |   1973-7-6  |  46  |  True  |     NA     |  @F1@  |        @F6@        |
 |  @I8@ |    Cinda /Burgard/   |    F   |   1966-8-8  |  53  |  True  |     NA     |   NA   |   @F5@,@F7@,@F8@   |
@@ -15,7 +14,7 @@ People Table
 | @I11@ |     Darwin /Tung/    |    M   |   1987-9-6  |  32  |  True  |     NA     |  @F7@  |         NA         |
 | @I12@ |    Shyla /Bertone/   |    F   |   2021-8-9  |  -2  |  True  |     NA     |   NA   |        @F6@        |
 | @I13@ |     Beth /Venzon/    |    F   |   1975-7-8  |  44  |  True  |     NA     |  @F1@  |         NA         |
-| @I14@ |    Jacob /Malagon/   |    M   |   1970-11-8 |  48  |  True  |     NA     |  @F2@  |        @F9@        |
+| @I14@ |    Jacob /Malagon/   |    M   |   1970-11-8 |  48  |  True  |     NA     |  @F1@  |        @F9@        |
 | @I15@ |  Jaqueline /Kindel/  |    F   |   1969-9-8  |  50  |  True  |     NA     |   NA   |        @F9@        |
 | @I16@ |   Johnny /Malagon/   |    M   |   1901-7-14 |  118 |  True  |     NA     |   NA   |        @F3@        |
 | @I17@ |     Lura /Lomas/     |    F   |   1900-8-30 |  119 |  True  |     NA     |   NA   |        @F3@        |
@@ -52,8 +51,7 @@ Families Table
 +-------+------------+------------+------------+--------------------+---------+----------------------+-------------------------------------------------------------------------------------------------+
 |   ID  |  Married   |  Divorced  | Husband ID |    Husband Name    | Wife ID |      Wife Name       |                                             Children                                            |
 +-------+------------+------------+------------+--------------------+---------+----------------------+-------------------------------------------------------------------------------------------------+
-|  @F1@ |  1970-7-7  |     NA     |    @I6@    |   Samuel /Venzon/  |   @I1@  |  Willodean /Malagon/ |                                            @I7@,@I13@                                           |
-|  @F2@ |  1947-9-17 |     NA     |    @I2@    |  Stephan /Malagon/ |   @I3@  |  Laverna /Leonhardt/ |                                       @I1@,@I4@,@I5@,@I14@                                      |
+|  @F1@ |  1947-9-17 |     NA     |    @I2@    |  Stephan /Malagon/ |   @I2@  |   Stephan /Malagon/  |                                       @I1@,@I4@,@I5@,@I14@                                      |
 |  @F3@ |  1925-4-28 |     NA     |    @I16@   |  Johnny /Malagon/  |   @I17@ |     Lura /Lomas/     |  @I2@,@I18@,@I20@,@I21@,@I22@,@I23@,@I24@,@I25@,@I26@,@I27@,@I28@,@I29@,@I30@,@I31@,@I32@,@I33@ |
 |  @F4@ |     NA     |     NA     |    @I4@    |    Ken /Malagon/   |   @I20@ |   Lucile /Malagon/   |                                                NA                                               |
 |  @F5@ |  1978-9-2  |     NA     |    @I5@    |   Josh /Malagon/   |   @I8@  |    Cinda /Burgard/   |                                               @I10@                                             |
@@ -89,8 +87,7 @@ US30: Living & Married People Table
 +-------+----------------------+--------+-------------+------+-------+-------+--------------------+
 |   ID  |         Name         | Gender |   Birthday  | Age  | Alive | Death |       Spouse       |
 +-------+----------------------+--------+-------------+------+-------+-------+--------------------+
-|  @I2@ |   Stephan /Malagon/  |    M   |   1930-8-21 |  89  |  True |   NA  |        @F2@        |
-|  @I3@ |  Laverna /Leonhardt/ |    F   |   1932-6-9  |  87  |  True |   NA  |        @F2@        |
+|  @I2@ |  Laverna /Leonhardt/ |    F   |   1932-6-9  |  87  |  True |   NA  |        @F1@        |
 |  @I4@ |     Ken /Malagon/    |    M   |   1962-2-6  |  57  |  True |   NA  |        @F4@        |
 |  @I6@ |    Samuel /Venzon/   |    M   |   1958-12-6 |  60  |  True |   NA  |        @F1@        |
 |  @I7@ |     Byron /Vezon/    |    M   |   1973-7-6  |  46  |  True |   NA  |        @F6@        |
@@ -130,12 +127,13 @@ US38 List Upcoming Birthdays Table
 +-------+--------------------+--------+-------------+-----+--------+-----------+--------+
 
 ------error messages------
+ERROR: INDIVIDUAL: US22: 36: @I2@: Individuals have the same ID
+ERROR: FAMILY: US22: 451: @F1@: Family share the same ID 
 ERROR: INDIVIDUAL: US01: 130: @I12@: Individual has birth date 2021-8-9 later than today
 ERROR: INDIVIDUAL: US02: 522: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
 ERROR: INDIVIDUAL: US02: 522: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
-ERROR: INDIVIDUAL: US09: 139: @I13@: Child was born at 1975-7-8 after death of mother 1974-6-20
-ERROR: FAMILY: US12: 36: @F2@: Wife is 72 older than the child @I1@.
-ERROR: FAMILY: US12: 36: @F2@: Wife is 68 older than the child @I5@.
+ERROR: FAMILY: US12: 36: @F1@: Wife is 72 older than the child @I1@.
+ERROR: FAMILY: US12: 36: @F1@: Wife is 68 older than the child @I5@.
 ERROR: INDIVIDUAL: US12: 161: @F3@: Father is 117 older than the child @I23@.
 ERROR: FAMILY: US12: 170: @F3@: Wife is 118 older than the child @I23@.
 ERROR: INDIVIDUAL: US12: 161: @F3@: Father is 99 older than the child @I25@.
@@ -156,8 +154,6 @@ ANOMALY: INDIVIDUAL: US08: 215: @I21@: Child was born at 1820-10-8 before marria
 ANOMALY: INDIVIDUAL: US08: 224: @I22@: Child was born at 1923-5-8 before marriage of parents 1925-4-28
 ANOMALY: INDIVIDUAL: US08: 112: @I10@: Child was born at 1977-9-8 before marriage of parents 1978-9-2
 ANOMALY: INDIVIDUAL: US08: 376: @I37@: Child was born at 1980-9-9 after 9 month divorce of parents 1955-10-9
-ANOMALY: INDIVIDUAL: US10: 73: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
-ANOMALY: INDIVIDUAL: US10: 20: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
 ANOMALY: INDIVIDUAL: US10: 51: @I4@: Father of family @F4@ is younger than 14 years old - Birth Date 1962-2-6
 ANOMALY: INDIVIDUAL: US10: 205: @I20@: Wife of family @F4@ is younger than 14 years old - Birth Date 1931-9-9
 ANOMALY: INDIVIDUAL: US10: 61: @I5@: Father of family @F5@ is younger than 14 years old - Birth Date 1964-10-31
@@ -170,7 +166,6 @@ ANOMALY: INDIVIDUAL: US10: 320: @I31@: Wife of family @F10@ is younger than 14 y
 ANOMALY: INDIVIDUAL: US10: 367: @I36@: Father of family @F12@ is younger than 14 years old - Birth Date 1950-9-9
 ANOMALY: INDIVIDUAL: US11: 271: @I27@: Performing bigamy
 ANOMALY: FAMILY: US15: 462: @F3@: Family has 16 siblings which is more than 15 siblings
-ANOMALY: INDIVIDUAL: US16: 77: @I7@: Individual has different last name Vezon than family Venzon
 ANOMALY: INDIVIDUAL: US16: 116: @I11@: Individual has different last name Tung than family Finklea
 ANOMALY: INDIVIDUAL: US16: 191: @I19@: Individual has different last name Iglesias than family Finklea
 ANOMALY: INDIVIDUAL: US18: 218: @I22@: Individual married to sibling @I31@
@@ -182,7 +177,22 @@ ANOMALY: INDIVIDUAL: US25: 462: @I32@: @I30@: Individuals share the same first n
 ANOMALY: INDIVIDUAL: US25: 530: @I35@: @I31@: Individuals share the same first name Sock /Malagon/ and birth date 1955-10-17 from family @F11@
 ANOMALY: FAMILY: US32: 462: @F3@: The two or more individuals were born at the same time
 ANOMALY: FAMILY: US32: 500: @F7@: The two or more individuals were born at the same time
-ANOMALY: FAMILY: US34: 442: @F1@: Family has a large spouse age difference
 ANOMALY: FAMILY: US34: 489: @F5@: Family has a large spouse age difference
 ANOMALY: FAMILY: US34: 512: @F6@: Family has a large spouse age difference
 ANOMALY: FAMILY: US34: 550: @F13@: Family has a large spouse age difference
+ANOMALY: INDIVIDUAL: US19: 218: @I22@: Individual married to cousins @I31@
+ANOMALY: INDIVIDUAL: US19: 314: @I31@: Individual married to cousins @I22@
+US39: List Upcoming Anniversaries Table
++------+-------------+------------+----------------+---------+---------------+
+|  ID  |   Married   | Husband ID |  Husband Name  | Wife ID |   Wife Name   |
++------+-------------+------------+----------------+---------+---------------+
+| @F1@ |  2019-11-08 |    @I2@    |  Johny /Chang/ |   @I3@  |  Nancy /Tsai/ |
++------+-------------+------------+----------------+---------+---------------+
+
+US38 List Upcoming Birthdays Table
++------+----------------+--------+-------------+-----+-------+-------+--------+
+|  ID  |      Name      | Gender |   Birthday  | Age | Alive | Death | Spouse |
++------+----------------+--------+-------------+-----+-------+-------+--------+
+| @I1@ |  David /Chang/ |    M   |  2019-11-08 |  31 |  True |   NA  |   NA   |
++------+----------------+--------+-------------+-----+-------+-------+--------+
+

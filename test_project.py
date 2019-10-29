@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
 # In[1]:
@@ -1738,10 +1738,10 @@ def input_line_numbers():
     assert person02["BIRT_LINE"] == 31
     assert person02["FAMS_LINE"] == 33
     #Test Romeo & Juliet's family
-    assert fam["FAM_LINE"] == 34
-    assert fam["HUSB_LINE"] == 35
-    assert fam["WIFE_LINE"] == 36
-    assert fam["MARR_LINE"] == 37
+    assert fam["FAM_LINE"] == 43
+    assert fam["HUSB_LINE"] == 44
+    assert fam["WIFE_LINE"] == 45
+    assert fam["MARR_LINE"] == 47
                            
     return True
 
@@ -2460,6 +2460,54 @@ def test_check_sibling_marriage_not_married():
 # In[54]:
 
 
+def test_check_cousin_marriage_pass():
+    family_dic = { '@F1@': {'FAM_CHILD': ['@I1@', '@I2@']}, '@F2@': {'WIFE':'@I1@', 'HUSB': '@I2@'}}
+    individuals = {'@I1@': {'SPOUSE': ['@F2@'], 'INDI_LINE': 1, 'BIRT': '2001-10-1', 'INDI_CHILD': ['@F1@']}, '@I2@': {'SPOUSE': ['@F2@'], 'INDI_LINE': 2, 'BIRT': '2001-10-2', 'INDI_CHILD': ['@F1@']}}
+    
+    Project.anomaly_array = []
+    Project.family_dic = family_dic
+    Project.individuals = individuals
+    
+    Project.check_cousins_marriage()
+    
+    return Project.anomaly_array == ['ANOMALY: INDIVIDUAL: US19: 1: @I1@: Individual married to cousins @I2@', 'ANOMALY: INDIVIDUAL: US19: 2: @I2@: Individual married to cousins @I1@']
+    
+    return True
+
+
+# In[55]:
+
+
+def test_check_cousin_marriage_fail():
+    family_dic = { '@F1@': {'FAM_CHILD': ['@I1@']}, '@F2@': {'WIFE':'@I1@', 'HUSB': '@I2@'}}
+    individuals = {'@I1@': {'SPOUSE': ['@F2@'], 'INDI_LINE': 1, 'BIRT': '2001-10-1', 'INDI_CHILD': ['@F1@']}, '@I2@': {'SPOUSE': ['@F2@'], 'INDI_LINE': 2, 'BIRT': '2001-10-2'}}
+
+    
+    Project.anomaly_array = []
+    Project.family_dic = family_dic
+    Project.individuals = individuals
+    
+    Project.check_cousins_marriage()
+    
+    return len(Project.anomaly_array) == 0
+
+
+# In[56]:
+
+
+def test_unique_indi_and_family():
+    Project.error_array = []
+    
+    file = "./Romeo_Juliet_Family.ged"
+
+
+    Project.read_in(file)
+    return Project.error_array==['ERROR: INDIVIDUAL: US22: 51: @I1@: Individuals have the same ID', 'ERROR: FAMILY: US22: 62: @F1@: Family share the same ID ']
+
+
+# In[57]:
+
+
 import unittest
 
 class TestStringMethods(unittest.TestCase):
@@ -2571,8 +2619,21 @@ class TestStringMethods(unittest.TestCase):
         self.assertTrue(test_check_sibling_marriage_married())
     def test_check_sibling_marriage_not_married(self):
         self.assertTrue(test_check_sibling_marriage_not_married())
+    def test_unique_indi_and_family(self):
+        self.assertTrue(test_unique_indi_and_family())
+    def test_check_cousin_marriage_pass(self):
+        self.assertTrue(test_check_cousin_marriage_pass())
+    def test_check_cousin_marriage_fail(self):
+        self.assertTrue(test_check_cousin_marriage_fail())
+        
         
         
 suite = unittest.TestLoader().loadTestsFromTestCase(TestStringMethods)
 unittest.TextTestRunner(verbosity=2).run(suite)
+
+
+# In[ ]:
+
+
+
 

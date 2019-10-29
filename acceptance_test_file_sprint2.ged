@@ -22,7 +22,7 @@
 1 DEAT Y
 2 DATE 20 JUN 1974
 1 FAMS @F1@
-1 FAMC @F2@
+1 FAMC @F1@
 0 @I2@ INDI
 1 NAME Stephan /Malagon/
 2 GIVN Stephan
@@ -31,9 +31,9 @@
 1 SEX M
 1 BIRT
 2 DATE 21 AUG 1930
-1 FAMS @F2@
+1 FAMS @F1@
 1 FAMC @F3@
-0 @I3@ INDI
+0 @I2@ INDI
 1 NAME Laverna /Leonhardt/
 2 GIVN Laverna
 2 SURN Leonhardt
@@ -41,7 +41,7 @@
 1 SEX F
 1 BIRT
 2 DATE 9 JUN 1932
-1 FAMS @F2@
+1 FAMS @F1@
 0 @I4@ INDI
 1 NAME Ken /Malagon/
 2 GIVN Ken
@@ -51,7 +51,7 @@
 1 BIRT
 2 DATE 6 FEB 1962
 1 FAMS @F4@
-1 FAMC @F2@
+1 FAMC @F1@
 0 @I5@ INDI
 1 NAME Josh /Malagon/
 2 GIVN Josh
@@ -63,7 +63,7 @@
 1 DEAT Y
 2 DATE 7 MAY 1984
 1 FAMS @F5@
-1 FAMC @F2@
+1 FAMC @F1@
 0 @I6@ INDI
 1 NAME Samuel /Venzon/
 2 GIVN Samuel
@@ -148,7 +148,7 @@
 1 BIRT
 2 DATE 8 NOV 1970
 1 FAMS @F9@
-1 FAMC @F2@
+1 FAMC @F1@
 0 @I15@ INDI
 1 NAME Jaqueline /Kindel/
 2 GIVN Jaqueline
@@ -448,9 +448,9 @@
 2 DATE 7 JUL 1970
 2 PLAC Boston, MA
 1 _CURRENT Y
-0 @F2@ FAM
+0 @F1@ FAM
 1 HUSB @I2@
-1 WIFE @I3@
+1 WIFE @I2@
 1 CHIL @I1@
 1 CHIL @I4@
 1 CHIL @I5@

@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
 # In[1]:
@@ -179,6 +179,11 @@ def create_family_dic():
 def read_in(file):
     doc={"INDI":[], "FAM":[]}
     dic={}
+    global ui
+    ui=[]
+    global uf
+    uf=[]
+    temp = ""
     flag=False #indicates whether the correct tag has appeared before DATE tag
     with open(file) as f:
         all_lines=f.readlines()
@@ -187,13 +192,17 @@ def read_in(file):
             current_arr=line.strip().split(" ")
             next_arr=next_line.strip().split(" ")
             #if the current tag is individual
-            if len(current_arr)==3 and current_arr[0]=='0' and current_arr[2]== "INDI":
+            if (len(current_arr)==3 and current_arr[0]=='0' and current_arr[2]== "INDI"):
+                temp = current_arr[1]
+                unique_indi_and_family(temp, "INDI", line_num)
                 #inserts individual's ID into the dictionary
                 dic, current_tag=create_dic_entry(current_arr, "INDI") 
                 #inserts line number
                 dic["INDI_LINE"] = line_num
             #if the current tag is family
             elif len(current_arr)==3 and current_arr[0]=='0' and current_arr[2]=="FAM": 
+                temp = current_arr[1]
+                unique_indi_and_family(temp, "FAM", line_num)
                 dic, current_tag=create_dic_entry(current_arr, "FAM")
                 #inserts line number
                 dic["FAM_LINE"] = line_num
@@ -259,7 +268,7 @@ def read_in(file):
                     if current_tag == 'FAM':
                         add_missing_entries(dic)
                     doc[current_tag].append(dic) 
-            line_num += 1 #increments the line counter by 1
+            line_num += 1 #increments the line counter by 
         return doc
                   
 
@@ -735,6 +744,23 @@ def is_uncle_aunt_marriage_legal():
 # In[36]:
 
 
+# US 22:
+def unique_indi_and_family(value, flag, line_num):
+    if flag == "INDI":
+        if value in ui:
+            error_array.append("ERROR: INDIVIDUAL: US22: {}: {}: Individuals have the same ID".format(line_num, value))
+        else:
+            ui.append(value)
+    else:
+        if value in uf:
+            error_array.append("ERROR: FAMILY: US22: {}: {}: Family share the same ID ".format(line_num, value))
+        else:
+            uf.append(value)
+
+
+# In[37]:
+
+
 #USID: 23
 def unique_name_and_birth():
     li = {}
@@ -746,7 +772,7 @@ def unique_name_and_birth():
             li[temp]=value["INDI"]
 
 
-# In[37]:
+# In[38]:
 
 
 #USID: 25
@@ -762,7 +788,7 @@ def unique_family_name_and_birth():
                     li[temp]=child["INDI"]
 
 
-# In[38]:
+# In[39]:
 
 
 #User_Story_29: List all deceased individuals in a GEDCOM file
@@ -789,7 +815,7 @@ def listDeceased():
     
 
 
-# In[39]:
+# In[40]:
 
 
 #User_Story_30: List all living married people in a GEDCOM file
@@ -812,7 +838,7 @@ def listLivingMarried():
         printTable("US30: Living & Married People Table", allFields, tagNames, current_dic)
 
 
-# In[40]:
+# In[41]:
 
 
 #US 32: List multiple births
@@ -828,7 +854,7 @@ def multiple_birth():
                     li[temp]=child["INDI"]
 
 
-# In[41]:
+# In[42]:
 
 
 #US 34: 
@@ -848,7 +874,7 @@ def large_age_diff():
                 
 
 
-# In[42]:
+# In[43]:
 
 
 #US 38 List upcoming birthdays
@@ -879,7 +905,7 @@ def list_upcoming_bday():
     return True
 
 
-# In[43]:
+# In[44]:
 
 
 #US 39 List upcoming anniversaries
@@ -911,7 +937,28 @@ def list_upcoming_anni():
     return True
 
 
-# In[44]:
+# In[45]:
+
+
+def check_cousins_marriage():
+    for individual_id in individuals:
+        individual = individuals[individual_id]
+        if "SPOUSE" in individual and individual["SPOUSE"] != "NA":
+            siblings = get_individual_siblings(individual_id, True, True)
+            for spouse_family_id in individual["SPOUSE"]:
+                spouse_family = family_dic[spouse_family_id]
+                spouse_id = None
+                if "WIFE" in spouse_family and spouse_family["WIFE"] != "NA":
+                    if spouse_family["WIFE"] != individual_id:
+                        spouse_id = spouse_family["WIFE"]
+                if "HUSB" in spouse_family and spouse_family["HUSB"] != "NA":
+                    if spouse_family["HUSB"] != individual_id:
+                        spouse_id = spouse_family["HUSB"]
+                if spouse_id is not None and spouse_id in siblings:
+                    anomaly_array.append("ANOMALY: INDIVIDUAL: US19: {}: {}: Individual married to cousins {}".format(individual["INDI_LINE"], individual_id, spouse_id))
+
+
+# In[46]:
 
 
 # Prints out the Individual Table
@@ -923,7 +970,7 @@ def printIndividualTable():
     printTable("People Table", allFields, tagNames, individuals)
 
 
-# In[45]:
+# In[47]:
 
 
 # Prints out the Family Table
@@ -935,7 +982,7 @@ def printFamilyTable():
     printTable("Families Table", allFields, tagNames, family_dic)
 
 
-# In[46]:
+# In[48]:
 
 
 # Prints out the data in both error and anomaly arrays
@@ -957,7 +1004,7 @@ def printError():
     
 
 
-# In[47]:
+# In[49]:
 
 
 # Prints out a table of dictionary data with the passed-in arguments
@@ -991,7 +1038,7 @@ def printTable(table_name, fields, tag_names, dictionary):
     print(table)
 
 
-# In[48]:
+# In[50]:
 
 
 # Stores all Project outputs into a single text file
@@ -1004,7 +1051,7 @@ def storeResults(result_name, outputs):
     file.close()
 
 
-# In[49]:
+# In[51]:
 
 
 # Global variables initialization
@@ -1023,7 +1070,7 @@ error_array = []
 anomaly_array = []
 
 
-# In[50]:
+# In[52]:
 
 
 document = read_in("./acceptance_test_file_sprint2.ged")
@@ -1070,6 +1117,8 @@ check_parent_child_marriage()
 check_sibling_marriage()
 #User 20
 is_uncle_aunt_marriage_legal()
+#User 22
+# unique_indi_and_family()
 #User 23
 unique_name_and_birth()
 #User 25
@@ -1086,8 +1135,15 @@ large_age_diff()
 list_upcoming_bday()
 # User 39
 list_upcoming_anni()
+check_cousins_marriage()
 
 
 #Prints out all the errors and anomalies of each function
 printError()
+
+
+# In[ ]:
+
+
+
 
