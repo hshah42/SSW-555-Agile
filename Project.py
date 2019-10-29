@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+
 # coding: utf-8
 
 # In[1]:
@@ -187,7 +187,7 @@ def read_in(file):
     flag=False #indicates whether the correct tag has appeared before DATE tag
     with open(file) as f:
         all_lines=f.readlines()
-        line_num = 1; #line number of each 
+        line_num = 1 #line number of each 
         for line, next_line in zip(all_lines, all_lines[1:]):
             current_arr=line.strip().split(" ")
             next_arr=next_line.strip().split(" ")
@@ -391,14 +391,14 @@ def check_divorce_before_death():
                 if husband_flag and wife_flag:
                     husband_invalid = False
                     wife_invalid = False
-                    if determine_days(husband_death, divorce_date) < 0:
+                    if determine_days(husband_death, divorce_date) > 0:
                         husband_invalid = True
-                    if determine_days(wife_death, divorce_date) < 0:
+                    if determine_days(wife_death, divorce_date) > 0:
                         wife_invalid = True
                     if husband_invalid and wife_invalid:
                         error_array.append("ERROR: FAMILY: US06: {}: {}: Divorce {} happened after the death of both spouses - Husband: {} Wife: {}.".format(family["DIV_LINE"], family["FAM"], family["DIV"], husband_death, wife_death))
                     elif husband_invalid:
-                        error_array.append("ERROR: FAMILY: US06: {}: {}: Divorce {} happened after the death of father {}.".format(family["DIV_LINE"], family["FAM"], family["DIV"], husband_death, wife_death))
+                        error_array.append("ERROR: FAMILY: US06: {}: {}: Divorce {} happened after the death of husband {}.".format(family["DIV_LINE"], family["FAM"], family["DIV"], husband_death, wife_death))
                     elif wife_invalid:
                         error_array.append("ERROR: FAMILY: US06: {}: {}: Divorce {} happened after the death of wife {}.".format(family["DIV_LINE"], family["FAM"], family["DIV"], husband_death, wife_death))
                         
@@ -746,16 +746,20 @@ def is_uncle_aunt_marriage_legal():
 
 # US 22:
 def unique_indi_and_family(value, flag, line_num):
-    if flag == "INDI":
+    if flag=="INDI":
         if value in ui:
             error_array.append("ERROR: INDIVIDUAL: US22: {}: {}: Individuals have the same ID".format(line_num, value))
+            return False
         else:
             ui.append(value)
-    else:
+            return True
+    else:       
         if value in uf:
-            error_array.append("ERROR: FAMILY: US22: {}: {}: Family share the same ID ".format(line_num, value))
+            error_array.append("ERROR: FAMILY: US22: {}: {}: Two families share the same ID ".format(line_num, value))
+            return False
         else:
             uf.append(value)
+            return True
 
 
 # In[37]:
@@ -1073,7 +1077,7 @@ anomaly_array = []
 # In[52]:
 
 
-document = read_in("./acceptance_test_file_sprint2.ged")
+document = read_in("./acceptance_test_file_sprint3.ged")
 if os.path.exists("cs555_sprint_outputs.txt"):
     os.remove("cs555_sprint_outputs.txt")
 
@@ -1117,8 +1121,6 @@ check_parent_child_marriage()
 check_sibling_marriage()
 #User 20
 is_uncle_aunt_marriage_legal()
-#User 22
-# unique_indi_and_family()
 #User 23
 unique_name_and_birth()
 #User 25
@@ -1140,10 +1142,4 @@ check_cousins_marriage()
 
 #Prints out all the errors and anomalies of each function
 printError()
-
-
-# In[ ]:
-
-
-
 

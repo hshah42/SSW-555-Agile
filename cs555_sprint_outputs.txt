@@ -2,74 +2,78 @@ People Table
 +-------+----------------------+--------+-------------+------+--------+------------+--------+--------------------+
 |   ID  |         Name         | Gender |   Birthday  | Age  | Alive  |   Death    | Child  |       Spouse       |
 +-------+----------------------+--------+-------------+------+--------+------------+--------+--------------------+
-|  @I1@ |  Willodean /Malagon/ |    F   |   1958-7-7  |  15  |  False |  1974-6-20 |  @F1@  |        @F1@        |
-|  @I2@ |  Laverna /Leonhardt/ |    F   |   1932-6-9  |  87  |  True  |     NA     |   NA   |        @F1@        |
-|  @I4@ |     Ken /Malagon/    |    M   |   1962-2-6  |  57  |  True  |     NA     |  @F1@  |        @F4@        |
-|  @I5@ |    Josh /Malagon/    |    M   |  1964-10-31 |  19  |  False |  1984-5-7  |  @F1@  |        @F5@        |
+|  @I1@ |  Willodean /Malagon/ |    F   |   1958-7-7  |  15  |  False |  1974-6-20 |  @F2@  |        @F1@        |
+|  @I2@ |   Stephan /Malagon/  |    M   |   1930-8-21 |  89  |  True  |     NA     |  @F3@  |        @F2@        |
+|  @I3@ |  Laverna /Leonhardt/ |    F   |   1932-6-9  |  87  |  True  |     NA     |   NA   |        @F2@        |
+|  @I4@ |     Ken /Malagon/    |    M   |   1962-2-6  |  57  |  True  |     NA     |  @F2@  |        @F4@        |
+|  @I5@ |    Josh /Malagon/    |    M   |  1964-10-31 |  19  |  False |  1984-5-7  |  @F2@  |        @F5@        |
 |  @I6@ |    Samuel /Venzon/   |    M   |   1958-12-6 |  60  |  True  |     NA     |   NA   |        @F1@        |
 |  @I7@ |     Byron /Vezon/    |    M   |   1973-7-6  |  46  |  True  |     NA     |  @F1@  |        @F6@        |
 |  @I8@ |    Cinda /Burgard/   |    F   |   1966-8-8  |  53  |  True  |     NA     |   NA   |   @F5@,@F7@,@F8@   |
 |  @I9@ |   Jerrell /Finklea/  |    M   |   1965-9-8  |  54  |  True  |     NA     |   NA   |        @F7@        |
-| @I10@ |    Ruthe /Malagon/   |    F   |   1977-9-8  |  42  |  True  |     NA     |  @F5@  |         NA         |
+| @I10@ |    Ruthe /Malagon/   |    M   |   1977-9-8  |  42  |  True  |     NA     |  @F5@  |        @F9@        |
 | @I11@ |     Darwin /Tung/    |    M   |   1987-9-6  |  32  |  True  |     NA     |  @F7@  |         NA         |
 | @I12@ |    Shyla /Bertone/   |    F   |   2021-8-9  |  -2  |  True  |     NA     |   NA   |        @F6@        |
-| @I13@ |     Beth /Venzon/    |    F   |   1975-7-8  |  44  |  True  |     NA     |  @F1@  |         NA         |
-| @I14@ |    Jacob /Malagon/   |    M   |   1970-11-8 |  48  |  True  |     NA     |  @F1@  |        @F9@        |
-| @I15@ |  Jaqueline /Kindel/  |    F   |   1969-9-8  |  50  |  True  |     NA     |   NA   |        @F9@        |
+| @I13@ |     Beth /Venzon/    |    F   |   1975-7-8  |  44  |  True  |     NA     |  @F1@  |        @F9@        |
+| @I14@ |    Jacob /Malagon/   |    M   |   1970-11-8 |  17  |  False |  1988-9-29 |  @F2@  |        @F10@       |
+| @I15@ |  Jaqueline /Kindel/  |    F   |   1969-9-8  |  17  |  False |  1987-7-6  |   NA   |        @F10@       |
 | @I16@ |   Johnny /Malagon/   |    M   |   1901-7-14 |  118 |  True  |     NA     |   NA   |        @F3@        |
 | @I17@ |     Lura /Lomas/     |    F   |   1900-8-30 |  119 |  True  |     NA     |   NA   |        @F3@        |
 | @I18@ |    Tesha /Malagon/   |    F   |   1819-7-8  |  200 |  False |  2019-8-2  |  @F3@  |         NA         |
 | @I19@ |   Wilber /Iglesias/  |    M   |   1987-9-6  |  32  |  True  |     NA     |  @F7@  |         NA         |
 | @I20@ |   Lucile /Malagon/   |    F   |   1931-9-9  |  88  |  True  |     NA     |  @F3@  |        @F4@        |
-| @I21@ |     Regena /Ali/     |    F   |   1820-10-8 |  199 |  True  |     NA     |  @F3@  |         NA         |
-| @I22@ |     Tom /Malagon/    |    M   |   1923-5-8  |  96  |  True  |     NA     |  @F3@  |     @F10@,@F11@    |
+| @I21@ |     Regena /Ali/     |    F   |   1820-10-8 |  -2  |  False |  1819-3-3  |  @F3@  |         NA         |
+| @I22@ |     Tom /Malagon/    |    M   |   1923-5-8  |  96  |  True  |     NA     |  @F3@  |     @F11@,@F12@    |
 | @I23@ |   Vonnie /Malagon/   |    M   |   1936-3-10 |   1  |  False |  1937-7-6  |  @F3@  |         NA         |
-| @I24@ |    Shena /Malagon/   |    F   |   1937-11-6 |  81  |  True  |     NA     |  @F3@  |        @F12@       |
-| @I25@ |   Hailey /Malagon/   |    F   |   1938-10-8 |  19  |  False |  1958-9-18 |  @F3@  |        @F13@       |
-| @I26@ |   Milford /Malagon/  |    M   |   1939-11-8 |  79  |  True  |     NA     |  @F3@  |         NA         |
-| @I27@ |   Rashida /Malagon/  |    F   |   1940-12-7 |  78  |  True  |     NA     |  @F3@  |  @F14@,@F15@,@F16@ |
-| @I28@ |   Deeann /Malagon/   |    F   |  1941-10-23 |  78  |  True  |     NA     |  @F3@  |         NA         |
-| @I29@ |    Dario /Malagon/   |    M   |  1942-12-14 |  76  |  True  |     NA     |  @F3@  |        @F17@       |
-| @I30@ |    Chet /Malagon/    |    M   |   1943-8-18 |  76  |  True  |     NA     |  @F3@  |  @F18@,@F19@,@F20@ |
-| @I31@ |    Sock /Malagon/    |    F   |  1955-10-17 |  64  |  True  |     NA     |  @F3@  |        @F10@       |
+| @I24@ |    Shena /Malagon/   |    F   |   1937-11-6 |  81  |  True  |     NA     |  @F3@  |        @F13@       |
+| @I25@ |   Hailey /Malagon/   |    F   |   1938-10-8 |  19  |  False |  1958-9-18 |  @F3@  |        @F14@       |
+| @I26@ |   Milford /Malagon/  |    M   |   1939-11-8 |  79  |  True  |     NA     |  @F3@  |        @F15@       |
+| @I27@ |   Rashida /Malagon/  |    F   |   1940-12-7 |  78  |  True  |     NA     |  @F3@  |  @F16@,@F17@,@F18@ |
+| @I28@ |   Deeann /Malagon/   |    F   |  1940-12-10 |  78  |  True  |     NA     |  @F3@  |         NA         |
+| @I29@ |    Dario /Malagon/   |    M   |   1942-8-18 |  77  |  True  |     NA     |  @F3@  |        @F19@       |
+| @I30@ |    Chet /Malagon/    |    M   |   1942-9-18 |  77  |  True  |     NA     |  @F3@  |  @F20@,@F21@,@F22@ |
+| @I31@ |    Sock /Malagon/    |    F   |  1955-10-17 |  64  |  True  |     NA     |  @F3@  |        @F11@       |
 | @I32@ |    Chet /Malagon/    |    M   |   1943-8-18 |  76  |  True  |     NA     |  @F3@  |         NA         |
-| @I33@ |    Loyd /Malagon/    |    M   |   1965-8-9  |  54  |  True  |     NA     |  @F3@  |         NA         |
-| @I34@ |    Kitty /Malagon/   |    F   |   1925-6-5  |  94  |  True  |     NA     |   NA   |        @F11@       |
-| @I35@ |    Sock /Malagon/    |    F   |  1955-10-17 |  64  |  True  |     NA     |  @F11@ |        @F17@       |
-| @I36@ |       Kay /Ali/      |    M   |   1950-9-9  |  69  |  True  |     NA     |   NA   |        @F12@       |
-| @I37@ |  Calfuray /Malagon/  |    F   |   1980-9-9  |  39  |  True  |     NA     |  @F12@ |         NA         |
-| @I38@ |     Vasu /Zdenek/    |    M   |   1940-8-9  |  79  |  True  |     NA     |   NA   |        @F13@       |
-| @I39@ |      Yam /Tarah/     |    M   |   1941-9-9  |  78  |  True  |     NA     |   NA   |        @F15@       |
-| @I40@ |    Petros /Ganesh/   |    M   |  1942-10-10 |  77  |  True  |     NA     |   NA   |        @F16@       |
-| @I41@ |    Renate /Giotto/   |    M   |   1943-10-9 |  76  |  True  |     NA     |   NA   |        @F14@       |
-| @I42@ |   Enrica /Coleman/   |    F   |   1980-8-18 |  39  |  True  |     NA     |  @F20@ |         NA         |
-| @I43@ |   Mahfuz /Claudia/   |    F   |   1944-9-8  |  75  |  True  |     NA     |   NA   |        @F19@       |
-| @I44@ |  Prabhakar /Jamyang/ |    F   |   1946-9-6  |  73  |  True  |     NA     |   NA   |        @F18@       |
+| @I33@ |    Loyd /Malagon/    |    M   |   1985-8-9  |  34  |  True  |     NA     |  @F3@  |         NA         |
+| @I34@ |    Kitty /Malagon/   |    F   |   1925-6-5  |  94  |  True  |     NA     |   NA   |        @F12@       |
+| @I35@ |    Sock /Malagon/    |    F   |  1955-10-17 |  64  |  True  |     NA     |  @F12@ |        @F19@       |
+| @I36@ |       Kay /Ali/      |    M   |   1950-9-9  |  69  |  True  |     NA     |   NA   |        @F13@       |
+| @I37@ |  Calfuray /Malagon/  |    F   |   1980-9-9  |  39  |  True  |     NA     |  @F13@ |        @F15@       |
+| @I38@ |     Vasu /Zdenek/    |    M   |   1940-8-9  |  79  |  True  |     NA     |   NA   |        @F14@       |
+| @I39@ |      Yam /Tarah/     |    M   |   1941-9-9  |  78  |  True  |     NA     |   NA   |        @F17@       |
+| @I40@ |    Petros /Ganesh/   |    M   |  1942-10-10 |  77  |  True  |     NA     |   NA   |        @F18@       |
+| @I41@ |    Renate /Giotto/   |    M   |   1943-10-9 |  76  |  True  |     NA     |   NA   |        @F16@       |
+| @I42@ |   Enrica /Coleman/   |    F   |   1980-8-18 |  39  |  True  |     NA     |  @F22@ |         NA         |
+| @I43@ |   Mahfuz /Claudia/   |    F   |   1944-9-8  |  75  |  True  |     NA     |   NA   |        @F21@       |
+| @I44@ |  Prabhakar /Jamyang/ |    F   |   1946-9-6  |  73  |  True  |     NA     |   NA   |        @F20@       |
 +-------+----------------------+--------+-------------+------+--------+------------+--------+--------------------+
 
 Families Table
 +-------+------------+------------+------------+--------------------+---------+----------------------+-------------------------------------------------------------------------------------------------+
 |   ID  |  Married   |  Divorced  | Husband ID |    Husband Name    | Wife ID |      Wife Name       |                                             Children                                            |
 +-------+------------+------------+------------+--------------------+---------+----------------------+-------------------------------------------------------------------------------------------------+
-|  @F1@ |  1947-9-17 |     NA     |    @I2@    |  Stephan /Malagon/ |   @I2@  |   Stephan /Malagon/  |                                       @I1@,@I4@,@I5@,@I14@                                      |
+|  @F1@ |  1970-7-7  |     NA     |    @I6@    |   Samuel /Venzon/  |   @I1@  |  Willodean /Malagon/ |                                            @I7@,@I13@                                           |
+|  @F2@ |  1947-9-17 |     NA     |    @I2@    |  Stephan /Malagon/ |   @I3@  |  Laverna /Leonhardt/ |                                       @I1@,@I4@,@I5@,@I14@                                      |
 |  @F3@ |  1925-4-28 |     NA     |    @I16@   |  Johnny /Malagon/  |   @I17@ |     Lura /Lomas/     |  @I2@,@I18@,@I20@,@I21@,@I22@,@I23@,@I24@,@I25@,@I26@,@I27@,@I28@,@I29@,@I30@,@I31@,@I32@,@I33@ |
 |  @F4@ |     NA     |     NA     |    @I4@    |    Ken /Malagon/   |   @I20@ |   Lucile /Malagon/   |                                                NA                                               |
 |  @F5@ |  1978-9-2  |     NA     |    @I5@    |   Josh /Malagon/   |   @I8@  |    Cinda /Burgard/   |                                               @I10@                                             |
 |  @F7@ |  1985-4-5  |     NA     |    @I9@    |  Jerrell /Finklea/ |   @I8@  |    Cinda /Burgard/   |                                            @I11@,@I19@                                          |
 |  @F8@ |     NA     |     NA     |     NA     |         NA         |   @I8@  |    Cinda /Burgard/   |                                                NA                                               |
 |  @F6@ |     NA     |     NA     |    @I7@    |    Byron /Vezon/   |   @I12@ |    Shyla /Bertone/   |                                                NA                                               |
-|  @F9@ |  1968-6-4  |     NA     |    @I14@   |   Jacob /Malagon/  |   @I15@ |  Jaqueline /Kindel/  |                                                NA                                               |
-| @F10@ |     NA     |     NA     |    @I22@   |    Tom /Malagon/   |   @I31@ |    Sock /Malagon/    |                                                NA                                               |
-| @F11@ |  1945-8-5  |  1956-7-7  |    @I22@   |    Tom /Malagon/   |   @I34@ |    Kitty /Malagon/   |                                               @I35@                                             |
-| @F12@ |  1958-5-5  |  1955-10-9 |    @I36@   |      Kay /Ali/     |   @I24@ |    Shena /Malagon/   |                                               @I37@                                             |
-| @F13@ |  1959-5-4  |     NA     |    @I38@   |    Vasu /Zdenek/   |   @I25@ |   Hailey /Malagon/   |                                                NA                                               |
-| @F14@ |  1963-11-3 |     NA     |    @I41@   |   Renate /Giotto/  |   @I27@ |   Rashida /Malagon/  |                                                NA                                               |
-| @F15@ |  1960-5-4  |     NA     |    @I39@   |     Yam /Tarah/    |   @I27@ |   Rashida /Malagon/  |                                                NA                                               |
-| @F16@ |  1962-5-5  |     NA     |    @I40@   |   Petros /Ganesh/  |   @I27@ |   Rashida /Malagon/  |                                                NA                                               |
-| @F17@ |  1980-5-6  |     NA     |    @I29@   |   Dario /Malagon/  |   @I35@ |    Sock /Malagon/    |                                                NA                                               |
-| @F18@ |     NA     |     NA     |    @I30@   |   Chet /Malagon/   |   @I44@ |  Prabhakar /Jamyang/ |                                                NA                                               |
-| @F19@ |  1964-4-5  |  1966-11-8 |    @I30@   |   Chet /Malagon/   |   @I43@ |   Mahfuz /Claudia/   |                                                NA                                               |
-| @F20@ |     NA     |     NA     |    @I30@   |   Chet /Malagon/   |    NA   |          NA          |                                               @I42@                                             |
+|  @F9@ |  1990-6-3  |     NA     |    @I10@   |   Ruthe /Malagon/  |   @I13@ |     Beth /Venzon/    |                                                NA                                               |
+| @F10@ |  1968-6-4  |  1990-7-12 |    @I14@   |   Jacob /Malagon/  |   @I15@ |  Jaqueline /Kindel/  |                                                NA                                               |
+| @F11@ |     NA     |     NA     |    @I22@   |    Tom /Malagon/   |   @I31@ |    Sock /Malagon/    |                                                NA                                               |
+| @F12@ |  1945-8-5  |  1956-7-7  |    @I22@   |    Tom /Malagon/   |   @I34@ |    Kitty /Malagon/   |                                               @I35@                                             |
+| @F13@ |  1958-5-5  |  1955-10-9 |    @I36@   |      Kay /Ali/     |   @I24@ |    Shena /Malagon/   |                                               @I37@                                             |
+| @F14@ |  1959-5-4  |     NA     |    @I38@   |    Vasu /Zdenek/   |   @I25@ |   Hailey /Malagon/   |                                                NA                                               |
+| @F15@ |     NA     |     NA     |    @I26@   |  Milford /Malagon/ |   @I37@ |  Calfuray /Malagon/  |                                                NA                                               |
+| @F16@ |  1963-11-3 |     NA     |    @I41@   |   Renate /Giotto/  |   @I27@ |   Rashida /Malagon/  |                                                NA                                               |
+| @F17@ |  1960-5-4  |     NA     |    @I39@   |     Yam /Tarah/    |   @I27@ |   Rashida /Malagon/  |                                                NA                                               |
+| @F18@ |  1962-5-5  |     NA     |    @I40@   |   Petros /Ganesh/  |   @I27@ |   Rashida /Malagon/  |                                                NA                                               |
+| @F19@ |  1980-5-6  |     NA     |    @I29@   |   Dario /Malagon/  |   @I35@ |    Sock /Malagon/    |                                                NA                                               |
+| @F20@ |     NA     |     NA     |    @I30@   |   Chet /Malagon/   |   @I44@ |  Prabhakar /Jamyang/ |                                                NA                                               |
+| @F21@ |  1964-4-5  |  1966-11-8 |    @I30@   |   Chet /Malagon/   |   @I43@ |   Mahfuz /Claudia/   |                                                NA                                               |
+| @F22@ |     NA     |     NA     |    @I30@   |   Chet /Malagon/   |    NA   |          NA          |                                               @I42@                                             |
 +-------+------------+------------+------------+--------------------+---------+----------------------+-------------------------------------------------------------------------------------------------+
 
 US29: Deceased People Table
@@ -78,7 +82,10 @@ US29: Deceased People Table
 +-------+----------------------+--------+-------------+------+--------+------------+
 |  @I1@ |  Willodean /Malagon/ |    F   |   1958-7-7  |  15  |  False |  1974-6-20 |
 |  @I5@ |    Josh /Malagon/    |    M   |  1964-10-31 |  19  |  False |  1984-5-7  |
+| @I14@ |    Jacob /Malagon/   |    M   |   1970-11-8 |  17  |  False |  1988-9-29 |
+| @I15@ |  Jaqueline /Kindel/  |    F   |   1969-9-8  |  17  |  False |  1987-7-6  |
 | @I18@ |    Tesha /Malagon/   |    F   |   1819-7-8  |  200 |  False |  2019-8-2  |
+| @I21@ |     Regena /Ali/     |    F   |   1820-10-8 |  -2  |  False |  1819-3-3  |
 | @I23@ |   Vonnie /Malagon/   |    M   |   1936-3-10 |   1  |  False |  1937-7-6  |
 | @I25@ |   Hailey /Malagon/   |    F   |   1938-10-8 |  19  |  False |  1958-9-18 |
 +-------+----------------------+--------+-------------+------+--------+------------+
@@ -87,101 +94,117 @@ US30: Living & Married People Table
 +-------+----------------------+--------+-------------+------+-------+-------+--------------------+
 |   ID  |         Name         | Gender |   Birthday  | Age  | Alive | Death |       Spouse       |
 +-------+----------------------+--------+-------------+------+-------+-------+--------------------+
-|  @I2@ |  Laverna /Leonhardt/ |    F   |   1932-6-9  |  87  |  True |   NA  |        @F1@        |
+|  @I2@ |   Stephan /Malagon/  |    M   |   1930-8-21 |  89  |  True |   NA  |        @F2@        |
+|  @I3@ |  Laverna /Leonhardt/ |    F   |   1932-6-9  |  87  |  True |   NA  |        @F2@        |
 |  @I4@ |     Ken /Malagon/    |    M   |   1962-2-6  |  57  |  True |   NA  |        @F4@        |
 |  @I6@ |    Samuel /Venzon/   |    M   |   1958-12-6 |  60  |  True |   NA  |        @F1@        |
 |  @I7@ |     Byron /Vezon/    |    M   |   1973-7-6  |  46  |  True |   NA  |        @F6@        |
 |  @I8@ |    Cinda /Burgard/   |    F   |   1966-8-8  |  53  |  True |   NA  |   @F5@,@F7@,@F8@   |
 |  @I9@ |   Jerrell /Finklea/  |    M   |   1965-9-8  |  54  |  True |   NA  |        @F7@        |
+| @I10@ |    Ruthe /Malagon/   |    M   |   1977-9-8  |  42  |  True |   NA  |        @F9@        |
 | @I12@ |    Shyla /Bertone/   |    F   |   2021-8-9  |  -2  |  True |   NA  |        @F6@        |
-| @I14@ |    Jacob /Malagon/   |    M   |   1970-11-8 |  48  |  True |   NA  |        @F9@        |
-| @I15@ |  Jaqueline /Kindel/  |    F   |   1969-9-8  |  50  |  True |   NA  |        @F9@        |
+| @I13@ |     Beth /Venzon/    |    F   |   1975-7-8  |  44  |  True |   NA  |        @F9@        |
 | @I16@ |   Johnny /Malagon/   |    M   |   1901-7-14 |  118 |  True |   NA  |        @F3@        |
 | @I17@ |     Lura /Lomas/     |    F   |   1900-8-30 |  119 |  True |   NA  |        @F3@        |
 | @I20@ |   Lucile /Malagon/   |    F   |   1931-9-9  |  88  |  True |   NA  |        @F4@        |
-| @I22@ |     Tom /Malagon/    |    M   |   1923-5-8  |  96  |  True |   NA  |     @F10@,@F11@    |
-| @I24@ |    Shena /Malagon/   |    F   |   1937-11-6 |  81  |  True |   NA  |        @F12@       |
-| @I27@ |   Rashida /Malagon/  |    F   |   1940-12-7 |  78  |  True |   NA  |  @F14@,@F15@,@F16@ |
-| @I29@ |    Dario /Malagon/   |    M   |  1942-12-14 |  76  |  True |   NA  |        @F17@       |
-| @I30@ |    Chet /Malagon/    |    M   |   1943-8-18 |  76  |  True |   NA  |  @F18@,@F19@,@F20@ |
-| @I31@ |    Sock /Malagon/    |    F   |  1955-10-17 |  64  |  True |   NA  |        @F10@       |
-| @I34@ |    Kitty /Malagon/   |    F   |   1925-6-5  |  94  |  True |   NA  |        @F11@       |
-| @I35@ |    Sock /Malagon/    |    F   |  1955-10-17 |  64  |  True |   NA  |        @F17@       |
-| @I36@ |       Kay /Ali/      |    M   |   1950-9-9  |  69  |  True |   NA  |        @F12@       |
-| @I38@ |     Vasu /Zdenek/    |    M   |   1940-8-9  |  79  |  True |   NA  |        @F13@       |
-| @I39@ |      Yam /Tarah/     |    M   |   1941-9-9  |  78  |  True |   NA  |        @F15@       |
-| @I40@ |    Petros /Ganesh/   |    M   |  1942-10-10 |  77  |  True |   NA  |        @F16@       |
-| @I41@ |    Renate /Giotto/   |    M   |   1943-10-9 |  76  |  True |   NA  |        @F14@       |
-| @I43@ |   Mahfuz /Claudia/   |    F   |   1944-9-8  |  75  |  True |   NA  |        @F19@       |
-| @I44@ |  Prabhakar /Jamyang/ |    F   |   1946-9-6  |  73  |  True |   NA  |        @F18@       |
+| @I22@ |     Tom /Malagon/    |    M   |   1923-5-8  |  96  |  True |   NA  |     @F11@,@F12@    |
+| @I24@ |    Shena /Malagon/   |    F   |   1937-11-6 |  81  |  True |   NA  |        @F13@       |
+| @I26@ |   Milford /Malagon/  |    M   |   1939-11-8 |  79  |  True |   NA  |        @F15@       |
+| @I27@ |   Rashida /Malagon/  |    F   |   1940-12-7 |  78  |  True |   NA  |  @F16@,@F17@,@F18@ |
+| @I29@ |    Dario /Malagon/   |    M   |   1942-8-18 |  77  |  True |   NA  |        @F19@       |
+| @I30@ |    Chet /Malagon/    |    M   |   1942-9-18 |  77  |  True |   NA  |  @F20@,@F21@,@F22@ |
+| @I31@ |    Sock /Malagon/    |    F   |  1955-10-17 |  64  |  True |   NA  |        @F11@       |
+| @I34@ |    Kitty /Malagon/   |    F   |   1925-6-5  |  94  |  True |   NA  |        @F12@       |
+| @I35@ |    Sock /Malagon/    |    F   |  1955-10-17 |  64  |  True |   NA  |        @F19@       |
+| @I36@ |       Kay /Ali/      |    M   |   1950-9-9  |  69  |  True |   NA  |        @F13@       |
+| @I37@ |  Calfuray /Malagon/  |    F   |   1980-9-9  |  39  |  True |   NA  |        @F15@       |
+| @I38@ |     Vasu /Zdenek/    |    M   |   1940-8-9  |  79  |  True |   NA  |        @F14@       |
+| @I39@ |      Yam /Tarah/     |    M   |   1941-9-9  |  78  |  True |   NA  |        @F17@       |
+| @I40@ |    Petros /Ganesh/   |    M   |  1942-10-10 |  77  |  True |   NA  |        @F18@       |
+| @I41@ |    Renate /Giotto/   |    M   |   1943-10-9 |  76  |  True |   NA  |        @F16@       |
+| @I43@ |   Mahfuz /Claudia/   |    F   |   1944-9-8  |  75  |  True |   NA  |        @F21@       |
+| @I44@ |  Prabhakar /Jamyang/ |    F   |   1946-9-6  |  73  |  True |   NA  |        @F20@       |
 +-------+----------------------+--------+-------------+------+-------+-------+--------------------+
 
 US38 List Upcoming Birthdays Table
-+-------+--------------------+--------+-------------+-----+--------+-----------+--------+
-|   ID  |        Name        | Gender |   Birthday  | Age | Alive  |   Death   | Spouse |
-+-------+--------------------+--------+-------------+-----+--------+-----------+--------+
-|  @I5@ |   Josh /Malagon/   |    M   |  1964-10-31 |  19 |  False |  1984-5-7 |  @F5@  |
-| @I14@ |   Jacob /Malagon/  |    M   |   1970-11-8 |  48 |  True  |     NA    |  @F9@  |
-| @I24@ |   Shena /Malagon/  |    F   |   1937-11-6 |  81 |  True  |     NA    |  @F12@ |
-| @I26@ |  Milford /Malagon/ |    M   |   1939-11-8 |  79 |  True  |     NA    |   NA   |
-+-------+--------------------+--------+-------------+-----+--------+-----------+--------+
++-------+--------------------+--------+-------------+-----+--------+------------+--------+
+|   ID  |        Name        | Gender |   Birthday  | Age | Alive  |   Death    | Spouse |
++-------+--------------------+--------+-------------+-----+--------+------------+--------+
+|  @I5@ |   Josh /Malagon/   |    M   |  1964-10-31 |  19 |  False |  1984-5-7  |  @F5@  |
+| @I14@ |   Jacob /Malagon/  |    M   |   1970-11-8 |  17 |  False |  1988-9-29 |  @F10@ |
+| @I24@ |   Shena /Malagon/  |    F   |   1937-11-6 |  81 |  True  |     NA     |  @F13@ |
+| @I26@ |  Milford /Malagon/ |    M   |   1939-11-8 |  79 |  True  |     NA     |  @F15@ |
++-------+--------------------+--------+-------------+-----+--------+------------+--------+
 
 ------error messages------
-ERROR: INDIVIDUAL: US22: 36: @I2@: Individuals have the same ID
-ERROR: FAMILY: US22: 451: @F1@: Family share the same ID 
-ERROR: INDIVIDUAL: US01: 130: @I12@: Individual has birth date 2021-8-9 later than today
-ERROR: INDIVIDUAL: US02: 522: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
-ERROR: INDIVIDUAL: US02: 522: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
-ERROR: FAMILY: US12: 36: @F1@: Wife is 72 older than the child @I1@.
-ERROR: FAMILY: US12: 36: @F1@: Wife is 68 older than the child @I5@.
-ERROR: INDIVIDUAL: US12: 161: @F3@: Father is 117 older than the child @I23@.
-ERROR: FAMILY: US12: 170: @F3@: Wife is 118 older than the child @I23@.
-ERROR: INDIVIDUAL: US12: 161: @F3@: Father is 99 older than the child @I25@.
-ERROR: FAMILY: US12: 170: @F3@: Wife is 100 older than the child @I25@.
-ERROR: FAMILY: US12: 170: @F3@: Wife is 65 older than the child @I33@.
+ERROR: INDIVIDUAL: US01: 131: @I12@: Individual has birth date 2021-8-9 later than today
+ERROR: INDIVIDUAL: US02: 538: @I14@: Person has marriage date 1968-6-4 before birth date 1970-11-8
+ERROR: INDIVIDUAL: US02: 538: @I15@: Person has marriage date 1968-6-4 before birth date 1969-9-8
+ERROR: FAMILY: US06: 541: @F10@: Divorce 1990-7-12 happened after the death of both spouses - Husband: 1988-9-29 Wife: 1987-7-6.
+ERROR: INDIVIDUAL: US09: 140: @I13@: Child was born at 1975-7-8 after death of mother 1974-6-20
+ERROR: FAMILY: US12: 36: @F2@: Wife is 72 older than the child @I1@.
+ERROR: FAMILY: US12: 36: @F2@: Wife is 68 older than the child @I5@.
+ERROR: FAMILY: US12: 36: @F2@: Wife is 70 older than the child @I14@.
+ERROR: INDIVIDUAL: US12: 167: @F3@: Father is 120 older than the child @I21@.
+ERROR: FAMILY: US12: 176: @F3@: Wife is 121 older than the child @I21@.
+ERROR: INDIVIDUAL: US12: 167: @F3@: Father is 117 older than the child @I23@.
+ERROR: FAMILY: US12: 176: @F3@: Wife is 118 older than the child @I23@.
+ERROR: INDIVIDUAL: US12: 167: @F3@: Father is 99 older than the child @I25@.
+ERROR: FAMILY: US12: 176: @F3@: Wife is 100 older than the child @I25@.
+ERROR: INDIVIDUAL: US12: 167: @F3@: Father is 84 older than the child @I33@.
+ERROR: FAMILY: US12: 176: @F3@: Wife is 85 older than the child @I33@.
+ERROR: INDIVIDUAL: US13: 280: Child @I27@ is born within 8 months and more than 2 days of sibling
+ERROR: INDIVIDUAL: US13: 292: Child @I28@ is born within 8 months and more than 2 days of sibling
+ERROR: INDIVIDUAL: US13: 301: Child @I29@ is born within 8 months and more than 2 days of sibling
+ERROR: INDIVIDUAL: US13: 311: Child @I30@ is born within 8 months and more than 2 days of sibling
 ERROR: INDIVIDUAL: US30: 14: @I1@: Deceased Person is married to Person @F1@
 ERROR: INDIVIDUAL: US30: 55: @I5@: Deceased Person is married to Person @F5@
-ERROR: INDIVIDUAL: US30: 250: @I25@: Deceased Person is married to Person @F13@
-ERROR: FAMILY: US39: 485: Family @F4@ does not have married date!
+ERROR: INDIVIDUAL: US30: 144: @I14@: Deceased Person is married to Person @F10@
+ERROR: INDIVIDUAL: US30: 156: @I15@: Deceased Person is married to Person @F10@
+ERROR: INDIVIDUAL: US30: 258: @I25@: Deceased Person is married to Person @F14@
+ERROR: FAMILY: US39: 495: Family @F4@ does not have married date!
 -----anomaly messages-----
-ANOMALY: INDIVIDUAL: US04: 544: @I24@: Marriage Before Divorce - Marriage Date 1958-5-5 - Divorce Date 1955-10-9
-ANOMALY: INDIVIDUAL: US04: 544: @I36@: Marriage Before Divorce - Marriage Date 1958-5-5 - Divorce Date 1955-10-9
-ANOMALY: INDIVIDUAL: US05: 553: @I25@: Marriage Before Death - Marriage Date 1959-5-4 - Death Date 1958-9-18
-ANOMALY: INDIVIDUAL: US07: 185: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
-ANOMALY: INDIVIDUAL: US07: 215: @I21@: More than 150 years old - Birth Date 1820-10-8
-ANOMALY: INDIVIDUAL: US08: 185: @I18@: Child was born at 1819-7-8 before marriage of parents 1925-4-28
-ANOMALY: INDIVIDUAL: US08: 215: @I21@: Child was born at 1820-10-8 before marriage of parents 1925-4-28
-ANOMALY: INDIVIDUAL: US08: 224: @I22@: Child was born at 1923-5-8 before marriage of parents 1925-4-28
+ANOMALY: INDIVIDUAL: US04: 562: @I24@: Marriage Before Divorce - Marriage Date 1958-5-5 - Divorce Date 1955-10-9
+ANOMALY: INDIVIDUAL: US04: 562: @I36@: Marriage Before Divorce - Marriage Date 1958-5-5 - Divorce Date 1955-10-9
+ANOMALY: INDIVIDUAL: US05: 571: @I25@: Marriage Before Death - Marriage Date 1959-5-4 - Death Date 1958-9-18
+ANOMALY: INDIVIDUAL: US07: 191: @I18@: More than 150 years old at death - Birth Date 1819-7-8: Death Date 2019-8-2
+ANOMALY: INDIVIDUAL: US08: 191: @I18@: Child was born at 1819-7-8 before marriage of parents 1925-4-28
+ANOMALY: INDIVIDUAL: US08: 221: @I21@: Child was born at 1820-10-8 before marriage of parents 1925-4-28
+ANOMALY: INDIVIDUAL: US08: 232: @I22@: Child was born at 1923-5-8 before marriage of parents 1925-4-28
 ANOMALY: INDIVIDUAL: US08: 112: @I10@: Child was born at 1977-9-8 before marriage of parents 1978-9-2
-ANOMALY: INDIVIDUAL: US08: 376: @I37@: Child was born at 1980-9-9 after 9 month divorce of parents 1955-10-9
+ANOMALY: INDIVIDUAL: US08: 385: @I37@: Child was born at 1980-9-9 after 9 month divorce of parents 1955-10-9
+ANOMALY: INDIVIDUAL: US10: 73: @I6@: Father of family @F1@ is younger than 14 years old - Birth Date 1958-12-6
+ANOMALY: INDIVIDUAL: US10: 20: @I1@: Wife of family @F1@ is younger than 14 years old - Birth Date 1958-7-7
 ANOMALY: INDIVIDUAL: US10: 51: @I4@: Father of family @F4@ is younger than 14 years old - Birth Date 1962-2-6
-ANOMALY: INDIVIDUAL: US10: 205: @I20@: Wife of family @F4@ is younger than 14 years old - Birth Date 1931-9-9
+ANOMALY: INDIVIDUAL: US10: 211: @I20@: Wife of family @F4@ is younger than 14 years old - Birth Date 1931-9-9
 ANOMALY: INDIVIDUAL: US10: 61: @I5@: Father of family @F5@ is younger than 14 years old - Birth Date 1964-10-31
 ANOMALY: INDIVIDUAL: US10: 92: @I8@: Wife of family @F5@ is younger than 14 years old - Birth Date 1966-8-8
 ANOMALY: INDIVIDUAL: US10: 82: @I7@: Father of family @F6@ is younger than 14 years old - Birth Date 1973-7-6
-ANOMALY: INDIVIDUAL: US10: 130: @I12@: Wife of family @F6@ is younger than 14 years old - Birth Date 2021-8-9
-ANOMALY: INDIVIDUAL: US10: 148: @I14@: Father of family @F9@ is younger than 14 years old - Birth Date 1970-11-8
-ANOMALY: INDIVIDUAL: US10: 158: @I15@: Wife of family @F9@ is younger than 14 years old - Birth Date 1969-9-8
-ANOMALY: INDIVIDUAL: US10: 320: @I31@: Wife of family @F10@ is younger than 14 years old - Birth Date 1955-10-17
-ANOMALY: INDIVIDUAL: US10: 367: @I36@: Father of family @F12@ is younger than 14 years old - Birth Date 1950-9-9
-ANOMALY: INDIVIDUAL: US11: 271: @I27@: Performing bigamy
-ANOMALY: FAMILY: US15: 462: @F3@: Family has 16 siblings which is more than 15 siblings
-ANOMALY: INDIVIDUAL: US16: 116: @I11@: Individual has different last name Tung than family Finklea
-ANOMALY: INDIVIDUAL: US16: 191: @I19@: Individual has different last name Iglesias than family Finklea
-ANOMALY: INDIVIDUAL: US18: 218: @I22@: Individual married to sibling @I31@
-ANOMALY: INDIVIDUAL: US18: 314: @I31@: Individual married to sibling @I22@
-ANOMALY: FAMILY: US20: 487: @F4@: Person @I20@ should not marry person @I4@
-ANOMALY: INDIVIDUAL: US23: 324: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18
-ANOMALY: INDIVIDUAL: US23: 351: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
-ANOMALY: INDIVIDUAL: US25: 462: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@
-ANOMALY: INDIVIDUAL: US25: 530: @I35@: @I31@: Individuals share the same first name Sock /Malagon/ and birth date 1955-10-17 from family @F11@
-ANOMALY: FAMILY: US32: 462: @F3@: The two or more individuals were born at the same time
-ANOMALY: FAMILY: US32: 500: @F7@: The two or more individuals were born at the same time
-ANOMALY: FAMILY: US34: 489: @F5@: Family has a large spouse age difference
-ANOMALY: FAMILY: US34: 512: @F6@: Family has a large spouse age difference
-ANOMALY: FAMILY: US34: 550: @F13@: Family has a large spouse age difference
-ANOMALY: INDIVIDUAL: US19: 218: @I22@: Individual married to cousins @I31@
-ANOMALY: INDIVIDUAL: US19: 314: @I31@: Individual married to cousins @I22@
+ANOMALY: INDIVIDUAL: US10: 131: @I12@: Wife of family @F6@ is younger than 14 years old - Birth Date 2021-8-9
+ANOMALY: INDIVIDUAL: US10: 112: @I10@: Father of family @F9@ is younger than 14 years old - Birth Date 1977-9-8
+ANOMALY: INDIVIDUAL: US10: 150: @I14@: Father of family @F10@ is younger than 14 years old - Birth Date 1970-11-8
+ANOMALY: INDIVIDUAL: US10: 162: @I15@: Wife of family @F10@ is younger than 14 years old - Birth Date 1969-9-8
+ANOMALY: INDIVIDUAL: US10: 329: @I31@: Wife of family @F11@ is younger than 14 years old - Birth Date 1955-10-17
+ANOMALY: INDIVIDUAL: US10: 376: @I36@: Father of family @F13@ is younger than 14 years old - Birth Date 1950-9-9
+ANOMALY: INDIVIDUAL: US10: 385: @I37@: Wife of family @F15@ is younger than 14 years old - Birth Date 1980-9-9
+ANOMALY: INDIVIDUAL: US11: 280: @I27@: Performing bigamy
+ANOMALY: FAMILY: US15: 472: @F3@: Family has 16 siblings which is more than 15 siblings
+ANOMALY: INDIVIDUAL: US16: 77: @I7@: Individual has different last name Vezon than family Venzon
+ANOMALY: INDIVIDUAL: US16: 117: @I11@: Individual has different last name Tung than family Finklea
+ANOMALY: INDIVIDUAL: US16: 197: @I19@: Individual has different last name Iglesias than family Finklea
+ANOMALY: INDIVIDUAL: US18: 226: @I22@: Individual married to sibling @I31@
+ANOMALY: INDIVIDUAL: US18: 323: @I31@: Individual married to sibling @I22@
+ANOMALY: FAMILY: US20: 497: @F4@: Person @I20@ should not marry person @I4@
+ANOMALY: INDIVIDUAL: US23: 360: @I35@: @I31@: Individuals have the same name Sock /Malagon/ and birth date 1955-10-17
+ANOMALY: INDIVIDUAL: US25: 548: @I35@: @I31@: Individuals share the same first name Sock /Malagon/ and birth date 1955-10-17 from family @F12@
+ANOMALY: FAMILY: US32: 510: @F7@: The two or more individuals were born at the same time
+ANOMALY: FAMILY: US34: 452: @F1@: Family has a large spouse age difference
+ANOMALY: FAMILY: US34: 499: @F5@: Family has a large spouse age difference
+ANOMALY: FAMILY: US34: 522: @F6@: Family has a large spouse age difference
+ANOMALY: FAMILY: US34: 568: @F14@: Family has a large spouse age difference
+ANOMALY: FAMILY: US34: 574: @F15@: Family has a large spouse age difference
+ANOMALY: INDIVIDUAL: US19: 226: @I22@: Individual married to cousins @I31@
+ANOMALY: INDIVIDUAL: US19: 323: @I31@: Individual married to cousins @I22@
 US39: List Upcoming Anniversaries Table
 +------+-------------+------------+----------------+---------+---------------+
 |  ID  |   Married   | Husband ID |  Husband Name  | Wife ID |   Wife Name   |

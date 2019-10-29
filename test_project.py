@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+
 # coding: utf-8
 
 # In[1]:
@@ -99,7 +99,7 @@ def test_divorce_before_death_fail():
     
     Project.check_divorce_before_death()
 
-    return Project.error_array==['ERROR: FAMILY: US06: 530: @F1@: Divorce 1971-7-7 happened after the death of wife 1971-7-1.']
+    return Project.error_array==['ERROR: FAMILY: US06: 530: @F1@: Divorce 1971-7-7 happened after the death of husband 1971-7-1.']
 
 
 # In[3]:
@@ -135,7 +135,7 @@ def test_divorce_before_death_pass():
                    'INDI_CHILD': 'NA',
                    'SPOUSE': ['@F1@'],
                    'FAMS_LINE': 75,
-                   'DEAT': '1971-7-1',
+                   'DEAT': '1973-7-1',
                    'AGE': '110',
                    'ALIVE': True},
                   'wife_object': {'INDI': '@I1@',
@@ -147,7 +147,7 @@ def test_divorce_before_death_pass():
                    'BIRT_LINE': 20,
                    'BIRT': '1958-7-7',
                    'DEAT_LINE': 22,
-                   'DEAT': '1970-6-20',
+                   'DEAT': '1979-6-20',
                    'INDI_CHILD': ['@F2@'],
                    'SPOUSE': ['@F1@'],
                    'FAMS_LINE': 24,
@@ -2502,7 +2502,7 @@ def test_unique_indi_and_family():
 
 
     Project.read_in(file)
-    return Project.error_array==['ERROR: INDIVIDUAL: US22: 51: @I1@: Individuals have the same ID', 'ERROR: FAMILY: US22: 62: @F1@: Family share the same ID ']
+    return Project.error_array==['ERROR: INDIVIDUAL: US22: 51: @I1@: Individuals have the same ID', 'ERROR: FAMILY: US22: 62: @F1@: Two families share the same ID ']
 
 
 # In[57]:
@@ -2630,10 +2630,4 @@ class TestStringMethods(unittest.TestCase):
         
 suite = unittest.TestLoader().loadTestsFromTestCase(TestStringMethods)
 unittest.TextTestRunner(verbosity=2).run(suite)
-
-
-# In[ ]:
-
-
-
 
