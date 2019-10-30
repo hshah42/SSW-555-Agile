@@ -449,6 +449,15 @@
 1 BIRT
 2 DATE 6 SEP 1946
 1 FAMS @F20@
+0 @I44@ INDI
+1 NAME Maeehfuz /Claudiawf/
+2 GIVN Mahfuzge
+2 SURN Claudiawf
+2 _MARNM Claudiawf
+1 SEX F
+1 BIRT
+2 DATE 8 SEP 1944
+1 FAMS @F22@
 0 @F1@ FAM
 1 HUSB @I6@
 1 WIFE @I1@
