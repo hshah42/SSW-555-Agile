@@ -1497,6 +1497,66 @@ def test_list_living_married_individuals_error(mock_printTable):
 # In[29]:
 
 
+#User_Story_31: List all living people over 30 who have never been married in a GEDCOM file
+# Success test
+def test_list_single_people_pass():
+    #Mock individuals dictionary
+    individuals = {'@I1@': {'INDI': '@I1@', 'INDI_LINE': 14, 'NAME': 'Oliwer /Christos/', 'NAME_LINE': 15, 'SEX': 'M', 'SEX_LINE': 19, 'BIRT_LINE': 20, 'BIRT': '1945-7-9', 'DEAT_LINE': 22, 'DEAT': '1970-9-9', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F1@'], 'FAMS_LINE': 24, 'FAMC_LINE': 25, 'AGE': '25', 'ALIVE': False}, '@I2@': {'INDI': '@I2@', 'INDI_LINE': 26, 'NAME': 'Luis /MartÃ\xad/', 'NAME_LINE': 27, 'SEX': 'F', 'SEX_LINE': 31, 'BIRT_LINE': 32, 'BIRT': '1945-9-10', 'DEAT_LINE': 34, 'DEAT': '1970-9-9', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F1@'], 'FAMS_LINE': 36, 'AGE': '24', 'ALIVE': False}, '@I3@': {'INDI': '@I3@', 'INDI_LINE': 37, 'NAME': 'Hodia /Christos/', 'NAME_LINE': 38, 'SEX': 'M', 'SEX_LINE': 42, 'BIRT_LINE': 43, 'BIRT': '2004-9-7', 'INDI_CHILD': ['@F1@'], 'SPOUSE': 'NA', 'FAMC_LINE': 45, 'DEAT': 'NA', 'AGE': '15', 'ALIVE': True}, '@I4@': {'INDI': '@I4@', 'INDI_LINE': 46, 'NAME': 'Iekika /Christos/', 'NAME_LINE': 47, 'SEX': 'M', 'SEX_LINE': 51, 'BIRT_LINE': 52, 'BIRT': '1919-9-9', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'FAMS_LINE': 54, 'DEAT': 'NA', 'AGE': '100', 'ALIVE': True}, '@I5@': {'INDI': '@I5@', 'INDI_LINE': 55, 'NAME': 'Karin /Ihor/', 'NAME_LINE': 56, 'SEX': 'F', 'SEX_LINE': 60, 'BIRT_LINE': 61, 'BIRT': '1920-8-8', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'FAMS_LINE': 63, 'DEAT': 'NA', 'AGE': '99', 'ALIVE': True}, '@I6@': {'INDI': '@I6@', 'INDI_LINE': 64, 'NAME': 'IsaÃ\xadas /Christos/', 'NAME_LINE': 65, 'SEX': 'F', 'SEX_LINE': 69, 'BIRT_LINE': 70, 'BIRT': '1950-9-8', 'INDI_CHILD': ['@F2@'], 'SPOUSE': 'NA', 'FAMC_LINE': 72, 'DEAT': 'NA', 'AGE': '69', 'ALIVE': True}, '@I7@': {'INDI': '@I7@', 'INDI_LINE': 73, 'NAME': 'Gunni /Christos/', 'NAME_LINE': 74, 'SEX': 'M', 'SEX_LINE': 78, 'BIRT_LINE': 79, 'BIRT': '1949-9-8', 'INDI_CHILD': ['@F2@'], 'SPOUSE': 'NA', 'FAMC_LINE': 81, 'DEAT': 'NA', 'AGE': '70', 'ALIVE': True}, '@I8@': {'INDI': '@I8@', 'INDI_LINE': 82, 'NAME': 'Konstantin /Christos/', 'NAME_LINE': 83, 'SEX': 'M', 'SEX_LINE': 87, 'BIRT_LINE': 88, 'BIRT': '1952-5-25', 'DEAT_LINE': 90, 'DEAT': '2005-10-8', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F3@'], 'FAMS_LINE': 92, 'FAMC_LINE': 93, 'AGE': '53', 'ALIVE': False}, '@I9@': {'INDI': '@I9@', 'INDI_LINE': 94, 'NAME': 'Garrick /Tommie/', 'NAME_LINE': 95, 'SEX': 'F', 'SEX_LINE': 99, 'BIRT_LINE': 100, 'BIRT': '1948-7-8', 'DEAT_LINE': 102, 'DEAT': '2005-10-10', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F3@'], 'FAMS_LINE': 104, 'AGE': '57', 'ALIVE': False}, '@I10@': {'INDI': '@I10@', 'INDI_LINE': 105, 'NAME': 'FÃ©licienne /Christos/', 'NAME_LINE': 106, 'SEX': 'F', 'SEX_LINE': 110, 'BIRT_LINE': 111, 'BIRT': '2004-9-18', 'INDI_CHILD': ['@F3@'], 'SPOUSE': 'NA', 'FAMC_LINE': 113, 'DEAT': 'NA', 'AGE': '15', 'ALIVE': True}}
+    Project.individuals = individuals
+
+    assert Project.listLivingSingle() == True
+    return True
+
+
+# In[30]:
+
+
+#User_Story_31: List all living people over 30 who have never been married in a GEDCOM file
+# Failed test
+def test_list_single_people_fail():
+    #Mock individuals dictionary
+    individuals = {'@I1@': {'INDI': '@I1@', 'INDI_LINE': 14, 'NAME': 'Oliwer /Christos/', 'NAME_LINE': 15, 'SEX': 'M', 'SEX_LINE': 19, 'BIRT_LINE': 20, 'BIRT': '1945-7-9', 'DEAT_LINE': 22, 'DEAT': '1970-9-9', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F1@'], 'FAMS_LINE': 24, 'FAMC_LINE': 25, 'AGE': '25', 'ALIVE': False}, '@I2@': {'INDI': '@I2@', 'INDI_LINE': 26, 'NAME': 'Luis /MartÃ\xad/', 'NAME_LINE': 27, 'SEX': 'F', 'SEX_LINE': 31, 'BIRT_LINE': 32, 'BIRT': '1945-9-10', 'DEAT_LINE': 34, 'DEAT': '1970-9-9', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F1@'], 'FAMS_LINE': 36, 'AGE': '24', 'ALIVE': False}, '@I3@': {'INDI': '@I3@', 'INDI_LINE': 37, 'NAME': 'Hodia /Christos/', 'NAME_LINE': 38, 'SEX': 'M', 'SEX_LINE': 42, 'BIRT_LINE': 43, 'BIRT': '2004-9-7', 'INDI_CHILD': ['@F1@'], 'SPOUSE': 'NA', 'FAMC_LINE': 45, 'DEAT': 'NA', 'AGE': '15', 'ALIVE': True}, '@I4@': {'INDI': '@I4@', 'INDI_LINE': 46, 'NAME': 'Iekika /Christos/', 'NAME_LINE': 47, 'SEX': 'M', 'SEX_LINE': 51, 'BIRT_LINE': 52, 'BIRT': '1919-9-9', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'FAMS_LINE': 54, 'DEAT': 'NA', 'AGE': '100', 'ALIVE': True}, '@I5@': {'INDI': '@I5@', 'INDI_LINE': 55, 'NAME': 'Karin /Ihor/', 'NAME_LINE': 56, 'SEX': 'F', 'SEX_LINE': 60, 'BIRT_LINE': 61, 'BIRT': '1920-8-8', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'FAMS_LINE': 63, 'DEAT': 'NA', 'AGE': '99', 'ALIVE': True}, '@I6@': {'INDI': '@I6@', 'INDI_LINE': 64, 'NAME': 'IsaÃ\xadas /Christos/', 'NAME_LINE': 65, 'SEX': 'F', 'SEX_LINE': 69, 'BIRT_LINE': 70, 'BIRT': 'NA', 'INDI_CHILD': ['@F2@'], 'SPOUSE': 'NA', 'FAMC_LINE': 72, 'DEAT': 'NA', 'AGE': '69', 'ALIVE': True}, '@I7@': {'INDI': '@I7@', 'INDI_LINE': 73, 'NAME': 'Gunni /Christos/', 'NAME_LINE': 74, 'SEX': 'M', 'SEX_LINE': 78, 'BIRT_LINE': 79, 'BIRT': 'NA', 'INDI_CHILD': ['@F2@'], 'SPOUSE': 'NA', 'FAMC_LINE': 81, 'DEAT': 'NA', 'AGE': '70', 'ALIVE': True}, '@I8@': {'INDI': '@I8@', 'INDI_LINE': 82, 'NAME': 'Konstantin /Christos/', 'NAME_LINE': 83, 'SEX': 'M', 'SEX_LINE': 87, 'BIRT_LINE': 88, 'BIRT': '1952-5-25', 'DEAT_LINE': 90, 'DEAT': '2005-10-8', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F3@'], 'FAMS_LINE': 92, 'FAMC_LINE': 93, 'AGE': '53', 'ALIVE': False}, '@I9@': {'INDI': '@I9@', 'INDI_LINE': 94, 'NAME': 'Garrick /Tommie/', 'NAME_LINE': 95, 'SEX': 'F', 'SEX_LINE': 99, 'BIRT_LINE': 100, 'BIRT': '1948-7-8', 'DEAT_LINE': 102, 'DEAT': '2005-10-10', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F3@'], 'FAMS_LINE': 104, 'AGE': '57', 'ALIVE': False}, '@I10@': {'INDI': '@I10@', 'INDI_LINE': 105, 'NAME': 'FÃ©licienne /Christos/', 'NAME_LINE': 106, 'SEX': 'F', 'SEX_LINE': 110, 'BIRT_LINE': 111, 'BIRT': '2004-9-18', 'INDI_CHILD': ['@F3@'], 'SPOUSE': 'NA', 'FAMC_LINE': 113, 'DEAT': 'NA', 'AGE': '15', 'ALIVE': True}}
+    Project.individuals = individuals
+
+    assert Project.listLivingSingle() == False
+    return True
+
+
+# In[31]:
+
+
+#User_Story_33: List all orphaned children (both parents dead and child < 18 years old) in a GEDCOM file
+# Success test
+def test_list_orphan_pass():
+    #Mock individuals dictionary
+    individuals = {'@I1@': {'INDI': '@I1@', 'INDI_LINE': 14, 'NAME': 'Oliwer /Christos/', 'NAME_LINE': 15, 'SEX': 'M', 'SEX_LINE': 19, 'BIRT_LINE': 20, 'BIRT': '1945-7-9', 'DEAT_LINE': 22, 'DEAT': '1970-9-9', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F1@'], 'FAMS_LINE': 24, 'FAMC_LINE': 25, 'AGE': '25', 'ALIVE': False}, '@I2@': {'INDI': '@I2@', 'INDI_LINE': 26, 'NAME': 'Luis /MartÃ\xad/', 'NAME_LINE': 27, 'SEX': 'F', 'SEX_LINE': 31, 'BIRT_LINE': 32, 'BIRT': '1945-9-10', 'DEAT_LINE': 34, 'DEAT': '1970-9-9', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F1@'], 'FAMS_LINE': 36, 'AGE': '24', 'ALIVE': False}, '@I3@': {'INDI': '@I3@', 'INDI_LINE': 37, 'NAME': 'Hodia /Christos/', 'NAME_LINE': 38, 'SEX': 'M', 'SEX_LINE': 42, 'BIRT_LINE': 43, 'BIRT': '2004-9-7', 'INDI_CHILD': ['@F1@'], 'SPOUSE': 'NA', 'FAMC_LINE': 45, 'DEAT': 'NA', 'AGE': '15', 'ALIVE': True}, '@I4@': {'INDI': '@I4@', 'INDI_LINE': 46, 'NAME': 'Iekika /Christos/', 'NAME_LINE': 47, 'SEX': 'M', 'SEX_LINE': 51, 'BIRT_LINE': 52, 'BIRT': '1919-9-9', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'FAMS_LINE': 54, 'DEAT': 'NA', 'AGE': '100', 'ALIVE': True}, '@I5@': {'INDI': '@I5@', 'INDI_LINE': 55, 'NAME': 'Karin /Ihor/', 'NAME_LINE': 56, 'SEX': 'F', 'SEX_LINE': 60, 'BIRT_LINE': 61, 'BIRT': '1920-8-8', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'FAMS_LINE': 63, 'DEAT': 'NA', 'AGE': '99', 'ALIVE': True}, '@I6@': {'INDI': '@I6@', 'INDI_LINE': 64, 'NAME': 'IsaÃ\xadas /Christos/', 'NAME_LINE': 65, 'SEX': 'F', 'SEX_LINE': 69, 'BIRT_LINE': 70, 'BIRT': '1950-9-8', 'INDI_CHILD': ['@F2@'], 'SPOUSE': 'NA', 'FAMC_LINE': 72, 'DEAT': 'NA', 'AGE': '69', 'ALIVE': True}, '@I7@': {'INDI': '@I7@', 'INDI_LINE': 73, 'NAME': 'Gunni /Christos/', 'NAME_LINE': 74, 'SEX': 'M', 'SEX_LINE': 78, 'BIRT_LINE': 79, 'BIRT': '1949-9-8', 'INDI_CHILD': ['@F2@'], 'SPOUSE': 'NA', 'FAMC_LINE': 81, 'DEAT': 'NA', 'AGE': '70', 'ALIVE': True}, '@I8@': {'INDI': '@I8@', 'INDI_LINE': 82, 'NAME': 'Konstantin /Christos/', 'NAME_LINE': 83, 'SEX': 'M', 'SEX_LINE': 87, 'BIRT_LINE': 88, 'BIRT': '1952-5-25', 'DEAT_LINE': 90, 'DEAT': '2005-10-8', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F3@'], 'FAMS_LINE': 92, 'FAMC_LINE': 93, 'AGE': '53', 'ALIVE': False}, '@I9@': {'INDI': '@I9@', 'INDI_LINE': 94, 'NAME': 'Garrick /Tommie/', 'NAME_LINE': 95, 'SEX': 'F', 'SEX_LINE': 99, 'BIRT_LINE': 100, 'BIRT': '1948-7-8', 'DEAT_LINE': 102, 'DEAT': '2005-10-10', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F3@'], 'FAMS_LINE': 104, 'AGE': '57', 'ALIVE': False}, '@I10@': {'INDI': '@I10@', 'INDI_LINE': 105, 'NAME': 'FÃ©licienne /Christos/', 'NAME_LINE': 106, 'SEX': 'F', 'SEX_LINE': 110, 'BIRT_LINE': 111, 'BIRT': '2004-9-18', 'INDI_CHILD': ['@F3@'], 'SPOUSE': 'NA', 'FAMC_LINE': 113, 'DEAT': 'NA', 'AGE': '15', 'ALIVE': True}}
+    family_dic = {'@F1@': {'FAM': '@F1@', 'FAM_LINE': 114, 'HUSB_NAME': 'Oliwer /Christos/', 'HUSB_LINE': 115, 'HUSB': '@I1@', 'WIFE_NAME': 'Luis /MartÃ\xad/', 'WIFE_LINE': 116, 'WIFE': '@I2@', 'FAM_CHILD': ['@I3@'], 'CHIL_LINE_@I3@': 117, 'CHIL': '@I3@', 'CHIL_LINE': 117, 'MARR_LINE': 118, 'MARR': '1865-4-3', 'DIV': 'NA', 'husband_object': {'INDI': '@I1@', 'INDI_LINE': 14, 'NAME': 'Oliwer /Christos/', 'NAME_LINE': 15, 'SEX': 'M', 'SEX_LINE': 19, 'BIRT_LINE': 20, 'BIRT': '1945-7-9', 'DEAT_LINE': 22, 'DEAT': '1970-9-9', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F1@'], 'FAMS_LINE': 24, 'FAMC_LINE': 25, 'AGE': 25, 'ALIVE': False}, 'wife_object': {'INDI': '@I2@', 'INDI_LINE': 26, 'NAME': 'Luis /MartÃ\xad/', 'NAME_LINE': 27, 'SEX': 'F', 'SEX_LINE': 31, 'BIRT_LINE': 32, 'BIRT': '1945-9-10', 'DEAT_LINE': 34, 'DEAT': '1970-9-9', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F1@'], 'FAMS_LINE': 36, 'AGE': 25, 'ALIVE': False}, 'children_objects': [{'INDI': '@I3@', 'INDI_LINE': 37, 'NAME': 'Hodia /Christos/', 'NAME_LINE': 38, 'SEX': 'M', 'SEX_LINE': 42, 'BIRT_LINE': 43, 'BIRT': '2004-9-7', 'INDI_CHILD': ['@F1@'], 'SPOUSE': 'NA', 'FAMC_LINE': 45, 'DEAT': 'NA', 'AGE': 15, 'ALIVE': True}]}, '@F2@': {'FAM': '@F2@', 'FAM_LINE': 121, 'HUSB_NAME': 'Iekika /Christos/', 'HUSB_LINE': 122, 'HUSB': '@I4@', 'WIFE_NAME': 'Karin /Ihor/', 'WIFE_LINE': 123, 'WIFE': '@I5@', 'FAM_CHILD': ['@I1@', '@I6@', '@I7@', '@I8@'], 'CHIL_LINE_@I1@': 124, 'CHIL': '@I8@', 'CHIL_LINE': 127, 'CHIL_LINE_@I6@': 125, 'CHIL_LINE_@I7@': 126, 'CHIL_LINE_@I8@': 127, 'DIV': 'NA', 'MARR': 'NA', 'husband_object': {'INDI': '@I4@', 'INDI_LINE': 46, 'NAME': 'Iekika /Christos/', 'NAME_LINE': 47, 'SEX': 'M', 'SEX_LINE': 51, 'BIRT_LINE': 52, 'BIRT': '1919-9-9', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'FAMS_LINE': 54, 'DEAT': 'NA', 'AGE': 100, 'ALIVE': True}, 'wife_object': {'INDI': '@I5@', 'INDI_LINE': 55, 'NAME': 'Karin /Ihor/', 'NAME_LINE': 56, 'SEX': 'F', 'SEX_LINE': 60, 'BIRT_LINE': 61, 'BIRT': '1920-8-8', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'FAMS_LINE': 63, 'DEAT': 'NA', 'AGE': 99, 'ALIVE': True}, 'children_objects': [{'INDI': '@I1@', 'INDI_LINE': 14, 'NAME': 'Oliwer /Christos/', 'NAME_LINE': 15, 'SEX': 'M', 'SEX_LINE': 19, 'BIRT_LINE': 20, 'BIRT': '1945-7-9', 'DEAT_LINE': 22, 'DEAT': '1970-9-9', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F1@'], 'FAMS_LINE': 24, 'FAMC_LINE': 25, 'AGE': 25, 'ALIVE': False}, {'INDI': '@I6@', 'INDI_LINE': 64, 'NAME': 'IsaÃ\xadas /Christos/', 'NAME_LINE': 65, 'SEX': 'F', 'SEX_LINE': 69, 'BIRT_LINE': 70, 'BIRT': '1950-9-8', 'INDI_CHILD': ['@F2@'], 'SPOUSE': 'NA', 'FAMC_LINE': 72, 'DEAT': 'NA', 'AGE': 69, 'ALIVE': True}, {'INDI': '@I7@', 'INDI_LINE': 73, 'NAME': 'Gunni /Christos/', 'NAME_LINE': 74, 'SEX': 'M', 'SEX_LINE': 78, 'BIRT_LINE': 79, 'BIRT': '1949-9-8', 'INDI_CHILD': ['@F2@'], 'SPOUSE': 'NA', 'FAMC_LINE': 81, 'DEAT': 'NA', 'AGE': 70, 'ALIVE': True}, {'INDI': '@I8@', 'INDI_LINE': 82, 'NAME': 'Konstantin /Christos/', 'NAME_LINE': 83, 'SEX': 'M', 'SEX_LINE': 87, 'BIRT_LINE': 88, 'BIRT': '1952-5-25', 'DEAT_LINE': 90, 'DEAT': '2005-10-8', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F3@'], 'FAMS_LINE': 92, 'FAMC_LINE': 93, 'AGE': 53, 'ALIVE': False}]}, '@F3@': {'FAM': '@F3@', 'FAM_LINE': 129, 'HUSB_NAME': 'Konstantin /Christos/', 'HUSB_LINE': 130, 'HUSB': '@I8@', 'WIFE_NAME': 'Garrick /Tommie/', 'WIFE_LINE': 131, 'WIFE': '@I9@', 'FAM_CHILD': ['@I10@'], 'CHIL_LINE_@I10@': 132, 'CHIL': '@I10@', 'CHIL_LINE': 132, 'DIV': 'NA', 'MARR': 'NA', 'husband_object': {'INDI': '@I8@', 'INDI_LINE': 82, 'NAME': 'Konstantin /Christos/', 'NAME_LINE': 83, 'SEX': 'M', 'SEX_LINE': 87, 'BIRT_LINE': 88, 'BIRT': '1952-5-25', 'DEAT_LINE': 90, 'DEAT': '2005-10-8', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F3@'], 'FAMS_LINE': 92, 'FAMC_LINE': 93, 'AGE': 53, 'ALIVE': False}, 'wife_object': {'INDI': '@I9@', 'INDI_LINE': 94, 'NAME': 'Garrick /Tommie/', 'NAME_LINE': 95, 'SEX': 'F', 'SEX_LINE': 99, 'BIRT_LINE': 100, 'BIRT': '1948-7-8', 'DEAT_LINE': 102, 'DEAT': '2005-10-10', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F3@'], 'FAMS_LINE': 104, 'AGE': 57, 'ALIVE': False}, 'children_objects': [{'INDI': '@I10@', 'INDI_LINE': 105, 'NAME': 'FÃ©licienne /Christos/', 'NAME_LINE': 106, 'SEX': 'F', 'SEX_LINE': 110, 'BIRT_LINE': 111, 'BIRT': '2004-9-18', 'INDI_CHILD': ['@F3@'], 'SPOUSE': 'NA', 'FAMC_LINE': 113, 'DEAT': 'NA', 'AGE': 15, 'ALIVE': True}]}}
+    
+    Project.individuals = individuals
+    Project.family_dic = family_dic
+    assert Project.listAllOrphand() == True
+    return True
+
+
+# In[32]:
+
+
+#User_Story_33: List all orphaned children (both parents dead and child < 18 years old) in a GEDCOM file
+# Failed test
+def test_list_orphan_fail():
+    #Mock individuals dictionary
+    individuals = {'@I1@': {'INDI': '@I1@', 'INDI_LINE': 14, 'NAME': 'Oliwer /Christos/', 'NAME_LINE': 15, 'SEX': 'M', 'SEX_LINE': 19, 'BIRT_LINE': 20, 'BIRT': '1945-7-9', 'DEAT_LINE': 22, 'DEAT': '1970-9-9', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F1@'], 'FAMS_LINE': 24, 'FAMC_LINE': 25, 'AGE': '25', 'ALIVE': False}, '@I2@': {'INDI': '@I2@', 'INDI_LINE': 26, 'NAME': 'Luis /MartÃ\xad/', 'NAME_LINE': 27, 'SEX': 'F', 'SEX_LINE': 31, 'BIRT_LINE': 32, 'BIRT': '1945-9-10', 'DEAT_LINE': 34, 'DEAT': '1970-9-9', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F1@'], 'FAMS_LINE': 36, 'AGE': '24', 'ALIVE': False}, '@I3@': {'INDI': '@I3@', 'INDI_LINE': 37, 'NAME': 'Hodia /Christos/', 'NAME_LINE': 38, 'SEX': 'M', 'SEX_LINE': 42, 'BIRT_LINE': 43, 'BIRT': '2004-9-7', 'INDI_CHILD': ['NA'], 'SPOUSE': 'NA', 'FAMC_LINE': 45, 'DEAT': 'NA', 'AGE': 'NA', 'ALIVE': True}, '@I4@': {'INDI': '@I4@', 'INDI_LINE': 46, 'NAME': 'Iekika /Christos/', 'NAME_LINE': 47, 'SEX': 'M', 'SEX_LINE': 51, 'BIRT_LINE': 52, 'BIRT': '1919-9-9', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'FAMS_LINE': 54, 'DEAT': 'NA', 'AGE': '100', 'ALIVE': True}, '@I5@': {'INDI': '@I5@', 'INDI_LINE': 55, 'NAME': 'Karin /Ihor/', 'NAME_LINE': 56, 'SEX': 'F', 'SEX_LINE': 60, 'BIRT_LINE': 61, 'BIRT': '1920-8-8', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'FAMS_LINE': 63, 'DEAT': 'NA', 'AGE': '99', 'ALIVE': True}, '@I6@': {'INDI': '@I6@', 'INDI_LINE': 64, 'NAME': 'IsaÃ\xadas /Christos/', 'NAME_LINE': 65, 'SEX': 'F', 'SEX_LINE': 69, 'BIRT_LINE': 70, 'BIRT': '1950-9-8', 'INDI_CHILD': ['@F2@'], 'SPOUSE': 'NA', 'FAMC_LINE': 72, 'DEAT': 'NA', 'AGE': '69', 'ALIVE': True}, '@I7@': {'INDI': '@I7@', 'INDI_LINE': 73, 'NAME': 'Gunni /Christos/', 'NAME_LINE': 74, 'SEX': 'M', 'SEX_LINE': 78, 'BIRT_LINE': 79, 'BIRT': '1949-9-8', 'INDI_CHILD': ['@F2@'], 'SPOUSE': 'NA', 'FAMC_LINE': 81, 'DEAT': 'NA', 'AGE': '70', 'ALIVE': True}, '@I8@': {'INDI': '@I8@', 'INDI_LINE': 82, 'NAME': 'Konstantin /Christos/', 'NAME_LINE': 83, 'SEX': 'M', 'SEX_LINE': 87, 'BIRT_LINE': 88, 'BIRT': '1952-5-25', 'DEAT_LINE': 90, 'DEAT': '2005-10-8', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F3@'], 'FAMS_LINE': 92, 'FAMC_LINE': 93, 'AGE': '53', 'ALIVE': False}, '@I9@': {'INDI': '@I9@', 'INDI_LINE': 94, 'NAME': 'Garrick /Tommie/', 'NAME_LINE': 95, 'SEX': 'F', 'SEX_LINE': 99, 'BIRT_LINE': 100, 'BIRT': '1948-7-8', 'DEAT_LINE': 102, 'DEAT': '2005-10-10', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F3@'], 'FAMS_LINE': 104, 'AGE': '57', 'ALIVE': False}, '@I10@': {'INDI': '@I10@', 'INDI_LINE': 105, 'NAME': 'FÃ©licienne /Christos/', 'NAME_LINE': 106, 'SEX': 'F', 'SEX_LINE': 110, 'BIRT_LINE': 111, 'BIRT': '2004-9-18', 'INDI_CHILD': ['@F3@'], 'SPOUSE': 'NA', 'FAMC_LINE': 113, 'DEAT': 'NA', 'AGE': '15', 'ALIVE': True}}
+    family_dic = {'@F1@': {'FAM': '@F1@', 'FAM_LINE': 114, 'HUSB_NAME': 'Oliwer /Christos/', 'HUSB_LINE': 115, 'HUSB': '@I1@', 'WIFE_NAME': 'Luis /MartÃ\xad/', 'WIFE_LINE': 116, 'WIFE': '@I2@', 'FAM_CHILD': ['@I3@'], 'CHIL_LINE_@I3@': 117, 'CHIL': '@I3@', 'CHIL_LINE': 117, 'MARR_LINE': 118, 'MARR': '1865-4-3', 'DIV': 'NA', 'husband_object': {'INDI': '@I1@', 'INDI_LINE': 14, 'NAME': 'Oliwer /Christos/', 'NAME_LINE': 15, 'SEX': 'M', 'SEX_LINE': 19, 'BIRT_LINE': 20, 'BIRT': '1945-7-9', 'DEAT_LINE': 22, 'DEAT': '1970-9-9', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F1@'], 'FAMS_LINE': 24, 'FAMC_LINE': 25, 'AGE': 25, 'ALIVE': False}, 'wife_object': {'INDI': '@I2@', 'INDI_LINE': 26, 'NAME': 'Luis /MartÃ\xad/', 'NAME_LINE': 27, 'SEX': 'F', 'SEX_LINE': 31, 'BIRT_LINE': 32, 'BIRT': '1945-9-10', 'DEAT_LINE': 34, 'DEAT': '1970-9-9', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F1@'], 'FAMS_LINE': 36, 'AGE': 25, 'ALIVE': False}, 'children_objects': [{'INDI': '@I3@', 'INDI_LINE': 37, 'NAME': 'Hodia /Christos/', 'NAME_LINE': 38, 'SEX': 'M', 'SEX_LINE': 42, 'BIRT_LINE': 43, 'BIRT': '2004-9-7', 'INDI_CHILD': ['@F1@'], 'SPOUSE': 'NA', 'FAMC_LINE': 45, 'DEAT': 'NA', 'AGE': 15, 'ALIVE': True}]}, '@F2@': {'FAM': '@F2@', 'FAM_LINE': 121, 'HUSB_NAME': 'Iekika /Christos/', 'HUSB_LINE': 122, 'HUSB': '@I4@', 'WIFE_NAME': 'Karin /Ihor/', 'WIFE_LINE': 123, 'WIFE': '@I5@', 'FAM_CHILD': ['@I1@', '@I6@', '@I7@', '@I8@'], 'CHIL_LINE_@I1@': 124, 'CHIL': '@I8@', 'CHIL_LINE': 127, 'CHIL_LINE_@I6@': 125, 'CHIL_LINE_@I7@': 126, 'CHIL_LINE_@I8@': 127, 'DIV': 'NA', 'MARR': 'NA', 'husband_object': {'INDI': '@I4@', 'INDI_LINE': 46, 'NAME': 'Iekika /Christos/', 'NAME_LINE': 47, 'SEX': 'M', 'SEX_LINE': 51, 'BIRT_LINE': 52, 'BIRT': '1919-9-9', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'FAMS_LINE': 54, 'DEAT': 'NA', 'AGE': 100, 'ALIVE': True}, 'wife_object': {'INDI': '@I5@', 'INDI_LINE': 55, 'NAME': 'Karin /Ihor/', 'NAME_LINE': 56, 'SEX': 'F', 'SEX_LINE': 60, 'BIRT_LINE': 61, 'BIRT': '1920-8-8', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F2@'], 'FAMS_LINE': 63, 'DEAT': 'NA', 'AGE': 99, 'ALIVE': True}, 'children_objects': [{'INDI': '@I1@', 'INDI_LINE': 14, 'NAME': 'Oliwer /Christos/', 'NAME_LINE': 15, 'SEX': 'M', 'SEX_LINE': 19, 'BIRT_LINE': 20, 'BIRT': '1945-7-9', 'DEAT_LINE': 22, 'DEAT': '1970-9-9', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F1@'], 'FAMS_LINE': 24, 'FAMC_LINE': 25, 'AGE': 25, 'ALIVE': False}, {'INDI': '@I6@', 'INDI_LINE': 64, 'NAME': 'IsaÃ\xadas /Christos/', 'NAME_LINE': 65, 'SEX': 'F', 'SEX_LINE': 69, 'BIRT_LINE': 70, 'BIRT': '1950-9-8', 'INDI_CHILD': ['@F2@'], 'SPOUSE': 'NA', 'FAMC_LINE': 72, 'DEAT': 'NA', 'AGE': 69, 'ALIVE': True}, {'INDI': '@I7@', 'INDI_LINE': 73, 'NAME': 'Gunni /Christos/', 'NAME_LINE': 74, 'SEX': 'M', 'SEX_LINE': 78, 'BIRT_LINE': 79, 'BIRT': '1949-9-8', 'INDI_CHILD': ['@F2@'], 'SPOUSE': 'NA', 'FAMC_LINE': 81, 'DEAT': 'NA', 'AGE': 70, 'ALIVE': True}, {'INDI': '@I8@', 'INDI_LINE': 82, 'NAME': 'Konstantin /Christos/', 'NAME_LINE': 83, 'SEX': 'M', 'SEX_LINE': 87, 'BIRT_LINE': 88, 'BIRT': '1952-5-25', 'DEAT_LINE': 90, 'DEAT': '2005-10-8', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F3@'], 'FAMS_LINE': 92, 'FAMC_LINE': 93, 'AGE': 53, 'ALIVE': False}]}, '@F3@': {'FAM': '@F3@', 'FAM_LINE': 129, 'HUSB_NAME': 'Konstantin /Christos/', 'HUSB_LINE': 130, 'HUSB': '@I8@', 'WIFE_NAME': 'Garrick /Tommie/', 'WIFE_LINE': 131, 'WIFE': '@I9@', 'FAM_CHILD': ['@I10@'], 'CHIL_LINE_@I10@': 132, 'CHIL': '@I10@', 'CHIL_LINE': 132, 'DIV': 'NA', 'MARR': 'NA', 'husband_object': {'INDI': '@I8@', 'INDI_LINE': 82, 'NAME': 'Konstantin /Christos/', 'NAME_LINE': 83, 'SEX': 'M', 'SEX_LINE': 87, 'BIRT_LINE': 88, 'BIRT': '1952-5-25', 'DEAT_LINE': 90, 'DEAT': '2005-10-8', 'INDI_CHILD': ['@F2@'], 'SPOUSE': ['@F3@'], 'FAMS_LINE': 92, 'FAMC_LINE': 93, 'AGE': 53, 'ALIVE': False}, 'wife_object': {'INDI': '@I9@', 'INDI_LINE': 94, 'NAME': 'Garrick /Tommie/', 'NAME_LINE': 95, 'SEX': 'F', 'SEX_LINE': 99, 'BIRT_LINE': 100, 'BIRT': '1948-7-8', 'DEAT_LINE': 102, 'DEAT': '2005-10-10', 'INDI_CHILD': 'NA', 'SPOUSE': ['@F3@'], 'FAMS_LINE': 104, 'AGE': 57, 'ALIVE': False}, 'children_objects': [{'INDI': '@I10@', 'INDI_LINE': 105, 'NAME': 'FÃ©licienne /Christos/', 'NAME_LINE': 106, 'SEX': 'F', 'SEX_LINE': 110, 'BIRT_LINE': 111, 'BIRT': '2004-9-18', 'INDI_CHILD': ['@F3@'], 'SPOUSE': 'NA', 'FAMC_LINE': 113, 'DEAT': 'NA', 'AGE': 15, 'ALIVE': True}]}}
+    
+    Project.individuals = individuals
+    Project.family_dic = family_dic
+    assert Project.listAllOrphand() == False
+    return True
+
+
+# In[33]:
+
+
 def test_more_than_15_siblings():
     family_dic = {'@F1@':{'FAM_LINE':230, 'FAM_CHILD':['@I1@','@I10@','@I11@','@I12@','@I13@','@I14@','@I15@','@I16@','@I17@','@I18@','@I19@','@I20@','@I21@','@I22@','@I23@','@I24@','@I24@']}}
     Project.family_dic = family_dic
@@ -1507,7 +1567,7 @@ def test_more_than_15_siblings():
     return Project.anomaly_array[0] == 'ANOMALY: FAMILY: US15: 230: @F1@: Family has 17 siblings which is more than 15 siblings'
 
 
-# In[30]:
+# In[34]:
 
 
 def test_less_than_15_siblings():
@@ -1520,7 +1580,7 @@ def test_less_than_15_siblings():
     return len(Project.anomaly_array) == 0
 
 
-# In[31]:
+# In[35]:
 
 
 def test_different_male_last_name():
@@ -1532,7 +1592,7 @@ def test_different_male_last_name():
     return Project.anomaly_array[0] == 'ANOMALY: INDIVIDUAL: US16: 130: @I1@: Individual has different last name Bing than family Potter'
 
 
-# In[32]:
+# In[36]:
 
 
 def test_same_male_last_name():
@@ -1545,7 +1605,7 @@ def test_same_male_last_name():
     return len(Project.anomaly_array) == 0
 
 
-# In[33]:
+# In[37]:
 
 
 def test_unique_name_and_birth_error():
@@ -1587,7 +1647,7 @@ def test_unique_name_and_birth_error():
     return Project.anomaly_array==['ANOMALY: INDIVIDUAL: US23: 324: @I32@: @I30@: Individuals have the same name Chet /Malagon/ and birth date 1943-8-18']
 
 
-# In[34]:
+# In[38]:
 
 
 def test_unique_name_and_birth_pass():
@@ -1617,7 +1677,7 @@ def test_unique_name_and_birth_pass():
     return len(Project.anomaly_array)==0
 
 
-# In[35]:
+# In[39]:
 
 
 def test_unique_family_name_and_birth_error():
@@ -1718,7 +1778,7 @@ def test_unique_family_name_and_birth_error():
     return Project.anomaly_array==['ANOMALY: INDIVIDUAL: US25: 365: @I32@: @I30@: Individuals share the same first name Chet /Malagon/ and birth date 1943-8-18 from family @F3@']
 
 
-# In[36]:
+# In[40]:
 
 
 def test_unique_family_name_and_birth_pass():
@@ -1748,7 +1808,7 @@ def test_unique_family_name_and_birth_pass():
     return len(Project.anomaly_array) == 0
 
 
-# In[37]:
+# In[41]:
 
 
 # US20 Aunts and uncles - success
@@ -1763,7 +1823,7 @@ def aunts_and_uncles_success():
     return True
 
 
-# In[38]:
+# In[42]:
 
 
 # US20 Aunts and uncles - error
@@ -1776,7 +1836,7 @@ def aunts_and_uncles_error():
     return Project.is_uncle_aunt_marriage_legal() == False
 
 
-# In[39]:
+# In[43]:
 
 
 # US40 Include input line numbers
@@ -1810,7 +1870,7 @@ def input_line_numbers():
     return True
 
 
-# In[40]:
+# In[44]:
 
 
 def test_check_positive_for_bigamy():
@@ -1825,7 +1885,7 @@ def test_check_positive_for_bigamy():
     return Project.anomaly_array[0] == 'ANOMALY: INDIVIDUAL: US11: 10: @I1@: Performing bigamy'
 
 
-# In[41]:
+# In[45]:
 
 
 def test_check_negative_for_bigamy():
@@ -1840,7 +1900,7 @@ def test_check_negative_for_bigamy():
     return len(Project.anomaly_array) == 0
 
 
-# In[42]:
+# In[46]:
 
 
 def test_check_positive_parent_child_marriage():
@@ -1855,7 +1915,7 @@ def test_check_positive_parent_child_marriage():
     return Project.anomaly_array[0] == "ANOMALY: INDIVIDUAL: US17: 11: @I2@: Individual married to child @I3@"
 
 
-# In[43]:
+# In[47]:
 
 
 def test_check_negative_parent_child_marriage():
@@ -1870,7 +1930,7 @@ def test_check_negative_parent_child_marriage():
     return len(Project.anomaly_array) == 0
 
 
-# In[44]:
+# In[48]:
 
 
 def test_multiple_birth_pass():
@@ -2185,7 +2245,7 @@ def test_multiple_birth_pass():
     
 
 
-# In[45]:
+# In[49]:
 
 
 def test_multiple_birth_fail():
@@ -2254,7 +2314,7 @@ def test_multiple_birth_fail():
     return len(Project.anomaly_array) == 0
 
 
-# In[46]:
+# In[50]:
 
 
 def test_large_age_diff_pass():
@@ -2326,7 +2386,7 @@ def test_large_age_diff_pass():
     return Project.anomaly_array==['ANOMALY: FAMILY: US34: 388: @F4@: Family has a large spouse age difference']
 
 
-# In[47]:
+# In[51]:
 
 
 def test_large_age_diff_fail():
@@ -2383,7 +2443,7 @@ def test_large_age_diff_fail():
     return len(Project.anomaly_array) == 0
 
 
-# In[48]:
+# In[52]:
 
 
 # US38 Test tist upcoming birthdays
@@ -2404,7 +2464,7 @@ def test_list_upcoming_bday_pass():
     return True
 
 
-# In[49]:
+# In[53]:
 
 
 # US38 Test list upcoming birthdays
@@ -2416,7 +2476,7 @@ def test_list_upcoming_bday_fail():
     return Project.list_upcoming_bday() == False
 
 
-# In[50]:
+# In[54]:
 
 
 # US39 Test list upcoming birthdays
@@ -2436,7 +2496,7 @@ def test_list_upcoming_anni_pass():
     return True
 
 
-# In[51]:
+# In[55]:
 
 
 # US39 Test list upcoming birthdays
@@ -2448,7 +2508,7 @@ def test_list_upcoming_anni_fail():
     return Project.list_upcoming_anni() == False
 
 
-# In[52]:
+# In[56]:
 
 
 def test_check_sibling_spacing_1_month_apart():
@@ -2465,7 +2525,7 @@ def test_check_sibling_spacing_1_month_apart():
     return True
 
 
-# In[53]:
+# In[57]:
 
 
 def test_check_sibling_spacing_siblings_1_day_apart():
@@ -2483,7 +2543,7 @@ def test_check_sibling_spacing_siblings_1_day_apart():
     return True
 
 
-# In[54]:
+# In[58]:
 
 
 def test_check_sibling_marriage_married():
@@ -2502,7 +2562,7 @@ def test_check_sibling_marriage_married():
     return True
 
 
-# In[55]:
+# In[59]:
 
 
 def test_check_sibling_marriage_not_married():
@@ -2521,7 +2581,7 @@ def test_check_sibling_marriage_not_married():
     return True
 
 
-# In[56]:
+# In[60]:
 
 
 def test_check_cousin_marriage_pass():
@@ -2540,7 +2600,7 @@ def test_check_cousin_marriage_pass():
     return True
 
 
-# In[57]:
+# In[61]:
 
 
 def test_check_cousin_marriage_fail():
@@ -2556,7 +2616,7 @@ def test_check_cousin_marriage_fail():
     return len(Project.anomaly_array) == 0
 
 
-# In[58]:
+# In[62]:
 
 
 def test_unique_indi_and_family():
@@ -2569,7 +2629,7 @@ def test_unique_indi_and_family():
     return Project.error_array==['ERROR: INDIVIDUAL: US22: 51: @I1@: Individuals have the same ID', 'ERROR: FAMILY: US22: 62: @F1@: Two families share the same ID ']
 
 
-# In[59]:
+# In[63]:
 
 
 import unittest
@@ -2694,6 +2754,15 @@ class TestStringMethods(unittest.TestCase):
     def test_check_cousin_marriage_fail(self):
         self.assertTrue(test_check_cousin_marriage_fail())
         
+    #Sprint 4 Test Cases
+    def test_list_single_people_pass(self):
+        self.assertTrue(test_list_single_people_pass())
+    def test_list_single_people_fail(self):
+        self.assertTrue(test_list_single_people_fail())
+    def test_list_orphan_pass(self):
+        self.assertTrue(test_list_orphan_pass())
+    def test_list_orphan_fail(self):
+        self.assertTrue(test_list_orphan_fail())
         
         
 suite = unittest.TestLoader().loadTestsFromTestCase(TestStringMethods)
