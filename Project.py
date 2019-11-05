@@ -1250,7 +1250,7 @@ anomaly_array = []
 # In[1221]:
 
 
-document = read_in("./test.ged")
+document = read_in("./acceptance_test_file_sprint4.ged")
 if os.path.exists("cs555_sprint_outputs.txt"):
     os.remove("cs555_sprint_outputs.txt")
 
