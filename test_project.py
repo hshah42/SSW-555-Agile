@@ -2629,7 +2629,71 @@ def test_unique_indi_and_family():
     return Project.error_array==['ERROR: INDIVIDUAL: US22: 51: @I1@: Individuals have the same ID', 'ERROR: FAMILY: US22: 62: @F1@: Two families share the same ID ']
 
 
-# In[63]:
+# In[ ]:
+
+
+def test_unique_family_by_spouses_positive_result():
+    family_dic = {'@F1@': {'FAM': '@F1@', 'FAM_LINE': 1, 'husband_object': {'NAME': 'Something'}, 'wife_object': {'NAME': 'Nothing'}, 'MARR': '1994-12-12'}, '@F2@': {'FAM':'@F2@', 'FAM_LINE': 2, 'husband_object': {'NAME': 'Something'}, 'wife_object': {'NAME': 'Nothing'}, 'MARR': '1994-12-12'}}
+    
+    Project.anomaly_array = []
+    Project.family_dic = family_dic
+    Project.unique_family_by_spouses()
+    
+    assert Project.anomaly_array[0] == "ANOMALY: FAMILY: US24: 2: @F2@: Family contains same husband, wife and marriage date as another family"
+    
+    return True
+
+
+# In[ ]:
+
+
+def test_unique_family_by_spouses_negative_result():
+    family_dic = {'@F1@': {'FAM': '@F1@', 'FAM_LINE': 1, 'husband_object': {'NAME': 'Something'}, 'wife_object': {'NAME': 'Nothing'}, 'MARR': '1994-12-12'}, '@F2@': {'FAM':'@F2@', 'FAM_LINE': 2, 'husband_object': {'NAME': 'Something'}, 'wife_object': {'NAME': 'Nothing'}, 'MARR': '1990-12-12'}}
+    
+    Project.anomaly_array = []
+    Project.family_dic = family_dic
+    Project.unique_family_by_spouses()
+    
+    assert len(Project.anomaly_array) == 0
+    
+    return True
+
+
+# In[2]:
+
+
+def test_check_multiple_births_6_with_same_birthday():
+    family_dic = {'@F1@': {'FAM_LINE': 1, 'FAM_CHILD': ['@I1@', '@I2@', '@I3@', '@I4@', '@I5@', '@I6@']}}
+    individuals = {'@I1@': {'INDI_CHILD': ['@F1@'], 'BIRT': '1994-12-12'}, '@I2@': {'INDI_CHILD': ['@F1@'], 'BIRT': '1994-12-12'}, '@I3@': {'INDI_CHILD': ['@F1@'], 'BIRT': '1994-12-12'}, '@I4@': {'INDI_CHILD': ['@F1@'], 'BIRT': '1994-12-12'}, '@I5@': {'INDI_CHILD': ['@F1@'], 'BIRT': '1994-12-12'}, '@I6@': {'INDI_CHILD': ['@F1@'], 'BIRT': '1994-12-12'}}
+    
+    Project.anomaly_array = []
+    Project.family_dic = family_dic
+    Project.individuals = individuals
+    Project.check_multiple_births()
+    
+    assert Project.anomaly_array[0] == 'ANOMALY: FAMILY: US14: 1: @F1@: Family has more than 5 siblings with same birthdate'
+    
+    return True
+
+
+# In[ ]:
+
+
+def test_check_multiple_births_4_with_same_birthday():
+    family_dic = {'@F1@': {'FAM_LINE': 1, 'FAM_CHILD': ['@I1@', '@I2@', '@I3@', '@I4@', '@I5@', '@I6@']}}
+    individuals = {'@I1@': {'INDI_CHILD': ['@F1@'], 'BIRT': '1994-12-10'}, '@I2@': {'INDI_CHILD': ['@F1@'], 'BIRT': '1994-12-9'}, '@I3@': {'INDI_CHILD': ['@F1@'], 'BIRT': '1994-12-12'}, '@I4@': {'INDI_CHILD': ['@F1@'], 'BIRT': '1994-12-12'}, '@I5@': {'INDI_CHILD': ['@F1@'], 'BIRT': '1994-12-12'}, '@I6@': {'INDI_CHILD': ['@F1@'], 'BIRT': '1994-12-12'}}
+    
+    Project.anomaly_array = []
+    Project.family_dic = family_dic
+    Project.individuals = individuals
+    Project.check_multiple_births()
+    
+    assert len(Project.anomaly_array) == 0
+    
+    return True
+
+
+# In[1]:
 
 
 import unittest
@@ -2763,6 +2827,14 @@ class TestStringMethods(unittest.TestCase):
         self.assertTrue(test_list_orphan_pass())
     def test_list_orphan_fail(self):
         self.assertTrue(test_list_orphan_fail())
+    def test_unique_family_by_spouses_positive_result(self):
+        self.assertTrue(test_unique_family_by_spouses_positive_result())
+    def test_unique_family_by_spouses_negative_result(self):
+        self.assertTrue(test_unique_family_by_spouses_negative_result())
+    def test_check_multiple_births_6_with_same_birthday(self):
+        self.assertTrue(test_check_multiple_births_6_with_same_birthday())
+    def test_check_multiple_births_4_with_same_birthday(self):
+        self.assertTrue(test_check_multiple_births_4_with_same_birthday())
         
         
 suite = unittest.TestLoader().loadTestsFromTestCase(TestStringMethods)
