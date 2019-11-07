@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+
 # coding: utf-8
 
 # In[1]:
@@ -77,9 +77,14 @@ def determine_days(date1, date2):
     month1= int(date1.split('-')[1])
     day1= int(date1.split('-')[2])
     
-    year2=int(date2.split('-')[0])
-    month2= int(date2.split('-')[1])
-    day2= int(date2.split('-')[2])
+    if date2 == None:
+        year2 = int(datetime.today().strftime("%Y"))
+        month2 = int(datetime.today().strftime("%m"))
+        day2 = int(datetime.today().strftime("%d"))
+    else:
+        year2=int(date2.split('-')[0])
+        month2= int(date2.split('-')[1])
+        day2= int(date2.split('-')[2])
     
     return (year2 - year1) * 365 + (month2 - month1)* 30 + day2- day1
 
@@ -210,6 +215,7 @@ def read_in(file):
             elif current_arr[1]=="DATE" and flag:
                 flag=False
                 date_arr = current_arr[2:] #extracts the date argument from the line
+                partial_date=include_partial_dates(date_arr)
                 dic[tmp]= convert_date(date_arr) #converts the date into correct format
             #determines if the tag level is correct
             elif current_arr[0]=='1' and current_arr[1] in tag_one:
@@ -1091,6 +1097,33 @@ def large_age_diff():
 # In[51]:
 
 
+#US 35 List recent births
+def list_recent_births():
+    current_dic = {}
+    bday_count = 0
+    result = True
+    
+    for value in individuals.values():
+        if (value["BIRT"] == 'NA'):
+            error_array.append("ERROR: INDIVIDUAL: US35: {}: Person {} does not have birthday!".format(value["BIRT_LINE"], value["BIRT"]))
+            result = False
+        else:
+            day_difference = determine_days(value["BIRT"], None)
+            if (day_difference > 0 and day_difference <= 30):
+                current_dic[value["INDI"]] = value
+                bday_count += 1
+
+    if bday_count > 0:
+        #Use pretty table module to print out the results
+        allFields = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Spouse"]
+        tagNames = ["INDI", "NAME", "SEX", "BIRT", "AGE", "ALIVE", "DEAT", "SPOUSE"]
+        printTable("US35 List Recent Births Table", allFields, tagNames, current_dic)   
+    return result
+
+
+# In[52]:
+
+
 #US 38 List upcoming birthdays
 def list_upcoming_bday():
     today_month = int(datetime.today().strftime("%m"))
@@ -1121,7 +1154,7 @@ def list_upcoming_bday():
     return result
 
 
-# In[52]:
+# In[53]:
 
 
 #US 39 List upcoming anniversaries
@@ -1152,7 +1185,21 @@ def list_upcoming_anni():
     return result
 
 
-# In[53]:
+# In[54]:
+
+
+#US 41 Include partial dates
+def include_partial_dates(date):
+    if len(date) == 2:
+        date.insert(0, 1)
+    elif len(date) ==1:
+        date.insert(0, "JAN")
+        date.insert(0, 1)
+    return date
+        
+
+
+# In[55]:
 
 
 #US 42
@@ -1190,7 +1237,7 @@ def validate_date():
         
 
 
-# In[54]:
+# In[56]:
 
 
 # Prints out the Individual Table
@@ -1202,7 +1249,7 @@ def printIndividualTable():
     printTable("People Table", allFields, tagNames, individuals)
 
 
-# In[55]:
+# In[57]:
 
 
 # Prints out the Family Table
@@ -1214,7 +1261,7 @@ def printFamilyTable():
     printTable("Families Table", allFields, tagNames, family_dic)
 
 
-# In[56]:
+# In[58]:
 
 
 # Prints out the data in both error and anomaly arrays
@@ -1236,7 +1283,7 @@ def printError():
     
 
 
-# In[57]:
+# In[59]:
 
 
 # Prints out a table of dictionary data with the passed-in arguments
@@ -1270,7 +1317,7 @@ def printTable(table_name, fields, tag_names, dictionary):
     print(table)
 
 
-# In[58]:
+# In[60]:
 
 
 # Stores all Project outputs into a single text file
@@ -1283,7 +1330,7 @@ def storeResults(result_name, outputs):
     file.close()
 
 
-# In[59]:
+# In[61]:
 
 
 # Global variables initialization
@@ -1302,7 +1349,7 @@ error_array = []
 anomaly_array = []
 
 
-# In[60]:
+# In[62]:
 
 
 document = read_in("./acceptance_test_file_sprint4.ged")
@@ -1377,6 +1424,8 @@ multiple_birth()
 listAllOrphand()
 #User 34
 large_age_diff()
+#US 35 
+list_recent_births()
 #User 38
 list_upcoming_bday()
 #User 39
@@ -1386,10 +1435,4 @@ validate_date()
 
 #Prints out all the errors and anomalies of each function
 printError()
-
-
-# In[ ]:
-
-
-
 
