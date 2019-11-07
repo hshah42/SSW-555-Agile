@@ -25,7 +25,7 @@ People Table
 | @I21@ |      Regena /Ali/     |    F   |   1820-10-8 |  -2  |  False |  1819-3-3  |  @F3@  |         NA         |
 | @I22@ |      Tom /Malagon/    |    M   |   1923-5-8  |  96  |  True  |     NA     |  @F3@  |     @F11@,@F12@    |
 | @I23@ |    Vonnie /Malagon/   |    M   |   1936-3-10 |   1  |  False |  1937-7-6  |  @F3@  |         NA         |
-| @I24@ |     Shena /Malagon/   |    F   |   1937-11-6 |  81  |  True  |     NA     |  @F3@  |        @F13@       |
+| @I24@ |     Shena /Malagon/   |    F   |   1937-11-6 |  82  |  True  |     NA     |  @F3@  |        @F13@       |
 | @I25@ |    Hailey /Malagon/   |    F   |   1938-10-8 |  19  |  False |  1958-9-18 |  @F3@  |        @F14@       |
 | @I26@ |    Milford /Malagon/  |    M   |   1939-11-8 |  79  |  True  |     NA     |  @F3@  |        @F15@       |
 | @I27@ |    Rashida /Malagon/  |    F   |   1940-12-7 |  78  |  True  |     NA     |  @F3@  |  @F16@,@F17@,@F18@ |
@@ -81,7 +81,7 @@ US29: Deceased People Table
 |   ID  |         Name         | Gender |   Birthday  | Age  | Alive  |   Death    |
 +-------+----------------------+--------+-------------+------+--------+------------+
 |  @I1@ |  Willodean /Malagon/ |    F   |   1974-7-7  |  -4  |  False |  1970-6-20 |
-|  @I5@ |    Josh /Malagon/    |    M   |  1964-10-31 |  19  |  False |  1984-5-7  |
+|  @I5@ |    Josh /Malagon/    |    M   |  1964-10-31 |  20  |  False |  1984-5-7  |
 | @I14@ |    Jacob /Malagon/   |    M   |   1970-11-8 |  17  |  False |  1988-9-29 |
 | @I15@ |  Jaqueline /Kindel/  |    F   |   1969-9-8  |  18  |  False |  1987-7-6  |
 | @I18@ |    Tesha /Malagon/   |    F   |   1819-7-8  |  200 |  False |  2019-8-2  |
@@ -108,7 +108,7 @@ US30: Living & Married People Table
 | @I17@ |      Lura /Lomas/     |    F   |   1900-8-30 |  119 |  True |   NA  |        @F3@        |
 | @I20@ |    Lucile /Malagon/   |    F   |   1931-9-9  |  88  |  True |   NA  |        @F4@        |
 | @I22@ |      Tom /Malagon/    |    M   |   1923-5-8  |  96  |  True |   NA  |     @F11@,@F12@    |
-| @I24@ |     Shena /Malagon/   |    F   |   1937-11-6 |  81  |  True |   NA  |        @F13@       |
+| @I24@ |     Shena /Malagon/   |    F   |   1937-11-6 |  82  |  True |   NA  |        @F13@       |
 | @I26@ |    Milford /Malagon/  |    M   |   1939-11-8 |  79  |  True |   NA  |        @F15@       |
 | @I27@ |    Rashida /Malagon/  |    F   |   1940-12-7 |  78  |  True |   NA  |  @F16@,@F17@,@F18@ |
 | @I29@ |     Dario /Malagon/   |    M   |   1942-8-18 |  77  |  True |   NA  |        @F19@       |
@@ -126,23 +126,26 @@ US30: Living & Married People Table
 | @I44@ |  Maeehfuz /Claudiawf/ |    F   |   1944-9-8  |  75  |  True |   NA  |        @F22@       |
 +-------+-----------------------+--------+-------------+------+-------+-------+--------------------+
 
-US38 List Upcoming Birthdays Table
-+-------+--------------------+--------+-------------+-----+--------+------------+--------+
-|   ID  |        Name        | Gender |   Birthday  | Age | Alive  |   Death    | Spouse |
-+-------+--------------------+--------+-------------+-----+--------+------------+--------+
-|  @I5@ |   Josh /Malagon/   |    M   |  1964-10-31 |  19 |  False |  1984-5-7  |  @F5@  |
-| @I14@ |   Jacob /Malagon/  |    M   |   1970-11-8 |  17 |  False |  1988-9-29 |  @F10@ |
-| @I24@ |   Shena /Malagon/  |    F   |   1937-11-6 |  81 |  True  |     NA     |  @F13@ |
-| @I26@ |  Milford /Malagon/ |    M   |   1939-11-8 |  79 |  True  |     NA     |  @F15@ |
-+-------+--------------------+--------+-------------+-----+--------+------------+--------+
+US31: Unmarried people over 30
++-------+--------------------+--------+-------------+-----+-------+-------+--------+
+|   ID  |        Name        | Gender |   Birthday  | Age | Alive | Death | Spouse |
++-------+--------------------+--------+-------------+-----+-------+-------+--------+
+| @I11@ |    Darwin /Tung/   |    M   |   1987-9-6  |  32 |  True |   NA  |   NA   |
+| @I19@ |  Wilber /Iglesias/ |    M   |   1987-9-6  |  32 |  True |   NA  |   NA   |
+| @I28@ |  Deeann /Malagon/  |    F   |  1940-12-10 |  78 |  True |   NA  |   NA   |
+| @I32@ |   Chet /Malagon/   |    M   |   1943-8-18 |  76 |  True |   NA  |   NA   |
+| @I33@ |   Loyd /Malagon/   |    M   |   1985-8-9  |  34 |  True |   NA  |   NA   |
+| @I42@ |  Enrica /Coleman/  |    F   |   1980-8-18 |  39 |  True |   NA  |   NA   |
++-------+--------------------+--------+-------------+-----+-------+-------+--------+
 
-US39: List Upcoming Anniversaries Table
-+-------+-------------+------------+------------------+---------+--------------------+
-|   ID  |   Married   | Husband ID |   Husband Name   | Wife ID |     Wife Name      |
-+-------+-------------+------------+------------------+---------+--------------------+
-| @F16@ |   1963-11-3 |    @I41@   |  Renate /Giotto/ |   @I27@ |  Rashida /Malagon/ |
-| @F17@ |  1960-10-30 |    @I39@   |    Yam /Tarah/   |   @I27@ |  Rashida /Malagon/ |
-+-------+-------------+------------+------------------+---------+--------------------+
+US38 List Upcoming Birthdays Table
++-------+--------------------+--------+------------+-----+--------+------------+--------+
+|   ID  |        Name        | Gender |  Birthday  | Age | Alive  |   Death    | Spouse |
++-------+--------------------+--------+------------+-----+--------+------------+--------+
+|  @I6@ |   Samuel /Venzon/  |    M   |  1958-12-6 |  60 |  True  |     NA     |  @F1@  |
+| @I14@ |   Jacob /Malagon/  |    M   |  1970-11-8 |  17 |  False |  1988-9-29 |  @F10@ |
+| @I26@ |  Milford /Malagon/ |    M   |  1939-11-8 |  79 |  True  |     NA     |  @F15@ |
++-------+--------------------+--------+------------+-----+--------+------------+--------+
 
 ------error messages------
 ERROR: INDIVIDUAL: US22: 452: @I44@: Individuals have the same ID
@@ -176,6 +179,7 @@ ERROR: INDIVIDUAL: US30: 55: @I5@: Deceased Person is married to Person @F5@
 ERROR: INDIVIDUAL: US30: 144: @I14@: Deceased Person is married to Person @F10@
 ERROR: INDIVIDUAL: US30: 156: @I15@: Deceased Person is married to Person @F10@
 ERROR: INDIVIDUAL: US30: 258: @I25@: Deceased Person is married to Person @F14@
+ERROR: INDIVIDUAL: US33: 125: Orphaned child @I12@ does not have a family ID!
 ERROR: FAMILY: US39: 504: Family @F4@ does not have married date!
 ERROR: FAMILY: US39: 528: Family @F8@ does not have married date!
 ERROR: FAMILY: US39: 531: Family @F6@ does not have married date!
@@ -226,3 +230,47 @@ ANOMALY: FAMILY: US34: 508: @F5@: Family has a large spouse age difference
 ANOMALY: FAMILY: US34: 531: @F6@: Family has a large spouse age difference
 ANOMALY: FAMILY: US34: 577: @F14@: Family has a large spouse age difference
 ANOMALY: FAMILY: US34: 583: @F15@: Family has a large spouse age difference
+US33: Orphaned Children
++-------+-------------------------+--------+------------+-----+-------+-------+--------+
+|   ID  |           Name          | Gender |  Birthday  | Age | Alive | Death | Spouse |
++-------+-------------------------+--------+------------+-----+-------+-------+--------+
+| @I10@ |  Félicienne /Christos/ |    F   |  2004-9-18 |  15 |  True |   NA  |   NA   |
++-------+-------------------------+--------+------------+-----+-------+-------+--------+
+
+US33: Orphaned Children
++-------+-------------------------+--------+------------+-----+-------+-------+--------+
+|   ID  |           Name          | Gender |  Birthday  | Age | Alive | Death | Spouse |
++-------+-------------------------+--------+------------+-----+-------+-------+--------+
+|  @I3@ |     Hodia /Christos/    |    M   |  2004-9-7  |  15 |  True |   NA  |   NA   |
+| @I10@ |  Félicienne /Christos/ |    F   |  2004-9-18 |  15 |  True |   NA  |   NA   |
++-------+-------------------------+--------+------------+-----+-------+-------+--------+
+
+US31: Unmarried people over 30
++------+---------------------+--------+-----------+-----+-------+-------+--------+
+|  ID  |         Name        | Gender |  Birthday | Age | Alive | Death | Spouse |
++------+---------------------+--------+-----------+-----+-------+-------+--------+
+| @I6@ |  Isaías /Christos/ |    F   |  1950-9-8 |  69 |  True |   NA  |   NA   |
+| @I7@ |   Gunni /Christos/  |    M   |  1949-9-8 |  70 |  True |   NA  |   NA   |
++------+---------------------+--------+-----------+-----+-------+-------+--------+
+
+US39: List Upcoming Anniversaries Table
++------+-------------+------------+----------------+---------+---------------+
+|  ID  |   Married   | Husband ID |  Husband Name  | Wife ID |   Wife Name   |
++------+-------------+------------+----------------+---------+---------------+
+| @F1@ |  2019-11-16 |    @I2@    |  Johny /Chang/ |   @I3@  |  Nancy /Tsai/ |
++------+-------------+------------+----------------+---------+---------------+
+
+US38 List Upcoming Birthdays Table
++------+----------------+--------+-------------+-----+-------+-------+--------+
+|  ID  |      Name      | Gender |   Birthday  | Age | Alive | Death | Spouse |
++------+----------------+--------+-------------+-----+-------+-------+--------+
+| @I2@ |  Johny /Chang/ |    M   |  1958-11-25 |  61 |  True |   NA  |  @F1@  |
++------+----------------+--------+-------------+-----+-------+-------+--------+
+
+US38 List Upcoming Birthdays Table
++------+----------------+--------+-------------+-----+-------+-------+--------+
+|  ID  |      Name      | Gender |   Birthday  | Age | Alive | Death | Spouse |
++------+----------------+--------+-------------+-----+-------+-------+--------+
+| @I1@ |  David /Chang/ |    M   |  2019-11-16 |  31 |  True |   NA  |   NA   |
++------+----------------+--------+-------------+-----+-------+-------+--------+
+

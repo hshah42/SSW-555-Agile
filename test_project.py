@@ -2629,7 +2629,7 @@ def test_unique_indi_and_family():
     return Project.error_array==['ERROR: INDIVIDUAL: US22: 51: @I1@: Individuals have the same ID', 'ERROR: FAMILY: US22: 62: @F1@: Two families share the same ID ']
 
 
-# In[ ]:
+# In[63]:
 
 
 def test_unique_family_by_spouses_positive_result():
@@ -2644,7 +2644,7 @@ def test_unique_family_by_spouses_positive_result():
     return True
 
 
-# In[ ]:
+# In[64]:
 
 
 def test_unique_family_by_spouses_negative_result():
@@ -2659,7 +2659,7 @@ def test_unique_family_by_spouses_negative_result():
     return True
 
 
-# In[2]:
+# In[65]:
 
 
 def test_check_multiple_births_6_with_same_birthday():
@@ -2676,7 +2676,7 @@ def test_check_multiple_births_6_with_same_birthday():
     return True
 
 
-# In[ ]:
+# In[66]:
 
 
 def test_check_multiple_births_4_with_same_birthday():
@@ -2693,7 +2693,163 @@ def test_check_multiple_births_4_with_same_birthday():
     return True
 
 
-# In[1]:
+# In[67]:
+
+
+def test_family_gender_fail():
+    family_dic = {'@F1@': {'FAM': '@F1@',
+      'FAM_LINE': 461,
+      'HUSB_NAME': 'Samuel /Venzon/',
+      'HUSB_LINE': 462,
+      'HUSB': '@I6@',
+      'WIFE_NAME': 'Willodean /Malagon/',
+      'WIFE_LINE': 463,
+      'WIFE': '@I1@',
+      'MARR_LINE': 466,
+      'MARR': '1970-7-7',
+      'DIV': 'NA',
+      'husband_object': {'INDI': '@I6@',
+       'INDI_LINE': 67,
+       'NAME': 'Samuel /Venzon/',
+       'NAME_LINE': 68,
+       'SEX': 'F',
+       'SEX_LINE': 72,
+       'BIRT_LINE': 73,
+       'BIRT': '1958-12-6',
+       'SPOUSE': ['@F1@'],
+       'FAMS_LINE': 75,
+       'DEAT': 'NA',
+       'AGE': 60,
+       'ALIVE': True},
+      'wife_object': {'INDI': '@I1@',
+       'INDI_LINE': 14,
+       'NAME': 'Willodean /Malagon/',
+       'NAME_LINE': 15,
+       'SEX': 'F',
+       'SEX_LINE': 19,
+       'BIRT_LINE': 20,
+       'BIRT': '1974-7-7',
+       'DEAT_LINE': 22,
+       'DEAT': '1970-6-20',
+       'INDI_CHILD': ['@F2@'],
+       'SPOUSE': ['@F1@'],
+       'FAMS_LINE': 24,
+       'FAMC_LINE': 25,
+       'AGE': -4,
+       'ALIVE': False}}}
+    
+    Project.error_array=[]
+    Project.family_dic = family_dic
+    Project.correct_gender()
+    
+    return Project.error_array == ["ERROR: FAMILY: US21: 72: @I6@: Is Husband and has Sex as Female"]
+                  
+    
+
+
+# In[68]:
+
+
+def test_family_gender_pass():
+    family_dic = {'@F1@': {'FAM': '@F1@',
+      'FAM_LINE': 461,
+      'HUSB_NAME': 'Samuel /Venzon/',
+      'HUSB_LINE': 462,
+      'HUSB': '@I6@',
+      'WIFE_NAME': 'Willodean /Malagon/',
+      'WIFE_LINE': 463,
+      'WIFE': '@I1@',
+      'MARR_LINE': 466,
+      'MARR': '1970-7-7',
+      'DIV': 'NA',
+      'husband_object': {'INDI': '@I6@',
+       'INDI_LINE': 67,
+       'NAME': 'Samuel /Venzon/',
+       'NAME_LINE': 68,
+       'SEX': 'M',
+       'SEX_LINE': 72,
+       'BIRT_LINE': 73,
+       'BIRT': '1958-12-6',
+       'SPOUSE': ['@F1@'],
+       'FAMS_LINE': 75,
+       'DEAT': 'NA',
+       'AGE': 60,
+       'ALIVE': True},
+      'wife_object': {'INDI': '@I1@',
+       'INDI_LINE': 14,
+       'NAME': 'Willodean /Malagon/',
+       'NAME_LINE': 15,
+       'SEX': 'F',
+       'SEX_LINE': 19,
+       'BIRT_LINE': 20,
+       'BIRT': '1974-7-7',
+       'DEAT_LINE': 22,
+       'DEAT': '1970-6-20',
+       'INDI_CHILD': ['@F2@'],
+       'SPOUSE': ['@F1@'],
+       'FAMS_LINE': 24,
+       'FAMC_LINE': 25,
+       'AGE': -4,
+       'ALIVE': False}}}
+    
+    Project.error_array=[]
+    Project.family_dic = family_dic
+    Project.correct_gender()
+    
+    return len(Project.error_array) == 0
+                  
+    
+
+
+# In[69]:
+
+
+def test_valid_dates_fail():
+    family_dic = {'@F1@': {'FAM': '@F1@',
+      'FAM_LINE': 461,
+      'HUSB_NAME': 'Samuel /Venzon/',
+      'HUSB_LINE': 462,
+      'HUSB': '@I6@',
+      'WIFE_NAME': 'Willodean /Malagon/',
+      'WIFE_LINE': 463,
+      'WIFE': '@I1@',
+      'MARR_LINE': 466,
+      'MARR': '1970-2-30',
+      'DIV': 'NA'}}
+    
+    Project.error_array=[]
+    Project.family_dic = family_dic
+    Project.validate_date()
+    
+    return Project.error_array == ["ERROR: FAMILY: US42: 466: Famliy @F1@ does not have valid Marriage Date 1970-2-30"]
+    
+
+
+# In[70]:
+
+
+def test_valid_dates_pass():
+    family_dic = {'@F1@': {'FAM': '@F1@',
+      'FAM_LINE': 461,
+      'HUSB_NAME': 'Samuel /Venzon/',
+      'HUSB_LINE': 462,
+      'HUSB': '@I6@',
+      'WIFE_NAME': 'Willodean /Malagon/',
+      'WIFE_LINE': 463,
+      'WIFE': '@I1@',
+      'MARR_LINE': 466,
+      'MARR': '1970-2-2',
+      'DIV': 'NA'}}
+    
+    Project.error_array=[]
+    Project.family_dic = family_dic
+    Project.validate_date()
+    
+    return len(Project.error_array) == 0
+    
+
+
+# In[71]:
 
 
 import unittest
@@ -2835,6 +2991,14 @@ class TestStringMethods(unittest.TestCase):
         self.assertTrue(test_check_multiple_births_6_with_same_birthday())
     def test_check_multiple_births_4_with_same_birthday(self):
         self.assertTrue(test_check_multiple_births_4_with_same_birthday())
+    def test_family_gender_fail(self):
+        self.assertTrue(test_family_gender_fail())
+    def test_family_gender_pass(self):
+        self.assertTrue(test_family_gender_pass())
+    def test_valid_dates_fail(self):
+        self.assertTrue(test_valid_dates_fail())
+    def test_valid_dates_pass(self):
+        self.assertTrue(test_valid_dates_pass())
         
         
 suite = unittest.TestLoader().loadTestsFromTestCase(TestStringMethods)
