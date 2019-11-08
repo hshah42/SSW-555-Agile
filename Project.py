@@ -5,7 +5,6 @@
 
 
 # All the file imports
-get_ipython().system('pip install prettytable')
 from datetime import datetime
 from prettytable import PrettyTable
 import os
