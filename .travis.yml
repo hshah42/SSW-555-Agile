@@ -2,5 +2,8 @@ language: python
 rvm:
  - 3.6
 
+install:
+ - pip3 install prettytable
+
 script:
  - python3 test_project.py
